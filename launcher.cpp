@@ -4,31 +4,10 @@
 #include "data_alloc.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
-#include "algs_inter_weiting.h"
 #include "algs_inter_intra.h"
 #include "utils.h"
 
 #define DECODE __ALGO__
-
-
-void de_dpcm(int*** Y, int*** dpcm_Y, const int& h, const int&w, const int &f){
-
-    int i,j,k;
-
-    for(k=1;k<f;++k){
-
-        for(i=0;i<h;++i)
-            for(j=0;j<w;++j){
-                dpcm_Y[k][i][j] = dpcm_Y[k][i][j];
-                dpcm_Y[k][i][j] += dpcm_Y[k-1][i][j];
-                dpcm_Y[k][i][j]%=256;
-            }
-
-        printf("PSNR[%d]=%f\n",k+1,computePSNR(Y[k],dpcm_Y[k],h,w));
-    }
-
-
-}
 
 
 int main(int argc,char* argv[]){
@@ -49,19 +28,18 @@ int main(int argc,char* argv[]){
     int*** U = new3d<int>(f,h/2,w/2);
     int*** V = new3d<int>(f,h/2,w/2);
 
+    double* weights = (double*)malloc(sizeof(double)*PXL);
+    for(int i = 0 ; i < PXL ; ++i)
+        weights[i] = 1.0;
+
     // read YUV
     if(argc == 1)
-//        Y = yuv_read("stefan_cif.yuv",h,w,f);
         yuv_read("hall_cif.yuv",h,w,f,Y,U,V);
     else
-//        Y = yuv_read(argv[1],h,w,f);
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
-//    dpcm(Y,dpcm_Y,h,w,f);
-
-//    de_dpcm(Y,dpcm_Y,h,w,f);
     // encode
-    video_encode(Y,f,h,w,snr,G,Ly,map_out);
+    video_encode(Y,f,h,w,snr,G,Ly,map_out,weights);
 
     // decode
     if(argc == 1)
@@ -77,8 +55,12 @@ int main(int argc,char* argv[]){
 
 
     // print result PSNR
-    for(int i = 0 ; i < f ; ++i)
+    double avg_psnr = 0.0;
+    for(int i = 0 ; i < f ; ++i){
         printf("frame#%3d PSNR = %lf\n",i+1,PSNR[i]);
+        avg_psnr += PSNR[i];
+    }
+    printf("AVERAGE PSNR = %lf\n",avg_psnr/f);
 
 #if __OUTPUT_SEQ__
     yuv_write("hall",_Y,U,V,f,h,w);
@@ -96,4 +78,5 @@ int main(int argc,char* argv[]){
     deleteY(V);
 
     free(PSNR);
+    free(weights);
 }

@@ -18,7 +18,7 @@
 *  @param: map_out      bits index map for interleave           [n_frame*PXL*(imgh*imgw)]
 *
 */
-void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, const double &EbN0dB, int** G_ptr, double *** Ly , int*** map_out){
+void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, const double &EbN0dB, int** G_ptr, double *** Ly , int*** map_out, double* weights){
 
     /* Channel code parameter  */
 
@@ -29,8 +29,15 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
     const int lm = imgh*imgw;                   // Frame size
     const int lu = lm + 2;                      // Length of message bit sequence
     const double EbN0 = pow(10,EbN0dB/10);      // convert Eb/N0[dB] to normal number
-    const double L_c = 4*a*EbN0*rate;           // reliability value of the channel
-    const double sigma = 1/sqrt(2*rate*EbN0);   // standard deviation of AWGN noise
+//    double L_c = 4*a*EbN0*rate;           // reliability value of the channel
+//    double sigma = 1/sqrt(2*rate*EbN0);   // standard deviation of AWGN noise
+    double L_c[PXL];
+    double sigma[PXL];
+
+    for(int i = 0 ; i < PXL ; ++i){
+        L_c[i] = 4*a*weights[i]*EbN0*rate;
+        sigma[i] = 1/sqrt(2*rate*weights[i]*EbN0);
+    }
 
     // outputfile pre-allocating
     int **img;
@@ -51,7 +58,7 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
             rsc_encode(G_ptr,G_L,img_bp[t_lvl],map_out[f][t_lvl],imgw,lm,1,x);
 
             for(int i = 0 ; i < 2*lu ; ++i){
-                Ly[f][t_lvl][i] = 0.5*L_c*((2*x[i] - 1)+ sigma*gaussian_noise());  // add noise   + sigma*gaussian_noise()
+                Ly[f][t_lvl][i] = 0.5*L_c[t_lvl]*((2*x[i] - 1)+ sigma[t_lvl]*gaussian_noise());  // add noise   + sigma*gaussian_noise()
             }
         }
     }

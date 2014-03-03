@@ -1,2 +1,4 @@
 /sequence/
 *.cbTemp
+*.exe
+*.o

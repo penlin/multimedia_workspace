@@ -1474,3 +1474,50 @@ frame# 40 PSNR = 20.858520
 
 Total Time Comsume:154.963000
 
+=============================
+Tue Mar 04 02:50:29 2014
+
+SNR=0
+frame#  1 PSNR = 15.562792
+frame#  2 PSNR = 15.733320
+frame#  3 PSNR = 15.706121
+frame#  4 PSNR = 15.769692
+frame#  5 PSNR = 15.622207
+frame#  6 PSNR = 15.562724
+frame#  7 PSNR = 15.632742
+frame#  8 PSNR = 15.656515
+frame#  9 PSNR = 15.658009
+frame# 10 PSNR = 15.653818
+frame# 11 PSNR = 15.680610
+frame# 12 PSNR = 15.692307
+frame# 13 PSNR = 15.521373
+frame# 14 PSNR = 15.504945
+frame# 15 PSNR = 15.584537
+frame# 16 PSNR = 15.653778
+frame# 17 PSNR = 15.620271
+frame# 18 PSNR = 15.652632
+frame# 19 PSNR = 15.634413
+frame# 20 PSNR = 15.701029
+frame# 21 PSNR = 15.703238
+frame# 22 PSNR = 15.548751
+frame# 23 PSNR = 15.581152
+frame# 24 PSNR = 15.621902
+frame# 25 PSNR = 15.730264
+frame# 26 PSNR = 15.620595
+frame# 27 PSNR = 15.668774
+frame# 28 PSNR = 15.720725
+frame# 29 PSNR = 15.656649
+frame# 30 PSNR = 15.590969
+frame# 31 PSNR = 15.598804
+frame# 32 PSNR = 15.588975
+frame# 33 PSNR = 15.705161
+frame# 34 PSNR = 15.681029
+frame# 35 PSNR = 15.653177
+frame# 36 PSNR = 15.671260
+frame# 37 PSNR = 15.635418
+frame# 38 PSNR = 15.585004
+frame# 39 PSNR = 15.613617
+frame# 40 PSNR = 15.696834
+
+Total Time Comsume:38.650000
+
