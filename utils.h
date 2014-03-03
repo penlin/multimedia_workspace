@@ -110,6 +110,11 @@ double gaussian_noise(){
 }
 
 
+int random_select_from(const int &from, const int &to ){
+    return rand()%(to-from) + from;
+}
+
+
 /*
     n1 = sizeof(a) / sizeof(*a);
     n2 = sizeof(b) / sizeof(*b);

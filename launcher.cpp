@@ -21,6 +21,7 @@ int main(int argc,char* argv[]){
     int ** G = getGenerator();
     double* PSNR = (double*) malloc(sizeof(double)*f);
     double *** Ly = new3d<double>(f,PXL,2*lu);
+    int *** x = new3d<int>(f,PXL,2*lu);
     int *** map_out = new3d<int>(f,PXL,lm);
     int*** Y = new3d<int>(f,h,w);
     int*** dpcm_Y = new3d<int>(f,h,w);
@@ -39,7 +40,8 @@ int main(int argc,char* argv[]){
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
     // encode
-    video_encode(Y,f,h,w,snr,G,Ly,map_out,weights);
+    video_encode(Y,f,h,w,snr,G,x,map_out);
+    generate_Ly(x,lu,f,snr,Ly,weights);
 
     // decode
     if(argc == 1)
@@ -69,6 +71,7 @@ int main(int argc,char* argv[]){
 
     // free memory
     delete3d<double>(Ly);
+    delete3d<int>(x);
     delete3d<int>(map_out);
     delete2d<int>(G);
     deleteY(Y);

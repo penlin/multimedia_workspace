@@ -1521,3 +1521,101 @@ frame# 40 PSNR = 15.696834
 
 Total Time Comsume:38.650000
 
+=============================
+Tue Mar 04 03:01:52 2014
+
+SNR=0
+frame#  1 PSNR = 15.720060
+frame#  2 PSNR = 15.587291
+frame#  3 PSNR = 15.649275
+frame#  4 PSNR = 15.720688
+frame#  5 PSNR = 15.710131
+frame#  6 PSNR = 15.656969
+frame#  7 PSNR = 15.688442
+frame#  8 PSNR = 15.664940
+frame#  9 PSNR = 15.691174
+frame# 10 PSNR = 15.581174
+frame# 11 PSNR = 15.599464
+frame# 12 PSNR = 15.677169
+frame# 13 PSNR = 15.644828
+frame# 14 PSNR = 15.644845
+frame# 15 PSNR = 15.774628
+frame# 16 PSNR = 15.729070
+frame# 17 PSNR = 15.685826
+frame# 18 PSNR = 15.591532
+frame# 19 PSNR = 15.709284
+frame# 20 PSNR = 15.708613
+frame# 21 PSNR = 15.659520
+frame# 22 PSNR = 15.690554
+frame# 23 PSNR = 15.712127
+frame# 24 PSNR = 15.680615
+frame# 25 PSNR = 15.646638
+frame# 26 PSNR = 15.639138
+frame# 27 PSNR = 15.641732
+frame# 28 PSNR = 15.631372
+frame# 29 PSNR = 15.623537
+frame# 30 PSNR = 15.686965
+frame# 31 PSNR = 15.697979
+frame# 32 PSNR = 15.688038
+frame# 33 PSNR = 15.596801
+frame# 34 PSNR = 15.726595
+frame# 35 PSNR = 15.657714
+frame# 36 PSNR = 15.677622
+frame# 37 PSNR = 15.503131
+frame# 38 PSNR = 15.595381
+frame# 39 PSNR = 15.699427
+frame# 40 PSNR = 15.714502
+
+Total Time Comsume:43.552000
+
+=============================
+Tue Mar 04 04:51:26 2014
+
+SNR=0
+frame#  1 PSNR = 6.526001
+frame#  2 PSNR = 6.528935
+frame#  3 PSNR = 6.529515
+frame#  4 PSNR = 6.532157
+frame#  5 PSNR = 6.529838
+frame#  6 PSNR = 6.530414
+frame#  7 PSNR = 6.529257
+frame#  8 PSNR = 6.528766
+frame#  9 PSNR = 6.527810
+frame# 10 PSNR = 6.525560
+
+Total Time Comsume:17.360000
+
+=============================
+Tue Mar 04 04:52:34 2014
+
+SNR=0
+frame#  1 PSNR = 6.526001
+frame#  2 PSNR = 6.528935
+frame#  3 PSNR = 6.529515
+frame#  4 PSNR = 6.532157
+frame#  5 PSNR = 6.529838
+frame#  6 PSNR = 6.530414
+frame#  7 PSNR = 6.529257
+frame#  8 PSNR = 6.528766
+frame#  9 PSNR = 6.527810
+frame# 10 PSNR = 6.525560
+
+Total Time Comsume:25.992000
+
+=============================
+Tue Mar 04 04:53:42 2014
+
+SNR=0
+frame#  1 PSNR = 6.526001
+frame#  2 PSNR = 6.528935
+frame#  3 PSNR = 6.529515
+frame#  4 PSNR = 6.532157
+frame#  5 PSNR = 6.529838
+frame#  6 PSNR = 6.530414
+frame#  7 PSNR = 6.529257
+frame#  8 PSNR = 6.528766
+frame#  9 PSNR = 6.527810
+frame# 10 PSNR = 6.525560
+
+Total Time Comsume:17.399000
+

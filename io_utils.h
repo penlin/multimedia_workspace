@@ -8,19 +8,24 @@
 #include "utils.h"
 
 
-/******************
-***    OUTPUT   ***
-*******************/
+/**#   _______          _________ _______          _________
+#  (  ___  )|\     /|\__   __/(  ____ )|\     /|\__   __/
+#  | (   ) || )   ( |   ) (   | (    )|| )   ( |   ) (
+#  | |   | || |   | |   | |   | (____)|| |   | |   | |
+#  | |   | || |   | |   | |   |  _____)| |   | |   | |
+#  | |   | || |   | |   | |   | (      | |   | |   | |
+#  | (___) || (___) |   | |   | )      | (___) |   | |
+#  (_______)(_______)   )_(   |/       (_______)   )_(
+#  **/
 
-
-/*
+/**
 *  @Penlin: write .yuv video with Y value matrix (or U , V)
 *  @param: filename
 *  @param: imgh
 *  @param: imgw
 *  @param: n_frame
 *  @param: Y       Y value matrix [n_frame*imgh*imgw]
-*/
+**/
 
 void yuv_write(const char* filename, int*** Y, int*** U, int*** V, const int &n_frame, const int &imgh, const int &imgw){
 
@@ -165,6 +170,29 @@ void write_psnr_info(double* const PSNR){
 }
 
 
+void write_power_info(double* const weights, const double &psnr){
+
+    FILE* f_power = fopen("output/power.txt","a+");
+
+    if(f_power==NULL){
+        printf("====  Warning! Error open POWER file ====\n");
+        return;
+    }
+
+    fprintf(f_power,"=============================\n%s\n",getLocalTimenDate());
+    fprintf(f_power,"AVG SNR = %d: ",__SNR);
+
+    for(int i = 0 ; i < PXL-1 ; ++i)
+        fprintf(f_power,"%.2f,",weights[i]);
+
+    fprintf(f_power,"%.2f:%lf\n",weights[PXL-1],psnr);
+
+//    fprintf(f_power,"\nTotal Time Comsume:%lf\n\n",getCurrentTime());
+
+    fclose(f_power);
+}
+
+
 void write_pc_for_matlab(double* Ia, double* Ie, const int &ln){
     FILE* f = fopen("output/pc.m","w+");
 
@@ -195,19 +223,24 @@ void write_ps_for_matlab(double** Ia, double** Ie, const int &ln){
     }
 }
 
-/******************
-***     INPUT   ***
-*******************/
+/**#  _________ _        _______          _________
+#  \__   __/( (    /|(  ____ )|\     /|\__   __/
+#     ) (   |  \  ( || (    )|| )   ( |   ) (
+#     | |   |   \ | || (____)|| |   | |   | |
+#     | |   | (\ \) ||  _____)| |   | |   | |
+#     | |   | | \   || (      | |   | |   | |
+#  ___) (___| )  \  || )      | (___) |   | |
+#  \_______/|/    )_)|/       (_______)   )_(
+#  **/
 
-
-/*
+/**
 *  @Penlin: read .yuv video into Y value matrix
 *  @param: filename
 *  @param: imgh
 *  @param: imgw
 *  @param: n_frame
 *  @param: Y       Y value matrix [n_frame*imgh*imgw]
-*/
+**/
 
 int*** yuv_read(const char* filename, const int &imgh, const int &imgw, const int &n_frame){
     FILE *pFile;
@@ -273,6 +306,48 @@ void yuv_read(const char* filename, const int &imgh, const int &imgw, const int 
     fclose(pFile);
     free(buffer);
 }
+
+void yuv_random_read(const char* filename, const int &imgh, const int &imgw, const int &n_frame, int*** Y, int*** U, int*** V){
+    FILE *pFile;
+    unsigned char * buffer;
+    // initial _firstFrame at random(0,#Frame-n_frame)
+    int _firstFrame = 0 ;
+    char file[50];
+    sprintf(file,"%s/%s","sequence",filename);
+
+    pFile = fopen(file,"r+b");
+    assert(pFile!=NULL);
+    rewind(pFile);
+    fseek(pFile,0L,SEEK_END);
+    _firstFrame = random_select_from(0,ftell(pFile)/(imgh*imgw*3/2)-n_frame);
+    printf("first frame is %d\n",_firstFrame);
+    fseek(pFile,imgh*imgw*3/2*_firstFrame,SEEK_SET);
+    buffer = (unsigned char*)malloc(sizeof(unsigned char)*imgh*imgw*3/2);
+    const int offset_u = imgh*imgw, offset_v = imgh*imgw*5/4;
+
+    for(int i = 0, j = 0, k = 0 ; i < n_frame ; ++i) {
+        printf("read frame #%d\n",i+1);
+        fread(buffer,1,imgw*imgh*3/2,pFile);
+        for(j = 0 ; j < imgh ; ++j){
+            for(k = 0 ; k < imgw ; ++k)
+                Y[i][j][k] = (int) buffer[k+j*imgw];
+        }
+
+        if(U==NULL)
+            continue;
+        for(j = 0 ; j < imgh/2 ; ++j){
+            for(k = 0 ; k < imgw/2 ; ++k){
+                U[i][j][k] = (int) buffer[offset_u + k+j*imgw/2];
+                V[i][j][k] = (int) buffer[offset_v + k+j*imgw/2];
+            }
+        }
+    }
+
+    fclose(pFile);
+    free(buffer);
+}
+
+
 
 void deleteY(int *** Y){
     delete3d<int>(Y);

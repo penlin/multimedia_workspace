@@ -23,7 +23,7 @@
 *
 **/
 
-void direct_decode(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int &imgh, const int &imgw, const int &n_frame, const int &lu, int** G, double* PSNR , int*** img_out = NULL){
+void direct_decode(const char* str,int*** const Y, double*** const Ly_in, int*** const map_in, const int &imgh, const int &imgw, const int &n_frame, const int &lu, int** G, double* PSNR , int*** img_out = NULL){
 
     // param initial
     const int lm = imgh*imgw;
@@ -101,7 +101,7 @@ void direct_decode(const char* str, int*** Y, double*** Ly_in, int*** map_in, co
     }
 
     delete3d<int>(imgr_bp);
-    delete2d<int>(G);
+//    delete2d<int>(G); // important
     delete2d<double>(Lu_c);
     delete2d<int>(imgr);
     delete2d<int>(pstate);
