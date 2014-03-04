@@ -77,10 +77,12 @@ void generate_Ly(int*** x, const int &lu , const int &n_frame, const double &EbN
 
     for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
         L_c[t_lvl] = 4*a*weights[t_lvl]*EbN0*rate;
-        sigma[t_lvl] = 1/sqrt(2*rate*weights[t_lvl]*EbN0);
+//        sigma[t_lvl] = 1/sqrt(2*rate*weights[t_lvl]*EbN0);
+        sigma[t_lvl] = a*sqrt(2*rate*weights[t_lvl]*EbN0);
         for (int f = 0 ; f < n_frame ; ++f){
             for(int i = 0 ; i < 2*lu ; ++i){
-                Ly[f][t_lvl][i] = 0.5*L_c[t_lvl]*((2*x[f][t_lvl][i] - 1)+ sigma[t_lvl]*gaussian_noise());  // add noise   + sigma*gaussian_noise()
+                //Ly[f][t_lvl][i] = 0.5*L_c[t_lvl]*((2*x[f][t_lvl][i] - 1)+ sigma[t_lvl]*gaussian_noise());  // add noise   + sigma*gaussian_noise()
+                Ly[f][t_lvl][i] = 0.5*L_c[t_lvl]*(2*x[f][t_lvl][i] - 1)+ sigma[t_lvl]*gaussian_noise();  // add noise   + sigma*gaussian_noise()
             }
         }
     }

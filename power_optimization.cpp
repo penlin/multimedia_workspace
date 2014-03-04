@@ -4,13 +4,14 @@
 #include "data_alloc.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
+#include "algs_inter.h"
 #include "algs_inter_intra.h"
 #include "utils.h"
 
 #define DECODE __ALGO__
 
-const double LAST_GOOD[PXL] = {2.60,2.10,1.60,1.00,0.40,0.50,0.0,0.0};
-
+//const double LAST_GOOD[PXL] = {2.50,2.00,1.60,1.00,0.40,0.50,0.0,0.0};
+const double LAST_GOOD[PXL] = {2.50,2.10,1.70,1.10,0.25,0.35,0.0,0.0};
 
 int main(int argc,char* argv[]){
 
@@ -41,7 +42,7 @@ int main(int argc,char* argv[]){
     // encode
     video_encode(Y,f,h,w,snr,G,x,map_out);
 
-    const double delta = 0.1;
+    double delta = 0.05;
     double performance[PXL] = {0.0};
     double lasthighest = -100.0;
     double highest = -1.0, lowest = 10000.0;
