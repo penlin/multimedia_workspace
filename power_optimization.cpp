@@ -11,7 +11,8 @@
 #define DECODE __ALGO__
 
 //const double LAST_GOOD[PXL] = {2.50,2.00,1.60,1.00,0.40,0.50,0.0,0.0};
-const double LAST_GOOD[PXL] = {2.50,2.10,1.70,1.10,0.25,0.35,0.0,0.0};
+//const double LAST_GOOD[PXL] = {2.50,2.10,1.70,1.10,0.25,0.35,0.0,0.0};
+const double LAST_GOOD[PXL] = {2.52,2.10,1.69,1.10,0.26,0.33,0.01,0.00};
 
 int main(int argc,char* argv[]){
 
@@ -42,7 +43,7 @@ int main(int argc,char* argv[]){
     // encode
     video_encode(Y,f,h,w,snr,G,x,map_out);
 
-    double delta = 0.05;
+    double delta = 0.01;
     double performance[PXL] = {0.0};
     double lasthighest = -100.0;
     double highest = -1.0, lowest = 10000.0;
