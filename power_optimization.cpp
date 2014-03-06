@@ -14,6 +14,10 @@
 //const double LAST_GOOD[PXL] = {2.50,2.10,1.70,1.10,0.25,0.35,0.0,0.0};
 const double LAST_GOOD[PXL] = {2.52,2.10,1.69,1.10,0.26,0.33,0.01,0.00};
 
+const double LAST_GOOD_SNR_2[PXL] = {2.22,1.75,1.59,1.15,0.86,0.38,0.06,0.00}; // 35 dB
+const double LAST_GOOD_SNR_4[PXL] = {2.02,1.50,1.39,1.05,0.86,0.68,0.41,0.10}; // 46 dB
+const double LAST_GOOD_SNR_6[PXL] = {1.97,1.50,1.09,0.90,0.86,0.68,0.56,0.45}; // 61 dB
+
 int main(int argc,char* argv[]){
 
     startRandom();
@@ -43,13 +47,14 @@ int main(int argc,char* argv[]){
     // encode
     video_encode(Y,f,h,w,snr,G,x,map_out);
 
-    double delta = 0.01;
+    double delta = 0.05;
     double performance[PXL] = {0.0};
     double lasthighest = -100.0;
     double highest = -1.0, lowest = 10000.0;
+    const double tolerance = 0.07;
     int index_h = 0, index_l = 0;
 
-    while(highest > lasthighest){
+    while(highest > lasthighest - tolerance){
 
         lasthighest = highest;
         highest = -1.0;
@@ -101,6 +106,7 @@ int main(int argc,char* argv[]){
             weights_prev[index_l] -= delta;
         else
             break;
+
 
     }
 

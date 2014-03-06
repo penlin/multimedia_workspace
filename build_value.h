@@ -41,8 +41,8 @@
 #define Niter  2                        // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
-#define __FRAME     10
-#define __SNR       0
+#define __FRAME     20
+#define __SNR       6
 #define __SNR_S     0
 #define __SNR_E     8
 
