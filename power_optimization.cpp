@@ -94,7 +94,7 @@ int main(int argc,char* argv[]){
                 highest = performance[i];
             }
 
-            if(performance[i]<lowest && weights_prev[i]>delta/2 ){
+            if(performance[i]<lowest && weights_prev[i]>=delta-delta/100 ){
                 index_l = i;
                 lowest = performance[i];
             }
