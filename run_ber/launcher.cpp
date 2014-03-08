@@ -6,8 +6,8 @@
 #include "channel_code_utils.h"
 #include "algs_direct.h"
 
-#define DECODE __ALGO__
 #define BCJR 0
+#define N 5000000
 
 void generateBitstream(int* bitstream, const int &lm, int* map, int* encoded_sequence, int** G){
 
@@ -36,7 +36,11 @@ int main(int argc,char* argv[]){
 
     const int h = __HEIGHT, w = __WIDTH;
     const int lm = h*w;
-    double snr = __SNR;
+    const int nSNR = __SNR_E-__SNR_S;
+    double snr[nSNR];
+    for(int i = 0 ; i < nSNR ; ++i)
+        snr[i] = __SNR_S+i;
+
     int n_err = 0 , Nbit = 0;
     int * map_out = (int*)malloc(sizeof(int)*lm);
     int * bitstream = (int*)malloc(sizeof(int)*lm);
@@ -54,30 +58,33 @@ int main(int argc,char* argv[]){
     double* y = (double*)malloc(sizeof(double)*lm);
 #endif
 
-    while(Nbit < 1000000 || n_err < 10){
-        // encode
+    for(int snr_idx = 0 ; snr_idx < nSNR ; ++ snr_idx){
+
+        while(Nbit < N || n_err < 10){
+            // encode
 #if BCJR
-        generateBitstream(bitstream,lm,map_out,x,G);
-        generate_Ly(x,lu,snr,Ly);
+            generateBitstream(bitstream,lm,map_out,x,G);
+            generate_Ly(x,lu,snr[snr_idx],Ly);
 #else
-        generateBitstream(bitstream,lm,map_out,NULL,NULL);
-        AWGN(bitstream,lm,map_out,y,snr);
+            generateBitstream(bitstream,lm,map_out,NULL,NULL);
+            AWGN(bitstream,lm,map_out,y,snr[snr_idx]);
 #endif
 
 
-        // decode
-        Nbit += lm ;
+            // decode
+            Nbit += lm ;
 #if BCJR
-        DECODE(bitstream,Ly,map_out,lm,lu,pstate,pout,n_err);
+            direct_decode(bitstream,Ly,map_out,lm,lu,pstate,pout,n_err);
 #else
-        for(int i = 0 ; i < lm ; ++i){
-            if((2*bitstream[i]-1)*y[i] < 0 )
-                n_err += 1;
+            for(int i = 0 ; i < lm ; ++i){
+                if((2*bitstream[map_out[i]]-1)*y[i] < 0 )
+                    n_err += 1;
+            }
+#endif
         }
-#endif
+        printf("SNR=% .1f dB, BER=%.7f (%d,%d)\n",snr[snr_idx],(double)n_err/Nbit,n_err,Nbit);
+        n_err = Nbit = 0;
     }
-    printf("SNR=%.1f dB, BER=%.5f (%d,%d)\n",snr,(double)n_err/Nbit,n_err,Nbit);
-
     // free memory
     free(map_out);
     free(bitstream);
