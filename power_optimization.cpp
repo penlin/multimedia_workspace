@@ -16,6 +16,7 @@ const double LAST_GOOD[PXL] = {2.52,2.10,1.69,1.10,0.26,0.33,0.01,0.00};
 
 const double LAST_GOOD_SNR_2[PXL] = {2.22,1.75,1.59,1.15,0.86,0.38,0.06,0.00}; // 35 dB
 const double LAST_GOOD_SNR_4[PXL] = {2.02,1.50,1.39,1.05,0.86,0.68,0.41,0.10}; // 46 dB
+const double DERIVE_SNR_4[PXL] = {1.7441,1.5094, 1.2528,1.1347, 0.9412, 0.7502,0.5525, 0.1152}; // 47.8 dB
 const double LAST_GOOD_SNR_6[PXL] = {1.97,1.50,1.09,0.90,0.86,0.68,0.56,0.45}; // 61 dB
 
 int main(int argc,char* argv[]){
@@ -39,7 +40,7 @@ int main(int argc,char* argv[]){
     double* weights_prev = (double*)malloc(sizeof(double)*PXL);
     double* weights = (double*)malloc(sizeof(double)*PXL);
     for(int i = 0 ; i < PXL ; ++i)
-        weights_prev[i] = LAST_GOOD[i];
+        weights_prev[i] = DERIVE_SNR_4[i];
 
     // read YUV
     yuv_random_read("hall_cif.yuv",h,w,f,Y,NULL,NULL);
@@ -47,7 +48,7 @@ int main(int argc,char* argv[]){
     // encode
     video_encode(Y,f,h,w,snr,G,x,map_out);
 
-    double delta = 0.05;
+    double delta = 0.0;
     double performance[PXL] = {0.0};
     double lasthighest = -100.0;
     double highest = -1.0, lowest = 10000.0;

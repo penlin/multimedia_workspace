@@ -43,7 +43,7 @@
 #define __WIDTH     352
 #define __FRAME     20
 #define __SNR       0
-#define __SNR_S     -2
+#define __SNR_S     -20
 #define __SNR_E     8
 
 /**#   ______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _

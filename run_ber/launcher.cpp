@@ -6,7 +6,7 @@
 #include "channel_code_utils.h"
 #include "algs_direct.h"
 
-#define BCJR 0
+#define BCJR 1
 #define N 5000000
 
 void generateBitstream(int* bitstream, const int &lm, int* map, int* encoded_sequence, int** G){
@@ -82,7 +82,7 @@ int main(int argc,char* argv[]){
             }
 #endif
         }
-        printf("SNR=% .1f dB, BER=%.7f (%d,%d)\n",snr[snr_idx],(double)n_err/Nbit,n_err,Nbit);
+        printf("SNR=% 3.1f dB, BER=%.10f (%d,%d)\n",snr[snr_idx],(double)n_err/Nbit,n_err,Nbit);
         n_err = Nbit = 0;
     }
     // free memory
