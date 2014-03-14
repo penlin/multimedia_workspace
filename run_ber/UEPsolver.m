@@ -6,7 +6,8 @@ w = [0:0.01:8]';
 snr = w.*gamma;
 df = interp1(xdata,ydata,snr);
 
-lambda = 0.45125;
+%lambda = 0.45125;  for gamma = 10^(4/10) [4dB]
+lambda = 0.00095;
 %-lambda./4.^([0:7])./gamma
 weight = interp1(ydata,xdata,-lambda./4.^([0:7])./gamma)/gamma;
 weight

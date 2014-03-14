@@ -4,6 +4,7 @@
 #include "data_alloc.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
+#include "algs_inter.h"
 #include "algs_inter_intra.h"
 #include "utils.h"
 
@@ -35,7 +36,7 @@ int main(int argc,char* argv[]){
 
     // read YUV
     if(argc == 1)
-        yuv_read("hall_cif.yuv",h,w,f,Y,U,V);
+        yuv_random_read("stefan_cif.yuv",h,w,f,Y,U,V);
     else
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
@@ -45,7 +46,7 @@ int main(int argc,char* argv[]){
 
     // decode
     if(argc == 1)
-        DECODE("hall",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
+        DECODE("stefan",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
     else if(argc > 2)
         DECODE(argv[2],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
     else
@@ -65,7 +66,7 @@ int main(int argc,char* argv[]){
     printf("AVERAGE PSNR = %lf\n",avg_psnr/f);
 
 #if __OUTPUT_SEQ__
-    yuv_write("hall",_Y,U,V,f,h,w);
+    yuv_write("stefan",_Y,U,V,f,h,w);
 #endif
     write_psnr_info(PSNR);
 

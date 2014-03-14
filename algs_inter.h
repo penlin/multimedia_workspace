@@ -184,14 +184,16 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
                         imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
 
 //                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
-                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+                        //imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
 
                         ii = map_prev[t_lvl][j+i*imgw]/imgw;
                         jj = map_prev[t_lvl][j+i*imgw]%imgw;
                         imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
 
 //                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
-                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+                        //imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
                     }
 
             bin2dec_img(imgr_bp,imgh,imgw,imgr);
@@ -201,11 +203,11 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 #if __STATUS__
         printf("Motion Estimation ...%lf\n",getCurrentTime());
 #endif
-            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
-            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
+//            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
+//            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
-//            motionEstES<double>(imgr_soft_bp_prev,imgr_soft_bp,imgh,imgw,mbSize,me_range,MV);
-//            motionEstES<double>(imgr_soft_bp,imgr_soft_bp_prev,imgh,imgw,mbSize,me_range,MV_prev);
+            motionEstES<double>(imgr_soft_bp_prev,imgr_soft_bp,imgh,imgw,mbSize,me_range,MV);
+            motionEstES<double>(imgr_soft_bp,imgr_soft_bp_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
             // generate extrinsic information
             for(int i = 0 ; i < PXL ; ++i)

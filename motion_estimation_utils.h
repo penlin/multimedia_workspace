@@ -2,6 +2,7 @@
 #define __MOTION_ESTIMATION_UTILS_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits>
 
 #define PXL 8
 
@@ -27,7 +28,17 @@ static void cal_soft_map(T* const a, T* const b, double &err){
     }
 }
 
-
+template<class T>
+static void cal_soft_likelihood(T* const a, T* const b, double &err){
+    int i, j;
+    double ea, eb;
+    err = 0;
+    for(i=0 ; i <PXL ; ++i){
+        //ea = exp(a[i]);
+        //eb = exp(b[i]);
+        err+= ORDERS[i]*(log((a[i]+b[i])/(a[i]*b[i]+1)));
+    }
+}
 template<class T>
 static void cal_soft_mse(T* const a, T* const b, double &err){
     int i, j;
@@ -94,7 +105,7 @@ void costFunc(T*** const imgP, T*** const imgI, Point const &start, Point const 
 
     for(i= sY ; i < eY ; ++i){
         for(j = sX ; j < eX ; ++j){
-            cal_soft_map<T>(imgP[i][j],imgI[i+dy][j+dx],tmp);
+            cal_soft_likelihood<T>(imgP[i][j],imgI[i+dy][j+dx],tmp);
             err += tmp;
         }
     }
@@ -116,7 +127,7 @@ template<class T>
 void motionEstES(T*** const imgP, T*** const imgI,const int &h, const int &w , const int &mb_size, const int &me_range, int** mv){
     int i , j, m, n, curVer, curHor, cnt=0 , nMV;
     Point point, delta;
-    double cost, minCost = -1;
+    double cost, minCost = (double)(1<<31);
 
     height = h;
     width = w;
@@ -144,7 +155,7 @@ void motionEstES(T*** const imgP, T*** const imgI,const int &h, const int &w , c
                         delta.X = n;
                         costFunc<T>(imgP,imgI,point,delta,cost);
 
-                        if(minCost < 0 || cost < minCost ){
+                        if( cost < minCost ){
                             minCost = cost;
                             mv[0][cnt] = m;
                             mv[1][cnt] = n;
@@ -155,7 +166,7 @@ void motionEstES(T*** const imgP, T*** const imgI,const int &h, const int &w , c
             }
 
             cnt++;
-            minCost = -1;
+            minCost = (double)(1<<31);
         }
     }
 

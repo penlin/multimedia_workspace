@@ -81,7 +81,7 @@ void inter_intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, cons
 
     // ME
     const int mbSize = 8;
-    const int me_range = 32;
+    const int me_range = 5;
 
     int** MV = new2d<int>(2,lm/(mbSize*mbSize),0);
     int** MV_prev = new2d<int>(2,lm/(mbSize*mbSize),0);
@@ -200,13 +200,13 @@ void inter_intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, cons
                         jj = map[t_lvl][j+i*imgw]%imgw;
                         imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
 
-                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
 
                         ii = map_prev[t_lvl][j+i*imgw]/imgw;
                         jj = map_prev[t_lvl][j+i*imgw]%imgw;
                         imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
 
-                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
                     }
 
 //            bin2dec_img(imgr_bp,imgh,imgw,imgr);
