@@ -319,7 +319,7 @@ void yuv_random_read(const char* filename, const int &imgh, const int &imgw, con
     assert(pFile!=NULL);
     rewind(pFile);
     fseek(pFile,0L,SEEK_END);
-    _firstFrame = random_select_from(0,ftell(pFile)/(imgh*imgw*3/2)-n_frame);
+  //  _firstFrame = 50 ;//random_select_from(0,ftell(pFile)/(imgh*imgw*3/2)-n_frame);
     printf("first frame is %d\n",_firstFrame);
     fseek(pFile,imgh*imgw*3/2*_firstFrame,SEEK_SET);
     buffer = (unsigned char*)malloc(sizeof(unsigned char)*imgh*imgw*3/2);

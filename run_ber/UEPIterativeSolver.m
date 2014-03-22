@@ -7,7 +7,8 @@ PXL = 8;
 targetSum = PXL;
 tollerance = 1e-3;
 order = 4.^(-[0:7]);
-lambda = (-max(ydata)*gamma*4^7-min(ydata)*gamma)/2; % initial lambda value 
+%lambda = (-max(ydata)*gamma*4^7-min(ydata)*gamma)/2; % initial lambda value 
+lambda = 9.06;
 weights = interp1(ydata,xdata,-lambda.*order./gamma,'cubic')/gamma;
 tmpSum = sum(weights);
 

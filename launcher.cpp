@@ -10,6 +10,10 @@
 
 #define DECODE __ALGO__
 
+const double DERIVE_SNR_0[PXL] = {2.6493 , 2.233, 1.7531, 1.2123,  0.1237 , 0.01, 0.01, 0.0086 }; // 29 dB
+const double DERIVE_SNR_1[PXL] = {2.395 , 1.9641, 1.5781, 1.2324,  0.76924 , 0.045221, 0.0079442, 0.0079442 }; // 29 dB
+const double DERIVE_SNR_2[PXL] = {2.0161 , 1.8493, 1.5252, 1.221,  0.9304 , 0.43326, 0.018426, 0.0063103 }; // 29 dB
+
 
 int main(int argc,char* argv[]){
 
@@ -36,7 +40,7 @@ int main(int argc,char* argv[]){
 
     // read YUV
     if(argc == 1)
-        yuv_random_read("stefan_cif.yuv",h,w,f,Y,U,V);
+        yuv_random_read("foreman_cif.yuv",h,w,f,Y,U,V);
     else
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
@@ -46,7 +50,7 @@ int main(int argc,char* argv[]){
 
     // decode
     if(argc == 1)
-        DECODE("stefan",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
+        DECODE("foreman",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
     else if(argc > 2)
         DECODE(argv[2],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
     else
@@ -66,7 +70,7 @@ int main(int argc,char* argv[]){
     printf("AVERAGE PSNR = %lf\n",avg_psnr/f);
 
 #if __OUTPUT_SEQ__
-    yuv_write("stefan",_Y,U,V,f,h,w);
+    yuv_write("foreman",_Y,U,V,f,h,w);
 #endif
     write_psnr_info(PSNR);
 

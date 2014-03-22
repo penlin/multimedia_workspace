@@ -184,7 +184,7 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
                         imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
 
 //                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
-                        //imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+//                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
                         imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
 
                         ii = map_prev[t_lvl][j+i*imgw]/imgw;
@@ -192,7 +192,7 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
                         imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
 
 //                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
-                        //imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+//                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
                         imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
                     }
 

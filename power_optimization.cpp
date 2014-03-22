@@ -40,7 +40,7 @@ int main(int argc,char* argv[]){
     double* weights_prev = (double*)malloc(sizeof(double)*PXL);
     double* weights = (double*)malloc(sizeof(double)*PXL);
     for(int i = 0 ; i < PXL ; ++i)
-        weights_prev[i] = DERIVE_SNR_0[i];
+        weights_prev[i] = 1.0;
 
     // read YUV
     yuv_random_read("hall_cif.yuv",h,w,f,Y,NULL,NULL);

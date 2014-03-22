@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits>
+#include <float.h>
 
 #define PXL 8
 
@@ -127,7 +128,7 @@ template<class T>
 void motionEstES(T*** const imgP, T*** const imgI,const int &h, const int &w , const int &mb_size, const int &me_range, int** mv){
     int i , j, m, n, curVer, curHor, cnt=0 , nMV;
     Point point, delta;
-    double cost, minCost = (double)(1<<31);
+    double cost, minCost = DBL_MAX;
 
     height = h;
     width = w;
@@ -166,7 +167,7 @@ void motionEstES(T*** const imgP, T*** const imgI,const int &h, const int &w , c
             }
 
             cnt++;
-            minCost = (double)(1<<31);
+            minCost = DBL_MAX;
         }
     }
 
