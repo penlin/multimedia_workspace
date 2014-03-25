@@ -8,21 +8,23 @@ const double df[] = {-0.88236,-0.8677,-0.85303,-0.83855,-0.82475,-0.81205,-0.800
 const int DATA_LEN = 10003;
 const double MAX_DF = -1.1341e-8;
 const double MIN_DF = -0.8824 ;
-const double ORDER[] = {1.0/16384, 1.0/4096 ,1.0/1024 , 1.0/256, 1.0/64, 1.0/16, 0.25, 1.0};
+const double ORDER2[] = {1.0/16384, 1.0/4096 ,1.0/1024 , 1.0/256, 1.0/64, 1.0/16, 0.25, 1.0};
 
 inline int divergent(const double &x,const double &y,const double &z){
     return ((x-y)>z || (y-x)>z);
 }
 
-inline void cut(double &v){
+inline int cut(double &v){
     if(v>MAX_DF) v = MAX_DF;
     else if(v<MIN_DF) v = MIN_DF;
+    else return 0;
+    return 1;
 }
 
 
 void interp1(const double &target, double &value){
     int i  = 0;
-    for(i=0;i<DATA_LEN;-1++i){
+    for(i=0;i<DATA_LEN;++i){
         if(df[i]<=target && df[i+1]>target){
             value = snr[i] + (snr[i+1]-snr[i])/(df[i+1]-df[i])*(target-df[i]);
             return;
@@ -33,17 +35,19 @@ void interp1(const double &target, double &value){
 
 void weight_predict_minMSE(double* weights, const double &gamma){
 
-    double lambda = 9.06, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double lambda = 1, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     double value = 0.0;
     int i,j;
     for(i = 0 ; i < PXL ; ++i){
-        interp1(-lambda*ORDER[i]/gamma,weights[i]);
+        value = -lambda*ORDER2[i]/gamma;
+        cut(value);
+        interp1(value,weights[i]);
         weights[i]/=gamma;
         tmpSum+=weights[i];
     }
 
     double delta = 0.01/gamma;
-    int iter = 1, flag = 1;
+    int iter = 1, flag = 1, limit = 100, cutter = 0;
 
     while(divergent(tmpSum,targetSum,tollerance)){
         printf("Iter:#%d, weights:[",iter);
@@ -53,22 +57,25 @@ void weight_predict_minMSE(double* weights, const double &gamma){
 
         // calculate slope
         slope = 0.0;
-        for(i=0;i<PXL;++i){
-            value = -(lambda+delta)*ORDER[i]/gamma;
-            cut(value);
-            interp1(value,weights[i]);
-            weights[i]/=gamma;
-            slope+=weights[i];
+        cutter = 0;
+        if(flag){
+            for(i=0;i<PXL;++i){
+                value = -(lambda+delta)*ORDER2[i]/gamma;
+                cutter+=cut(value);
+                interp1(value,weights[i]);
+                weights[i]/=gamma;
+                slope+=weights[i];
+            }
+            slope = (slope-tmpSum)/delta;
         }
-        slope = (slope-tmpSum)/delta;
         if(divergent(slope,0,tollerance))
             lambda += (targetSum-tmpSum)/slope;
         else
-            lambda += ((targetSum < tmpSum)*2-1)delta;
+            lambda += ((targetSum < tmpSum)*2-1)*delta*(1+(cutter==PXL-1));
 
         tmpSum = 0.0;
         for(i = 0 ; i < PXL ; ++i){
-            value = -lambda*ORDER[i]/gamma;
+            value = -lambda*ORDER2[i]/gamma;
             cut(value);
             interp1(value,weights[i]);
             weights[i]/=gamma;
@@ -76,9 +83,14 @@ void weight_predict_minMSE(double* weights, const double &gamma){
         }
         iter+=1;
 
-        if(flag && divergent(tmpSum,targetSum,10*tollerance)){
-            delta/=delta;
+        if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
+            delta/=5;
             flag = 0;
+        }
+
+        if(iter>limit && !divergent(tmpSum,targetSum,1)){
+            delta/=1.05;
+            limit+=200;
         }
 
     }
@@ -94,5 +106,6 @@ void weight_predict_minMSE(double* weights, const double &gamma){
 // pendding ...
 void weight_predict_minPOWER(double* gammas, const double &mse){
 
-    double lambda = 1.0, targetSum = 8, tmpSum = 0.0, ;
+    double lambda = 1.0, targetSum = 8, tmpSum = 0.0 ;
 
+}

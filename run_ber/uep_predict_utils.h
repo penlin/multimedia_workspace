@@ -14,9 +14,11 @@ inline int divergent(const double &x,const double &y,const double &z){
     return ((x-y)>z || (y-x)>z);
 }
 
-inline void cut(double &v){
+inline int cut(double &v){
     if(v>MAX_DF) v = MAX_DF;
     else if(v<MIN_DF) v = MIN_DF;
+    else return 0;
+    return 1;
 }
 
 
@@ -33,38 +35,47 @@ void interp1(const double &target, double &value){
 
 void weight_predict_minMSE(double* weights, const double &gamma){
 
-    double lambda = 9.06, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double lambda = 15, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     double value = 0.0;
     int i,j;
     for(i = 0 ; i < PXL ; ++i){
-        interp1(-lambda*ORDER2[i]/gamma,weights[i]);
+        value = -lambda*ORDER2[i]/gamma;
+        cut(value);
+        interp1(value,weights[i]);
         weights[i]/=gamma;
         tmpSum+=weights[i];
     }
 
     double delta = 0.01/gamma;
-    int iter = 1, flag = 1;
+    int iter = 1, flag = 1, limit = 100, cutter = 0;
 
     while(divergent(tmpSum,targetSum,tollerance)){
-        printf("Iter:#%d, weights:[",iter);
+        printf("Iter:#%d,lambda=%lf (%lf) weights:[",iter,lambda,tmpSum);
         for(i=0;i<PXL;++i)
             printf("%lf, ",weights[i]);
         printf("]\n");
 
         // calculate slope
         slope = 0.0;
-        for(i=0;i<PXL;++i){
-            value = -(lambda+delta)*ORDER2[i]/gamma;
-            cut(value);
-            interp1(value,weights[i]);
-            weights[i]/=gamma;
-            slope+=weights[i];
+        cutter = 0;
+        if(flag){
+            for(i=0;i<PXL;++i){
+                value = -(lambda+delta)*ORDER2[i]/gamma;
+                cutter+=cut(value);
+                interp1(value,weights[i]);
+                weights[i]/=gamma;
+                slope+=weights[i];
+            }
+            slope = (slope-tmpSum)/delta;
         }
-        slope = (slope-tmpSum)/delta;
-        if(divergent(slope,0,tollerance))
+
+        if(divergent(slope,0,tollerance)){
+            printf("diverge:%lf\n",slope);
             lambda += (targetSum-tmpSum)/slope;
-        else
-            lambda += ((targetSum < tmpSum)*2-1)*delta;
+        }
+        else{
+            lambda += ((targetSum < tmpSum)*2-1)*delta*((cutter==PXL-1)+1);
+        }
 
         tmpSum = 0.0;
         for(i = 0 ; i < PXL ; ++i){
@@ -76,14 +87,21 @@ void weight_predict_minMSE(double* weights, const double &gamma){
         }
         iter+=1;
 
-        if(flag && divergent(tmpSum,targetSum,10*tollerance)){
-            delta/=delta;
+        if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
+            delta/=3;
             flag = 0;
         }
 
+        if(iter>limit && !divergent(tmpSum,targetSum,1)){
+            if(cutter==0)
+                delta/=1.05;
+            else
+                delta*=1.05;
+            limit+=200;
+        }
     }
 
-    printf("found weights solution:[");
+    printf("found weights solution:((%lf)[",tmpSum);
     for(i=0;i<PXL;++i)
         printf("%lf, ",weights[i]);
     printf("]\n");

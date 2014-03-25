@@ -7,6 +7,7 @@
 #include "algs_inter.h"
 #include "algs_inter_intra.h"
 #include "utils.h"
+#include "uep_predict_utils.h"
 
 #define DECODE __ALGO__
 
@@ -22,35 +23,39 @@ int main(int argc,char* argv[]){
     const int h = __HEIGHT, w = __WIDTH, f = __FRAME ;
     const int lm = h*w;
     const int lu = lm+(G_L-1);
-    int snr = __SNR;
+    double snr = __SNR;
     int ** G = getGenerator();
     double* PSNR = (double*) malloc(sizeof(double)*f);
-    double *** Ly = new3d<double>(f,PXL,2*lu);
-    int *** x = new3d<int>(f,PXL,2*lu);
+    double *** Ly = new3d<double>(f,PXL,2*lu,0);
+//    int *** x = new3d<int>(f,PXL,2*lu);
     int *** map_out = new3d<int>(f,PXL,lm);
     int*** Y = new3d<int>(f,h,w);
-    int*** dpcm_Y = new3d<int>(f,h,w);
-    int*** _Y = new3d<int>(f,h,w);
-    int*** U = new3d<int>(f,h/2,w/2);
-    int*** V = new3d<int>(f,h/2,w/2);
-
+//   int*** _Y = new3d<int>(f,h,w);
+//    int*** U = new3d<int>(f,h/2,w/2);
+//    int*** V = new3d<int>(f,h/2,w/2);
+    int*** _Y = NULL;
+    int*** U = NULL;
+    int*** V = NULL;
     double* weights = (double*)malloc(sizeof(double)*PXL);
-    for(int i = 0 ; i < PXL ; ++i)
-        weights[i] = 1.0;
+//    printf("%lf\n",pow(10,snr/10));
+    weight_predict_minMSE(weights,pow(10,snr/10));
+//    for(int i = 0 ; i < PXL ; ++i)
+//        weights[i] = 1.0;
 
     // read YUV
     if(argc == 1)
-        yuv_random_read("foreman_cif.yuv",h,w,f,Y,U,V);
+        yuv_read("stefan_cif.yuv",h,w,f,Y,U,V);
     else
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
     // encode
-    video_encode(Y,f,h,w,snr,G,x,map_out);
-    generate_Ly(x,lu,f,snr,Ly,weights);
+    video_encode(Y,f,h,w,snr,G,Ly,map_out,weights);
+//    video_encode(Y,f,h,w,snr,G,x,map_out);
+//    generate_Ly(x,lu,f,snr,Ly,weights);
 
     // decode
     if(argc == 1)
-        DECODE("foreman",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
+        DECODE("stefan",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
     else if(argc > 2)
         DECODE(argv[2],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
     else
@@ -76,14 +81,13 @@ int main(int argc,char* argv[]){
 
     // free memory
     delete3d<double>(Ly);
-    delete3d<int>(x);
+//    delete3d<int>(x);
     delete3d<int>(map_out);
     delete2d<int>(G);
     deleteY(Y);
-    deleteY(_Y);
-    deleteY(dpcm_Y);
-    deleteY(U);
-    deleteY(V);
+//    deleteY(_Y);
+//    deleteY(U);
+//    deleteY(V);
 
     free(PSNR);
     free(weights);

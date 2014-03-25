@@ -41,8 +41,8 @@
 #define Niter  3                       // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
-#define __FRAME     20
-#define __SNR       0
+#define __FRAME     90
+#define __SNR       2
 #define __SNR_S     0
 #define __SNR_E     8
 
@@ -57,7 +57,7 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTER__
+#define __ALGO__    __DIRECT__
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
@@ -68,7 +68,7 @@
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
 #define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure
 
-#define __OUTPUT_SEQ__      1           // control if output the decoded sequence
+#define __OUTPUT_SEQ__      0           // control if output the decoded sequence
 #define __OUTPUT_TYPE__     __Y__*__OUTPUT_SEQ__
 
 #define __EXIT_INFO__       0

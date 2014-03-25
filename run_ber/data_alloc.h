@@ -31,9 +31,16 @@ void delete2d(T** a) {
 
 template<class T>
 T*** new3d(const int &r, const int &c, const int &d) {
-    T ***ret = new T**[r];
-    ret[0] = new T*[r*c];
-    ret[0][0] = new T[r*c*d];
+    printf("1");
+//    T ***ret = new T**[r];
+    T*** ret = (T***)malloc(sizeof(T**)*r);
+    printf("2");
+//    ret[0] = new T*[r*c];
+    ret[0] = (T**)malloc(sizeof(T*)*r*c);
+    printf("3");
+//    ret[0][0] = new T[r*c*d];
+    ret[0][0] = (T*)malloc(sizeof(T)*r*c*d);
+    printf("4");
 
     T* tmp = ret[0][0];
 
@@ -77,10 +84,12 @@ T*** new3d(const int &r, const int &c, const int &d, const T &value) {
 
 template<class T>
 void delete3d(T*** a) {
-    delete a[0][0];
-    delete a[0];
-    delete a;
+//    delete a[0][0];
+//    delete a[0];
+//    delete a;
+    free(a[0][0]);
+    free(a[0]);
+    free(a);
 }
-
 
 #endif

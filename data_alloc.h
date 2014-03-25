@@ -3,8 +3,8 @@
 
 template<class T>
 T** new2d(const int &r, const int &c){
-    T **ret = new T*[r];
-    ret[0] = new T[r*c];
+    T **ret = (T**)malloc(sizeof(T*)*r);
+    ret[0] = (T*)malloc(sizeof(T)*r*c);
     for(int i = 1 ; i < r ; ++i)
         ret[i] = ret[i-1] + c;
     return ret;
@@ -13,8 +13,8 @@ T** new2d(const int &r, const int &c){
 template<class T>
 T** new2d(const int &r, const int &c , const T &value){
     int i = 0;
-    T **ret = new T*[r];
-    ret[0] = new T[r*c];
+    T **ret = (T**)malloc(sizeof(T*)*r);
+    ret[0] = (T*)malloc(sizeof(T)*r*c);
     for(i = 1 ; i < r ; ++i)
         ret[i] = ret[i-1] + c;
     for(i = 0 ; i < r*c ; ++i)
@@ -24,16 +24,16 @@ T** new2d(const int &r, const int &c , const T &value){
 
 template<class T>
 void delete2d(T** a) {
-    delete a[0];
-    delete a;
+    free(a[0]);
+    free(a);
 }
 
 
 template<class T>
 T*** new3d(const int &r, const int &c, const int &d) {
-    T ***ret = new T**[r];
-    ret[0] = new T*[r*c];
-    ret[0][0] = new T[r*c*d];
+    T*** ret = (T***)malloc(sizeof(T**)*r);
+    ret[0] = (T**)malloc(sizeof(T*)*r*c);
+    ret[0][0] = (T*)malloc(sizeof(T)*r*c*d);
 
     T* tmp = ret[0][0];
 
@@ -53,9 +53,9 @@ T*** new3d(const int &r, const int &c, const int &d) {
 template<class T>
 T*** new3d(const int &r, const int &c, const int &d, const T &value) {
     int i, j;
-    T ***ret = new T**[r];
-    ret[0] = new T*[r*c];
-    ret[0][0] = new T[r*c*d];
+    T*** ret = (T***)malloc(sizeof(T**)*r);
+    ret[0] = (T**)malloc(sizeof(T*)*r*c);
+    ret[0][0] = (T*)malloc(sizeof(T)*r*c*d);
 
     T* tmp = ret[0][0];
 
@@ -77,9 +77,9 @@ T*** new3d(const int &r, const int &c, const int &d, const T &value) {
 
 template<class T>
 void delete3d(T*** a) {
-    delete a[0][0];
-    delete a[0];
-    delete a;
+    free(a[0][0]);
+    free(a[0]);
+    free(a);
 }
 
 
