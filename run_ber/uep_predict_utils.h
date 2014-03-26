@@ -74,7 +74,7 @@ void weight_predict_minMSE(double* weights, const double &gamma){
             lambda += (targetSum-tmpSum)/slope;
         }
         else{
-            lambda += ((targetSum < tmpSum)*2-1)*delta*((cutter==PXL-1)+1);
+            lambda += ((targetSum < tmpSum)*2-1)*delta*((cutter==(PXL-1))+1);
         }
 
         tmpSum = 0.0;

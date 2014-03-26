@@ -11,6 +11,7 @@
 
 #define DECODE __ALGO__
 
+const double DERIVE_SNR_N1[PXL] = {3.015249, 2.409902, 1.813491, 0.728476, 0.032169, 0.000001, 0.000001, 0.000001 };
 const double DERIVE_SNR_0[PXL] = {2.6493 , 2.233, 1.7531, 1.2123,  0.1237 , 0.01, 0.01, 0.0086 }; // 29 dB
 const double DERIVE_SNR_1[PXL] = {2.395 , 1.9641, 1.5781, 1.2324,  0.76924 , 0.045221, 0.0079442, 0.0079442 }; // 29 dB
 const double DERIVE_SNR_2[PXL] = {2.0161 , 1.8493, 1.5252, 1.221,  0.9304 , 0.43326, 0.018426, 0.0063103 }; // 29 dB
@@ -38,24 +39,24 @@ int main(int argc,char* argv[]){
     int*** V = NULL;
     double* weights = (double*)malloc(sizeof(double)*PXL);
 //    printf("%lf\n",pow(10,snr/10));
-    weight_predict_minMSE(weights,pow(10,snr/10));
-//    for(int i = 0 ; i < PXL ; ++i)
-//        weights[i] = 1.0;
+//    weight_predict_minMSE(weights,pow(10,snr/10));
+    for(int i = 0 ; i < PXL ; ++i)
+        weights[i] = 1;
 
     // read YUV
     if(argc == 1)
-        yuv_read("stefan_cif.yuv",h,w,f,Y,U,V);
+        yuv_random_read("akiyo_cif.yuv",h,w,f,Y,U,V);
     else
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
     // encode
     video_encode(Y,f,h,w,snr,G,Ly,map_out,weights);
-//    video_encode(Y,f,h,w,snr,G,x,map_out);
+//    video_encode(Y,f,h,w41.972370,snr,G,x,map_out);
 //    generate_Ly(x,lu,f,snr,Ly,weights);
 
     // decode
     if(argc == 1)
-        DECODE("stefan",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
+        DECODE("akiyo",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
     else if(argc > 2)
         DECODE(argv[2],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
     else
@@ -75,7 +76,7 @@ int main(int argc,char* argv[]){
     printf("AVERAGE PSNR = %lf\n",avg_psnr/f);
 
 #if __OUTPUT_SEQ__
-    yuv_write("foreman",_Y,U,V,f,h,w);
+    yuv_write("akiyo",_Y,U,V,f,h,w);
 #endif
     write_psnr_info(PSNR);
 

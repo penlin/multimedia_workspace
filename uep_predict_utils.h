@@ -35,7 +35,7 @@ void interp1(const double &target, double &value){
 
 void weight_predict_minMSE(double* weights, const double &gamma){
 
-    double lambda = 1, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double lambda = 32, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     double value = 0.0;
     int i,j;
     for(i = 0 ; i < PXL ; ++i){
@@ -50,7 +50,7 @@ void weight_predict_minMSE(double* weights, const double &gamma){
     int iter = 1, flag = 1, limit = 100, cutter = 0;
 
     while(divergent(tmpSum,targetSum,tollerance)){
-        printf("Iter:#%d, weights:[",iter);
+         printf("Iter:#%d,lambda=%lf (%lf) weights:[",iter,lambda,tmpSum);
         for(i=0;i<PXL;++i)
             printf("%lf, ",weights[i]);
         printf("]\n");
@@ -71,7 +71,7 @@ void weight_predict_minMSE(double* weights, const double &gamma){
         if(divergent(slope,0,tollerance))
             lambda += (targetSum-tmpSum)/slope;
         else
-            lambda += ((targetSum < tmpSum)*2-1)*delta*(1+(cutter==PXL-1));
+            lambda += ((targetSum < tmpSum)*2-1)*delta*(1+(cutter==(PXL-1)));
 
         tmpSum = 0.0;
         for(i = 0 ; i < PXL ; ++i){
@@ -84,13 +84,19 @@ void weight_predict_minMSE(double* weights, const double &gamma){
         iter+=1;
 
         if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
-            delta/=5;
+            delta/=3;
             flag = 0;
         }
 
         if(iter>limit && !divergent(tmpSum,targetSum,1)){
-            delta/=1.05;
+            if(cutter==0)
+                delta/=1.05;
+            else
+                delta*=1.05;
             limit+=200;
+        }else if(iter>limit && cutter){
+            delta*= 1.05;
+            limit+=100;
         }
 
     }
@@ -99,13 +105,12 @@ void weight_predict_minMSE(double* weights, const double &gamma){
     for(i=0;i<PXL;++i)
         printf("%lf, ",weights[i]);
     printf("]\n");
-
 }
 
 
 // pendding ...
 void weight_predict_minPOWER(double* gammas, const double &mse){
 
-    double lambda = 1.0, targetSum = 8, tmpSum = 0.0 ;
+
 
 }

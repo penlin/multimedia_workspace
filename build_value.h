@@ -42,7 +42,7 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __FRAME     90
-#define __SNR       2
+#define __SNR       0
 #define __SNR_S     0
 #define __SNR_E     8
 
