@@ -148,7 +148,7 @@ void write_psnr_info(double** PSNR){
 
 
 
-void write_psnr_info(double* const PSNR){
+void write_psnr_info(double* const PSNR, const double &snr){
 
     FILE* f_psnr = fopen("output/psnr.txt","a+");
 
@@ -158,7 +158,7 @@ void write_psnr_info(double* const PSNR){
     }
 
     fprintf(f_psnr,"=============================\n%s\n",getLocalTimenDate());
-    fprintf(f_psnr,"SNR=%d\n",__SNR);
+    fprintf(f_psnr,"SNR=%.1f\n",snr);
 
     for(int i = 0 ; i < __FRAME ; ++i){
         fprintf(f_psnr,"frame#%3d PSNR = %lf\n",i+1,PSNR[i]);
@@ -319,7 +319,7 @@ void yuv_random_read(const char* filename, const int &imgh, const int &imgw, con
     assert(pFile!=NULL);
     rewind(pFile);
     fseek(pFile,0L,SEEK_END);
-    _firstFrame = random_select_from(0,ftell(pFile)/(imgh*imgw*3/2)-n_frame);
+    _firstFrame = 50;//random_select_from(0,ftell(pFile)/(imgh*imgw*3/2)-n_frame);
     printf("first frame is %d\n",_firstFrame);
     fseek(pFile,imgh*imgw*3/2*_firstFrame,SEEK_SET);
     buffer = (unsigned char*)malloc(sizeof(unsigned char)*imgh*imgw*3/2);

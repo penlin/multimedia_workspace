@@ -35,7 +35,7 @@ void interp1(const double &target, double &value){
 
 void weight_predict_minMSE(double* weights, const double &gamma){
 
-    double lambda = 32, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double lambda = 1, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     double value = 0.0;
     int i,j;
     for(i = 0 ; i < PXL ; ++i){

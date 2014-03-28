@@ -41,11 +41,10 @@
 #define Niter  3                       // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
-#define __FRAME     90
-#define __SNR       -2.4507
+#define __FRAME     20
+#define __SNR       0
 #define __SNR_S     0
-#define __SNR_E     8
-
+#define __SNR_E     4
 /**#   ______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _
 #  (  __  \ (  ____ \(  ____ \(  ___  )(  __  \ (  ____ \      (  ____ \(  ___  )( (    /|\__   __/(  ____ )(  ___  )( \
 #  | (  \  )| (    \/| (    \/| (   ) || (  \  )| (    \/      | (    \/| (   ) ||  \  ( |   ) (   | (    )|| (   ) || (
@@ -57,7 +56,7 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __DIRECT__
+#define __ALGO__    __INTRA__
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map

@@ -60,16 +60,16 @@ void bit_analysis(const char* filename, int*** Y, const int &imgh, const int &im
             for(k=0 ; k< imgw ; ++k)
                 for(t_lvl=0 ; t_lvl<PXL ; ++t_lvl)
                     for(n=0; n < PXL ; ++n){
-//                        if(n==t_lvl){
-//                            est = 2*img_bp[t_lvl][j][k]*fr[t_lvl]*(1-fr[t_lvl])+fr[t_lvl]*fr[t_lvl];
-//                        }else{
-//                            est = fr[t_lvl]*fr[n]*(1-2*img_bp[t_lvl][j][k])*(1-2*img_bp[n][j][k]);
-//                        }
-//                        correlation+=(1<<(PXL-t_lvl-1))*(1<<(PXL-n-1))*est;
-                        correlation+=img_bp[t_lvl][j][k]*img_bp[n][j][k];
+                        if(n==t_lvl){
+                            est = fr[t_lvl];
+                        }else{
+                            est = fr[t_lvl]*fr[n]*(1-2*img_bp[t_lvl][j][k])*(1-2*img_bp[n][j][k]);
+                        }
+                        correlation+=(1<<(PXL-t_lvl-1))*(1<<(PXL-n-1))*est;
+                        //correlation+=img_bp[t_lvl][j][k]*img_bp[n][j][k];
                     }
 
-        correlation = correlation/imgw/imgh/PXL/PXL;
+        correlation = correlation/imgw/imgh;
         printf("#%d: E[bl,bn] = %lf\n",i,correlation);
 
     }
@@ -117,7 +117,7 @@ int main(int argc,char* argv[]){
     for(int i = 0 ; i < PXL ; ++i)
         weights[i] = 1;
 
-    bit_analysis("foreman_cif.yuv",Y,h,w,f,bit_cnt);
+    bit_analysis("../sequence/akiyo_cif.yuv",Y,h,w,f,bit_cnt);
     write_analysis_info(bit_cnt,h,w,f);
 
 
