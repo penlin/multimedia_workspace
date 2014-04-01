@@ -26,6 +26,7 @@
 
 void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int &imgh, const int &imgw, const int &n_frame, const int &lu, int** G, double* PSNR , int*** img_out = NULL){
 
+
     // param initial
     const int lm = imgh*imgw;
     double* Lu = (double*) malloc(sizeof(double)*lu);
@@ -61,9 +62,12 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
     double** Lu_s = new2d<double>(PXL,lm); //source decoder output
     double** Le_s = new2d<double>(PXL,lm); // source extrinsic information
 
+
     // decoding
     for(int f = 0 ; f < n_frame ; ++f){
+#if __PROGRESS__
         printf("Decoding frame#%d\n",f+1);
+#endif
 
         // initialize channel/source value
         Ly = Ly_in[f];
@@ -80,17 +84,20 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
         }
 
         for(int iter = 0 ; iter < Niter ; ++iter){
+#if __PROGRESS__
             printf("iter #%d\n",iter+1);
+#endif
 
             for(int i = 0 ; i < PXL ; ++i)
                 for(int j = 0 ; j < lm ; ++j)
-                    Le_s[i][j] = (Lu_s[i][j] - Le_c[i][j]);
+                    //Le_s[i][j] = (Lu_s[i][j] - Le_c[i][j]);
+                    Le_s[i][j] = (Lu_s[i][map[i][j]]-Le_c[i][map[i][j]]);
 
             // interleave
 #if __STATUS__
         printf("interleave ...%lf\n",getCurrentTime());
 #endif
-            interleave(Le_s,map,lm);
+            //interleave(Le_s,map,lm);
 
             // BCJR decoding
 #if __STATUS__
@@ -114,8 +121,8 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 #endif
             for(int i = 0 ; i < PXL ; ++i)
                 for(int j = 0 ; j < lm ; ++j)
-                    Le_c[i][j] = (Lu_c[i][j] - Le_s[i][j]);
-            deinterleave(Le_c,map,lm);
+                    Le_c[i][map[i][j]] = (Lu_c[i][j] - Le_s[i][j]);
+            //deinterleave(Le_c,map,lm);
 
             // MRF parameter estimation
 #if __STATUS__
@@ -127,6 +134,7 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
                         imgr_bp[t_lvl][i][j] = ((Le_c[t_lvl][j+i*imgw]>=0)?1:0);
 
             intra_beta_estimation(imgr_bp,beta[f],imgh,imgw);
+
 
             // MRF decoding
 #if __STATUS__
@@ -143,6 +151,20 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
             for(int i = 0 ; i <imgh ; ++i){
                 for(int j = 0 ; j < imgw ; ++j){
                     for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
+                        imgr_bp[t_lvl][i][j] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+                }
+            }
+
+            // construct image
+            bin2dec_img(imgr_bp,imgh,imgw,imgr);
+
+            // compute PSNR
+            double channel_psnr = computePSNR(imgr,imgO,imgh,imgw);
+
+            // recover to image
+            for(int i = 0 ; i <imgh ; ++i){
+                for(int j = 0 ; j < imgw ; ++j){
+                    for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
                         imgr_bp[t_lvl][i][j] = ((Lu_s[t_lvl][j+i*imgw]>=0)?1:0);
                 }
             }
@@ -152,6 +174,11 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 
             // compute PSNR
             PSNR[f] = computePSNR(imgr,imgO,imgh,imgw);
+
+            //printf("frame#%d iter#%d,avg beta=\n",f+1,iter+1);
+            for(int i = 0 ; i < PXL ; ++i)
+               printf("%lf,",beta[f][i]);
+            printf("%lf\n",PSNR[f]-channel_psnr);
 #if __PSNR__
             printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
 #endif

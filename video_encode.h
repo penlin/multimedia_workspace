@@ -119,7 +119,9 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
     int *x = (int*) malloc(sizeof(int)*2*lu);
 
     for (int f = 0 ; f < n_frame ; ++f){
+#if __PROGRESS__
         printf("Encoding frame#%d\n",f+1);
+#endif
 
         img = Y[f];
         img2bp_frame(img,imgh,imgw,img_bp);

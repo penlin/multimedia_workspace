@@ -223,6 +223,18 @@ void write_ps_for_matlab(double** Ia, double** Ie, const int &ln){
     }
 }
 
+void write_beta_info(double** beta, double* psnr, const int &frame){
+    FILE* f = fopen("output/beta.txt","w+");
+    for(int i = 0 ; i < frame ; ++i){
+        for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
+            fprintf(f,"%lf,",beta[i][t_lvl]);
+
+        fprintf(f,"%lf\n",psnr[i]);
+    }
+    fprintf(f,"\n\n======================\n\n");
+    fclose(f);
+}
+
 /**#  _________ _        _______          _________
 #  \__   __/( (    /|(  ____ )|\     /|\__   __/
 #     ) (   |  \  ( || (    )|| )   ( |   ) (
@@ -286,7 +298,9 @@ void yuv_read(const char* filename, const int &imgh, const int &imgw, const int 
     const int offset_u = imgh*imgw, offset_v = imgh*imgw*5/4;
 
     for(int i = 0, j = 0, k = 0 ; i < n_frame ; ++i) {
+#if __PROGRESS__
         printf("read frame #%d\n",i+1);
+#endif
         fread(buffer,1,imgw*imgh*3/2,pFile);
         for(j = 0 ; j < imgh ; ++j){
             for(k = 0 ; k < imgw ; ++k)
@@ -320,13 +334,17 @@ void yuv_random_read(const char* filename, const int &imgh, const int &imgw, con
     rewind(pFile);
     fseek(pFile,0L,SEEK_END);
     _firstFrame = 50;//random_select_from(0,ftell(pFile)/(imgh*imgw*3/2)-n_frame);
+#if __PROGRESS__
     printf("first frame is %d\n",_firstFrame);
+#endif
     fseek(pFile,imgh*imgw*3/2*_firstFrame,SEEK_SET);
     buffer = (unsigned char*)malloc(sizeof(unsigned char)*imgh*imgw*3/2);
     const int offset_u = imgh*imgw, offset_v = imgh*imgw*5/4;
 
     for(int i = 0, j = 0, k = 0 ; i < n_frame ; ++i) {
+#if __PROGRESS__
         printf("read frame #%d\n",i+1);
+#endif
         fread(buffer,1,imgw*imgh*3/2,pFile);
         for(j = 0 ; j < imgh ; ++j){
             for(k = 0 ; k < imgw ; ++k)
