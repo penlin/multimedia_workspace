@@ -52,11 +52,11 @@ int main(int argc,char* argv[]){
     double* weights = (double*)malloc(sizeof(double)*PXL);
 //    printf("%lf\n",pow(10,snr/10));
     for(int i = 0 ; i < len ; ++i)
-        snr[i] = __SNR_S;
+        snr[i] = __SNR_S+i;
 
     // read YUV
     if(argc == 1)
-        yuv_random_read("hall_cif.yuv",h,w,f,Y,U,V);
+        yuv_random_read("foreman_cif.yuv",h,w,f,Y,U,V);
     else
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
@@ -66,7 +66,7 @@ int main(int argc,char* argv[]){
 
     for(int i = 0 ; i < len; ++i){
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = COMP_SNR[(i+2)%len][j];
+            weights[j] = DERIVE_SNR[i+4][j];
 
         video_encode(Y,f,h,w,snr[i],G,Ly,map_out,weights);
     //    video_encode(Y,f,h,w,snr,G,x,map_out);
@@ -74,7 +74,7 @@ int main(int argc,char* argv[]){
 
         // decode
         if(argc == 1)
-            DECODE("hall",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
+            DECODE("foreman",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
         else if(argc > 2)
             DECODE(argv[2],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
         else

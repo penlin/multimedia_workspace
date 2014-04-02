@@ -136,7 +136,8 @@ void mrf_siso_intra(double** Le_c, double* beta, const int &imgh, const int &img
                 Lu_s[t_lvl][i*imgw+j] = Le_c[t_lvl][i*imgw+j]*comp;
                 p0[i][j] = 1/(exp(Le_c[t_lvl][i*imgw+j])+1);
             }
-
+//        if(beta[t_lvl]<0.5)
+//            continue;
         for(i = 1 ; i < imgh-1 ; ++i )
             for(j = 1 ; j < imgw-1 ; ++j)
                 Lu_s[t_lvl][i*imgw+j] += (2*beta[t_lvl]*(2 - p0[i-1][j] - p0[i+1][j] - p0[i][j-1] - p0[i][j+1]));
