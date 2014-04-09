@@ -265,4 +265,21 @@ double exp4(double x) {
     return (720+x*(720+x*(360+x*(120+x*(30+x*(6+x))))))*0.0013888888f;
 }
 
+void cal_ber_plane(int** img, int** imgO, const int &lm){
+    int err = 0 ;
+    for(int i = 0 ; i < lm ; ++i){
+        err+= (img[0][i]!=imgO[0][i]);
+    }
+    printf("%lf, ",(double)err/lm);
+}
+
+void cal_ber(int*** img_bp , int*** imgO_bp, const int &lm){
+    for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
+        cal_ber_plane(img_bp[t_lvl],imgO_bp[t_lvl],lm);
+    }
+    printf("\n");
+}
+
+
+
 #endif // __UTILS_H

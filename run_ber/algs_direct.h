@@ -20,16 +20,12 @@
 void direct_decode(int* bitstream, double* Ly, int* map_out, const int &lm, const int &lu, int** pstate, int** pout, int &n_err){
 
     // param initial
-    double* Lu = (double*) malloc(sizeof(double)*lu);
-
-    for(int i=0; i<lu ;++i)
-        Lu[i] = 0;
-
     const int Ns = pow(2,G_L-1);
     double* Le1 = (double*)malloc(sizeof(double)*lu);
     double* Le2 = (double*)malloc(sizeof(double)*lu);
 
-    computeLe(Lu,Le1,Le2,lu);
+    for(int i=0; i<lu ;++i)
+        Le1[i]  = Le2[i] = 0.5;
 
     double* Lu_c = (double*)malloc(sizeof(double)*lu);  //channel decoder output
 
@@ -48,7 +44,6 @@ void direct_decode(int* bitstream, double* Ly, int* map_out, const int &lm, cons
     }
 
     free(Lu_c);
-    free(Lu);
     free(Le1);
     free(Le2);
 }

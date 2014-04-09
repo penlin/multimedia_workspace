@@ -33,6 +33,7 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 
     // frame buffer
     int** imgO;
+    int*** imgO_bp = new3d<int>(PXL,imgh,imgw);
     int** imgr = new2d<int>(imgh,imgw);
     int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
     double** Ly;    //channel value
@@ -73,6 +74,7 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
         Ly = Ly_in[f];
         map = map_in[f];
         imgO = Y[f];
+        img2bp_frame(imgO,imgh,imgw,imgO_bp);
 
         for(int i = 0 ; i < PXL ; ++i){
 
@@ -148,13 +150,17 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 #endif
 
             // recover to image
-            for(int i = 0 ; i <imgh ; ++i){
+            for(int i = 0, ii =0, jj = 0 ; i <imgh ; ++i){
                 for(int j = 0 ; j < imgw ; ++j){
-                    for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
-                        imgr_bp[t_lvl][i][j] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+                    for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
+                        ii = map[t_lvl][j+i*imgw]/imgw;
+                        jj = map[t_lvl][j+i*imgw]%imgw;
+                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+                    }
                 }
             }
-
+//            if(iter==0)
+//                cal_ber(imgr_bp,imgO_bp,lm);
             // construct image
             bin2dec_img(imgr_bp,imgh,imgw,imgr);
 
@@ -168,7 +174,7 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
                         imgr_bp[t_lvl][i][j] = ((Lu_s[t_lvl][j+i*imgw]>=0)?1:0);
                 }
             }
-
+            //cal_ber(imgr_bp,imgO_bp,lm);
             // construct image
             bin2dec_img(imgr_bp,imgh,imgw,imgr);
 
@@ -176,11 +182,11 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
             PSNR[f] = computePSNR(imgr,imgO,imgh,imgw);
 
             //printf("frame#%d iter#%d,avg beta=\n",f+1,iter+1);
-            for(int i = 0 ; i < PXL ; ++i)
-               printf("%lf,",beta[f][i]);
-            printf("%lf\n",PSNR[f]-channel_psnr);
+//            for(int i = 0 ; i < PXL ; ++i)
+//               printf("%lf,",beta[f][i]);
+//            printf("%lf,%lf\n",channel_psnr,PSNR[f]);
 #if __PSNR__
-            printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
+            printf("%s frame#%d PSNR_iter%d = %lf to %lf\n",str,f+1,iter+1,channel_psnr,PSNR[f]);
 #endif
         }
 
@@ -194,6 +200,7 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 
     delete3d<int>(imgr_bp);
     delete2d<int>(imgr);
+    delete3d<int>(imgO_bp);
 //    delete2d<int>(G);
     delete2d<int>(pstate);
     delete2d<int>(pout);

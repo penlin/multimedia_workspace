@@ -9,11 +9,11 @@
 #define BCJR 1
 #define N 5000000
 
-void generateBitstream(int* bitstream, const int &lm, int* map, int* encoded_sequence, int** G){
+void generateBitstream(int* bitstream, const int &lm, int* map, int* encoded_sequence, int** G , double p1 = 0.5){
 
     random_sequence(0,lm-1,map);
     for(int i = 0 ; i < lm ; ++i)
-        bitstream[i] = rand()%2;
+        bitstream[i] = ((double)rand()/RAND_MAX > p1);
 #if BCJR
     rsc_encode(G,G_L,bitstream,map,lm,1,encoded_sequence);
 #endif // BCJR
