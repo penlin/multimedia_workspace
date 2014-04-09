@@ -42,8 +42,8 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __FRAME     20
-#define __SNR       0
-#define __SNR_S     0
+#define __SNR       4
+#define __SNR_S     4
 #define __SNR_E     4
 /**#   ______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _
 #  (  __  \ (  ____ \(  ____ \(  ___  )(  __  \ (  ____ \      (  ____ \(  ___  )( (    /|\__   __/(  ____ )(  ___  )( \
@@ -64,6 +64,7 @@
 
 #define __DEBUG__       1               // debug msg
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
+#define __PROGRESS__    1&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
 #define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure
 

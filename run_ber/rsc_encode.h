@@ -77,7 +77,7 @@ void generate_Ly(int* x, const int &lu , const double &EbN0dB, double* Ly) {
     const double L_c = 4*a*EbN0*rate;           // reliability value of the channel
     const double sigma = a*sqrt(2*rate*EbN0);   // standard deviation of AWGN noise
 
-    for(int i = 0 ; i < lu ; ++i)
+    for(int i = 0 ; i < 2*lu ; ++i)
         Ly[i] = 0.5*L_c*(2*x[i] - 1)+ sigma*gaussian_noise();  // add noise   + sigma*gaussian_noise()
 
 }

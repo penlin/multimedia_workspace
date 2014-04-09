@@ -60,7 +60,7 @@
 #define __ALGO__    __DIRECT__
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
-#define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
+#define __INTERLEAVE__  0&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
 #define __DEBUG__       0               // debug msg
