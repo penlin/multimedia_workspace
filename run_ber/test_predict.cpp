@@ -13,7 +13,10 @@ int main(int argc,char* argv[]){
     double* weights = (double*)malloc(sizeof(double)*PXL);
     double value, tmpSum = 0;
 //    double *** Ly = new3d<double>(300,8,2*288*352);
-    weight_predict_minMSE(weights,pow(10,4.0/10));
+    double snr = 0.0;
+    if(argc>1)
+        snr = atof(argv[1]);
+    weight_predict_minMSE(weights,pow(10,snr/10));
 //    weight_predict_minPOWER(weights,205);
 //    for(int i = 0 ; i < PXL ; ++i){
 //        cut(weights[i],MAX_GAMMA,MIN_GAMMA);
