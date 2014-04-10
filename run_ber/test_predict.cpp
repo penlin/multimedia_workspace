@@ -16,8 +16,9 @@ int main(int argc,char* argv[]){
     double snr = 0.0;
     if(argc>1)
         snr = atof(argv[1]);
-    weight_predict_minMSE(weights,pow(10,snr/10));
-//    weight_predict_minPOWER(weights,205);
+//    weight_predict_minMSE(weights,pow(10,snr/10));
+    weight_predict_minPOWER(weights,205);
+
 //    for(int i = 0 ; i < PXL ; ++i){
 //        cut(weights[i],MAX_GAMMA,MIN_GAMMA);
 //        interp2(weights[i],value);

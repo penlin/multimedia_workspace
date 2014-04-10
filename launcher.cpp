@@ -26,6 +26,7 @@ const double DERIVE_SNR_N1[PXL] = {3.015249, 2.409902, 1.813491, 0.728476, 0.032
 const double TEST[PXL] = {1.977668, 1.538618, 0.943222, 0.049886, 0.01, 0.01, 0.01, 0.01};
 const double TEST_TEST[PXL]= {3.476999, 2.704871, 1.657564, 0.087482, 0.018022, 0.018022, 0.018022, 0.018022};
 
+const double MINPOW_PSNR25[PXL] = {2.357380, 1.877585, 1.364773, 0.268487, 0.019715, 0.013750, 0.013750, 0.013750};
 int main(int argc,char* argv[]){
 
     startRandom();
@@ -66,7 +67,7 @@ int main(int argc,char* argv[]){
 
     for(int i = 0 ; i < len; ++i){
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = DERIVE_SNR[i+4][j];
+            weights[j] = MINPOW_PSNR25[j];//DERIVE_SNR[i][j];
 
         video_encode(Y,f,h,w,snr[i],G,Ly,map_out,weights);
     //    video_encode(Y,f,h,w,snr,G,x,map_out);
@@ -90,7 +91,7 @@ int main(int argc,char* argv[]){
         double avg_psnr = 0.0;
         for(int j = 0 ; j < f ; ++j){
             printf("frame#%3d PSNR = %lf\n",j+1,PSNR[j]);
-            avg_psnr += PSNR[i];
+            avg_psnr += PSNR[j];
         }
         printf("AVERAGE PSNR = %lf\n",avg_psnr/f);
 #endif

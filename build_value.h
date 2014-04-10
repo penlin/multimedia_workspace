@@ -43,7 +43,7 @@
 #define __WIDTH     352
 #define __FRAME     20
 #define __SNR       4
-#define __SNR_S     4
+#define __SNR_S     0
 #define __SNR_E     4
 /**#   ______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _
 #  (  __  \ (  ____ \(  ____ \(  ___  )(  __  \ (  ____ \      (  ____ \(  ___  )( (    /|\__   __/(  ____ )(  ___  )( \
@@ -56,13 +56,13 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTRA__
+#define __ALGO__    __DIRECT__
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       1               // debug msg
+#define __DEBUG__       1              // debug msg
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
 #define __PROGRESS__    1&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg

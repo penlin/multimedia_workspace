@@ -148,10 +148,13 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 #endif
 
             // recover to image
-            for(int i = 0 ; i <imgh ; ++i){
+            for(int i = 0,ii=0,jj=0 ; i <imgh ; ++i){
                 for(int j = 0 ; j < imgw ; ++j){
-                    for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
-                        imgr_bp[t_lvl][i][j] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+                    for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
+                        ii = map[t_lvl][j+i*imgw]/imgw;
+                        jj = map[t_lvl][j+i*imgw]%imgw;
+                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+                    }
                 }
             }
 
@@ -178,7 +181,7 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
             //printf("frame#%d iter#%d,avg beta=\n",f+1,iter+1);
             for(int i = 0 ; i < PXL ; ++i)
                printf("%lf,",beta[f][i]);
-            printf("%lf\n",PSNR[f]-channel_psnr);
+            printf("%lf,%lf\n",channel_psnr,PSNR[f]-channel_psnr);
 #if __PSNR__
             printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
 #endif
