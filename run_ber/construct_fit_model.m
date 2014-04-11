@@ -2,7 +2,7 @@ function [xdata, ydata , dif_xdata, dif_ydata] = construct_fit_model(snr, ber , 
 
 start_idx = snr(1);
 end_idx = snr(end);
-delta = 0.001 ;
+delta = 0.0005 ;
 
 xdata = 10.^([start_idx:delta:end_idx]/10);
 ydata = interp1(10.^(snr/10),ber,xdata,'cubic');
