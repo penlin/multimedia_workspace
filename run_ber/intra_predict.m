@@ -15,20 +15,19 @@ frr = zeros(1,8);
 for i = 1:h,
     for j = 1:w,
         if i == 1 || i== h || j == 1 || j == w,
-           %fr_matrix(i,j,:) = fr(:);
            frr = frr + fr;
            continue; 
         end
-%        for t_lvl = 1:PXL,
+        % n = sum(surroundding)
         n = squeeze(img_bp(i+1,j,:)+img_bp(i-1,j,:)+img_bp(i,j+1,:)+img_bp(i,j-1,:))';
-        %fr./(fr+(1-fr).*exp((2*squeeze(img_bp(i,j,:))'-1).*beta.*(4-2*n)))
+        % n = E[ sum(surreoundding) ]
+        n = n + fr.*(4-2*n);
         frr = frr + fr./(fr+(1-fr).*exp((2*squeeze(img_bp(i,j,:))'-1).*beta.*(2*n-4)));
-%        end
     end
 end
 
 frr = frr/h/w
 
 mse = order*frr';
-
+disp(['mse=' num2str(mse) ' . PSNR = ' num2str(10*log10(255^2/mse)) ' dB']);
 end
