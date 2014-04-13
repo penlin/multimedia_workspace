@@ -144,6 +144,7 @@ public:
     int** Y ;
     int** U ;
     int** V ;
+    int*** img_bp ;
 /*
     void getImgBp(int*** bp){
         if(img_bp!=NULL){
@@ -167,7 +168,7 @@ private:
     int lu;
 
     // for encode
-    int*** img_bp ;
+
     int* x ;
     int** G ;
     double EbN0 ;

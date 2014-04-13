@@ -1,6 +1,8 @@
 function mse = intra_predict(beta,file,gamma)
 
-im = double(rgb2gray(imread(file)));
+%im = double(rgb2gray(imread(file)));
+im = double(imread(file));
+im = im(:,:,1);
 [h w ] = size(im);
 img_bp = img2bp_frame_mex(im);
 PXL = 8;

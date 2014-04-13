@@ -116,6 +116,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                         imgr_bp[t_lvl][i][j] = ((Le_c[t_lvl][j+i*imgw]>=0)?1:0);
 
             intra_beta_estimation(imgr_bp,beta,imgh,imgw);
+//            intra_beta_estimation(frame->img_bp,beta,imgh,imgw);
 
 
             // MRF decoding
@@ -140,13 +141,15 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             PSNR[f] = frame->psnr(imgr);
 
             //printf("frame#%d iter#%d,avg beta=\n",f+1,iter+1);
-            for(int i = 0 ; i < PXL ; ++i)
-               printf("%lf,",beta[i]);
-            printf("%lf,%lf\n",channel_psnr,PSNR[f]-channel_psnr);
+//            for(int i = 0 ; i < PXL ; ++i)
+//               printf("%lf,",beta[i]);
+//            printf("%lf,%lf\n",channel_psnr,PSNR[f]-channel_psnr);
+            printf("%lf,%lf,",channel_psnr,PSNR[f]);
 #if __PSNR__
             printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
 #endif
         }
+        printf("\n");
 
         // imgr output
         if(img_out!=NULL)

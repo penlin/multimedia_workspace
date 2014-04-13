@@ -129,9 +129,10 @@ void Lu2dec_img(double** Lu, const int &imgh, const int& imgw, int** imgr){
 }
 
 void Lu2dec_img(double** Lu, const int &imgh, const int& imgw, int** imgr, int** map_out){
+    for(int i = 0 ; i < imgh*imgw ; ++i)
+        imgr[0][i] = 0;
     for(int i=0,ii=0,jj=0,j=0,t_lvl=0 ; i<imgh ; ++i){
         for(j=0 ; j<imgw; ++j){
-            imgr[i][j] = 0;
             for(t_lvl=PXL-1;t_lvl>=0;--t_lvl){
                 ii = map_out[t_lvl][j+i*imgw]/imgw;
                 jj = map_out[t_lvl][j+i*imgw]%imgw;
