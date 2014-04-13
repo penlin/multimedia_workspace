@@ -101,11 +101,9 @@ int** bin2dec_img(int*** img_bp, const int &imgh, const int& imgw){
             imgr[i][j] = 0;
             for(int k=PXL-1;k>=0;--k){
                 imgr[i][j] += ORDER[PXL-k-1]*img_bp[k][i][j];
- //               printf("%d ",img_bp[i][j][k]);
             }
         }
     }
-//    printf("\n\n\n");
     return imgr;
 }
 
@@ -120,19 +118,29 @@ void bin2dec_img(int*** img_bp, const int &imgh, const int& imgw, int** imgr){
     }
 }
 
-void bin2dec_img_dpcm(int*** img_bp, const int &imgh, const int& imgw, int** imgr){
-
+void Lu2dec_img(double** Lu, const int &imgh, const int& imgw, int** imgr){
     for(int i=0 ; i<imgh ; ++i){
         for(int j=0 ; j<imgw; ++j){
             imgr[i][j] = 0;
-            for(int k=PXL-1;k>0;--k)
-                imgr[i][j] += ORDER[PXL-k-1]*img_bp[k][i][j];
-            imgr[i][j]-=128*img_bp[0][i][j];
-            imgr[i][j]*=2;
+            for(int k=PXL-1;k>=0;--k)
+                imgr[i][j] += ((Lu[k][j+i*imgw]>=0)?ORDER[PXL-k-1]:0);
         }
     }
 }
 
+void Lu2dec_img(double** Lu, const int &imgh, const int& imgw, int** imgr, int** map_out){
+    for(int i=0,ii=0,jj=0,j=0,t_lvl=0 ; i<imgh ; ++i){
+        for(j=0 ; j<imgw; ++j){
+            imgr[i][j] = 0;
+            for(t_lvl=PXL-1;t_lvl>=0;--t_lvl){
+                ii = map_out[t_lvl][j+i*imgw]/imgw;
+                jj = map_out[t_lvl][j+i*imgw]%imgw;
+                imgr[ii][jj] += ((Lu[t_lvl][j+i*imgw]>=0)?ORDER[PXL-t_lvl-1]:0);
+            }
+        }
+
+    }
+}
 
 double computePSNR(int** imgr, int** imgO, const int &imgh, const int &imgw){
     double psnr = 0;

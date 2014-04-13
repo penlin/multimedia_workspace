@@ -57,7 +57,7 @@ int main(int argc,char* argv[]){
 
     // read YUV
     if(argc == 1)
-        yuv_random_read("foreman_cif.yuv",h,w,f,Y,U,V);
+        yuv_read("stefan_cif.yuv",h,w,f,Y,U,V);
     else
         yuv_read(argv[1],h,w,f,Y,NULL,NULL);
 
@@ -67,7 +67,7 @@ int main(int argc,char* argv[]){
 
     for(int i = 0 ; i < len; ++i){
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = MINPOW_PSNR25[j];//DERIVE_SNR[i][j];
+            weights[j] = DERIVE_SNR[i][j];
 
         video_encode(Y,f,h,w,snr[i],G,Ly,map_out,weights);
     //    video_encode(Y,f,h,w,snr,G,x,map_out);

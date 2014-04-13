@@ -38,9 +38,9 @@ void yuv_write(const char* filename, int*** Y, int*** U, int*** V, const int &n_
 
     char file[50];
 #if __OUTPUT_TYPE__ == __YUV420__
-    sprintf(file,"%s/decoded_yuv420_%s.yuv","sequence",filename);
+    sprintf(file,"%sdecoded_yuv420_%s.yuv",__SEQ_DIR,filename);
 #else
-    sprintf(file,"%s/decoded_y_%s.yuv","sequence",filename);
+    sprintf(file,"%sdecoded_y_%s.yuv",__SEQ_DIR,filename);
 #endif
     pFile = fopen(file,"w+b");
     assert(pFile!=NULL);
@@ -132,7 +132,7 @@ void write_psnr_info(double** PSNR){
     }
 
 //    fseek(f_psnr,0,SEEK_END);
-    fprintf(f_psnr,"=============================\n%s\n",getLocalTimenDate());
+    fprintf(f_psnr,"=============================%s\n%s\n",__TAG__,getLocalTimenDate());
 
     for(int snr = __SNR_S , frame = 0; snr <= __SNR_E ; ++snr){
         fprintf(f_psnr,"SNR=%d\n",snr);
@@ -150,7 +150,7 @@ void write_psnr_info(double** PSNR){
 
 void write_psnr_info(double* const PSNR, const double &snr){
 
-    FILE* f_psnr = fopen("output/psnr.txt","a+");
+    FILE* f_psnr = fopen("../output/psnr.txt","a+");
 
     if(f_psnr==NULL){
         printf("====  Warning! Error open PSNR file ====\n");
@@ -172,7 +172,7 @@ void write_psnr_info(double* const PSNR, const double &snr){
 
 void write_power_info(double* const weights, const double &psnr){
 
-    FILE* f_power = fopen("output/power.txt","a+");
+    FILE* f_power = fopen("../output/power.txt","a+");
 
     if(f_power==NULL){
         printf("====  Warning! Error open POWER file ====\n");
@@ -194,7 +194,7 @@ void write_power_info(double* const weights, const double &psnr){
 
 
 void write_pc_for_matlab(double* Ia, double* Ie, const int &ln){
-    FILE* f = fopen("output/pc.m","w+");
+    FILE* f = fopen("../output/pc.m","w+");
 
     fprintf(f,"function p = pc()\nIa=[");
     for(int i = 0 ; i < ln ; ++i)
@@ -209,7 +209,7 @@ void write_pc_for_matlab(double* Ia, double* Ie, const int &ln){
 void write_ps_for_matlab(double** Ia, double** Ie, const int &ln){
     char buffer[50];
     for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
-        sprintf(buffer,"output/ps_bp%d.m",t_lvl+1);
+        sprintf(buffer,"../output/ps_bp%d.m",t_lvl+1);
         FILE* f = fopen(buffer,"w+");
 
         fprintf(f,"function p = ps_bp%d()\nIa=[",t_lvl+1);
@@ -224,7 +224,7 @@ void write_ps_for_matlab(double** Ia, double** Ie, const int &ln){
 }
 
 void write_beta_info(double** beta, double* psnr, const int &frame){
-    FILE* f = fopen("output/beta.txt","w+");
+    FILE* f = fopen("../output/beta.txt","w+");
     for(int i = 0 ; i < frame ; ++i){
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
             fprintf(f,"%lf,",beta[i][t_lvl]);
@@ -261,7 +261,7 @@ int*** yuv_read(const char* filename, const int &imgh, const int &imgw, const in
     int*** Y = new3d<int>(n_frame,imgh,imgw);
 
     char file[50];
-    sprintf(file,"%s/%s","sequence",filename);
+    sprintf(file,"%s%s",__SEQ_DIR,filename);
 
     pFile = fopen(file,"r+b");
     assert(pFile!=NULL);
@@ -288,7 +288,7 @@ void yuv_read(const char* filename, const int &imgh, const int &imgw, const int 
     unsigned char * buffer;
 
     char file[50];
-    sprintf(file,"%s/%s","sequence",filename);
+    sprintf(file,"%s%s",__SEQ_DIR,filename);
 
     pFile = fopen(file,"r+b");
     assert(pFile!=NULL);
@@ -327,7 +327,7 @@ void yuv_random_read(const char* filename, const int &imgh, const int &imgw, con
     // initial _firstFrame at random(0,#Frame-n_frame)
     int _firstFrame = 0 ;
     char file[50];
-    sprintf(file,"%s/%s","sequence",filename);
+    sprintf(file,"%s%s",__SEQ_DIR,filename);
 
     pFile = fopen(file,"r+b");
     assert(pFile!=NULL);
