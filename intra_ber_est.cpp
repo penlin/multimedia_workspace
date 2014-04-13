@@ -40,8 +40,8 @@ int main(int argc,char* argv[]){
             weights[j] = 1;//DERIVE_SNR[i][j];
         for(int j = 0 ; j < f ; ++ j){
             frame->read(fptr);
-            intra_beta_estimation(frame->img_bp,beta,h,w);
-            PSNR[j] = intra_psnr_est(beta,frame->img_bp,h,w,weights,pow(10,snr[i]/10));
+            //intra_beta_estimation(frame->img_bp,beta,h,w);
+            PSNR[j] = intra_psnr_est(frame->img_bp,h,w,weights,pow(10,snr[i]/10));
         }
 
         // print result PSNR
