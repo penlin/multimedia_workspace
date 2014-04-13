@@ -132,7 +132,7 @@ void write_psnr_info(double** PSNR){
     }
 
 //    fseek(f_psnr,0,SEEK_END);
-    fprintf(f_psnr,"=============================\n%s\n",getLocalTimenDate());
+    fprintf(f_psnr,"=============================%s\n%s\n",__TAG__,getLocalTimenDate());
 
     for(int snr = __SNR_S , frame = 0; snr <= __SNR_E ; ++snr){
         fprintf(f_psnr,"SNR=%d\n",snr);

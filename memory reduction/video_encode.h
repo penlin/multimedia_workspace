@@ -1,3 +1,6 @@
+#ifndef __VIDEO_ENCODE_H
+#define __VIDEO_ENCODE_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -142,3 +145,4 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
 
 }
 
+#endif // __VIDEO_ENCODE_H

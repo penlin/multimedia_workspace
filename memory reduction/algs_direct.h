@@ -27,20 +27,18 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     const int Ns = pow(2,G_L-1);
     const int lm = imgh*imgw;
     const int lu = lm + 2;
-    double* Lu = (double*) malloc(sizeof(double)*lu);
 
+
+
+    double* Lu = MALLOC(double,lu);
+    double* Le1 = MALLOC(double,lu);
+    double* Le2 = MALLOC(double,lu);
     for(int i=0; i<lu ;++i)
         Lu[i] = 0;
-
-    double* Le1 = (double*)malloc(sizeof(double)*lu);
-    double* Le2 = (double*)malloc(sizeof(double)*lu);
-
     computeLe(Lu,Le1,Le2,lu);
 
     // frame buffer
-    int** imgO;
     int** imgr = new2d<int>(imgh,imgw);
-    int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
     double** Ly = new2d<double>(PXL,2*lu,0);    //channel value
     int** map = new2d<int>(PXL,lm);      //interleaver map
 
@@ -54,12 +52,6 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
         frame->next(fptr,Ly,map,weights);
 
         printf("Decoding frame#%d\n",f+1);
-
-
-        // initialize channel value
-       // Ly = Ly_in[f];
-       //map = map_in[f];
-
         // BCJR decoding
 #if __STATUS__
         printf("BCJR decoding ...%lf\n",getCurrentTime());
@@ -74,15 +66,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
         deinterleave(Lu_c,map,lm);
 
         // recover to image
-        for(int i = 0 ; i <imgh ; ++i){
-            for(int j = 0 ; j < imgw ; ++j){
-                for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
-                    imgr_bp[t_lvl][i][j] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
-            }
-        }
-
-        // construct image
-        bin2dec_img(imgr_bp,imgh,imgw,imgr);
+        Lu2dec_img(Lu_c,imgh,imgw,imgr);
 
         // compute PSNR
         PSNR[f] = frame->psnr(imgr);
@@ -98,7 +82,8 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
 
     }
 
-    delete3d<int>(imgr_bp);
+    delete2d<double>(Ly);
+    delete2d<int>(map);
     delete2d<double>(Lu_c);
     delete2d<int>(imgr);
     free(Lu);

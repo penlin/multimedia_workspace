@@ -1,4 +1,6 @@
 #ifndef __FRAME_H
+#define __FRAME_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -117,6 +119,17 @@ public:
     void next(FILE* fptr, double** Ly, int** map_out, double* weights ){
         read(fptr);
         encode(Ly,map_out,weights);
+    }
+
+    void copy(Frame* frame){
+        for(int i = 0 ; i < lm ; ++i)
+            Y[0][i] = frame->Y[0][i];
+        if(type==TYPE_YUV_420){
+            for(int i = 0 ; i < lm/4 ; ++i){
+                U[0][i] = frame->U[0][i];
+                V[0][i] = frame->V[0][i];
+            }
+        }
     }
 
     double psnr(int** img){

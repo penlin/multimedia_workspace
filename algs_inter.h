@@ -203,11 +203,11 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 #if __STATUS__
         printf("Motion Estimation ...%lf\n",getCurrentTime());
 #endif
-//            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
-//            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
+            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
+            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
-            motionEstES<double>(imgr_soft_bp_prev,imgr_soft_bp,imgh,imgw,mbSize,me_range,MV);
-            motionEstES<double>(imgr_soft_bp,imgr_soft_bp_prev,imgh,imgw,mbSize,me_range,MV_prev);
+//            motionEstES<double>(imgr_soft_bp_prev,imgr_soft_bp,imgh,imgw,mbSize,me_range,MV);
+//            motionEstES<double>(imgr_soft_bp,imgr_soft_bp_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
             // generate extrinsic information
             for(int i = 0 ; i < PXL ; ++i)
@@ -291,7 +291,6 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 #if __PSNR__
             printf("%s iter#%d frame#%d PSNR = %lf, frame#%d PSNR = %lf\n",str,iter+1,f,PSNR[f-1],f+1,PSNR[f]);
 #endif
-
         }
 
         // imgr output

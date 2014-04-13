@@ -1,8 +1,7 @@
 #include "algs_direct.h"
-#include "io_utils.h"
 #include "algs_intra.h"
 #include "algs_inter.h"
-#include "algs_inter_intra.h"
+#include "io_utils.h"
 #include "uep_predict_utils.h"
 
 #define DECODE __ALGO__
@@ -32,7 +31,7 @@ int main(int argc,char* argv[]){
     int ** pout = new2d<int>(Ns,4);
     int ** pstate = new2d<int>(Ns,2) ;
 
-    FILE* fptr = fopen(__FOREMAN,"r+b");
+    FILE* fptr = fopen(__SEQ__,"r+b");
     assert(fptr!=NULL);
     rewind(fptr);
 
@@ -54,7 +53,9 @@ int main(int argc,char* argv[]){
             weights[j] = DERIVE_SNR[i][j];
 
         // decode
-        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
+//        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
+//        intra_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
+        inter_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
 //        if(argc == 1)
 //            DECODE(__TAG__,Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
 //        else if(argc > 2)

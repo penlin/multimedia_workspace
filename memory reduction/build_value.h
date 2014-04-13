@@ -13,8 +13,8 @@
 #define PXL 8
 
 // decode algorithm function name
-#define __DIRECT__      direct_decode
-#define __INTRA__       intra
+#define __DIRECT__      direct_system
+#define __INTRA__       intra_system
 #define __INTER__       inter
 #define __INTER_INTRA__ inter_intra
 
@@ -42,7 +42,7 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
-#define __FRAME     300
+#define __FRAME     20
 #define __SNR       4
 #define __SNR_S     0
 #define __SNR_E     0
@@ -67,6 +67,7 @@
 
 // control the decode algorithm
 #define __ALGO__    __DIRECT__
+#define __SEQ__     __FOREMAN
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
