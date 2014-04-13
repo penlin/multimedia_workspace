@@ -159,20 +159,22 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     int N = 0;
     double value = 0.0;
     int i,j,k,hash_key;
-    int* his = MALLOC(int,32);
+    double* his = MALLOC(double,32);
 
     for(i = 0 ; i < PXL ; ++i){
-        for(j=0 ; j < 32; ++j)
-            his[j] = 0;
-        for(j=1 ; j < imgh-1 ; ++j){
-            for(k=1 ; k < imgw-1 ; ++k){
-                hash_key = 8*img_bp[i][j-1][k]+4*img_bp[i][j+1][k]+2*img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                his[hash_key+16*img_bp[i][j][k]]++;
-            }
-        }
         value = weights[i]*gamma;
         cut1(value);
         interp2(value,fr[i]);
+
+        for(j=0 ; j < 32; ++j)
+            his[j] = fr[i];
+        for(j=1 ; j < imgh-1 ; ++j){
+            for(k=1 ; k < imgw-1 ; ++k){
+                hash_key = 8*img_bp[i][j-1][k]+4*img_bp[i][j+1][k]+2*img_bp[i][j][k-1]+img_bp[i][j][k+1];
+                his[hash_key+16*img_bp[i][j][k]]+= (1-fr[i]);
+                his[hash_key+16*(1-img_bp[i][j][k])]+= fr[i];
+            }
+        }
         frr[i] =(((imgh+imgw)*2-4)*fr[i]);
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
@@ -183,7 +185,7 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
 //                value = 1/(1+exp((2*img_bp[i][j][k]-1)*(1-2*fr[i])*(1-2*fr[i])*beta[i]*(2*N-4))); // P(error)
 //                frr[i] += (value*(1-fr[i])+(1-value)*fr[i]);
                 hash_key = 8*img_bp[i][j-1][k]+4*img_bp[i][j+1][k]+2*img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                frr[i]+= fr[i]/(fr[i]+(1-fr[i])*((double) his[hash_key+img_bp[i][j][k]*16]/his[hash_key+(1-img_bp[i][j][k])*16]));
+                frr[i]+= fr[i]/(fr[i]+(1-fr[i])*(his[hash_key+img_bp[i][j][k]*16]/his[hash_key+(1-img_bp[i][j][k])*16]));
             }
         }
         frr[i]/=(imgh*imgw);
