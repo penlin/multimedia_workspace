@@ -175,6 +175,7 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
                 his[hash_key+16*(1-img_bp[i][j][k])]+= fr[i];
             }
         }
+
         frr[i] =(((imgh+imgw)*2-4)*fr[i]);
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){

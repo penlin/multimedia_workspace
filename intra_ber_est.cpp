@@ -17,27 +17,32 @@ int main(int argc,char* argv[]){
     startRandom();
 
     const int h = __HEIGHT, w = __WIDTH, f = __FRAME ;
-
     const int len = __SNR_E-__SNR_S+1;
     double snr[len];
 
-    // pstate, pout
     FILE* fptr = fopen(__SEQ__,"r+b");
     assert(fptr!=NULL);
     rewind(fptr);
     Frame* frame = new Frame(h,w,TYPE_Y,0);
     double* PSNR = MALLOC(double,f);
     double* weights = MALLOC(double,PXL);
-    double* beta = MALLOC(double,PXL);
+//    double* beta = MALLOC(double,PXL);
 
     for(int i = 0 ; i < len ; ++i)
         snr[i] = __SNR_S+i;
+
+    int weight_type = 0;
+    // 0: EEP
+    // 1: UEP
+    if(argc > 1)
+        weight_type = atoi(argv[1]);
+
 
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = 1;//DERIVE_SNR[i][j];
+            weights[j] = (weight_type?DERIVE_SNR[i][j]:1);
         for(int j = 0 ; j < f ; ++ j){
             frame->read(fptr);
             //intra_beta_estimation(frame->img_bp,beta,h,w);
