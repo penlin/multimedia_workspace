@@ -67,7 +67,7 @@
 
 // control the decode algorithm
 #define __ALGO__    __INTRA__
-#define __SEQ__     __FOREMAN
+#define __SEQ__     __HALL
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
