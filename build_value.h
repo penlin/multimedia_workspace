@@ -38,7 +38,7 @@
 # **/
 
 // basic decoding information
-#define Niter  3                       // #iteration
+#define Niter  1                       // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
@@ -69,7 +69,7 @@
 #define __ALGO__    __INTRA__
 #define __SEQ__     __FOREMAN
 
-#define __RANDOM__      3               // total control for the interleave and AWGN
+#define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 

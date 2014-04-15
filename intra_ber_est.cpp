@@ -1,6 +1,5 @@
 #include "frame.h"
 #include "uep_predict_utils.h"
-#include "mrf_decoder_utils.h"
 
 
 const double DERIVE_SNR[5][PXL]={{2.597844, 2.244942, 1.760056, 1.214787, 0.130591, 0.017250, 0.017250, 0.017250},
@@ -19,12 +18,13 @@ int main(int argc,char* argv[]){
     const int h = __HEIGHT, w = __WIDTH, f = __FRAME ;
     const int len = __SNR_E-__SNR_S+1;
     double snr[len];
+    double EbN0 ;
 
     FILE* fptr = fopen(__SEQ__,"r+b");
     assert(fptr!=NULL);
     rewind(fptr);
     Frame* frame = new Frame(h,w,TYPE_Y,0);
-    double* PSNR = MALLOC(double,f);
+    double PSNR[f] ;//= MALLOC(double,f);
     double* weights = MALLOC(double,PXL);
 //    double* beta = MALLOC(double,PXL);
 
@@ -40,13 +40,12 @@ int main(int argc,char* argv[]){
 
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
-
+        EbN0 = pow(10,snr[i]/10);
         for(int j = 0 ; j < PXL ; ++j)
             weights[j] = (weight_type?DERIVE_SNR[i][j]:1);
         for(int j = 0 ; j < f ; ++ j){
             frame->read(fptr);
-            //intra_beta_estimation(frame->img_bp,beta,h,w);
-            PSNR[j] = intra_psnr_est(frame->img_bp,h,w,weights,pow(10,snr[i]/10));
+            PSNR[j] = intra_psnr_est(frame->img_bp,h,w,weights,EbN0);
         }
 
         // print result PSNR
@@ -65,7 +64,8 @@ int main(int argc,char* argv[]){
     }
 
     // free memory
-    free(PSNR);
+//    free(PSNR);
     free(weights);
     fclose(fptr);
+    delete frame;
 }

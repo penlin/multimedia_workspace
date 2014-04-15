@@ -50,7 +50,7 @@ int main(int argc,char* argv[]){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = DERIVE_SNR[i][j];
+            weights[j] = 1;//DERIVE_SNR[i][j];
 
         // decode
 //        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);

@@ -115,8 +115,8 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                     for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
                         imgr_bp[t_lvl][i][j] = ((Le_c[t_lvl][j+i*imgw]>=0)?1:0);
 
-            intra_beta_estimation(imgr_bp,beta,imgh,imgw);
-//            intra_beta_estimation(frame->img_bp,beta,imgh,imgw);
+//            intra_beta_estimation(imgr_bp,beta,imgh,imgw);
+            intra_beta_estimation(frame->img_bp,beta,imgh,imgw);
 
 
             // MRF decoding
