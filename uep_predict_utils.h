@@ -286,11 +286,12 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
         }
         eEn[i] = exp(value*beta/(imgh*imgw));
     }
+#if __OPT
     printf("eEn = ");
     for(i = 0 ; i < PXL ; ++i)
         printf("%lf,",eEn[i]);
     printf("\n");
-
+#endif
     for(i = 0 ; i < PXL ; ++i){
 
         solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
@@ -301,11 +302,12 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
     int iter = 1, flag = 1, limit = 100, cutter = 0;
 
     while(divergent(tmpSum,targetSum,tollerance)){
+#if __OPT__
          printf("Iter:#%d,lambda=%lf (%lf) weights:[",iter,lambda,tmpSum);
         for(i=0;i<PXL;++i)
             printf("%lf, ",weights[i]);
         printf("]\n");
-
+#endif
         // calculate slope
         slope = 0.0;
         cutter = 0;
@@ -345,11 +347,12 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
         }
 
     }
-
+#if __OPT__
     printf("found weights solution:[");
     for(i=0;i<PXL;++i)
         printf("%lf, ",weights[i]);
     printf("]\n");
+#endif
 }
 
 #endif // __UEP_PREDICT_UTILS_H

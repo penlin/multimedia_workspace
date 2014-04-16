@@ -74,8 +74,9 @@
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
 #define __DEBUG__       0              // debug msg
+#define __OPT__         0&&__DEBUG__
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
-#define __PROGRESS__    1&&__DEBUG__    // msg for the progress
+#define __PROGRESS__    0&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
 #define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure
 

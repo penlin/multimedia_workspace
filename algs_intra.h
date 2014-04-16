@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "frame.h"
 #include "mrf_decoder_utils.h"
-
+#include "uep_predict_utils.h"
 
 /**
 *   @Penlin: algorithm for intra decoding
@@ -25,7 +25,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
     Frame* frame = new Frame(imgh,imgw,0,0);
     frame->encode_info(snr,G);
-
+    const double EbN0 = pow(10,snr/10);
     // param initial
     const int Ns = pow(2,G_L-1);
     const int lm = imgh*imgw;
@@ -60,7 +60,11 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         printf("Decoding frame#%d\n",f+1);
 #endif
 
-        frame->next(fptr,Ly,map,weights);
+//        frame->next(fptr,Ly,map,weights);
+        frame->read(fptr);
+        weight_predict_Intra_minMSE(frame->img_bp,imgh,imgw,weights,EbN0);
+        frame->encode(Ly,map,weights);
+
 #if __PROGRESS__
         printf("Decoding frame#%d\n",f+1);
 #endif
