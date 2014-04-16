@@ -43,6 +43,12 @@ int main(int argc,char* argv[]){
     for(int i = 0 ; i < len ; ++i)
         snr[i] = __SNR_S+i;
 
+    int weight_type = 0;
+    // 0: EEP
+    // 1: UEP
+    if(argc > 1)
+        weight_type = atoi(argv[1]);
+
 //    weight_predict_minMSE(weights,pow(10,snr/10));
 
 
@@ -50,7 +56,7 @@ int main(int argc,char* argv[]){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = 1;//DERIVE_SNR[i][j];
+            weights[j] = (weight_type?DERIVE_SNR[i][j]:1);
 
         // decode
 //        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);

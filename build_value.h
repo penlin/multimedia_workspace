@@ -38,7 +38,7 @@
 # **/
 
 // basic decoding information
-#define Niter  1                       // #iteration
+#define Niter       3                  // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
