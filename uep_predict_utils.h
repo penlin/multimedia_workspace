@@ -203,6 +203,7 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
 //        printf("beta=%lf\n",beta[i]);
 
 //        frr[i] =(((imgh+imgw)*2-4)*fr[i]);
+        value=0;
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
                 N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
@@ -236,6 +237,119 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     free(his);
     free(beta);
     return psnr;
+}
+
+
+void solvIntraFn(const double &lambda, const double &eEn, const double &gamma, const double &bp_factor, double &weight){
+
+    int i, j = 0, offset = 8;
+    double fn = 0, fn1 = 0, tmp = 0, cons = bp_factor*lambda/gamma/eEn;
+    tmp = (fr[offset]*(1-eEn)+eEn);
+    fn1 = df[0] + cons*tmp*tmp;
+    for(i = 1 ; i < DATA_LEN ; ++i){
+        fn = fn1;
+        tmp = (fr[offset+i]*(1-eEn)+eEn);
+        fn1 = df[i] + cons*tmp*tmp;
+        //printf("fn[%d]=%lf, fn1[%d]=%lf\n",i-1,fn,i,fn1);
+        if(fn*fn1<=0){
+            // find sol
+            weight = (fn1*r[offset+i-1]-fn*r[offset+i])/(fn1-fn)/gamma;
+            return;
+        }else if(fn1 > 0 && fn > 0){
+            // cut
+            //printf("should cut!!!\n");
+            weight = MIN_GAMMA;
+            return;
+        }
+    }
+    //printf("can't find solution!\n");
+    weight = MAX_GAMMA;
+}
+
+
+void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
+
+    double lambda = 10, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double value = 0.0,beta;
+    double eEn[PXL];
+    int i,j,k,N=0;
+
+    for(i = 0; i < PXL ; ++i){
+
+        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
+        value= 0;
+        for(j=1;j<imgh-1;++j){
+            for(k=1;k<imgw-1;++k){
+                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
+                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
+            }
+        }
+        eEn[i] = exp(value*beta/(imgh*imgw));
+    }
+    printf("eEn = ");
+    for(i = 0 ; i < PXL ; ++i)
+        printf("%lf,",eEn[i]);
+    printf("\n");
+
+    for(i = 0 ; i < PXL ; ++i){
+
+        solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
+        tmpSum+=weights[i];
+    }
+
+    double delta = 0.01/gamma;
+    int iter = 1, flag = 1, limit = 100, cutter = 0;
+
+    while(divergent(tmpSum,targetSum,tollerance)){
+         printf("Iter:#%d,lambda=%lf (%lf) weights:[",iter,lambda,tmpSum);
+        for(i=0;i<PXL;++i)
+            printf("%lf, ",weights[i]);
+        printf("]\n");
+
+        // calculate slope
+        slope = 0.0;
+        cutter = 0;
+        if(flag){
+            for(i=0;i<PXL;++i){
+                solvIntraFn(lambda+delta,eEn[i],gamma,ORDER_N2[i],weights[i]);
+                slope+=weights[i];
+            }
+            slope = (slope-tmpSum)/delta;
+        }
+        if(divergent(slope,0,tollerance))
+            lambda += (targetSum-tmpSum)/slope;
+        else if(divergent(tmpSum,targetSum,tollerance))
+            lambda += ((targetSum < tmpSum)*2-1)*delta*(1+(cutter==(PXL-1)));
+        else
+            lambda += ((targetSum < tmpSum)*2-1)*delta;
+
+        tmpSum = 0.0;
+        for(i = 0 ; i < PXL ; ++i){
+            solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
+            tmpSum+=weights[i];
+        }
+        iter+=1;
+
+        if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
+            delta/=3;
+            flag = 0;
+        }
+
+        if(iter>limit && !divergent(tmpSum,targetSum,1)){
+            if(delta > 0.00001)
+                delta/=1.05;
+            limit+=200;
+        }else if(iter>limit && cutter){
+            delta*= 1.05;
+            limit+=100;
+        }
+
+    }
+
+    printf("found weights solution:[");
+    for(i=0;i<PXL;++i)
+        printf("%lf, ",weights[i]);
+    printf("]\n");
 }
 
 #endif // __UEP_PREDICT_UTILS_H

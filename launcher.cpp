@@ -15,6 +15,11 @@ const double DERIVE_SNR[5][PXL]={{2.597844, 2.244942, 1.760056, 1.214787, 0.1305
 
 const double MINPOW_PSNR25[PXL] = {2.357380, 1.877585, 1.364773, 0.268487, 0.019715, 0.013750, 0.013750, 0.013750};
 
+const double DERIVE_INTRA_SNR[5][PXL] = {{1.542550, 1.738844, 1.455300, 1.401314, 1.168949, 0.641986, 0.041631, 0.010000},
+                                        {1.468446, 1.559849, 1.369071, 1.310368, 1.211347, 0.925365, 0.143461, 0.011934},
+                                        {1.316359, 1.459535, 1.241203, 1.226068, 1.163622, 0.972940, 0.578915, 0.041608},
+                                        {1.225215, 1.260888, 1.192017, 1.174171, 1.100385, 0.963340, 0.748424, 0.335652},
+                                        {1.178798, 1.228975, 1.131290, 1.106988, 1.014853, 0.959307, 0.779196, 0.600574}};
 
 int main(int argc,char* argv[]){
 
@@ -56,7 +61,7 @@ int main(int argc,char* argv[]){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = (weight_type?DERIVE_SNR[i][j]:1);
+            weights[j] = DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
 
         // decode
 //        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
