@@ -206,9 +206,9 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
                 N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                n = N + fr[i]*(4-2*N);
+//                n = N + fr[i]*(4-2*N);
 //                frr[i]+= fr[i]/(fr[i]+(1-fr[i])*exp((2*img_bp[i][j][k]-1)*beta[i]*(2*N-4))); // N effecitve than n
-                value+=(2*img_bp[i][j][k]-1)*beta[i]*(2*N-4);
+                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
 //                value = 1/(1+exp((2*img_bp[i][j][k]-1)*(1-2*fr[i])*(1-2*fr[i])*beta[i]*(2*N-4))); // P(error)
 //                frr[i] += (value*(1-fr[i])+(1-value)*fr[i]);
 
@@ -217,7 +217,8 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
             }
         }
 //        frr[i]/=(imgh*imgw);
-        value/=(imgh*imgw);
+        value=value*beta[i]*(1-2*fr[i])/(imgh*imgw);
+
         frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(value)); // N effecitve than n
         mse+=(frr[i]*ORDER2[i]);
         mse_ori+=(fr[i]*ORDER2[i]);
