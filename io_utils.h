@@ -158,7 +158,7 @@ void write_psnr_info(double* const PSNR, const double &snr){
     }
 
     fprintf(f_psnr,"=============================\n%s\n",getLocalTimenDate());
-    fprintf(f_psnr,"SNR=%.1f\n",snr);
+    fprintf(f_psnr,"Seq=%s, SNR=%.1f\n",__TAG__,snr);
 
     for(int i = 0 ; i < __FRAME ; ++i){
         fprintf(f_psnr,"frame#%3d PSNR = %lf\n",i+1,PSNR[i]);
