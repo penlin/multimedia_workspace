@@ -101,12 +101,10 @@ void direct_decode(const char* str, int*** Y, double*** Ly_in, int*** map_in, co
     }
 
     delete3d<int>(imgr_bp);
-    delete2d<int>(G);
     delete2d<double>(Lu_c);
     delete2d<int>(imgr);
     delete2d<int>(pstate);
     delete2d<int>(pout);
- //   free(PSNR);
     free(Lu);
     free(Le1);
     free(Le2);

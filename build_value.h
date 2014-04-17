@@ -41,11 +41,17 @@
 #define Niter  2                        // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
-#define __FRAME     40
+#define __FRAME     20
 #define __SNR       0
 #define __SNR_S     0
 #define __SNR_E     8
 
+#define __SEQ_DIR   "sequence/"
+#define __FOREMAN   __SEQ_DIR  "foreman_cif.yuv"
+#define __STEFAN    __SEQ_DIR  "stefan_cif.yuv"
+#define __HALL      __SEQ_DIR  "hall_cif.yuv"
+#define __AKIYO     __SEQ_DIR  "akiyo_cif.yuv"
+#define __TAG__     "foreman"
 /**#   ______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _
 #  (  __  \ (  ____ \(  ____ \(  ___  )(  __  \ (  ____ \      (  ____ \(  ___  )( (    /|\__   __/(  ____ )(  ___  )( \
 #  | (  \  )| (    \/| (    \/| (   ) || (  \  )| (    \/      | (    \/| (   ) ||  \  ( |   ) (   | (    )|| (   ) || (

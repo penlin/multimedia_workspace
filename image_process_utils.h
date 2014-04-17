@@ -25,20 +25,6 @@ void img2bp_frame(int ** img, const int &imgh, const int &imgw, int *** img_bp){
     }
 }
 
-void img2bp_frame_dpcm(int ** img, const int &imgh, const int &imgw, int *** img_bp){
-    int mask = 1, pixel;
-
-    for(int y = 0; y < imgh ; ++y){
-        for(int x = 0 ; x < imgw ; ++x){
-            pixel = (int)img[y][x];
-            for(int j=PXL-1 ; j >= 0 ; --j){
-                img_bp[j][y][x] = (int)((pixel & mask)?1:0);
-                pixel = ( pixel >> 1 );
-            }
-        }
-    }
-
-}
 
 /*
 *   @Penlin: Converts a given decimal number x into a binary number of l bits
@@ -120,18 +106,6 @@ void bin2dec_img(int*** img_bp, const int &imgh, const int& imgw, int** imgr){
     }
 }
 
-void bin2dec_img_dpcm(int*** img_bp, const int &imgh, const int& imgw, int** imgr){
-
-    for(int i=0 ; i<imgh ; ++i){
-        for(int j=0 ; j<imgw; ++j){
-            imgr[i][j] = 0;
-            for(int k=PXL-1;k>0;--k)
-                imgr[i][j] += ORDER[PXL-k-1]*img_bp[k][i][j];
-            imgr[i][j]-=128*img_bp[0][i][j];
-            imgr[i][j]*=2;
-        }
-    }
-}
 
 
 double computePSNR(int** imgr, int** imgO, const int &imgh, const int &imgw){

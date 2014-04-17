@@ -4,32 +4,14 @@
 #include "data_alloc.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
-#include "algs_inter_weiting.h"
+#include "algs_inter.h"
 #include "algs_inter_intra.h"
 #include "utils.h"
 
 #define DECODE __ALGO__
 
-
-void de_dpcm(int*** Y, int*** dpcm_Y, const int& h, const int&w, const int &f){
-
-    int i,j,k;
-
-    for(k=1;k<f;++k){
-
-        for(i=0;i<h;++i)
-            for(j=0;j<w;++j){
-                dpcm_Y[k][i][j] = dpcm_Y[k][i][j];
-                dpcm_Y[k][i][j] += dpcm_Y[k-1][i][j];
-                dpcm_Y[k][i][j]%=256;
-            }
-
-        printf("PSNR[%d]=%f\n",k+1,computePSNR(Y[k],dpcm_Y[k],h,w));
-    }
-
-
-}
-
+const char* FILENAME[4] = {__FOREMAN, __STEFAN , __HALL, __AKIYO};
+// launcher.exe N >> choose Sequence FILENAME[N] as input
 
 int main(int argc,char* argv[]){
 
@@ -44,32 +26,31 @@ int main(int argc,char* argv[]){
     double *** Ly = new3d<double>(f,PXL,2*lu);
     int *** map_out = new3d<int>(f,PXL,lm);
     int*** Y = new3d<int>(f,h,w);
-    int*** dpcm_Y = new3d<int>(f,h,w);
+#if __OUTPUT_SEQ__
     int*** _Y = new3d<int>(f,h,w);
     int*** U = new3d<int>(f,h/2,w/2);
     int*** V = new3d<int>(f,h/2,w/2);
-
+#else
+    int*** _Y = NULL;
+    int*** U = NULL;
+    int*** V = NULL;
+#endif
     // read YUV
     if(argc == 1)
-//        Y = yuv_read("stefan_cif.yuv",h,w,f);
-        yuv_read("hall_cif.yuv",h,w,f,Y,U,V);
+        yuv_read(__FOREMAN,h,w,f,Y,U,V);
     else
-//        Y = yuv_read(argv[1],h,w,f);
-        yuv_read(argv[1],h,w,f,Y,NULL,NULL);
+        yuv_read(FILENAME[atoi(argv[1])],h,w,f,Y,NULL,NULL);
 
-//    dpcm(Y,dpcm_Y,h,w,f);
-
-//    de_dpcm(Y,dpcm_Y,h,w,f);
     // encode
     video_encode(Y,f,h,w,snr,G,Ly,map_out);
 
     // decode
     if(argc == 1)
-        DECODE("hall",Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
+        DECODE(__TAG__,Y,Ly,map_out,h,w,f,lu,G,PSNR,_Y);
     else if(argc > 2)
         DECODE(argv[2],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
     else
-        DECODE("NONAME",Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
+        DECODE(FILENAME[atoi(argv[1])],Y,Ly,map_out,h,w,f,lu,G,PSNR,NULL);
 
     // compute Ia
 //    double** Ia = new2d<double>(f,PXL);
@@ -81,7 +62,7 @@ int main(int argc,char* argv[]){
         printf("frame#%3d PSNR = %lf\n",i+1,PSNR[i]);
 
 #if __OUTPUT_SEQ__
-    yuv_write("hall",_Y,U,V,f,h,w);
+    yuv_write(__TAG__,_Y,U,V,f,h,w);
 #endif
     write_psnr_info(PSNR);
 
@@ -90,10 +71,10 @@ int main(int argc,char* argv[]){
     delete3d<int>(map_out);
     delete2d<int>(G);
     deleteY(Y);
+#if __OUTPUT_SEQ__
     deleteY(_Y);
-    deleteY(dpcm_Y);
     deleteY(U);
     deleteY(V);
-
+#endif
     free(PSNR);
 }

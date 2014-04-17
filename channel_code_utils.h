@@ -206,24 +206,6 @@ void interleave(double** Lu, int** map, const int &lm ){
 }
 
 
-void dpcm(int*** Y, int*** dpcm_Y, const int &height, const int & width, const int &frame){
 
-    int i,j,k;
-
-    for(i=0;i<height;++i)
-        for(j=0;j<width;++j)
-            dpcm_Y[0][i][j] = Y[0][i][j];
-
-    for(k=1;k<frame;++k){
-        for(i=0;i<height;++i){
-            for(j=0;j<width;++j){
-                dpcm_Y[k][i][j] = (Y[k][i][j]-Y[k-1][i][j]);
-                if(dpcm_Y[k][i][j]>0)
-                    dpcm_Y[k][i][j]+=256;
-            }
-        }
-    }
-
-}
 
 #endif // __CHANNEL_CODE_H

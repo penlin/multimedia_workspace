@@ -372,7 +372,6 @@ void inter_intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, cons
 
     delete2d<int>(imgr);
     delete2d<int>(imgr_prev);
-    delete2d<int>(G);
     delete2d<int>(pstate);
     delete2d<int>(pout);
     delete2d<double>(beta_t);

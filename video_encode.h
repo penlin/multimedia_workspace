@@ -1,3 +1,6 @@
+#ifndef __VIDEO_ENCODE_H
+#define __VIDEO_ENCODE_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -32,13 +35,10 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
     const double L_c = 4*a*EbN0*rate;           // reliability value of the channel
     const double sigma = 1/sqrt(2*rate*EbN0);   // standard deviation of AWGN noise
 
- //   printf("param check:\nrate=%lf\na=%lf\nlm=%d\nlu=%d\nEbN0=%lf\nL_c=%lf\nsigma=%lf\nG[][]=",rate,a,lm,lu,EbN0,L_c,sigma);
-
     // outputfile pre-allocating
     int **img;
     int ***img_bp = new3d<int>(PXL,imgh,imgw);
 
-//    int *m_i = (int*) malloc(sizeof(int)*lm);
     int *x = (int*) malloc(sizeof(int)*2*lu);
 
     for (int f = 0 ; f < n_frame ; ++f){
@@ -51,11 +51,6 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
             // interleave
             random_sequence(0,lm-1,map_out[f][t_lvl]);
 
-            /**original method [slow] since copy**/
-/*            for(int i = 0 ; i < lm ; ++i)
-                m_i[i] = img_bp[map_out[f][t_lvl][i]/imgw][map_out[f][t_lvl][i]%imgw][t_lvl];
-            rsc_encode(G_ptr,3,m_i,lm,1,x);
-*/
             rsc_encode(G_ptr,G_L,img_bp[t_lvl],map_out[f][t_lvl],imgw,lm,1,x);
 
             for(int i = 0 ; i < 2*lu ; ++i){
@@ -65,9 +60,9 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
         }
     }
 
-//    free(m_i);
     free(x);
     delete3d<int>(img_bp);
 
 }
 
+#endif // __VIDEO_ENCODE_H

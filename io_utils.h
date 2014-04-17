@@ -33,9 +33,9 @@ void yuv_write(const char* filename, int*** Y, int*** U, int*** V, const int &n_
 
     char file[50];
 #if __OUTPUT_TYPE__ == __YUV420__
-    sprintf(file,"%s/decoded_yuv420_%s.yuv","sequence",filename);
+    sprintf(file,"%sdecoded_yuv420_%s.yuv",__SEQ_DIR,filename);
 #else
-    sprintf(file,"%s/decoded_y_%s.yuv","sequence",filename);
+    sprintf(file,"%sdecoded_y_%s.yuv",__SEQ_DIR,filename);
 #endif
     pFile = fopen(file,"w+b");
     assert(pFile!=NULL);
@@ -209,43 +209,15 @@ void write_ps_for_matlab(double** Ia, double** Ie, const int &ln){
 *  @param: Y       Y value matrix [n_frame*imgh*imgw]
 */
 
-int*** yuv_read(const char* filename, const int &imgh, const int &imgw, const int &n_frame){
-    FILE *pFile;
-    unsigned char * buffer;
-//    int*** Y = new3d<int>(imgh,imgw,n_frame);
-    int*** Y = new3d<int>(n_frame,imgh,imgw);
-
-    char file[50];
-    sprintf(file,"%s/%s","sequence",filename);
-
-    pFile = fopen(file,"r+b");
-    assert(pFile!=NULL);
-    rewind(pFile);
-
-    buffer = (unsigned char*)malloc(sizeof(unsigned char)*imgh*imgw);
-    for(int i = 0 ; i < n_frame ; ++i) {
-        printf("read frame #%d\n",i+1);
-        fread(buffer,1,imgw*imgh,pFile);
-        for(int j = 0 ; j < imgh ; ++j){
-            for(int k = 0 ; k < imgw ; ++k)
-                Y[i][j][k] = (int) buffer[k+j*imgw];
-        }
-        fseek(pFile,imgw*imgh/2,SEEK_CUR);
-    }
-
-    fclose(pFile);
-    free(buffer);
-    return Y;
-}
 
 void yuv_read(const char* filename, const int &imgh, const int &imgw, const int &n_frame, int*** Y, int*** U, int*** V){
     FILE *pFile;
     unsigned char * buffer;
 
     char file[50];
-    sprintf(file,"%s/%s","sequence",filename);
+//    sprintf(file,"%s%s",__SEQ_DIR,filename);
 
-    pFile = fopen(file,"r+b");
+    pFile = fopen(filename,"r+b");
     assert(pFile!=NULL);
     rewind(pFile);
 

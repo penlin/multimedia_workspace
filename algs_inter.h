@@ -184,14 +184,14 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
                         imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
 
 //                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
-                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+//                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
 
                         ii = map_prev[t_lvl][j+i*imgw]/imgw;
                         jj = map_prev[t_lvl][j+i*imgw]%imgw;
                         imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
 
 //                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
-                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+//                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
                     }
 
             bin2dec_img(imgr_bp,imgh,imgw,imgr);
@@ -313,7 +313,6 @@ void inter(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
     delete3d<int>(imgr_bp_prev2);
     delete2d<int>(imgr);
     delete2d<int>(imgr_prev);
-    delete2d<int>(G);
     delete2d<int>(pstate);
     delete2d<int>(pout);
     delete2d<double>(beta);

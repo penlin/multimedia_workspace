@@ -167,7 +167,6 @@ void intra(const char* str, int*** Y, double*** Ly_in, int*** map_in, const int 
 
     delete3d<int>(imgr_bp);
     delete2d<int>(imgr);
-    delete2d<int>(G);
     delete2d<int>(pstate);
     delete2d<int>(pout);
 

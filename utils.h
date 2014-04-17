@@ -52,33 +52,6 @@ void random_sequence(const int &low, const int &high, int * order){
 }
 
 
-/* @depreciated 2013/07/18 -> to slow ...
-*  @Penlin: produce random index sequence, such as [~ ,map] = sort(rand(1,lm)) in Matlab .
-*  @param: low    low bound [include]
-*  @param: high   high bound [include]
-*
-void random_sequence(const int &low, const int &high, int * order){
-    int length = high - low + 1;
-    int tmp[length];
-    int swa;
-
-    for(int i = 0 ; i < length ; ++i){
-        tmp[i] = rand();
-        order[i] = low + i;
-    }
-
-    for(int i = length-1 ; i >= 1 ; --i ){
-        for(int j = 0 ; j < i ; ++j){
-            if(tmp[order[j]-low] > tmp[order[j+1]-low]){
-                swa = order[j];
-                order[j] = order[j+1];
-                order[j+1] = swa;
-            }
-        }
-    }
-}
-
-*/
 
 /*  @Penlin : Standard normal distribution noise generator
 */
