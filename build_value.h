@@ -44,7 +44,7 @@
 #define __SKIP      0
 #define __FRAME     300
 #define __SNR       4
-#define __SNR_S     0
+#define __SNR_S     4
 #define __SNR_E     4
 
 

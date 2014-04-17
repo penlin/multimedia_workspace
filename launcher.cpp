@@ -21,11 +21,14 @@ const double DERIVE_INTRA_SNR[5][PXL] = {{1.542550, 1.738844, 1.455300, 1.401314
                                         {1.225215, 1.260888, 1.192017, 1.174171, 1.100385, 0.963340, 0.748424, 0.335652},
                                         {1.178798, 1.228975, 1.131290, 1.106988, 1.014853, 0.959307, 0.779196, 0.600574}};
 
+const char* FILENAME[4] = {__FOREMAN, __HALL, __STEFAN, __AKIYO};
+
 int main(int argc,char* argv[]){
 
     startRandom();
 
-    const int h = __HEIGHT, w = __WIDTH, f = __FRAME ;
+    const int h = __HEIGHT, w = __WIDTH;
+    int f = __FRAME ;
 
     const int len = __SNR_E-__SNR_S+1;
     double snr[len];
@@ -36,7 +39,12 @@ int main(int argc,char* argv[]){
     int ** pout = new2d<int>(Ns,4);
     int ** pstate = new2d<int>(Ns,2) ;
 
-    FILE* fptr = fopen(__SEQ__,"r+b");
+    FILE* fptr;
+    if(argc > 2)
+        fptr = fopen(FILENAME[atoi(argv[2])],"r+b");
+    else
+        fptr = fopen(__SEQ__,"r+b");
+
     assert(fptr!=NULL);
     rewind(fptr);
 
@@ -53,26 +61,23 @@ int main(int argc,char* argv[]){
     // 1: UEP
     if(argc > 1)
         weight_type = atoi(argv[1]);
-
-//    weight_predict_minMSE(weights,pow(10,snr/10));
-
+    if(argc > 3)
+        f = atoi(argv[3]);
 
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
         for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
+            weights[j] = 1;//DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
 
         // decode
 //        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
 //        intra_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
 //        inter_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
-        if(argc == 1)
-            DECODE(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
-        else if(argc > 2)
-            DECODE(argv[2],fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
+        if(argc > 2)
+            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,weight_type,NULL);
         else
-            DECODE(argv[1],fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
+            DECODE(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,weight_type,NULL);
 
         // print result PSNR
 #if __PROGRESS__
@@ -82,12 +87,15 @@ int main(int argc,char* argv[]){
             avg_psnr += PSNR[j];
         }
         printf("AVERAGE PSNR = %lf\n",avg_psnr/f);
+#else
+        printf("===========END============\n");
 #endif
 
 #if __OUTPUT_SEQ__
         //yuv_write(__TAG__,_Y,U,V,f,h,w);
 #endif
-        write_psnr_info(PSNR,snr[i]);
+
+        //write_psnr_info(PSNR,snr[i]);
     }
 
     // free memory

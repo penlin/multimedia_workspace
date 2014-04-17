@@ -20,7 +20,7 @@
 *
 **/
 
-void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* weights,double* PSNR , int*** img_out = NULL){
+void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* weights,double* PSNR , int repredict = 0, int*** img_out = NULL){
 
 
     Frame* frame = new Frame(imgh,imgw,0,0);
@@ -62,7 +62,8 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
 //        frame->next(fptr,Ly,map,weights);
         frame->read(fptr);
-        weight_predict_Intra_minMSE(frame->img_bp,imgh,imgw,weights,EbN0);
+        if(repredict)
+            weight_predict_Intra_minMSE(frame->img_bp,imgh,imgw,weights,EbN0);
         frame->encode(Ly,map,weights);
 
 #if __PROGRESS__
