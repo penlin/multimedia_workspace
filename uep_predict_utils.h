@@ -153,35 +153,6 @@ void weight_predict_minPOWER(double* gammas, const double &mse){
 
 }
 
-void computeExpBeta(double* his, int** img_bp, const double &fr,const int &imgh, const int &imgw, double &beta){
-    int j, k, hash_key, N = 4;
-
-    for(j=0 ; j < 32; ++j)
-        his[j] = 0;
-
-    for(j=1 ; j < imgh-1 ; ++j){
-        for(k=1 ; k < imgw-1 ; ++k){
-            hash_key = 8*img_bp[j-1][k]+4*img_bp[j+1][k]+2*img_bp[j][k-1]+img_bp[j][k+1];
-            his[hash_key+16*img_bp[j][k]]+= (1-fr);
-            his[hash_key+16*(1-img_bp[j][k])]+= fr;
-        }
-    }
-
-    double aa = 0, ab = 0 , a = 0, b = 0;
-    for(j=1; j< imgh-1 ; ++j){
-        for(k=1; k<imgw-1 ; ++k){
-            hash_key = 8*img_bp[j-1][k]+4*img_bp[j+1][k]+2*img_bp[j][k-1]+img_bp[j][k+1];
-            a = 2*(img_bp[j-1][k]+img_bp[j+1][k]+img_bp[j][k-1]+img_bp[j][k+1])-N;
-            b = (log(his[hash_key+16]) - log(his[hash_key]));
-
-            aa+= (a*a);
-            ab+= (a*b);
-        }
-    }
-
-    beta = ab/aa;
-}
-
 double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double fr[PXL];
@@ -190,7 +161,6 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     int N = 0;
     double value = 0.0;
     int i,j,k,hash_key;
-    double* his = MALLOC(double,32);
     double* beta =MALLOC(double,PXL);
 
     for(i = 0 ; i < PXL ; ++i){
@@ -199,25 +169,13 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
         interp2(value,fr[i]);
 
         intra_beta_estimation(img_bp[i],beta[i],imgh,imgw);
-//        computeExpBeta(his,img_bp[i],fr[i],imgh,imgw,beta[i]);
-//        printf("beta=%lf\n",beta[i]);
-
-//        frr[i] =(((imgh+imgw)*2-4)*fr[i]);
         value=0;
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
                 N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-//                n = N + fr[i]*(4-2*N);
-//                frr[i]+= fr[i]/(fr[i]+(1-fr[i])*exp((2*img_bp[i][j][k]-1)*beta[i]*(2*N-4))); // N effecitve than n
                 value+=(2*img_bp[i][j][k]-1)*(2*N-4);
-//                value = 1/(1+exp((2*img_bp[i][j][k]-1)*(1-2*fr[i])*(1-2*fr[i])*beta[i]*(2*N-4))); // P(error)
-//                frr[i] += (value*(1-fr[i])+(1-value)*fr[i]);
-
-//                hash_key = 8*img_bp[i][j-1][k]+4*img_bp[i][j+1][k]+2*img_bp[i][j][k-1]+img_bp[i][j][k+1];
-//                frr[i]+= fr[i]/(fr[i]+(1-fr[i])*(his[hash_key+img_bp[i][j][k]*16]/his[hash_key+(1-img_bp[i][j][k])*16]));
             }
         }
-//        frr[i]/=(imgh*imgw);
         value=value*beta[i]*(1-2*fr[i])/(imgh*imgw);
 
         frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(value)); // N effecitve than n
@@ -233,9 +191,68 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     for(i = 0 ; i < PXL ; ++i)
         printf("%lf,",frr[i]);
     printf("%lf\n",psnr);
-    //printf("%lf,%lf\n",psnr_ori,psnr);
-    free(his);
     free(beta);
+    return psnr;
+}
+
+
+double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** motionVect, const int &imgh, const int &imgw, double* weights, const double &gamma, int*** img_bp_ref2 = NULL){
+
+    double fr[PXL];
+    double frr[PXL]={0,0,0,0,0,0,0,0};
+    double n = 0, mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
+    int N = 0;
+    double value = 0.0, En = 0.0, En1 = 0.0;
+    int i,j,k,hash_key;
+    double* beta =MALLOC(double,PXL);
+    double* beta_prev =MALLOC(double,PXL);
+    int ** img_ref = new2d<int>(imgh,imgw);
+
+    for(i = 0 ; i < PXL ; ++i){
+        value = weights[i]*gamma;
+        cut1(value);
+        interp2(value,fr[i]);
+
+        motionComp(img_bp_ref[i],motionVect,imgh,imgw,8,img_ref);
+//        intra_beta_estimation(img_bp[i],beta[i],imgh,imgw);
+        En = En1 = 0.0;
+        if(img_bp_ref2==NULL){
+            inter_beta_estimation(img_bp[i],beta[i],img_ref,imgh,imgw);
+            for(j= 0 ; j < imgh ; ++j)
+                for(k=0 ; k < imgw ; ++k)
+                    En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
+
+            En = En*beta[i]*(1-2*fr[i])/(imgh*imgw);
+            frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En));
+        } else {
+            inter2_beta_estimation(img_bp[i],img_bp_ref[i],img_bp_ref2[i],beta[i],beta_prev[i],imgh,imgw);
+            for(j= 0 ; j < imgh ; ++j)
+                for(k=0 ; k < imgw ; ++k){
+                    En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
+                    En1+= (2*img_bp[i][j][k]-1)*(2*img_bp_ref2[i][j][k]-1);
+                }
+
+            En = En*beta[i]*(1-2*fr[i])/(imgh*imgw);
+            En1 = En1*beta_prev[i]*(1-2*fr[i])/(imgh*imgw);
+            frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En+En1));
+        }
+
+        mse+=(frr[i]*ORDER2[i]);
+        mse_ori+=(fr[i]*ORDER2[i]);
+//        printf("%lf,",frr[i]);
+    }
+    psnr = 10*log10(65025/mse);
+    psnr_ori = 10*log10(65025/mse_ori);
+//    for(i = 0 ; i < PXL ; ++i)
+//        printf("%lf,",fr[i]);
+//    printf("%lf\n",psnr_ori);
+    for(i = 0 ; i < PXL ; ++i)
+        printf("%lf,",frr[i]);
+    printf("%lf\n",psnr);
+    //printf("%lf,%lf\n",psnr_ori,psnr);
+    free(beta);
+    free(beta_prev);
+    delete2d<int>(img_ref);
     return psnr;
 }
 
@@ -250,19 +267,16 @@ void solvIntraFn(const double &lambda, const double &eEn, const double &gamma, c
         fn = fn1;
         tmp = (fr[offset+i]*(1-eEn)+eEn);
         fn1 = df[i] + cons*tmp*tmp;
-        //printf("fn[%d]=%lf, fn1[%d]=%lf\n",i-1,fn,i,fn1);
         if(fn*fn1<=0){
             // find sol
             weight = (fn1*r[offset+i-1]-fn*r[offset+i])/(fn1-fn)/gamma;
             return;
         }else if(fn1 > 0 && fn > 0){
             // cut
-            //printf("should cut!!!\n");
             weight = MIN_GAMMA;
             return;
         }
     }
-    //printf("can't find solution!\n");
     weight = MAX_GAMMA;
 }
 
