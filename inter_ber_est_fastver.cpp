@@ -95,7 +95,7 @@ int main(int argc,char* argv[]){
     motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
     calInterEn(frame->img_bp,frame_next->img_bp,mv,h,w,eEn);
     for(int i = 0 ; i < len ; ++i)
-        PSNR[i][0] = inter_psnr_est(weights,EbN0[i],eEn);
+        PSNR[i][0] = mrf_psnr_est(weights,EbN0[i],eEn);
 
     for(int j = 1 ; j < f - 1; ++ j){
         frame_prev->copy(frame);
@@ -107,13 +107,13 @@ int main(int argc,char* argv[]){
 
         calInterEn(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,eEn,frame_next->img_bp,mv);
         for(int i = 0 ; i < len ; ++i)
-            PSNR[i][j] = inter_psnr_est(weights,EbN0[i],eEn);
+            PSNR[i][j] = mrf_psnr_est(weights,EbN0[i],eEn);
     }
 
     motionEstES(frame_next->Y,frame->Y,h,w,8,5,mv_prev);
     calInterEn(frame_next->img_bp,frame->img_bp,mv_prev,h,w,eEn);
     for(int i = 0 ; i < len ; ++i)
-        PSNR[i][f-1] = inter_psnr_est(weights,EbN0[i],eEn);
+        PSNR[i][f-1] = mrf_psnr_est(weights,EbN0[i],eEn);
 
     // print result PSNR
     double avg_psnr[len] ;

@@ -265,7 +265,7 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
     return psnr;
 }
 
-double inter_psnr_est(double* weights, const double &gamma, double* eEn){
+double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
 
     double fr[PXL];
     double frr[PXL]={0,0,0,0,0,0,0,0};
