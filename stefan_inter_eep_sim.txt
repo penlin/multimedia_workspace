@@ -1,0 +1,1790 @@
+sequence/stefan_cif.yuv iter#1 frame#1 PSNR = 17.361631, frame#2 PSNR = 17.398589
+sequence/stefan_cif.yuv iter#2 frame#1 PSNR = 19.717035, frame#2 PSNR = 19.870067
+sequence/stefan_cif.yuv iter#3 frame#1 PSNR = 21.020991, frame#2 PSNR = 21.212860
+sequence/stefan_cif.yuv iter#1 frame#2 PSNR = 22.120298, frame#3 PSNR = 17.641182
+sequence/stefan_cif.yuv iter#2 frame#2 PSNR = 22.796921, frame#3 PSNR = 19.633150
+sequence/stefan_cif.yuv iter#3 frame#2 PSNR = 23.259671, frame#3 PSNR = 20.015923
+sequence/stefan_cif.yuv iter#1 frame#3 PSNR = 20.482594, frame#4 PSNR = 17.320383
+sequence/stefan_cif.yuv iter#2 frame#3 PSNR = 21.009122, frame#4 PSNR = 18.868581
+sequence/stefan_cif.yuv iter#3 frame#3 PSNR = 21.326900, frame#4 PSNR = 19.192040
+sequence/stefan_cif.yuv iter#1 frame#4 PSNR = 19.619666, frame#5 PSNR = 17.167497
+sequence/stefan_cif.yuv iter#2 frame#4 PSNR = 20.139145, frame#5 PSNR = 18.509673
+sequence/stefan_cif.yuv iter#3 frame#4 PSNR = 20.370714, frame#5 PSNR = 18.757585
+sequence/stefan_cif.yuv iter#1 frame#5 PSNR = 19.168234, frame#6 PSNR = 17.118472
+sequence/stefan_cif.yuv iter#2 frame#5 PSNR = 19.679345, frame#6 PSNR = 18.537769
+sequence/stefan_cif.yuv iter#3 frame#5 PSNR = 19.959694, frame#6 PSNR = 18.774038
+sequence/stefan_cif.yuv iter#1 frame#6 PSNR = 19.203436, frame#7 PSNR = 17.060932
+sequence/stefan_cif.yuv iter#2 frame#6 PSNR = 19.723582, frame#7 PSNR = 18.406589
+sequence/stefan_cif.yuv iter#3 frame#6 PSNR = 19.919172, frame#7 PSNR = 18.574897
+sequence/stefan_cif.yuv iter#1 frame#7 PSNR = 19.014248, frame#8 PSNR = 16.999693
+sequence/stefan_cif.yuv iter#2 frame#7 PSNR = 19.599077, frame#8 PSNR = 18.326898
+sequence/stefan_cif.yuv iter#3 frame#7 PSNR = 19.876375, frame#8 PSNR = 18.635382
+sequence/stefan_cif.yuv iter#1 frame#8 PSNR = 19.054625, frame#9 PSNR = 16.974285
+sequence/stefan_cif.yuv iter#2 frame#8 PSNR = 19.629676, frame#9 PSNR = 18.389989
+sequence/stefan_cif.yuv iter#3 frame#8 PSNR = 19.920296, frame#9 PSNR = 18.664408
+sequence/stefan_cif.yuv iter#1 frame#9 PSNR = 19.185263, frame#10 PSNR = 17.165195
+sequence/stefan_cif.yuv iter#2 frame#9 PSNR = 19.786171, frame#10 PSNR = 18.524804
+sequence/stefan_cif.yuv iter#3 frame#9 PSNR = 20.205573, frame#10 PSNR = 18.926093
+sequence/stefan_cif.yuv iter#1 frame#10 PSNR = 19.530369, frame#11 PSNR = 17.374658
+sequence/stefan_cif.yuv iter#2 frame#10 PSNR = 20.304227, frame#11 PSNR = 19.003926
+sequence/stefan_cif.yuv iter#3 frame#10 PSNR = 20.614075, frame#11 PSNR = 19.367368
+sequence/stefan_cif.yuv iter#1 frame#11 PSNR = 19.904770, frame#12 PSNR = 17.493136
+sequence/stefan_cif.yuv iter#2 frame#11 PSNR = 20.769344, frame#12 PSNR = 19.357766
+sequence/stefan_cif.yuv iter#3 frame#11 PSNR = 21.173971, frame#12 PSNR = 19.752723
+sequence/stefan_cif.yuv iter#1 frame#12 PSNR = 20.388725, frame#13 PSNR = 17.656803
+sequence/stefan_cif.yuv iter#2 frame#12 PSNR = 21.260240, frame#13 PSNR = 19.803997
+sequence/stefan_cif.yuv iter#3 frame#12 PSNR = 21.690387, frame#13 PSNR = 20.332777
+sequence/stefan_cif.yuv iter#1 frame#13 PSNR = 21.205426, frame#14 PSNR = 17.917175
+sequence/stefan_cif.yuv iter#2 frame#13 PSNR = 22.211387, frame#14 PSNR = 20.321246
+sequence/stefan_cif.yuv iter#3 frame#13 PSNR = 22.779451, frame#14 PSNR = 20.889428
+sequence/stefan_cif.yuv iter#1 frame#14 PSNR = 21.653944, frame#15 PSNR = 18.297442
+sequence/stefan_cif.yuv iter#2 frame#14 PSNR = 22.868674, frame#15 PSNR = 20.968655
+sequence/stefan_cif.yuv iter#3 frame#14 PSNR = 23.617883, frame#15 PSNR = 21.580161
+sequence/stefan_cif.yuv iter#1 frame#15 PSNR = 22.400510, frame#16 PSNR = 18.462404
+sequence/stefan_cif.yuv iter#2 frame#15 PSNR = 23.458690, frame#16 PSNR = 21.486950
+sequence/stefan_cif.yuv iter#3 frame#15 PSNR = 24.259089, frame#16 PSNR = 22.210246
+sequence/stefan_cif.yuv iter#1 frame#16 PSNR = 23.077126, frame#17 PSNR = 18.632849
+sequence/stefan_cif.yuv iter#2 frame#16 PSNR = 24.125031, frame#17 PSNR = 21.737947
+sequence/stefan_cif.yuv iter#3 frame#16 PSNR = 24.749720, frame#17 PSNR = 22.550758
+sequence/stefan_cif.yuv iter#1 frame#17 PSNR = 23.424946, frame#18 PSNR = 18.691922
+sequence/stefan_cif.yuv iter#2 frame#17 PSNR = 24.389178, frame#18 PSNR = 21.618996
+sequence/stefan_cif.yuv iter#3 frame#17 PSNR = 25.023821, frame#18 PSNR = 22.243051
+sequence/stefan_cif.yuv iter#1 frame#18 PSNR = 23.056420, frame#19 PSNR = 18.546190
+sequence/stefan_cif.yuv iter#2 frame#18 PSNR = 24.038286, frame#19 PSNR = 21.504727
+sequence/stefan_cif.yuv iter#3 frame#18 PSNR = 24.570076, frame#19 PSNR = 22.201740
+sequence/stefan_cif.yuv iter#1 frame#19 PSNR = 22.831869, frame#20 PSNR = 18.733429
+sequence/stefan_cif.yuv iter#2 frame#19 PSNR = 23.869783, frame#20 PSNR = 21.989093
+sequence/stefan_cif.yuv iter#3 frame#19 PSNR = 24.424255, frame#20 PSNR = 22.616398
+sequence/stefan_cif.yuv iter#1 frame#20 PSNR = 23.382660, frame#21 PSNR = 18.759897
+sequence/stefan_cif.yuv iter#2 frame#20 PSNR = 24.448428, frame#21 PSNR = 21.976303
+sequence/stefan_cif.yuv iter#3 frame#20 PSNR = 25.077351, frame#21 PSNR = 22.577133
+sequence/stefan_cif.yuv iter#1 frame#21 PSNR = 23.173389, frame#22 PSNR = 18.477919
+sequence/stefan_cif.yuv iter#2 frame#21 PSNR = 24.056945, frame#22 PSNR = 21.341373
+sequence/stefan_cif.yuv iter#3 frame#21 PSNR = 24.675840, frame#22 PSNR = 21.914621
+sequence/stefan_cif.yuv iter#1 frame#22 PSNR = 22.597522, frame#23 PSNR = 18.503007
+sequence/stefan_cif.yuv iter#2 frame#22 PSNR = 23.565748, frame#23 PSNR = 21.491423
+sequence/stefan_cif.yuv iter#3 frame#22 PSNR = 23.986209, frame#23 PSNR = 21.968665
+sequence/stefan_cif.yuv iter#1 frame#23 PSNR = 22.828021, frame#24 PSNR = 18.790297
+sequence/stefan_cif.yuv iter#2 frame#23 PSNR = 24.121395, frame#24 PSNR = 22.457002
+sequence/stefan_cif.yuv iter#3 frame#23 PSNR = 25.041461, frame#24 PSNR = 23.363993
+sequence/stefan_cif.yuv iter#1 frame#24 PSNR = 24.583750, frame#25 PSNR = 19.718861
+sequence/stefan_cif.yuv iter#2 frame#24 PSNR = 26.787032, frame#25 PSNR = 24.517182
+sequence/stefan_cif.yuv iter#3 frame#24 PSNR = 28.318727, frame#25 PSNR = 26.033385
+sequence/stefan_cif.yuv iter#1 frame#25 PSNR = 27.182249, frame#26 PSNR = 20.287635
+sequence/stefan_cif.yuv iter#2 frame#25 PSNR = 28.424536, frame#26 PSNR = 25.284830
+sequence/stefan_cif.yuv iter#3 frame#25 PSNR = 29.221358, frame#26 PSNR = 26.570658
+sequence/stefan_cif.yuv iter#1 frame#26 PSNR = 27.544538, frame#27 PSNR = 20.150982
+sequence/stefan_cif.yuv iter#2 frame#26 PSNR = 29.104986, frame#27 PSNR = 25.096454
+sequence/stefan_cif.yuv iter#3 frame#26 PSNR = 30.101427, frame#27 PSNR = 26.222223
+sequence/stefan_cif.yuv iter#1 frame#27 PSNR = 27.398450, frame#28 PSNR = 20.394216
+sequence/stefan_cif.yuv iter#2 frame#27 PSNR = 29.206659, frame#28 PSNR = 25.626796
+sequence/stefan_cif.yuv iter#3 frame#27 PSNR = 30.594442, frame#28 PSNR = 26.867033
+sequence/stefan_cif.yuv iter#1 frame#28 PSNR = 28.169643, frame#29 PSNR = 20.876890
+sequence/stefan_cif.yuv iter#2 frame#28 PSNR = 30.182627, frame#29 PSNR = 26.571219
+sequence/stefan_cif.yuv iter#3 frame#28 PSNR = 31.308203, frame#29 PSNR = 28.196143
+sequence/stefan_cif.yuv iter#1 frame#29 PSNR = 29.173764, frame#30 PSNR = 20.902164
+sequence/stefan_cif.yuv iter#2 frame#29 PSNR = 30.476194, frame#30 PSNR = 26.993048
+sequence/stefan_cif.yuv iter#3 frame#29 PSNR = 31.209681, frame#30 PSNR = 28.002999
+sequence/stefan_cif.yuv iter#1 frame#30 PSNR = 29.025890, frame#31 PSNR = 20.271540
+sequence/stefan_cif.yuv iter#2 frame#30 PSNR = 30.548866, frame#31 PSNR = 25.424989
+sequence/stefan_cif.yuv iter#3 frame#30 PSNR = 31.307026, frame#31 PSNR = 26.515360
+sequence/stefan_cif.yuv iter#1 frame#31 PSNR = 27.436101, frame#32 PSNR = 19.668553
+sequence/stefan_cif.yuv iter#2 frame#31 PSNR = 28.993161, frame#32 PSNR = 24.075499
+sequence/stefan_cif.yuv iter#3 frame#31 PSNR = 29.629911, frame#32 PSNR = 24.917763
+sequence/stefan_cif.yuv iter#1 frame#32 PSNR = 25.877276, frame#33 PSNR = 19.275030
+sequence/stefan_cif.yuv iter#2 frame#32 PSNR = 27.350607, frame#33 PSNR = 23.298533
+sequence/stefan_cif.yuv iter#3 frame#32 PSNR = 28.376023, frame#33 PSNR = 24.091414
+sequence/stefan_cif.yuv iter#1 frame#33 PSNR = 24.984670, frame#34 PSNR = 19.073934
+sequence/stefan_cif.yuv iter#2 frame#33 PSNR = 26.649391, frame#34 PSNR = 22.595314
+sequence/stefan_cif.yuv iter#3 frame#33 PSNR = 27.430382, frame#34 PSNR = 23.348503
+sequence/stefan_cif.yuv iter#1 frame#34 PSNR = 24.167211, frame#35 PSNR = 18.639528
+sequence/stefan_cif.yuv iter#2 frame#34 PSNR = 25.241730, frame#35 PSNR = 21.975979
+sequence/stefan_cif.yuv iter#3 frame#34 PSNR = 26.087343, frame#35 PSNR = 22.555630
+sequence/stefan_cif.yuv iter#1 frame#35 PSNR = 23.346347, frame#36 PSNR = 18.605038
+sequence/stefan_cif.yuv iter#2 frame#35 PSNR = 24.400664, frame#36 PSNR = 21.548646
+sequence/stefan_cif.yuv iter#3 frame#35 PSNR = 24.989564, frame#36 PSNR = 22.199088
+sequence/stefan_cif.yuv iter#1 frame#36 PSNR = 22.815733, frame#37 PSNR = 18.422035
+sequence/stefan_cif.yuv iter#2 frame#36 PSNR = 23.635505, frame#37 PSNR = 20.978691
+sequence/stefan_cif.yuv iter#3 frame#36 PSNR = 24.136681, frame#37 PSNR = 21.516006
+sequence/stefan_cif.yuv iter#1 frame#37 PSNR = 22.079958, frame#38 PSNR = 18.380137
+sequence/stefan_cif.yuv iter#2 frame#37 PSNR = 22.926445, frame#38 PSNR = 20.916328
+sequence/stefan_cif.yuv iter#3 frame#37 PSNR = 23.467992, frame#38 PSNR = 21.477231
+sequence/stefan_cif.yuv iter#1 frame#38 PSNR = 22.114023, frame#39 PSNR = 18.317382
+sequence/stefan_cif.yuv iter#2 frame#38 PSNR = 22.881355, frame#39 PSNR = 20.976169
+sequence/stefan_cif.yuv iter#3 frame#38 PSNR = 23.257919, frame#39 PSNR = 21.455334
+sequence/stefan_cif.yuv iter#1 frame#39 PSNR = 22.022048, frame#40 PSNR = 18.351584
+sequence/stefan_cif.yuv iter#2 frame#39 PSNR = 22.693400, frame#40 PSNR = 21.010134
+sequence/stefan_cif.yuv iter#3 frame#39 PSNR = 23.100698, frame#40 PSNR = 21.573542
+sequence/stefan_cif.yuv iter#1 frame#40 PSNR = 22.121096, frame#41 PSNR = 18.333519
+sequence/stefan_cif.yuv iter#2 frame#40 PSNR = 22.847572, frame#41 PSNR = 21.135514
+sequence/stefan_cif.yuv iter#3 frame#40 PSNR = 23.345006, frame#41 PSNR = 21.732518
+sequence/stefan_cif.yuv iter#1 frame#41 PSNR = 22.477903, frame#42 PSNR = 18.389463
+sequence/stefan_cif.yuv iter#2 frame#41 PSNR = 23.470084, frame#42 PSNR = 21.132414
+sequence/stefan_cif.yuv iter#3 frame#41 PSNR = 23.839343, frame#42 PSNR = 21.809508
+sequence/stefan_cif.yuv iter#1 frame#42 PSNR = 22.587841, frame#43 PSNR = 18.466172
+sequence/stefan_cif.yuv iter#2 frame#42 PSNR = 23.691532, frame#43 PSNR = 21.429942
+sequence/stefan_cif.yuv iter#3 frame#42 PSNR = 24.380835, frame#43 PSNR = 22.107599
+sequence/stefan_cif.yuv iter#1 frame#43 PSNR = 23.010147, frame#44 PSNR = 18.535293
+sequence/stefan_cif.yuv iter#2 frame#43 PSNR = 24.371576, frame#44 PSNR = 21.820381
+sequence/stefan_cif.yuv iter#3 frame#43 PSNR = 25.107585, frame#44 PSNR = 22.624306
+sequence/stefan_cif.yuv iter#1 frame#44 PSNR = 23.783651, frame#45 PSNR = 19.490577
+sequence/stefan_cif.yuv iter#2 frame#44 PSNR = 25.581181, frame#45 PSNR = 23.634956
+sequence/stefan_cif.yuv iter#3 frame#44 PSNR = 26.869685, frame#45 PSNR = 24.813265
+sequence/stefan_cif.yuv iter#1 frame#45 PSNR = 25.642729, frame#46 PSNR = 19.105822
+sequence/stefan_cif.yuv iter#2 frame#45 PSNR = 26.818317, frame#46 PSNR = 22.767805
+sequence/stefan_cif.yuv iter#3 frame#45 PSNR = 27.434020, frame#46 PSNR = 23.429893
+sequence/stefan_cif.yuv iter#1 frame#46 PSNR = 24.397444, frame#47 PSNR = 19.529260
+sequence/stefan_cif.yuv iter#2 frame#46 PSNR = 26.046026, frame#47 PSNR = 24.116356
+sequence/stefan_cif.yuv iter#3 frame#46 PSNR = 27.102631, frame#47 PSNR = 25.287173
+sequence/stefan_cif.yuv iter#1 frame#47 PSNR = 26.094857, frame#48 PSNR = 19.424518
+sequence/stefan_cif.yuv iter#2 frame#47 PSNR = 27.060220, frame#48 PSNR = 23.283874
+sequence/stefan_cif.yuv iter#3 frame#47 PSNR = 27.886522, frame#48 PSNR = 24.033285
+sequence/stefan_cif.yuv iter#1 frame#48 PSNR = 24.700924, frame#49 PSNR = 18.696297
+sequence/stefan_cif.yuv iter#2 frame#48 PSNR = 25.748404, frame#49 PSNR = 21.810167
+sequence/stefan_cif.yuv iter#3 frame#48 PSNR = 26.292467, frame#49 PSNR = 22.481934
+sequence/stefan_cif.yuv iter#1 frame#49 PSNR = 23.669740, frame#50 PSNR = 19.218067
+sequence/stefan_cif.yuv iter#2 frame#49 PSNR = 25.596505, frame#50 PSNR = 23.446839
+sequence/stefan_cif.yuv iter#3 frame#49 PSNR = 26.687555, frame#50 PSNR = 24.622082
+sequence/stefan_cif.yuv iter#1 frame#50 PSNR = 25.439183, frame#51 PSNR = 19.191540
+sequence/stefan_cif.yuv iter#2 frame#50 PSNR = 26.572722, frame#51 PSNR = 22.823472
+sequence/stefan_cif.yuv iter#3 frame#50 PSNR = 27.404927, frame#51 PSNR = 23.552659
+sequence/stefan_cif.yuv iter#1 frame#51 PSNR = 24.374877, frame#52 PSNR = 19.343658
+sequence/stefan_cif.yuv iter#2 frame#51 PSNR = 25.641489, frame#52 PSNR = 23.576011
+sequence/stefan_cif.yuv iter#3 frame#51 PSNR = 26.453920, frame#52 PSNR = 24.441825
+sequence/stefan_cif.yuv iter#1 frame#52 PSNR = 25.486977, frame#53 PSNR = 19.877073
+sequence/stefan_cif.yuv iter#2 frame#52 PSNR = 26.892469, frame#53 PSNR = 24.400269
+sequence/stefan_cif.yuv iter#3 frame#52 PSNR = 27.888706, frame#53 PSNR = 25.419352
+sequence/stefan_cif.yuv iter#1 frame#53 PSNR = 26.259679, frame#54 PSNR = 19.284245
+sequence/stefan_cif.yuv iter#2 frame#53 PSNR = 27.484161, frame#54 PSNR = 23.058638
+sequence/stefan_cif.yuv iter#3 frame#53 PSNR = 28.288504, frame#54 PSNR = 23.735054
+sequence/stefan_cif.yuv iter#1 frame#54 PSNR = 24.520598, frame#55 PSNR = 18.914011
+sequence/stefan_cif.yuv iter#2 frame#54 PSNR = 25.531189, frame#55 PSNR = 22.137350
+sequence/stefan_cif.yuv iter#3 frame#54 PSNR = 26.113464, frame#55 PSNR = 22.793392
+sequence/stefan_cif.yuv iter#1 frame#55 PSNR = 23.687833, frame#56 PSNR = 19.011700
+sequence/stefan_cif.yuv iter#2 frame#55 PSNR = 25.160660, frame#56 PSNR = 22.643701
+sequence/stefan_cif.yuv iter#3 frame#55 PSNR = 25.975086, frame#56 PSNR = 23.475327
+sequence/stefan_cif.yuv iter#1 frame#56 PSNR = 24.506365, frame#57 PSNR = 19.245582
+sequence/stefan_cif.yuv iter#2 frame#56 PSNR = 26.591284, frame#57 PSNR = 23.558658
+sequence/stefan_cif.yuv iter#3 frame#56 PSNR = 27.795770, frame#57 PSNR = 24.527863
+sequence/stefan_cif.yuv iter#1 frame#57 PSNR = 25.839402, frame#58 PSNR = 19.602231
+sequence/stefan_cif.yuv iter#2 frame#57 PSNR = 27.779909, frame#58 PSNR = 23.993172
+sequence/stefan_cif.yuv iter#3 frame#57 PSNR = 28.995585, frame#58 PSNR = 24.948917
+sequence/stefan_cif.yuv iter#1 frame#58 PSNR = 25.916477, frame#59 PSNR = 19.444714
+sequence/stefan_cif.yuv iter#2 frame#58 PSNR = 27.704462, frame#59 PSNR = 23.789471
+sequence/stefan_cif.yuv iter#3 frame#58 PSNR = 28.832728, frame#59 PSNR = 24.649527
+sequence/stefan_cif.yuv iter#1 frame#59 PSNR = 25.610112, frame#60 PSNR = 19.125721
+sequence/stefan_cif.yuv iter#2 frame#59 PSNR = 26.973745, frame#60 PSNR = 22.811672
+sequence/stefan_cif.yuv iter#3 frame#59 PSNR = 27.831589, frame#60 PSNR = 23.577029
+sequence/stefan_cif.yuv iter#1 frame#60 PSNR = 24.581749, frame#61 PSNR = 18.706392
+sequence/stefan_cif.yuv iter#2 frame#60 PSNR = 25.660889, frame#61 PSNR = 22.035438
+sequence/stefan_cif.yuv iter#3 frame#60 PSNR = 26.445922, frame#61 PSNR = 22.794846
+sequence/stefan_cif.yuv iter#1 frame#61 PSNR = 23.708322, frame#62 PSNR = 18.698809
+sequence/stefan_cif.yuv iter#2 frame#61 PSNR = 24.981253, frame#62 PSNR = 21.925523
+sequence/stefan_cif.yuv iter#3 frame#61 PSNR = 25.607486, frame#62 PSNR = 22.477515
+sequence/stefan_cif.yuv iter#1 frame#62 PSNR = 23.379992, frame#63 PSNR = 18.489253
+sequence/stefan_cif.yuv iter#2 frame#62 PSNR = 24.630945, frame#63 PSNR = 21.523160
+sequence/stefan_cif.yuv iter#3 frame#62 PSNR = 25.278699, frame#63 PSNR = 22.096510
+sequence/stefan_cif.yuv iter#1 frame#63 PSNR = 22.976173, frame#64 PSNR = 18.597385
+sequence/stefan_cif.yuv iter#2 frame#63 PSNR = 24.319551, frame#64 PSNR = 21.638920
+sequence/stefan_cif.yuv iter#3 frame#63 PSNR = 25.098572, frame#64 PSNR = 22.356723
+sequence/stefan_cif.yuv iter#1 frame#64 PSNR = 23.197738, frame#65 PSNR = 18.710768
+sequence/stefan_cif.yuv iter#2 frame#64 PSNR = 24.347146, frame#65 PSNR = 21.841239
+sequence/stefan_cif.yuv iter#3 frame#64 PSNR = 24.956380, frame#65 PSNR = 22.332539
+sequence/stefan_cif.yuv iter#1 frame#65 PSNR = 23.214981, frame#66 PSNR = 18.611834
+sequence/stefan_cif.yuv iter#2 frame#65 PSNR = 24.574041, frame#66 PSNR = 21.890621
+sequence/stefan_cif.yuv iter#3 frame#65 PSNR = 25.375554, frame#66 PSNR = 22.744859
+sequence/stefan_cif.yuv iter#1 frame#66 PSNR = 23.533307, frame#67 PSNR = 18.690091
+sequence/stefan_cif.yuv iter#2 frame#66 PSNR = 24.912916, frame#67 PSNR = 22.228025
+sequence/stefan_cif.yuv iter#3 frame#66 PSNR = 25.830747, frame#67 PSNR = 23.039508
+sequence/stefan_cif.yuv iter#1 frame#67 PSNR = 23.770608, frame#68 PSNR = 18.714610
+sequence/stefan_cif.yuv iter#2 frame#67 PSNR = 24.856838, frame#68 PSNR = 21.913631
+sequence/stefan_cif.yuv iter#3 frame#67 PSNR = 25.547079, frame#68 PSNR = 22.514195
+sequence/stefan_cif.yuv iter#1 frame#68 PSNR = 23.222494, frame#69 PSNR = 18.581185
+sequence/stefan_cif.yuv iter#2 frame#68 PSNR = 24.414075, frame#69 PSNR = 21.807763
+sequence/stefan_cif.yuv iter#3 frame#68 PSNR = 25.106753, frame#69 PSNR = 22.377956
+sequence/stefan_cif.yuv iter#1 frame#69 PSNR = 22.989931, frame#70 PSNR = 18.368285
+sequence/stefan_cif.yuv iter#2 frame#69 PSNR = 23.916226, frame#70 PSNR = 21.312009
+sequence/stefan_cif.yuv iter#3 frame#69 PSNR = 24.430534, frame#70 PSNR = 21.831109
+sequence/stefan_cif.yuv iter#1 frame#70 PSNR = 22.555220, frame#71 PSNR = 18.537260
+sequence/stefan_cif.yuv iter#2 frame#70 PSNR = 23.663433, frame#71 PSNR = 21.471830
+sequence/stefan_cif.yuv iter#3 frame#70 PSNR = 24.328637, frame#71 PSNR = 22.229218
+sequence/stefan_cif.yuv iter#1 frame#71 PSNR = 23.146391, frame#72 PSNR = 18.864668
+sequence/stefan_cif.yuv iter#2 frame#71 PSNR = 24.580386, frame#72 PSNR = 22.297513
+sequence/stefan_cif.yuv iter#3 frame#71 PSNR = 25.271776, frame#72 PSNR = 23.103278
+sequence/stefan_cif.yuv iter#1 frame#72 PSNR = 24.107226, frame#73 PSNR = 18.997173
+sequence/stefan_cif.yuv iter#2 frame#72 PSNR = 25.433189, frame#73 PSNR = 22.360487
+sequence/stefan_cif.yuv iter#3 frame#72 PSNR = 26.222286, frame#73 PSNR = 23.041459
+sequence/stefan_cif.yuv iter#1 frame#73 PSNR = 23.933712, frame#74 PSNR = 18.877711
+sequence/stefan_cif.yuv iter#2 frame#73 PSNR = 25.111343, frame#74 PSNR = 22.224252
+sequence/stefan_cif.yuv iter#3 frame#73 PSNR = 25.733130, frame#74 PSNR = 22.868432
+sequence/stefan_cif.yuv iter#1 frame#74 PSNR = 23.606696, frame#75 PSNR = 18.554429
+sequence/stefan_cif.yuv iter#2 frame#74 PSNR = 24.722271, frame#75 PSNR = 21.767269
+sequence/stefan_cif.yuv iter#3 frame#74 PSNR = 25.369169, frame#75 PSNR = 22.310147
+sequence/stefan_cif.yuv iter#1 frame#75 PSNR = 23.067419, frame#76 PSNR = 18.619667
+sequence/stefan_cif.yuv iter#2 frame#75 PSNR = 24.184558, frame#76 PSNR = 21.630849
+sequence/stefan_cif.yuv iter#3 frame#75 PSNR = 24.765295, frame#76 PSNR = 22.331557
+sequence/stefan_cif.yuv iter#1 frame#76 PSNR = 23.011396, frame#77 PSNR = 18.357020
+sequence/stefan_cif.yuv iter#2 frame#76 PSNR = 23.923540, frame#77 PSNR = 21.216401
+sequence/stefan_cif.yuv iter#3 frame#76 PSNR = 24.427511, frame#77 PSNR = 21.711867
+sequence/stefan_cif.yuv iter#1 frame#77 PSNR = 22.340769, frame#78 PSNR = 18.427808
+sequence/stefan_cif.yuv iter#2 frame#77 PSNR = 23.325391, frame#78 PSNR = 21.472835
+sequence/stefan_cif.yuv iter#3 frame#77 PSNR = 24.035981, frame#78 PSNR = 22.112069
+sequence/stefan_cif.yuv iter#1 frame#78 PSNR = 22.827986, frame#79 PSNR = 18.584099
+sequence/stefan_cif.yuv iter#2 frame#78 PSNR = 23.811468, frame#79 PSNR = 21.761278
+sequence/stefan_cif.yuv iter#3 frame#78 PSNR = 24.485419, frame#79 PSNR = 22.325127
+sequence/stefan_cif.yuv iter#1 frame#79 PSNR = 23.217657, frame#80 PSNR = 18.617938
+sequence/stefan_cif.yuv iter#2 frame#79 PSNR = 24.243603, frame#80 PSNR = 21.852261
+sequence/stefan_cif.yuv iter#3 frame#79 PSNR = 24.955084, frame#80 PSNR = 22.668527
+sequence/stefan_cif.yuv iter#1 frame#80 PSNR = 23.309322, frame#81 PSNR = 18.578698
+sequence/stefan_cif.yuv iter#2 frame#80 PSNR = 24.313405, frame#81 PSNR = 21.834315
+sequence/stefan_cif.yuv iter#3 frame#80 PSNR = 24.991325, frame#81 PSNR = 22.427883
+sequence/stefan_cif.yuv iter#1 frame#81 PSNR = 23.226795, frame#82 PSNR = 18.583703
+sequence/stefan_cif.yuv iter#2 frame#81 PSNR = 24.224885, frame#82 PSNR = 21.591489
+sequence/stefan_cif.yuv iter#3 frame#81 PSNR = 24.785464, frame#82 PSNR = 22.197176
+sequence/stefan_cif.yuv iter#1 frame#82 PSNR = 22.954758, frame#83 PSNR = 18.710291
+sequence/stefan_cif.yuv iter#2 frame#82 PSNR = 24.220830, frame#83 PSNR = 21.874263
+sequence/stefan_cif.yuv iter#3 frame#82 PSNR = 24.829950, frame#83 PSNR = 22.619273
+sequence/stefan_cif.yuv iter#1 frame#83 PSNR = 23.389834, frame#84 PSNR = 18.700806
+sequence/stefan_cif.yuv iter#2 frame#83 PSNR = 24.501347, frame#84 PSNR = 22.027335
+sequence/stefan_cif.yuv iter#3 frame#83 PSNR = 25.180978, frame#84 PSNR = 22.692596
+sequence/stefan_cif.yuv iter#1 frame#84 PSNR = 23.342843, frame#85 PSNR = 18.485046
+sequence/stefan_cif.yuv iter#2 frame#84 PSNR = 24.159591, frame#85 PSNR = 21.249147
+sequence/stefan_cif.yuv iter#3 frame#84 PSNR = 24.685865, frame#85 PSNR = 21.824044
+sequence/stefan_cif.yuv iter#1 frame#85 PSNR = 22.458361, frame#86 PSNR = 18.610632
+sequence/stefan_cif.yuv iter#2 frame#85 PSNR = 23.735383, frame#86 PSNR = 21.644895
+sequence/stefan_cif.yuv iter#3 frame#85 PSNR = 24.399784, frame#86 PSNR = 22.400932
+sequence/stefan_cif.yuv iter#1 frame#86 PSNR = 23.071521, frame#87 PSNR = 18.172004
+sequence/stefan_cif.yuv iter#2 frame#86 PSNR = 23.903615, frame#87 PSNR = 20.871869
+sequence/stefan_cif.yuv iter#3 frame#86 PSNR = 24.434334, frame#87 PSNR = 21.295773
+sequence/stefan_cif.yuv iter#1 frame#87 PSNR = 21.639954, frame#88 PSNR = 17.171483
+sequence/stefan_cif.yuv iter#2 frame#87 PSNR = 21.992994, frame#88 PSNR = 18.584449
+sequence/stefan_cif.yuv iter#3 frame#87 PSNR = 22.159098, frame#88 PSNR = 18.761320
+sequence/stefan_cif.yuv iter#1 frame#88 PSNR = 19.131292, frame#89 PSNR = 16.864221
+sequence/stefan_cif.yuv iter#2 frame#88 PSNR = 19.506623, frame#89 PSNR = 17.968961
+sequence/stefan_cif.yuv iter#3 frame#88 PSNR = 19.681439, frame#89 PSNR = 18.200132
+sequence/stefan_cif.yuv iter#1 frame#89 PSNR = 18.627274, frame#90 PSNR = 16.752213
+sequence/stefan_cif.yuv iter#2 frame#89 PSNR = 19.081443, frame#90 PSNR = 17.867101
+sequence/stefan_cif.yuv iter#3 frame#89 PSNR = 19.201236, frame#90 PSNR = 18.044482
+frame#  1 PSNR = 21.020991
+frame#  2 PSNR = 23.259671
+frame#  3 PSNR = 21.326900
+frame#  4 PSNR = 20.370714
+frame#  5 PSNR = 19.959694
+frame#  6 PSNR = 19.919172
+frame#  7 PSNR = 19.876375
+frame#  8 PSNR = 19.920296
+frame#  9 PSNR = 20.205573
+frame# 10 PSNR = 20.614075
+frame# 11 PSNR = 21.173971
+frame# 12 PSNR = 21.690387
+frame# 13 PSNR = 22.779451
+frame# 14 PSNR = 23.617883
+frame# 15 PSNR = 24.259089
+frame# 16 PSNR = 24.749720
+frame# 17 PSNR = 25.023821
+frame# 18 PSNR = 24.570076
+frame# 19 PSNR = 24.424255
+frame# 20 PSNR = 25.077351
+frame# 21 PSNR = 24.675840
+frame# 22 PSNR = 23.986209
+frame# 23 PSNR = 25.041461
+frame# 24 PSNR = 28.318727
+frame# 25 PSNR = 29.221358
+frame# 26 PSNR = 30.101427
+frame# 27 PSNR = 30.594442
+frame# 28 PSNR = 31.308203
+frame# 29 PSNR = 31.209681
+frame# 30 PSNR = 31.307026
+frame# 31 PSNR = 29.629911
+frame# 32 PSNR = 28.376023
+frame# 33 PSNR = 27.430382
+frame# 34 PSNR = 26.087343
+frame# 35 PSNR = 24.989564
+frame# 36 PSNR = 24.136681
+frame# 37 PSNR = 23.467992
+frame# 38 PSNR = 23.257919
+frame# 39 PSNR = 23.100698
+frame# 40 PSNR = 23.345006
+frame# 41 PSNR = 23.839343
+frame# 42 PSNR = 24.380835
+frame# 43 PSNR = 25.107585
+frame# 44 PSNR = 26.869685
+frame# 45 PSNR = 27.434020
+frame# 46 PSNR = 27.102631
+frame# 47 PSNR = 27.886522
+frame# 48 PSNR = 26.292467
+frame# 49 PSNR = 26.687555
+frame# 50 PSNR = 27.404927
+frame# 51 PSNR = 26.453920
+frame# 52 PSNR = 27.888706
+frame# 53 PSNR = 28.288504
+frame# 54 PSNR = 26.113464
+frame# 55 PSNR = 25.975086
+frame# 56 PSNR = 27.795770
+frame# 57 PSNR = 28.995585
+frame# 58 PSNR = 28.832728
+frame# 59 PSNR = 27.831589
+frame# 60 PSNR = 26.445922
+frame# 61 PSNR = 25.607486
+frame# 62 PSNR = 25.278699
+frame# 63 PSNR = 25.098572
+frame# 64 PSNR = 24.956380
+frame# 65 PSNR = 25.375554
+frame# 66 PSNR = 25.830747
+frame# 67 PSNR = 25.547079
+frame# 68 PSNR = 25.106753
+frame# 69 PSNR = 24.430534
+frame# 70 PSNR = 24.328637
+frame# 71 PSNR = 25.271776
+frame# 72 PSNR = 26.222286
+frame# 73 PSNR = 25.733130
+frame# 74 PSNR = 25.369169
+frame# 75 PSNR = 24.765295
+frame# 76 PSNR = 24.427511
+frame# 77 PSNR = 24.035981
+frame# 78 PSNR = 24.485419
+frame# 79 PSNR = 24.955084
+frame# 80 PSNR = 24.991325
+frame# 81 PSNR = 24.785464
+frame# 82 PSNR = 24.829950
+frame# 83 PSNR = 25.180978
+frame# 84 PSNR = 24.685865
+frame# 85 PSNR = 24.399784
+frame# 86 PSNR = 24.434334
+frame# 87 PSNR = 22.159098
+frame# 88 PSNR = 19.681439
+frame# 89 PSNR = 19.201236
+frame# 90 PSNR = 18.044482
+AVERAGE PSNR = 25.003025
+sequence/stefan_cif.yuv iter#1 frame#1 PSNR = 20.918288, frame#2 PSNR = 21.076386
+sequence/stefan_cif.yuv iter#2 frame#1 PSNR = 24.589991, frame#2 PSNR = 24.988774
+sequence/stefan_cif.yuv iter#3 frame#1 PSNR = 25.964883, frame#2 PSNR = 26.279247
+sequence/stefan_cif.yuv iter#1 frame#2 PSNR = 26.907197, frame#3 PSNR = 20.737874
+sequence/stefan_cif.yuv iter#2 frame#2 PSNR = 27.634615, frame#3 PSNR = 23.559070
+sequence/stefan_cif.yuv iter#3 frame#2 PSNR = 28.076452, frame#3 PSNR = 23.912354
+sequence/stefan_cif.yuv iter#1 frame#3 PSNR = 24.436754, frame#4 PSNR = 20.381953
+sequence/stefan_cif.yuv iter#2 frame#3 PSNR = 25.135398, frame#4 PSNR = 22.725019
+sequence/stefan_cif.yuv iter#3 frame#3 PSNR = 25.410751, frame#4 PSNR = 22.960713
+sequence/stefan_cif.yuv iter#1 frame#4 PSNR = 23.543439, frame#5 PSNR = 20.226575
+sequence/stefan_cif.yuv iter#2 frame#4 PSNR = 24.266159, frame#5 PSNR = 22.178706
+sequence/stefan_cif.yuv iter#3 frame#4 PSNR = 24.452459, frame#5 PSNR = 22.487796
+sequence/stefan_cif.yuv iter#1 frame#5 PSNR = 23.112499, frame#6 PSNR = 20.064192
+sequence/stefan_cif.yuv iter#2 frame#5 PSNR = 23.822789, frame#6 PSNR = 21.987011
+sequence/stefan_cif.yuv iter#3 frame#5 PSNR = 24.150399, frame#6 PSNR = 22.213278
+sequence/stefan_cif.yuv iter#1 frame#6 PSNR = 22.731997, frame#7 PSNR = 20.033097
+sequence/stefan_cif.yuv iter#2 frame#6 PSNR = 23.460291, frame#7 PSNR = 21.942282
+sequence/stefan_cif.yuv iter#3 frame#6 PSNR = 23.718603, frame#7 PSNR = 22.193156
+sequence/stefan_cif.yuv iter#1 frame#7 PSNR = 22.709538, frame#8 PSNR = 19.972415
+sequence/stefan_cif.yuv iter#2 frame#7 PSNR = 23.578492, frame#8 PSNR = 21.936516
+sequence/stefan_cif.yuv iter#3 frame#7 PSNR = 23.772219, frame#8 PSNR = 22.233528
+sequence/stefan_cif.yuv iter#1 frame#8 PSNR = 22.746142, frame#9 PSNR = 19.985240
+sequence/stefan_cif.yuv iter#2 frame#8 PSNR = 23.599098, frame#9 PSNR = 22.013416
+sequence/stefan_cif.yuv iter#3 frame#8 PSNR = 23.774398, frame#9 PSNR = 22.216694
+sequence/stefan_cif.yuv iter#1 frame#9 PSNR = 22.844347, frame#10 PSNR = 20.325337
+sequence/stefan_cif.yuv iter#2 frame#9 PSNR = 23.705064, frame#10 PSNR = 22.578992
+sequence/stefan_cif.yuv iter#3 frame#9 PSNR = 23.995395, frame#10 PSNR = 22.913964
+sequence/stefan_cif.yuv iter#1 frame#10 PSNR = 23.517216, frame#11 PSNR = 20.525404
+sequence/stefan_cif.yuv iter#2 frame#10 PSNR = 24.565487, frame#11 PSNR = 22.936947
+sequence/stefan_cif.yuv iter#3 frame#10 PSNR = 24.917975, frame#11 PSNR = 23.171676
+sequence/stefan_cif.yuv iter#1 frame#11 PSNR = 23.932024, frame#12 PSNR = 20.687848
+sequence/stefan_cif.yuv iter#2 frame#11 PSNR = 24.993196, frame#12 PSNR = 23.405329
+sequence/stefan_cif.yuv iter#3 frame#11 PSNR = 25.350556, frame#12 PSNR = 23.706067
+sequence/stefan_cif.yuv iter#1 frame#12 PSNR = 24.489883, frame#13 PSNR = 20.646158
+sequence/stefan_cif.yuv iter#2 frame#12 PSNR = 25.687107, frame#13 PSNR = 23.508321
+sequence/stefan_cif.yuv iter#3 frame#12 PSNR = 26.187536, frame#13 PSNR = 24.064184
+sequence/stefan_cif.yuv iter#1 frame#13 PSNR = 25.048198, frame#14 PSNR = 21.038810
+sequence/stefan_cif.yuv iter#2 frame#13 PSNR = 26.400043, frame#14 PSNR = 24.269011
+sequence/stefan_cif.yuv iter#3 frame#13 PSNR = 26.919646, frame#14 PSNR = 24.767972
+sequence/stefan_cif.yuv iter#1 frame#14 PSNR = 25.953743, frame#15 PSNR = 21.701145
+sequence/stefan_cif.yuv iter#2 frame#14 PSNR = 27.447847, frame#15 PSNR = 25.321783
+sequence/stefan_cif.yuv iter#3 frame#14 PSNR = 28.127720, frame#15 PSNR = 25.754683
+sequence/stefan_cif.yuv iter#1 frame#15 PSNR = 26.827613, frame#16 PSNR = 21.601108
+sequence/stefan_cif.yuv iter#2 frame#15 PSNR = 28.507676, frame#16 PSNR = 25.826891
+sequence/stefan_cif.yuv iter#3 frame#15 PSNR = 29.151250, frame#16 PSNR = 26.291073
+sequence/stefan_cif.yuv iter#1 frame#16 PSNR = 27.255619, frame#17 PSNR = 21.930739
+sequence/stefan_cif.yuv iter#2 frame#16 PSNR = 28.642591, frame#17 PSNR = 26.188905
+sequence/stefan_cif.yuv iter#3 frame#16 PSNR = 29.165299, frame#17 PSNR = 26.708410
+sequence/stefan_cif.yuv iter#1 frame#17 PSNR = 27.641238, frame#18 PSNR = 21.826256
+sequence/stefan_cif.yuv iter#2 frame#17 PSNR = 29.010975, frame#18 PSNR = 26.106245
+sequence/stefan_cif.yuv iter#3 frame#17 PSNR = 29.702870, frame#18 PSNR = 26.441932
+sequence/stefan_cif.yuv iter#1 frame#18 PSNR = 27.600711, frame#19 PSNR = 21.892309
+sequence/stefan_cif.yuv iter#2 frame#18 PSNR = 28.886148, frame#19 PSNR = 26.112893
+sequence/stefan_cif.yuv iter#3 frame#18 PSNR = 29.387145, frame#19 PSNR = 26.630286
+sequence/stefan_cif.yuv iter#1 frame#19 PSNR = 27.512573, frame#20 PSNR = 22.000552
+sequence/stefan_cif.yuv iter#2 frame#19 PSNR = 28.852838, frame#20 PSNR = 26.261817
+sequence/stefan_cif.yuv iter#3 frame#19 PSNR = 29.440448, frame#20 PSNR = 26.805609
+sequence/stefan_cif.yuv iter#1 frame#20 PSNR = 27.689143, frame#21 PSNR = 21.985784
+sequence/stefan_cif.yuv iter#2 frame#20 PSNR = 28.818337, frame#21 PSNR = 26.180957
+sequence/stefan_cif.yuv iter#3 frame#20 PSNR = 29.388225, frame#21 PSNR = 26.558000
+sequence/stefan_cif.yuv iter#1 frame#21 PSNR = 27.549317, frame#22 PSNR = 21.666298
+sequence/stefan_cif.yuv iter#2 frame#21 PSNR = 28.557215, frame#22 PSNR = 25.474369
+sequence/stefan_cif.yuv iter#3 frame#21 PSNR = 28.965537, frame#22 PSNR = 25.764801
+sequence/stefan_cif.yuv iter#1 frame#22 PSNR = 26.472167, frame#23 PSNR = 21.620248
+sequence/stefan_cif.yuv iter#2 frame#22 PSNR = 27.927109, frame#23 PSNR = 25.421240
+sequence/stefan_cif.yuv iter#3 frame#22 PSNR = 28.370139, frame#23 PSNR = 25.727312
+sequence/stefan_cif.yuv iter#1 frame#23 PSNR = 26.993349, frame#24 PSNR = 22.441106
+sequence/stefan_cif.yuv iter#2 frame#23 PSNR = 29.112214, frame#24 PSNR = 27.133546
+sequence/stefan_cif.yuv iter#3 frame#23 PSNR = 30.031053, frame#24 PSNR = 28.020830
+sequence/stefan_cif.yuv iter#1 frame#24 PSNR = 29.755722, frame#25 PSNR = 23.720413
+sequence/stefan_cif.yuv iter#2 frame#24 PSNR = 32.501011, frame#25 PSNR = 30.112032
+sequence/stefan_cif.yuv iter#3 frame#24 PSNR = 33.861990, frame#25 PSNR = 31.055437
+sequence/stefan_cif.yuv iter#1 frame#25 PSNR = 31.988312, frame#26 PSNR = 23.755079
+sequence/stefan_cif.yuv iter#2 frame#25 PSNR = 33.914569, frame#26 PSNR = 30.124100
+sequence/stefan_cif.yuv iter#3 frame#25 PSNR = 34.246237, frame#26 PSNR = 30.944255
+sequence/stefan_cif.yuv iter#1 frame#26 PSNR = 31.895620, frame#27 PSNR = 23.867715
+sequence/stefan_cif.yuv iter#2 frame#26 PSNR = 33.416534, frame#27 PSNR = 30.054600
+sequence/stefan_cif.yuv iter#3 frame#26 PSNR = 34.101271, frame#27 PSNR = 30.621519
+sequence/stefan_cif.yuv iter#1 frame#27 PSNR = 32.354169, frame#28 PSNR = 23.974135
+sequence/stefan_cif.yuv iter#2 frame#27 PSNR = 34.709093, frame#28 PSNR = 30.988749
+sequence/stefan_cif.yuv iter#3 frame#27 PSNR = 35.227883, frame#28 PSNR = 31.676207
+sequence/stefan_cif.yuv iter#1 frame#28 PSNR = 33.300869, frame#29 PSNR = 24.228028
+sequence/stefan_cif.yuv iter#2 frame#28 PSNR = 35.632516, frame#29 PSNR = 31.973082
+sequence/stefan_cif.yuv iter#3 frame#28 PSNR = 36.990816, frame#29 PSNR = 32.941286
+sequence/stefan_cif.yuv iter#1 frame#29 PSNR = 33.936085, frame#30 PSNR = 24.567431
+sequence/stefan_cif.yuv iter#2 frame#29 PSNR = 35.589467, frame#30 PSNR = 32.262260
+sequence/stefan_cif.yuv iter#3 frame#29 PSNR = 36.101500, frame#30 PSNR = 32.946377
+sequence/stefan_cif.yuv iter#1 frame#30 PSNR = 34.120635, frame#31 PSNR = 23.385956
+sequence/stefan_cif.yuv iter#2 frame#30 PSNR = 35.046272, frame#31 PSNR = 29.449709
+sequence/stefan_cif.yuv iter#3 frame#30 PSNR = 35.494479, frame#31 PSNR = 29.856076
+sequence/stefan_cif.yuv iter#1 frame#31 PSNR = 31.090574, frame#32 PSNR = 23.048287
+sequence/stefan_cif.yuv iter#2 frame#31 PSNR = 33.298309, frame#32 PSNR = 28.844953
+sequence/stefan_cif.yuv iter#3 frame#31 PSNR = 34.297495, frame#32 PSNR = 29.425963
+sequence/stefan_cif.yuv iter#1 frame#32 PSNR = 30.413162, frame#33 PSNR = 22.469251
+sequence/stefan_cif.yuv iter#2 frame#32 PSNR = 32.522617, frame#33 PSNR = 27.552401
+sequence/stefan_cif.yuv iter#3 frame#32 PSNR = 33.064290, frame#33 PSNR = 27.995647
+sequence/stefan_cif.yuv iter#1 frame#33 PSNR = 29.236172, frame#34 PSNR = 22.223527
+sequence/stefan_cif.yuv iter#2 frame#33 PSNR = 31.045930, frame#34 PSNR = 27.121824
+sequence/stefan_cif.yuv iter#3 frame#33 PSNR = 31.747908, frame#34 PSNR = 27.580983
+sequence/stefan_cif.yuv iter#1 frame#34 PSNR = 28.668164, frame#35 PSNR = 22.056956
+sequence/stefan_cif.yuv iter#2 frame#34 PSNR = 30.565027, frame#35 PSNR = 26.717566
+sequence/stefan_cif.yuv iter#3 frame#34 PSNR = 31.118893, frame#35 PSNR = 27.079889
+sequence/stefan_cif.yuv iter#1 frame#35 PSNR = 28.063391, frame#36 PSNR = 21.908084
+sequence/stefan_cif.yuv iter#2 frame#35 PSNR = 29.475843, frame#36 PSNR = 26.010790
+sequence/stefan_cif.yuv iter#3 frame#35 PSNR = 30.198392, frame#36 PSNR = 26.450215
+sequence/stefan_cif.yuv iter#1 frame#36 PSNR = 27.097385, frame#37 PSNR = 21.715828
+sequence/stefan_cif.yuv iter#2 frame#36 PSNR = 28.075235, frame#37 PSNR = 25.436177
+sequence/stefan_cif.yuv iter#3 frame#36 PSNR = 28.616958, frame#37 PSNR = 25.728699
+sequence/stefan_cif.yuv iter#1 frame#37 PSNR = 26.369879, frame#38 PSNR = 21.416433
+sequence/stefan_cif.yuv iter#2 frame#37 PSNR = 27.455680, frame#38 PSNR = 24.998161
+sequence/stefan_cif.yuv iter#3 frame#37 PSNR = 27.909948, frame#38 PSNR = 25.492670
+sequence/stefan_cif.yuv iter#1 frame#38 PSNR = 26.015818, frame#39 PSNR = 21.501286
+sequence/stefan_cif.yuv iter#2 frame#38 PSNR = 26.984731, frame#39 PSNR = 24.896263
+sequence/stefan_cif.yuv iter#3 frame#38 PSNR = 27.441290, frame#39 PSNR = 25.213929
+sequence/stefan_cif.yuv iter#1 frame#39 PSNR = 25.923055, frame#40 PSNR = 21.671057
+sequence/stefan_cif.yuv iter#2 frame#39 PSNR = 26.764263, frame#40 PSNR = 25.600712
+sequence/stefan_cif.yuv iter#3 frame#39 PSNR = 27.257908, frame#40 PSNR = 25.882562
+sequence/stefan_cif.yuv iter#1 frame#40 PSNR = 26.627604, frame#41 PSNR = 21.606381
+sequence/stefan_cif.yuv iter#2 frame#40 PSNR = 27.559094, frame#41 PSNR = 25.364550
+sequence/stefan_cif.yuv iter#3 frame#40 PSNR = 27.854215, frame#41 PSNR = 25.577589
+sequence/stefan_cif.yuv iter#1 frame#41 PSNR = 26.397922, frame#42 PSNR = 21.677802
+sequence/stefan_cif.yuv iter#2 frame#41 PSNR = 27.534556, frame#42 PSNR = 25.392785
+sequence/stefan_cif.yuv iter#3 frame#41 PSNR = 27.888532, frame#42 PSNR = 25.859061
+sequence/stefan_cif.yuv iter#1 frame#42 PSNR = 26.799155, frame#43 PSNR = 21.739787
+sequence/stefan_cif.yuv iter#2 frame#42 PSNR = 28.535182, frame#43 PSNR = 25.722701
+sequence/stefan_cif.yuv iter#3 frame#42 PSNR = 29.147639, frame#43 PSNR = 26.104883
+sequence/stefan_cif.yuv iter#1 frame#43 PSNR = 27.050910, frame#44 PSNR = 22.053093
+sequence/stefan_cif.yuv iter#2 frame#43 PSNR = 28.665430, frame#44 PSNR = 26.382990
+sequence/stefan_cif.yuv iter#3 frame#43 PSNR = 29.342856, frame#44 PSNR = 26.907191
+sequence/stefan_cif.yuv iter#1 frame#44 PSNR = 28.616601, frame#45 PSNR = 22.847551
+sequence/stefan_cif.yuv iter#2 frame#44 PSNR = 30.929703, frame#45 PSNR = 28.399329
+sequence/stefan_cif.yuv iter#3 frame#44 PSNR = 31.776013, frame#45 PSNR = 29.356368
+sequence/stefan_cif.yuv iter#1 frame#45 PSNR = 30.193064, frame#46 PSNR = 22.279410
+sequence/stefan_cif.yuv iter#2 frame#45 PSNR = 31.456443, frame#46 PSNR = 27.224998
+sequence/stefan_cif.yuv iter#3 frame#45 PSNR = 31.936096, frame#46 PSNR = 27.264031
+sequence/stefan_cif.yuv iter#1 frame#46 PSNR = 28.687398, frame#47 PSNR = 23.045232
+sequence/stefan_cif.yuv iter#2 frame#46 PSNR = 30.976594, frame#47 PSNR = 28.721560
+sequence/stefan_cif.yuv iter#3 frame#46 PSNR = 31.933065, frame#47 PSNR = 29.630842
+sequence/stefan_cif.yuv iter#1 frame#47 PSNR = 30.785633, frame#48 PSNR = 22.740021
+sequence/stefan_cif.yuv iter#2 frame#47 PSNR = 32.041762, frame#48 PSNR = 27.670332
+sequence/stefan_cif.yuv iter#3 frame#47 PSNR = 32.549804, frame#48 PSNR = 27.975438
+sequence/stefan_cif.yuv iter#1 frame#48 PSNR = 28.539403, frame#49 PSNR = 21.795537
+sequence/stefan_cif.yuv iter#2 frame#48 PSNR = 29.901220, frame#49 PSNR = 25.809444
+sequence/stefan_cif.yuv iter#3 frame#48 PSNR = 30.339401, frame#49 PSNR = 26.271641
+sequence/stefan_cif.yuv iter#1 frame#49 PSNR = 28.071981, frame#50 PSNR = 22.885898
+sequence/stefan_cif.yuv iter#2 frame#49 PSNR = 30.801212, frame#50 PSNR = 28.339551
+sequence/stefan_cif.yuv iter#3 frame#49 PSNR = 31.721754, frame#50 PSNR = 29.312996
+sequence/stefan_cif.yuv iter#1 frame#50 PSNR = 30.369029, frame#51 PSNR = 22.255495
+sequence/stefan_cif.yuv iter#2 frame#50 PSNR = 31.560416, frame#51 PSNR = 26.982731
+sequence/stefan_cif.yuv iter#3 frame#50 PSNR = 31.987414, frame#51 PSNR = 27.321239
+sequence/stefan_cif.yuv iter#1 frame#51 PSNR = 28.397792, frame#52 PSNR = 23.032682
+sequence/stefan_cif.yuv iter#2 frame#51 PSNR = 30.000208, frame#52 PSNR = 28.349742
+sequence/stefan_cif.yuv iter#3 frame#51 PSNR = 30.670042, frame#52 PSNR = 28.974852
+sequence/stefan_cif.yuv iter#1 frame#52 PSNR = 30.197456, frame#53 PSNR = 23.100316
+sequence/stefan_cif.yuv iter#2 frame#52 PSNR = 31.758069, frame#53 PSNR = 28.816841
+sequence/stefan_cif.yuv iter#3 frame#52 PSNR = 32.568752, frame#53 PSNR = 29.413543
+sequence/stefan_cif.yuv iter#1 frame#53 PSNR = 30.541180, frame#54 PSNR = 22.621768
+sequence/stefan_cif.yuv iter#2 frame#53 PSNR = 31.995592, frame#54 PSNR = 27.664667
+sequence/stefan_cif.yuv iter#3 frame#53 PSNR = 32.426092, frame#54 PSNR = 27.959585
+sequence/stefan_cif.yuv iter#1 frame#54 PSNR = 28.767453, frame#55 PSNR = 22.309161
+sequence/stefan_cif.yuv iter#2 frame#54 PSNR = 30.051676, frame#55 PSNR = 26.844603
+sequence/stefan_cif.yuv iter#3 frame#54 PSNR = 30.467422, frame#55 PSNR = 27.104353
+sequence/stefan_cif.yuv iter#1 frame#55 PSNR = 28.407957, frame#56 PSNR = 22.417889
+sequence/stefan_cif.yuv iter#2 frame#55 PSNR = 30.324192, frame#56 PSNR = 27.022372
+sequence/stefan_cif.yuv iter#3 frame#55 PSNR = 31.207995, frame#56 PSNR = 27.695639
+sequence/stefan_cif.yuv iter#1 frame#56 PSNR = 29.403519, frame#57 PSNR = 22.749423
+sequence/stefan_cif.yuv iter#2 frame#56 PSNR = 31.937868, frame#57 PSNR = 28.006315
+sequence/stefan_cif.yuv iter#3 frame#56 PSNR = 32.670833, frame#57 PSNR = 28.676350
+sequence/stefan_cif.yuv iter#1 frame#57 PSNR = 30.329163, frame#58 PSNR = 23.073788
+sequence/stefan_cif.yuv iter#2 frame#57 PSNR = 32.940536, frame#58 PSNR = 28.773655
+sequence/stefan_cif.yuv iter#3 frame#57 PSNR = 33.565838, frame#58 PSNR = 29.530998
+sequence/stefan_cif.yuv iter#1 frame#58 PSNR = 30.956230, frame#59 PSNR = 23.046675
+sequence/stefan_cif.yuv iter#2 frame#58 PSNR = 33.290092, frame#59 PSNR = 28.680246
+sequence/stefan_cif.yuv iter#3 frame#58 PSNR = 34.089422, frame#59 PSNR = 29.151248
+sequence/stefan_cif.yuv iter#1 frame#59 PSNR = 30.442037, frame#60 PSNR = 22.301853
+sequence/stefan_cif.yuv iter#2 frame#59 PSNR = 32.536186, frame#60 PSNR = 26.837107
+sequence/stefan_cif.yuv iter#3 frame#59 PSNR = 32.907444, frame#60 PSNR = 27.320888
+sequence/stefan_cif.yuv iter#1 frame#60 PSNR = 28.676434, frame#61 PSNR = 21.750355
+sequence/stefan_cif.yuv iter#2 frame#60 PSNR = 30.433662, frame#61 PSNR = 26.160064
+sequence/stefan_cif.yuv iter#3 frame#60 PSNR = 30.838864, frame#61 PSNR = 26.683845
+sequence/stefan_cif.yuv iter#1 frame#61 PSNR = 27.842834, frame#62 PSNR = 21.721530
+sequence/stefan_cif.yuv iter#2 frame#61 PSNR = 29.623111, frame#62 PSNR = 26.035886
+sequence/stefan_cif.yuv iter#3 frame#61 PSNR = 30.373558, frame#62 PSNR = 26.647728
+sequence/stefan_cif.yuv iter#1 frame#62 PSNR = 27.896852, frame#63 PSNR = 21.540686
+sequence/stefan_cif.yuv iter#2 frame#62 PSNR = 29.720760, frame#63 PSNR = 25.691794
+sequence/stefan_cif.yuv iter#3 frame#62 PSNR = 30.429364, frame#63 PSNR = 26.075490
+sequence/stefan_cif.yuv iter#1 frame#63 PSNR = 27.289309, frame#64 PSNR = 21.871314
+sequence/stefan_cif.yuv iter#2 frame#63 PSNR = 29.220003, frame#64 PSNR = 25.983750
+sequence/stefan_cif.yuv iter#3 frame#63 PSNR = 29.798573, frame#64 PSNR = 26.415076
+sequence/stefan_cif.yuv iter#1 frame#64 PSNR = 27.554517, frame#65 PSNR = 21.857997
+sequence/stefan_cif.yuv iter#2 frame#64 PSNR = 29.091457, frame#65 PSNR = 26.154600
+sequence/stefan_cif.yuv iter#3 frame#64 PSNR = 29.802061, frame#65 PSNR = 26.646822
+sequence/stefan_cif.yuv iter#1 frame#65 PSNR = 27.777060, frame#66 PSNR = 22.170822
+sequence/stefan_cif.yuv iter#2 frame#65 PSNR = 29.672883, frame#66 PSNR = 26.634353
+sequence/stefan_cif.yuv iter#3 frame#65 PSNR = 30.364265, frame#66 PSNR = 27.010308
+sequence/stefan_cif.yuv iter#1 frame#66 PSNR = 28.044431, frame#67 PSNR = 22.285659
+sequence/stefan_cif.yuv iter#2 frame#66 PSNR = 29.685422, frame#67 PSNR = 26.917673
+sequence/stefan_cif.yuv iter#3 frame#66 PSNR = 30.206896, frame#67 PSNR = 27.453295
+sequence/stefan_cif.yuv iter#1 frame#67 PSNR = 28.326931, frame#68 PSNR = 21.878999
+sequence/stefan_cif.yuv iter#2 frame#67 PSNR = 29.791066, frame#68 PSNR = 26.123229
+sequence/stefan_cif.yuv iter#3 frame#67 PSNR = 30.155127, frame#68 PSNR = 26.612433
+sequence/stefan_cif.yuv iter#1 frame#68 PSNR = 27.599681, frame#69 PSNR = 21.877844
+sequence/stefan_cif.yuv iter#2 frame#68 PSNR = 29.413353, frame#69 PSNR = 25.856963
+sequence/stefan_cif.yuv iter#3 frame#68 PSNR = 30.031364, frame#69 PSNR = 26.196878
+sequence/stefan_cif.yuv iter#1 frame#69 PSNR = 27.119611, frame#70 PSNR = 21.662409
+sequence/stefan_cif.yuv iter#2 frame#69 PSNR = 28.359698, frame#70 PSNR = 25.541459
+sequence/stefan_cif.yuv iter#3 frame#69 PSNR = 28.708243, frame#70 PSNR = 25.934704
+sequence/stefan_cif.yuv iter#1 frame#70 PSNR = 26.832153, frame#71 PSNR = 21.803217
+sequence/stefan_cif.yuv iter#2 frame#70 PSNR = 28.170686, frame#71 PSNR = 25.933049
+sequence/stefan_cif.yuv iter#3 frame#70 PSNR = 28.703713, frame#71 PSNR = 26.421976
+sequence/stefan_cif.yuv iter#1 frame#71 PSNR = 27.524474, frame#72 PSNR = 22.420258
+sequence/stefan_cif.yuv iter#2 frame#71 PSNR = 29.560894, frame#72 PSNR = 26.972403
+sequence/stefan_cif.yuv iter#3 frame#71 PSNR = 30.142818, frame#72 PSNR = 27.630825
+sequence/stefan_cif.yuv iter#1 frame#72 PSNR = 28.965742, frame#73 PSNR = 22.349265
+sequence/stefan_cif.yuv iter#2 frame#72 PSNR = 30.857532, frame#73 PSNR = 27.113190
+sequence/stefan_cif.yuv iter#3 frame#72 PSNR = 31.458970, frame#73 PSNR = 27.599484
+sequence/stefan_cif.yuv iter#1 frame#73 PSNR = 28.723749, frame#74 PSNR = 22.122021
+sequence/stefan_cif.yuv iter#2 frame#73 PSNR = 30.109918, frame#74 PSNR = 26.425849
+sequence/stefan_cif.yuv iter#3 frame#73 PSNR = 30.514440, frame#74 PSNR = 26.935875
+sequence/stefan_cif.yuv iter#1 frame#74 PSNR = 27.999602, frame#75 PSNR = 21.879910
+sequence/stefan_cif.yuv iter#2 frame#74 PSNR = 29.468820, frame#75 PSNR = 26.388529
+sequence/stefan_cif.yuv iter#3 frame#74 PSNR = 29.930852, frame#75 PSNR = 26.737129
+sequence/stefan_cif.yuv iter#1 frame#75 PSNR = 27.770227, frame#76 PSNR = 21.672975
+sequence/stefan_cif.yuv iter#2 frame#75 PSNR = 29.035777, frame#76 PSNR = 25.801059
+sequence/stefan_cif.yuv iter#3 frame#75 PSNR = 29.459236, frame#76 PSNR = 26.365860
+sequence/stefan_cif.yuv iter#1 frame#76 PSNR = 27.325087, frame#77 PSNR = 21.653218
+sequence/stefan_cif.yuv iter#2 frame#76 PSNR = 28.842212, frame#77 PSNR = 25.510696
+sequence/stefan_cif.yuv iter#3 frame#76 PSNR = 29.065146, frame#77 PSNR = 25.950179
+sequence/stefan_cif.yuv iter#1 frame#77 PSNR = 27.065799, frame#78 PSNR = 21.912425
+sequence/stefan_cif.yuv iter#2 frame#77 PSNR = 28.458117, frame#78 PSNR = 25.716763
+sequence/stefan_cif.yuv iter#3 frame#77 PSNR = 29.115465, frame#78 PSNR = 26.417557
+sequence/stefan_cif.yuv iter#1 frame#78 PSNR = 27.392636, frame#79 PSNR = 22.201923
+sequence/stefan_cif.yuv iter#2 frame#78 PSNR = 28.678583, frame#79 PSNR = 26.384956
+sequence/stefan_cif.yuv iter#3 frame#78 PSNR = 29.222515, frame#79 PSNR = 26.839676
+sequence/stefan_cif.yuv iter#1 frame#79 PSNR = 27.917449, frame#80 PSNR = 22.115656
+sequence/stefan_cif.yuv iter#2 frame#79 PSNR = 29.251060, frame#80 PSNR = 26.368817
+sequence/stefan_cif.yuv iter#3 frame#79 PSNR = 29.834801, frame#80 PSNR = 26.864827
+sequence/stefan_cif.yuv iter#1 frame#80 PSNR = 27.759614, frame#81 PSNR = 21.930977
+sequence/stefan_cif.yuv iter#2 frame#80 PSNR = 29.211786, frame#81 PSNR = 26.246891
+sequence/stefan_cif.yuv iter#3 frame#80 PSNR = 29.666983, frame#81 PSNR = 26.734957
+sequence/stefan_cif.yuv iter#1 frame#81 PSNR = 27.750742, frame#82 PSNR = 22.005050
+sequence/stefan_cif.yuv iter#2 frame#81 PSNR = 28.955941, frame#82 PSNR = 26.255878
+sequence/stefan_cif.yuv iter#3 frame#81 PSNR = 29.387725, frame#82 PSNR = 26.687776
+sequence/stefan_cif.yuv iter#1 frame#82 PSNR = 27.858248, frame#83 PSNR = 22.027902
+sequence/stefan_cif.yuv iter#2 frame#82 PSNR = 29.609241, frame#83 PSNR = 26.410303
+sequence/stefan_cif.yuv iter#3 frame#82 PSNR = 30.317717, frame#83 PSNR = 27.065049
+sequence/stefan_cif.yuv iter#1 frame#83 PSNR = 28.136762, frame#84 PSNR = 22.077017
+sequence/stefan_cif.yuv iter#2 frame#83 PSNR = 29.835948, frame#84 PSNR = 26.645641
+sequence/stefan_cif.yuv iter#3 frame#83 PSNR = 30.293310, frame#84 PSNR = 27.162870
+sequence/stefan_cif.yuv iter#1 frame#84 PSNR = 27.795592, frame#85 PSNR = 21.720819
+sequence/stefan_cif.yuv iter#2 frame#84 PSNR = 28.823489, frame#85 PSNR = 25.388786
+sequence/stefan_cif.yuv iter#3 frame#84 PSNR = 29.383762, frame#85 PSNR = 25.793699
+sequence/stefan_cif.yuv iter#1 frame#85 PSNR = 26.653671, frame#86 PSNR = 21.764733
+sequence/stefan_cif.yuv iter#2 frame#85 PSNR = 28.365782, frame#86 PSNR = 25.891362
+sequence/stefan_cif.yuv iter#3 frame#85 PSNR = 28.741629, frame#86 PSNR = 26.190663
+sequence/stefan_cif.yuv iter#1 frame#86 PSNR = 26.968202, frame#87 PSNR = 21.381329
+sequence/stefan_cif.yuv iter#2 frame#86 PSNR = 27.911041, frame#87 PSNR = 24.883597
+sequence/stefan_cif.yuv iter#3 frame#86 PSNR = 28.289879, frame#87 PSNR = 25.121565
+sequence/stefan_cif.yuv iter#1 frame#87 PSNR = 25.512268, frame#88 PSNR = 20.105416
+sequence/stefan_cif.yuv iter#2 frame#87 PSNR = 26.009873, frame#88 PSNR = 22.050004
+sequence/stefan_cif.yuv iter#3 frame#87 PSNR = 26.226661, frame#88 PSNR = 22.294803
+sequence/stefan_cif.yuv iter#1 frame#88 PSNR = 22.735370, frame#89 PSNR = 19.725782
+sequence/stefan_cif.yuv iter#2 frame#88 PSNR = 23.304875, frame#89 PSNR = 21.430986
+sequence/stefan_cif.yuv iter#3 frame#88 PSNR = 23.565120, frame#89 PSNR = 21.563683
+sequence/stefan_cif.yuv iter#1 frame#89 PSNR = 22.098240, frame#90 PSNR = 19.644618
+sequence/stefan_cif.yuv iter#2 frame#89 PSNR = 22.619221, frame#90 PSNR = 21.173156
+sequence/stefan_cif.yuv iter#3 frame#89 PSNR = 22.911185, frame#90 PSNR = 21.235064
+frame#  1 PSNR = 25.964883
+frame#  2 PSNR = 28.076452
+frame#  3 PSNR = 25.410751
+frame#  4 PSNR = 24.452459
+frame#  5 PSNR = 24.150399
+frame#  6 PSNR = 23.718603
+frame#  7 PSNR = 23.772219
+frame#  8 PSNR = 23.774398
+frame#  9 PSNR = 23.995395
+frame# 10 PSNR = 24.917975
+frame# 11 PSNR = 25.350556
+frame# 12 PSNR = 26.187536
+frame# 13 PSNR = 26.919646
+frame# 14 PSNR = 28.127720
+frame# 15 PSNR = 29.151250
+frame# 16 PSNR = 29.165299
+frame# 17 PSNR = 29.702870
+frame# 18 PSNR = 29.387145
+frame# 19 PSNR = 29.440448
+frame# 20 PSNR = 29.388225
+frame# 21 PSNR = 28.965537
+frame# 22 PSNR = 28.370139
+frame# 23 PSNR = 30.031053
+frame# 24 PSNR = 33.861990
+frame# 25 PSNR = 34.246237
+frame# 26 PSNR = 34.101271
+frame# 27 PSNR = 35.227883
+frame# 28 PSNR = 36.990816
+frame# 29 PSNR = 36.101500
+frame# 30 PSNR = 35.494479
+frame# 31 PSNR = 34.297495
+frame# 32 PSNR = 33.064290
+frame# 33 PSNR = 31.747908
+frame# 34 PSNR = 31.118893
+frame# 35 PSNR = 30.198392
+frame# 36 PSNR = 28.616958
+frame# 37 PSNR = 27.909948
+frame# 38 PSNR = 27.441290
+frame# 39 PSNR = 27.257908
+frame# 40 PSNR = 27.854215
+frame# 41 PSNR = 27.888532
+frame# 42 PSNR = 29.147639
+frame# 43 PSNR = 29.342856
+frame# 44 PSNR = 31.776013
+frame# 45 PSNR = 31.936096
+frame# 46 PSNR = 31.933065
+frame# 47 PSNR = 32.549804
+frame# 48 PSNR = 30.339401
+frame# 49 PSNR = 31.721754
+frame# 50 PSNR = 31.987414
+frame# 51 PSNR = 30.670042
+frame# 52 PSNR = 32.568752
+frame# 53 PSNR = 32.426092
+frame# 54 PSNR = 30.467422
+frame# 55 PSNR = 31.207995
+frame# 56 PSNR = 32.670833
+frame# 57 PSNR = 33.565838
+frame# 58 PSNR = 34.089422
+frame# 59 PSNR = 32.907444
+frame# 60 PSNR = 30.838864
+frame# 61 PSNR = 30.373558
+frame# 62 PSNR = 30.429364
+frame# 63 PSNR = 29.798573
+frame# 64 PSNR = 29.802061
+frame# 65 PSNR = 30.364265
+frame# 66 PSNR = 30.206896
+frame# 67 PSNR = 30.155127
+frame# 68 PSNR = 30.031364
+frame# 69 PSNR = 28.708243
+frame# 70 PSNR = 28.703713
+frame# 71 PSNR = 30.142818
+frame# 72 PSNR = 31.458970
+frame# 73 PSNR = 30.514440
+frame# 74 PSNR = 29.930852
+frame# 75 PSNR = 29.459236
+frame# 76 PSNR = 29.065146
+frame# 77 PSNR = 29.115465
+frame# 78 PSNR = 29.222515
+frame# 79 PSNR = 29.834801
+frame# 80 PSNR = 29.666983
+frame# 81 PSNR = 29.387725
+frame# 82 PSNR = 30.317717
+frame# 83 PSNR = 30.293310
+frame# 84 PSNR = 29.383762
+frame# 85 PSNR = 28.741629
+frame# 86 PSNR = 28.289879
+frame# 87 PSNR = 26.226661
+frame# 88 PSNR = 23.565120
+frame# 89 PSNR = 22.911185
+frame# 90 PSNR = 21.235064
+AVERAGE PSNR = 29.570268
+sequence/stefan_cif.yuv iter#1 frame#1 PSNR = 25.452134, frame#2 PSNR = 25.279336
+sequence/stefan_cif.yuv iter#2 frame#1 PSNR = 30.124919, frame#2 PSNR = 30.030739
+sequence/stefan_cif.yuv iter#3 frame#1 PSNR = 31.020184, frame#2 PSNR = 30.768874
+sequence/stefan_cif.yuv iter#1 frame#2 PSNR = 31.786167, frame#3 PSNR = 24.702313
+sequence/stefan_cif.yuv iter#2 frame#2 PSNR = 32.795443, frame#3 PSNR = 28.142760
+sequence/stefan_cif.yuv iter#3 frame#2 PSNR = 33.106812, frame#3 PSNR = 28.341781
+sequence/stefan_cif.yuv iter#1 frame#3 PSNR = 29.020034, frame#4 PSNR = 24.618948
+sequence/stefan_cif.yuv iter#2 frame#3 PSNR = 29.947700, frame#4 PSNR = 27.539970
+sequence/stefan_cif.yuv iter#3 frame#3 PSNR = 30.078495, frame#4 PSNR = 27.643369
+sequence/stefan_cif.yuv iter#1 frame#4 PSNR = 28.350675, frame#5 PSNR = 24.084631
+sequence/stefan_cif.yuv iter#2 frame#4 PSNR = 29.202905, frame#5 PSNR = 26.705296
+sequence/stefan_cif.yuv iter#3 frame#4 PSNR = 29.531254, frame#5 PSNR = 26.938817
+sequence/stefan_cif.yuv iter#1 frame#5 PSNR = 27.696368, frame#6 PSNR = 24.032596
+sequence/stefan_cif.yuv iter#2 frame#5 PSNR = 28.868949, frame#6 PSNR = 26.549455
+sequence/stefan_cif.yuv iter#3 frame#5 PSNR = 29.277728, frame#6 PSNR = 26.684897
+sequence/stefan_cif.yuv iter#1 frame#6 PSNR = 27.202888, frame#7 PSNR = 23.939559
+sequence/stefan_cif.yuv iter#2 frame#6 PSNR = 28.087365, frame#7 PSNR = 26.194096
+sequence/stefan_cif.yuv iter#3 frame#6 PSNR = 28.182360, frame#7 PSNR = 26.338506
+sequence/stefan_cif.yuv iter#1 frame#7 PSNR = 26.880583, frame#8 PSNR = 23.993760
+sequence/stefan_cif.yuv iter#2 frame#7 PSNR = 27.958808, frame#8 PSNR = 26.478879
+sequence/stefan_cif.yuv iter#3 frame#7 PSNR = 28.298175, frame#8 PSNR = 26.801699
+sequence/stefan_cif.yuv iter#1 frame#8 PSNR = 27.631351, frame#9 PSNR = 24.154108
+sequence/stefan_cif.yuv iter#2 frame#8 PSNR = 28.668136, frame#9 PSNR = 26.518113
+sequence/stefan_cif.yuv iter#3 frame#8 PSNR = 28.917654, frame#9 PSNR = 26.822007
+sequence/stefan_cif.yuv iter#1 frame#9 PSNR = 27.682959, frame#10 PSNR = 24.445015
+sequence/stefan_cif.yuv iter#2 frame#9 PSNR = 28.955498, frame#10 PSNR = 27.506490
+sequence/stefan_cif.yuv iter#3 frame#9 PSNR = 29.042933, frame#10 PSNR = 27.660679
+sequence/stefan_cif.yuv iter#1 frame#10 PSNR = 28.443193, frame#11 PSNR = 24.501781
+sequence/stefan_cif.yuv iter#2 frame#10 PSNR = 29.993047, frame#11 PSNR = 27.710580
+sequence/stefan_cif.yuv iter#3 frame#10 PSNR = 30.486618, frame#11 PSNR = 27.839083
+sequence/stefan_cif.yuv iter#1 frame#11 PSNR = 28.648632, frame#12 PSNR = 24.691830
+sequence/stefan_cif.yuv iter#2 frame#11 PSNR = 29.988402, frame#12 PSNR = 28.376636
+sequence/stefan_cif.yuv iter#3 frame#11 PSNR = 30.268832, frame#12 PSNR = 28.438851
+sequence/stefan_cif.yuv iter#1 frame#12 PSNR = 29.435689, frame#13 PSNR = 24.995161
+sequence/stefan_cif.yuv iter#2 frame#12 PSNR = 31.051421, frame#13 PSNR = 28.600873
+sequence/stefan_cif.yuv iter#3 frame#12 PSNR = 31.311433, frame#13 PSNR = 28.967494
+sequence/stefan_cif.yuv iter#1 frame#13 PSNR = 29.577682, frame#14 PSNR = 25.085104
+sequence/stefan_cif.yuv iter#2 frame#13 PSNR = 31.106177, frame#14 PSNR = 28.835897
+sequence/stefan_cif.yuv iter#3 frame#13 PSNR = 31.585423, frame#14 PSNR = 29.133867
+sequence/stefan_cif.yuv iter#1 frame#14 PSNR = 30.321415, frame#15 PSNR = 25.373936
+sequence/stefan_cif.yuv iter#2 frame#14 PSNR = 32.265544, frame#15 PSNR = 29.897917
+sequence/stefan_cif.yuv iter#3 frame#14 PSNR = 32.685147, frame#15 PSNR = 30.215241
+sequence/stefan_cif.yuv iter#1 frame#15 PSNR = 31.569455, frame#16 PSNR = 26.087688
+sequence/stefan_cif.yuv iter#2 frame#15 PSNR = 33.515394, frame#16 PSNR = 31.390004
+sequence/stefan_cif.yuv iter#3 frame#15 PSNR = 34.188142, frame#16 PSNR = 31.411541
+sequence/stefan_cif.yuv iter#1 frame#16 PSNR = 32.521439, frame#17 PSNR = 26.270583
+sequence/stefan_cif.yuv iter#2 frame#16 PSNR = 34.543148, frame#17 PSNR = 31.192172
+sequence/stefan_cif.yuv iter#3 frame#16 PSNR = 34.985338, frame#17 PSNR = 31.438397
+sequence/stefan_cif.yuv iter#1 frame#17 PSNR = 32.708387, frame#18 PSNR = 25.869151
+sequence/stefan_cif.yuv iter#2 frame#17 PSNR = 34.385248, frame#18 PSNR = 31.314107
+sequence/stefan_cif.yuv iter#3 frame#17 PSNR = 34.956656, frame#18 PSNR = 31.529363
+sequence/stefan_cif.yuv iter#1 frame#18 PSNR = 32.368849, frame#19 PSNR = 26.116544
+sequence/stefan_cif.yuv iter#2 frame#18 PSNR = 34.050944, frame#19 PSNR = 31.162670
+sequence/stefan_cif.yuv iter#3 frame#18 PSNR = 34.271949, frame#19 PSNR = 31.146371
+sequence/stefan_cif.yuv iter#1 frame#19 PSNR = 32.553057, frame#20 PSNR = 25.878250
+sequence/stefan_cif.yuv iter#2 frame#19 PSNR = 33.964125, frame#20 PSNR = 31.158044
+sequence/stefan_cif.yuv iter#3 frame#19 PSNR = 34.359069, frame#20 PSNR = 31.351910
+sequence/stefan_cif.yuv iter#1 frame#20 PSNR = 32.512972, frame#21 PSNR = 25.938476
+sequence/stefan_cif.yuv iter#2 frame#20 PSNR = 33.872101, frame#21 PSNR = 30.972231
+sequence/stefan_cif.yuv iter#3 frame#20 PSNR = 34.001240, frame#21 PSNR = 31.534608
+sequence/stefan_cif.yuv iter#1 frame#21 PSNR = 32.302807, frame#22 PSNR = 25.799199
+sequence/stefan_cif.yuv iter#2 frame#21 PSNR = 33.739451, frame#22 PSNR = 30.604055
+sequence/stefan_cif.yuv iter#3 frame#21 PSNR = 33.992211, frame#22 PSNR = 30.789255
+sequence/stefan_cif.yuv iter#1 frame#22 PSNR = 31.836397, frame#23 PSNR = 25.929090
+sequence/stefan_cif.yuv iter#2 frame#22 PSNR = 33.169738, frame#23 PSNR = 30.387276
+sequence/stefan_cif.yuv iter#3 frame#22 PSNR = 33.510776, frame#23 PSNR = 30.745557
+sequence/stefan_cif.yuv iter#1 frame#23 PSNR = 32.299689, frame#24 PSNR = 26.553556
+sequence/stefan_cif.yuv iter#2 frame#23 PSNR = 34.099839, frame#24 PSNR = 31.701152
+sequence/stefan_cif.yuv iter#3 frame#23 PSNR = 34.286761, frame#24 PSNR = 32.027819
+sequence/stefan_cif.yuv iter#1 frame#24 PSNR = 33.836624, frame#25 PSNR = 27.496609
+sequence/stefan_cif.yuv iter#2 frame#24 PSNR = 36.306760, frame#25 PSNR = 34.910635
+sequence/stefan_cif.yuv iter#3 frame#24 PSNR = 37.034792, frame#25 PSNR = 35.598973
+sequence/stefan_cif.yuv iter#1 frame#25 PSNR = 36.681056, frame#26 PSNR = 27.827103
+sequence/stefan_cif.yuv iter#2 frame#25 PSNR = 38.220444, frame#26 PSNR = 35.099778
+sequence/stefan_cif.yuv iter#3 frame#25 PSNR = 38.677081, frame#26 PSNR = 35.594943
+sequence/stefan_cif.yuv iter#1 frame#26 PSNR = 37.561302, frame#27 PSNR = 28.563055
+sequence/stefan_cif.yuv iter#2 frame#26 PSNR = 39.572279, frame#27 PSNR = 35.309808
+sequence/stefan_cif.yuv iter#3 frame#26 PSNR = 39.799204, frame#27 PSNR = 35.462893
+sequence/stefan_cif.yuv iter#1 frame#27 PSNR = 37.783052, frame#28 PSNR = 27.892730
+sequence/stefan_cif.yuv iter#2 frame#27 PSNR = 41.593874, frame#28 PSNR = 35.505131
+sequence/stefan_cif.yuv iter#3 frame#27 PSNR = 41.519475, frame#28 PSNR = 35.933651
+sequence/stefan_cif.yuv iter#1 frame#28 PSNR = 37.989029, frame#29 PSNR = 28.894417
+sequence/stefan_cif.yuv iter#2 frame#28 PSNR = 41.323641, frame#29 PSNR = 37.829250
+sequence/stefan_cif.yuv iter#3 frame#28 PSNR = 41.671195, frame#29 PSNR = 38.141540
+sequence/stefan_cif.yuv iter#1 frame#29 PSNR = 38.559765, frame#30 PSNR = 29.171727
+sequence/stefan_cif.yuv iter#2 frame#29 PSNR = 39.620698, frame#30 PSNR = 36.440169
+sequence/stefan_cif.yuv iter#3 frame#29 PSNR = 40.551407, frame#30 PSNR = 36.521052
+sequence/stefan_cif.yuv iter#1 frame#30 PSNR = 38.022182, frame#31 PSNR = 27.461420
+sequence/stefan_cif.yuv iter#2 frame#30 PSNR = 40.348620, frame#31 PSNR = 34.491259
+sequence/stefan_cif.yuv iter#3 frame#30 PSNR = 40.639765, frame#31 PSNR = 35.231552
+sequence/stefan_cif.yuv iter#1 frame#31 PSNR = 36.847061, frame#32 PSNR = 27.098882
+sequence/stefan_cif.yuv iter#2 frame#31 PSNR = 39.653435, frame#32 PSNR = 33.597478
+sequence/stefan_cif.yuv iter#3 frame#31 PSNR = 39.941838, frame#32 PSNR = 33.749578
+sequence/stefan_cif.yuv iter#1 frame#32 PSNR = 35.359147, frame#33 PSNR = 26.702120
+sequence/stefan_cif.yuv iter#2 frame#32 PSNR = 37.313686, frame#33 PSNR = 32.240273
+sequence/stefan_cif.yuv iter#3 frame#32 PSNR = 38.053627, frame#33 PSNR = 32.385010
+sequence/stefan_cif.yuv iter#1 frame#33 PSNR = 34.055535, frame#34 PSNR = 26.497309
+sequence/stefan_cif.yuv iter#2 frame#33 PSNR = 36.474578, frame#34 PSNR = 31.470641
+sequence/stefan_cif.yuv iter#3 frame#33 PSNR = 37.398625, frame#34 PSNR = 31.808773
+sequence/stefan_cif.yuv iter#1 frame#34 PSNR = 33.198031, frame#35 PSNR = 26.221630
+sequence/stefan_cif.yuv iter#2 frame#34 PSNR = 35.810164, frame#35 PSNR = 31.058386
+sequence/stefan_cif.yuv iter#3 frame#34 PSNR = 36.097164, frame#35 PSNR = 31.297255
+sequence/stefan_cif.yuv iter#1 frame#35 PSNR = 32.709181, frame#36 PSNR = 25.888845
+sequence/stefan_cif.yuv iter#2 frame#35 PSNR = 34.412415, frame#36 PSNR = 30.607295
+sequence/stefan_cif.yuv iter#3 frame#35 PSNR = 34.661196, frame#36 PSNR = 30.844761
+sequence/stefan_cif.yuv iter#1 frame#36 PSNR = 31.652048, frame#37 PSNR = 25.601198
+sequence/stefan_cif.yuv iter#2 frame#36 PSNR = 33.139787, frame#37 PSNR = 30.044700
+sequence/stefan_cif.yuv iter#3 frame#36 PSNR = 33.471921, frame#37 PSNR = 30.082855
+sequence/stefan_cif.yuv iter#1 frame#37 PSNR = 30.800368, frame#38 PSNR = 25.277379
+sequence/stefan_cif.yuv iter#2 frame#37 PSNR = 32.444303, frame#38 PSNR = 30.360547
+sequence/stefan_cif.yuv iter#3 frame#37 PSNR = 32.395963, frame#38 PSNR = 30.704948
+sequence/stefan_cif.yuv iter#1 frame#38 PSNR = 31.175810, frame#39 PSNR = 25.595752
+sequence/stefan_cif.yuv iter#2 frame#38 PSNR = 32.210799, frame#39 PSNR = 30.197054
+sequence/stefan_cif.yuv iter#3 frame#38 PSNR = 32.644437, frame#39 PSNR = 30.455125
+sequence/stefan_cif.yuv iter#1 frame#39 PSNR = 30.989266, frame#40 PSNR = 25.817513
+sequence/stefan_cif.yuv iter#2 frame#39 PSNR = 32.269026, frame#40 PSNR = 29.877225
+sequence/stefan_cif.yuv iter#3 frame#39 PSNR = 32.631497, frame#40 PSNR = 30.032919
+sequence/stefan_cif.yuv iter#1 frame#40 PSNR = 31.110407, frame#41 PSNR = 25.613829
+sequence/stefan_cif.yuv iter#2 frame#40 PSNR = 32.198896, frame#41 PSNR = 30.261757
+sequence/stefan_cif.yuv iter#3 frame#40 PSNR = 32.351676, frame#41 PSNR = 30.391671
+sequence/stefan_cif.yuv iter#1 frame#41 PSNR = 31.655817, frame#42 PSNR = 25.668316
+sequence/stefan_cif.yuv iter#2 frame#41 PSNR = 33.369362, frame#42 PSNR = 30.102656
+sequence/stefan_cif.yuv iter#3 frame#41 PSNR = 33.664052, frame#42 PSNR = 30.331934
+sequence/stefan_cif.yuv iter#1 frame#42 PSNR = 31.167692, frame#43 PSNR = 25.784491
+sequence/stefan_cif.yuv iter#2 frame#42 PSNR = 32.695669, frame#43 PSNR = 30.628352
+sequence/stefan_cif.yuv iter#3 frame#42 PSNR = 33.131050, frame#43 PSNR = 30.913985
+sequence/stefan_cif.yuv iter#1 frame#43 PSNR = 32.034873, frame#44 PSNR = 25.775124
+sequence/stefan_cif.yuv iter#2 frame#43 PSNR = 34.034584, frame#44 PSNR = 30.381702
+sequence/stefan_cif.yuv iter#3 frame#43 PSNR = 34.082595, frame#44 PSNR = 30.541742
+sequence/stefan_cif.yuv iter#1 frame#44 PSNR = 32.727835, frame#45 PSNR = 27.373718
+sequence/stefan_cif.yuv iter#2 frame#44 PSNR = 36.178020, frame#45 PSNR = 33.394356
+sequence/stefan_cif.yuv iter#3 frame#44 PSNR = 37.091711, frame#45 PSNR = 34.022810
+sequence/stefan_cif.yuv iter#1 frame#45 PSNR = 34.679652, frame#46 PSNR = 26.562070
+sequence/stefan_cif.yuv iter#2 frame#45 PSNR = 35.796452, frame#46 PSNR = 32.045217
+sequence/stefan_cif.yuv iter#3 frame#45 PSNR = 36.101516, frame#46 PSNR = 32.097675
+sequence/stefan_cif.yuv iter#1 frame#46 PSNR = 33.488230, frame#47 PSNR = 27.307261
+sequence/stefan_cif.yuv iter#2 frame#46 PSNR = 35.913195, frame#47 PSNR = 33.864748
+sequence/stefan_cif.yuv iter#3 frame#46 PSNR = 36.452583, frame#47 PSNR = 34.348260
+sequence/stefan_cif.yuv iter#1 frame#47 PSNR = 35.591907, frame#48 PSNR = 26.719077
+sequence/stefan_cif.yuv iter#2 frame#47 PSNR = 37.312511, frame#48 PSNR = 32.393971
+sequence/stefan_cif.yuv iter#3 frame#47 PSNR = 37.551618, frame#48 PSNR = 32.588617
+sequence/stefan_cif.yuv iter#1 frame#48 PSNR = 33.643519, frame#49 PSNR = 25.925648
+sequence/stefan_cif.yuv iter#2 frame#48 PSNR = 35.274595, frame#49 PSNR = 31.415484
+sequence/stefan_cif.yuv iter#3 frame#48 PSNR = 35.770601, frame#49 PSNR = 31.402760
+sequence/stefan_cif.yuv iter#1 frame#49 PSNR = 33.461975, frame#50 PSNR = 27.150580
+sequence/stefan_cif.yuv iter#2 frame#49 PSNR = 37.229885, frame#50 PSNR = 33.497549
+sequence/stefan_cif.yuv iter#3 frame#49 PSNR = 37.521431, frame#50 PSNR = 33.770045
+sequence/stefan_cif.yuv iter#1 frame#50 PSNR = 34.570383, frame#51 PSNR = 26.341736
+sequence/stefan_cif.yuv iter#2 frame#50 PSNR = 35.612758, frame#51 PSNR = 32.313397
+sequence/stefan_cif.yuv iter#3 frame#50 PSNR = 35.808906, frame#51 PSNR = 32.436835
+sequence/stefan_cif.yuv iter#1 frame#51 PSNR = 33.539125, frame#52 PSNR = 26.692869
+sequence/stefan_cif.yuv iter#2 frame#51 PSNR = 35.434635, frame#52 PSNR = 32.920119
+sequence/stefan_cif.yuv iter#3 frame#51 PSNR = 35.911555, frame#52 PSNR = 33.141561
+sequence/stefan_cif.yuv iter#1 frame#52 PSNR = 34.787588, frame#53 PSNR = 27.205400
+sequence/stefan_cif.yuv iter#2 frame#52 PSNR = 36.661544, frame#53 PSNR = 34.058937
+sequence/stefan_cif.yuv iter#3 frame#52 PSNR = 37.095966, frame#53 PSNR = 34.466528
+sequence/stefan_cif.yuv iter#1 frame#53 PSNR = 35.722989, frame#54 PSNR = 26.472751
+sequence/stefan_cif.yuv iter#2 frame#53 PSNR = 37.210405, frame#54 PSNR = 32.213146
+sequence/stefan_cif.yuv iter#3 frame#53 PSNR = 37.463374, frame#54 PSNR = 32.315736
+sequence/stefan_cif.yuv iter#1 frame#54 PSNR = 33.498186, frame#55 PSNR = 26.119452
+sequence/stefan_cif.yuv iter#2 frame#54 PSNR = 34.847904, frame#55 PSNR = 31.207128
+sequence/stefan_cif.yuv iter#3 frame#54 PSNR = 35.290825, frame#55 PSNR = 31.258273
+sequence/stefan_cif.yuv iter#1 frame#55 PSNR = 32.673920, frame#56 PSNR = 26.338349
+sequence/stefan_cif.yuv iter#2 frame#55 PSNR = 34.876380, frame#56 PSNR = 31.979405
+sequence/stefan_cif.yuv iter#3 frame#55 PSNR = 35.465362, frame#56 PSNR = 32.498883
+sequence/stefan_cif.yuv iter#1 frame#56 PSNR = 34.380420, frame#57 PSNR = 26.664891
+sequence/stefan_cif.yuv iter#2 frame#56 PSNR = 37.572333, frame#57 PSNR = 32.745362
+sequence/stefan_cif.yuv iter#3 frame#56 PSNR = 38.531941, frame#57 PSNR = 33.176990
+sequence/stefan_cif.yuv iter#1 frame#57 PSNR = 35.127441, frame#58 PSNR = 27.153886
+sequence/stefan_cif.yuv iter#2 frame#57 PSNR = 38.456775, frame#58 PSNR = 33.715716
+sequence/stefan_cif.yuv iter#3 frame#57 PSNR = 38.908989, frame#58 PSNR = 34.002573
+sequence/stefan_cif.yuv iter#1 frame#58 PSNR = 35.503868, frame#59 PSNR = 27.280868
+sequence/stefan_cif.yuv iter#2 frame#58 PSNR = 39.057162, frame#59 PSNR = 33.702412
+sequence/stefan_cif.yuv iter#3 frame#58 PSNR = 39.212625, frame#59 PSNR = 34.028218
+sequence/stefan_cif.yuv iter#1 frame#59 PSNR = 35.545403, frame#60 PSNR = 26.855360
+sequence/stefan_cif.yuv iter#2 frame#59 PSNR = 37.818959, frame#60 PSNR = 32.644497
+sequence/stefan_cif.yuv iter#3 frame#59 PSNR = 38.625657, frame#60 PSNR = 33.096718
+sequence/stefan_cif.yuv iter#1 frame#60 PSNR = 33.995945, frame#61 PSNR = 26.222903
+sequence/stefan_cif.yuv iter#2 frame#60 PSNR = 35.725241, frame#61 PSNR = 31.426360
+sequence/stefan_cif.yuv iter#3 frame#60 PSNR = 35.998954, frame#61 PSNR = 31.508085
+sequence/stefan_cif.yuv iter#1 frame#61 PSNR = 32.939931, frame#62 PSNR = 26.290432
+sequence/stefan_cif.yuv iter#2 frame#61 PSNR = 35.302181, frame#62 PSNR = 30.758783
+sequence/stefan_cif.yuv iter#3 frame#61 PSNR = 35.696936, frame#62 PSNR = 30.964918
+sequence/stefan_cif.yuv iter#1 frame#62 PSNR = 32.402063, frame#63 PSNR = 25.765135
+sequence/stefan_cif.yuv iter#2 frame#62 PSNR = 34.303081, frame#63 PSNR = 31.001608
+sequence/stefan_cif.yuv iter#3 frame#62 PSNR = 35.021506, frame#63 PSNR = 31.463987
+sequence/stefan_cif.yuv iter#1 frame#63 PSNR = 33.005005, frame#64 PSNR = 25.904012
+sequence/stefan_cif.yuv iter#2 frame#63 PSNR = 35.569367, frame#64 PSNR = 31.279490
+sequence/stefan_cif.yuv iter#3 frame#63 PSNR = 36.207046, frame#64 PSNR = 31.445553
+sequence/stefan_cif.yuv iter#1 frame#64 PSNR = 32.560780, frame#65 PSNR = 26.042108
+sequence/stefan_cif.yuv iter#2 frame#64 PSNR = 34.288133, frame#65 PSNR = 30.816722
+sequence/stefan_cif.yuv iter#3 frame#64 PSNR = 34.700379, frame#65 PSNR = 30.979647
+sequence/stefan_cif.yuv iter#1 frame#65 PSNR = 32.558718, frame#66 PSNR = 26.434451
+sequence/stefan_cif.yuv iter#2 frame#65 PSNR = 34.610900, frame#66 PSNR = 31.791104
+sequence/stefan_cif.yuv iter#3 frame#65 PSNR = 35.147521, frame#66 PSNR = 31.851635
+sequence/stefan_cif.yuv iter#1 frame#66 PSNR = 33.158199, frame#67 PSNR = 26.252721
+sequence/stefan_cif.yuv iter#2 frame#66 PSNR = 35.192072, frame#67 PSNR = 31.231030
+sequence/stefan_cif.yuv iter#3 frame#66 PSNR = 35.714809, frame#67 PSNR = 31.436687
+sequence/stefan_cif.yuv iter#1 frame#67 PSNR = 32.722415, frame#68 PSNR = 25.969144
+sequence/stefan_cif.yuv iter#2 frame#67 PSNR = 34.405720, frame#68 PSNR = 31.385476
+sequence/stefan_cif.yuv iter#3 frame#67 PSNR = 34.865074, frame#68 PSNR = 31.400842
+sequence/stefan_cif.yuv iter#1 frame#68 PSNR = 32.565700, frame#69 PSNR = 25.724217
+sequence/stefan_cif.yuv iter#2 frame#68 PSNR = 33.948193, frame#69 PSNR = 30.641456
+sequence/stefan_cif.yuv iter#3 frame#68 PSNR = 33.987597, frame#69 PSNR = 30.696060
+sequence/stefan_cif.yuv iter#1 frame#69 PSNR = 31.837450, frame#70 PSNR = 25.890177
+sequence/stefan_cif.yuv iter#2 frame#69 PSNR = 33.253966, frame#70 PSNR = 30.413462
+sequence/stefan_cif.yuv iter#3 frame#69 PSNR = 33.625619, frame#70 PSNR = 30.338534
+sequence/stefan_cif.yuv iter#1 frame#70 PSNR = 31.340465, frame#71 PSNR = 26.041360
+sequence/stefan_cif.yuv iter#2 frame#70 PSNR = 33.442467, frame#71 PSNR = 31.259784
+sequence/stefan_cif.yuv iter#3 frame#70 PSNR = 33.810833, frame#71 PSNR = 31.624908
+sequence/stefan_cif.yuv iter#1 frame#71 PSNR = 32.791343, frame#72 PSNR = 26.439064
+sequence/stefan_cif.yuv iter#2 frame#71 PSNR = 34.924052, frame#72 PSNR = 32.110718
+sequence/stefan_cif.yuv iter#3 frame#71 PSNR = 35.429181, frame#72 PSNR = 32.451895
+sequence/stefan_cif.yuv iter#1 frame#72 PSNR = 33.778881, frame#73 PSNR = 26.215600
+sequence/stefan_cif.yuv iter#2 frame#72 PSNR = 35.789153, frame#73 PSNR = 31.337207
+sequence/stefan_cif.yuv iter#3 frame#72 PSNR = 36.456818, frame#73 PSNR = 31.786085
+sequence/stefan_cif.yuv iter#1 frame#73 PSNR = 33.119782, frame#74 PSNR = 26.445459
+sequence/stefan_cif.yuv iter#2 frame#73 PSNR = 35.621117, frame#74 PSNR = 31.226133
+sequence/stefan_cif.yuv iter#3 frame#73 PSNR = 36.134690, frame#74 PSNR = 31.692127
+sequence/stefan_cif.yuv iter#1 frame#74 PSNR = 33.127067, frame#75 PSNR = 25.703851
+sequence/stefan_cif.yuv iter#2 frame#74 PSNR = 34.800014, frame#75 PSNR = 31.080197
+sequence/stefan_cif.yuv iter#3 frame#74 PSNR = 35.036563, frame#75 PSNR = 31.534602
+sequence/stefan_cif.yuv iter#1 frame#75 PSNR = 32.379135, frame#76 PSNR = 26.082004
+sequence/stefan_cif.yuv iter#2 frame#75 PSNR = 34.369641, frame#76 PSNR = 31.035227
+sequence/stefan_cif.yuv iter#3 frame#75 PSNR = 34.786509, frame#76 PSNR = 31.080136
+sequence/stefan_cif.yuv iter#1 frame#76 PSNR = 31.832978, frame#77 PSNR = 25.566903
+sequence/stefan_cif.yuv iter#2 frame#76 PSNR = 33.317869, frame#77 PSNR = 30.018510
+sequence/stefan_cif.yuv iter#3 frame#76 PSNR = 33.509312, frame#77 PSNR = 30.249766
+sequence/stefan_cif.yuv iter#1 frame#77 PSNR = 31.277747, frame#78 PSNR = 25.963865
+sequence/stefan_cif.yuv iter#2 frame#77 PSNR = 33.084836, frame#78 PSNR = 30.451266
+sequence/stefan_cif.yuv iter#3 frame#77 PSNR = 33.416340, frame#78 PSNR = 30.700057
+sequence/stefan_cif.yuv iter#1 frame#78 PSNR = 31.634838, frame#79 PSNR = 25.795879
+sequence/stefan_cif.yuv iter#2 frame#78 PSNR = 33.394301, frame#79 PSNR = 30.609544
+sequence/stefan_cif.yuv iter#3 frame#78 PSNR = 33.617434, frame#79 PSNR = 30.840418
+sequence/stefan_cif.yuv iter#1 frame#79 PSNR = 31.883108, frame#80 PSNR = 26.032259
+sequence/stefan_cif.yuv iter#2 frame#79 PSNR = 33.728413, frame#80 PSNR = 30.828754
+sequence/stefan_cif.yuv iter#3 frame#79 PSNR = 33.977806, frame#80 PSNR = 31.015997
+sequence/stefan_cif.yuv iter#1 frame#80 PSNR = 32.145250, frame#81 PSNR = 25.918645
+sequence/stefan_cif.yuv iter#2 frame#80 PSNR = 34.189174, frame#81 PSNR = 30.977116
+sequence/stefan_cif.yuv iter#3 frame#80 PSNR = 34.630172, frame#81 PSNR = 31.384480
+sequence/stefan_cif.yuv iter#1 frame#81 PSNR = 32.389867, frame#82 PSNR = 25.872454
+sequence/stefan_cif.yuv iter#2 frame#81 PSNR = 34.145932, frame#82 PSNR = 30.880867
+sequence/stefan_cif.yuv iter#3 frame#81 PSNR = 34.617439, frame#82 PSNR = 31.080082
+sequence/stefan_cif.yuv iter#1 frame#82 PSNR = 32.173140, frame#83 PSNR = 26.072682
+sequence/stefan_cif.yuv iter#2 frame#82 PSNR = 34.491528, frame#83 PSNR = 31.073296
+sequence/stefan_cif.yuv iter#3 frame#82 PSNR = 34.801164, frame#83 PSNR = 31.417068
+sequence/stefan_cif.yuv iter#1 frame#83 PSNR = 32.179026, frame#84 PSNR = 26.393722
+sequence/stefan_cif.yuv iter#2 frame#83 PSNR = 34.089280, frame#84 PSNR = 31.882844
+sequence/stefan_cif.yuv iter#3 frame#83 PSNR = 34.437571, frame#84 PSNR = 32.113543
+sequence/stefan_cif.yuv iter#1 frame#84 PSNR = 32.798083, frame#85 PSNR = 25.380857
+sequence/stefan_cif.yuv iter#2 frame#84 PSNR = 34.019015, frame#85 PSNR = 29.842835
+sequence/stefan_cif.yuv iter#3 frame#84 PSNR = 34.292610, frame#85 PSNR = 30.108354
+sequence/stefan_cif.yuv iter#1 frame#85 PSNR = 31.074499, frame#86 PSNR = 25.931684
+sequence/stefan_cif.yuv iter#2 frame#85 PSNR = 32.715795, frame#86 PSNR = 31.160982
+sequence/stefan_cif.yuv iter#3 frame#85 PSNR = 33.051230, frame#86 PSNR = 31.439878
+sequence/stefan_cif.yuv iter#1 frame#86 PSNR = 32.427882, frame#87 PSNR = 25.114228
+sequence/stefan_cif.yuv iter#2 frame#86 PSNR = 33.205962, frame#87 PSNR = 29.200388
+sequence/stefan_cif.yuv iter#3 frame#86 PSNR = 33.432260, frame#87 PSNR = 29.338923
+sequence/stefan_cif.yuv iter#1 frame#87 PSNR = 29.908502, frame#88 PSNR = 23.936553
+sequence/stefan_cif.yuv iter#2 frame#87 PSNR = 30.547306, frame#88 PSNR = 26.235286
+sequence/stefan_cif.yuv iter#3 frame#87 PSNR = 30.608540, frame#88 PSNR = 26.298113
+sequence/stefan_cif.yuv iter#1 frame#88 PSNR = 26.815859, frame#89 PSNR = 23.697424
+sequence/stefan_cif.yuv iter#2 frame#88 PSNR = 27.619038, frame#89 PSNR = 25.985534
+sequence/stefan_cif.yuv iter#3 frame#88 PSNR = 27.884532, frame#89 PSNR = 26.094193
+sequence/stefan_cif.yuv iter#1 frame#89 PSNR = 26.529750, frame#90 PSNR = 23.705084
+sequence/stefan_cif.yuv iter#2 frame#89 PSNR = 27.351441, frame#90 PSNR = 25.671480
+sequence/stefan_cif.yuv iter#3 frame#89 PSNR = 27.537663, frame#90 PSNR = 25.887933
+frame#  1 PSNR = 31.020184
+frame#  2 PSNR = 33.106812
+frame#  3 PSNR = 30.078495
+frame#  4 PSNR = 29.531254
+frame#  5 PSNR = 29.277728
+frame#  6 PSNR = 28.182360
+frame#  7 PSNR = 28.298175
+frame#  8 PSNR = 28.917654
+frame#  9 PSNR = 29.042933
+frame# 10 PSNR = 30.486618
+frame# 11 PSNR = 30.268832
+frame# 12 PSNR = 31.311433
+frame# 13 PSNR = 31.585423
+frame# 14 PSNR = 32.685147
+frame# 15 PSNR = 34.188142
+frame# 16 PSNR = 34.985338
+frame# 17 PSNR = 34.956656
+frame# 18 PSNR = 34.271949
+frame# 19 PSNR = 34.359069
+frame# 20 PSNR = 34.001240
+frame# 21 PSNR = 33.992211
+frame# 22 PSNR = 33.510776
+frame# 23 PSNR = 34.286761
+frame# 24 PSNR = 37.034792
+frame# 25 PSNR = 38.677081
+frame# 26 PSNR = 39.799204
+frame# 27 PSNR = 41.519475
+frame# 28 PSNR = 41.671195
+frame# 29 PSNR = 40.551407
+frame# 30 PSNR = 40.639765
+frame# 31 PSNR = 39.941838
+frame# 32 PSNR = 38.053627
+frame# 33 PSNR = 37.398625
+frame# 34 PSNR = 36.097164
+frame# 35 PSNR = 34.661196
+frame# 36 PSNR = 33.471921
+frame# 37 PSNR = 32.395963
+frame# 38 PSNR = 32.644437
+frame# 39 PSNR = 32.631497
+frame# 40 PSNR = 32.351676
+frame# 41 PSNR = 33.664052
+frame# 42 PSNR = 33.131050
+frame# 43 PSNR = 34.082595
+frame# 44 PSNR = 37.091711
+frame# 45 PSNR = 36.101516
+frame# 46 PSNR = 36.452583
+frame# 47 PSNR = 37.551618
+frame# 48 PSNR = 35.770601
+frame# 49 PSNR = 37.521431
+frame# 50 PSNR = 35.808906
+frame# 51 PSNR = 35.911555
+frame# 52 PSNR = 37.095966
+frame# 53 PSNR = 37.463374
+frame# 54 PSNR = 35.290825
+frame# 55 PSNR = 35.465362
+frame# 56 PSNR = 38.531941
+frame# 57 PSNR = 38.908989
+frame# 58 PSNR = 39.212625
+frame# 59 PSNR = 38.625657
+frame# 60 PSNR = 35.998954
+frame# 61 PSNR = 35.696936
+frame# 62 PSNR = 35.021506
+frame# 63 PSNR = 36.207046
+frame# 64 PSNR = 34.700379
+frame# 65 PSNR = 35.147521
+frame# 66 PSNR = 35.714809
+frame# 67 PSNR = 34.865074
+frame# 68 PSNR = 33.987597
+frame# 69 PSNR = 33.625619
+frame# 70 PSNR = 33.810833
+frame# 71 PSNR = 35.429181
+frame# 72 PSNR = 36.456818
+frame# 73 PSNR = 36.134690
+frame# 74 PSNR = 35.036563
+frame# 75 PSNR = 34.786509
+frame# 76 PSNR = 33.509312
+frame# 77 PSNR = 33.416340
+frame# 78 PSNR = 33.617434
+frame# 79 PSNR = 33.977806
+frame# 80 PSNR = 34.630172
+frame# 81 PSNR = 34.617439
+frame# 82 PSNR = 34.801164
+frame# 83 PSNR = 34.437571
+frame# 84 PSNR = 34.292610
+frame# 85 PSNR = 33.051230
+frame# 86 PSNR = 33.432260
+frame# 87 PSNR = 30.608540
+frame# 88 PSNR = 27.884532
+frame# 89 PSNR = 27.537663
+frame# 90 PSNR = 25.887933
+AVERAGE PSNR = 34.487672
+sequence/stefan_cif.yuv iter#1 frame#1 PSNR = 30.786870, frame#2 PSNR = 30.579032
+sequence/stefan_cif.yuv iter#2 frame#1 PSNR = 35.208225, frame#2 PSNR = 36.687658
+sequence/stefan_cif.yuv iter#3 frame#1 PSNR = 36.352829, frame#2 PSNR = 37.954186
+sequence/stefan_cif.yuv iter#1 frame#2 PSNR = 38.565785, frame#3 PSNR = 30.461816
+sequence/stefan_cif.yuv iter#2 frame#2 PSNR = 39.645255, frame#3 PSNR = 34.515165
+sequence/stefan_cif.yuv iter#3 frame#2 PSNR = 39.982992, frame#3 PSNR = 34.512449
+sequence/stefan_cif.yuv iter#1 frame#3 PSNR = 34.980965, frame#4 PSNR = 29.795529
+sequence/stefan_cif.yuv iter#2 frame#3 PSNR = 36.711022, frame#4 PSNR = 32.558689
+sequence/stefan_cif.yuv iter#3 frame#3 PSNR = 36.850795, frame#4 PSNR = 32.485092
+sequence/stefan_cif.yuv iter#1 frame#4 PSNR = 33.038900, frame#5 PSNR = 29.808797
+sequence/stefan_cif.yuv iter#2 frame#4 PSNR = 34.573132, frame#5 PSNR = 32.544044
+sequence/stefan_cif.yuv iter#3 frame#4 PSNR = 34.468922, frame#5 PSNR = 32.410145
+sequence/stefan_cif.yuv iter#1 frame#5 PSNR = 32.831706, frame#6 PSNR = 29.750410
+sequence/stefan_cif.yuv iter#2 frame#5 PSNR = 33.932104, frame#6 PSNR = 32.542682
+sequence/stefan_cif.yuv iter#3 frame#5 PSNR = 34.102620, frame#6 PSNR = 32.387885
+sequence/stefan_cif.yuv iter#1 frame#6 PSNR = 32.629402, frame#7 PSNR = 29.366114
+sequence/stefan_cif.yuv iter#2 frame#6 PSNR = 33.773026, frame#7 PSNR = 32.162975
+sequence/stefan_cif.yuv iter#3 frame#6 PSNR = 33.694574, frame#7 PSNR = 32.382601
+sequence/stefan_cif.yuv iter#1 frame#7 PSNR = 33.097767, frame#8 PSNR = 29.616754
+sequence/stefan_cif.yuv iter#2 frame#7 PSNR = 33.871251, frame#8 PSNR = 31.980317
+sequence/stefan_cif.yuv iter#3 frame#7 PSNR = 33.953277, frame#8 PSNR = 32.140099
+sequence/stefan_cif.yuv iter#1 frame#8 PSNR = 32.913297, frame#9 PSNR = 29.690688
+sequence/stefan_cif.yuv iter#2 frame#8 PSNR = 33.828245, frame#9 PSNR = 32.231175
+sequence/stefan_cif.yuv iter#3 frame#8 PSNR = 34.090663, frame#9 PSNR = 32.245559
+sequence/stefan_cif.yuv iter#1 frame#9 PSNR = 33.373339, frame#10 PSNR = 29.808015
+sequence/stefan_cif.yuv iter#2 frame#9 PSNR = 34.975300, frame#10 PSNR = 32.905686
+sequence/stefan_cif.yuv iter#3 frame#9 PSNR = 35.129679, frame#10 PSNR = 33.153342
+sequence/stefan_cif.yuv iter#1 frame#10 PSNR = 34.100994, frame#11 PSNR = 29.844263
+sequence/stefan_cif.yuv iter#2 frame#10 PSNR = 35.126668, frame#11 PSNR = 33.755973
+sequence/stefan_cif.yuv iter#3 frame#10 PSNR = 35.329567, frame#11 PSNR = 33.938094
+sequence/stefan_cif.yuv iter#1 frame#11 PSNR = 34.470111, frame#12 PSNR = 30.419859
+sequence/stefan_cif.yuv iter#2 frame#11 PSNR = 36.116688, frame#12 PSNR = 33.714530
+sequence/stefan_cif.yuv iter#3 frame#11 PSNR = 36.098542, frame#12 PSNR = 33.708647
+sequence/stefan_cif.yuv iter#1 frame#12 PSNR = 35.082683, frame#13 PSNR = 30.437068
+sequence/stefan_cif.yuv iter#2 frame#12 PSNR = 37.398806, frame#13 PSNR = 34.606199
+sequence/stefan_cif.yuv iter#3 frame#12 PSNR = 37.365914, frame#13 PSNR = 34.416743
+sequence/stefan_cif.yuv iter#1 frame#13 PSNR = 35.789130, frame#14 PSNR = 30.158642
+sequence/stefan_cif.yuv iter#2 frame#13 PSNR = 37.421687, frame#14 PSNR = 34.471770
+sequence/stefan_cif.yuv iter#3 frame#13 PSNR = 37.998826, frame#14 PSNR = 34.809134
+sequence/stefan_cif.yuv iter#1 frame#14 PSNR = 36.321224, frame#15 PSNR = 31.056058
+sequence/stefan_cif.yuv iter#2 frame#14 PSNR = 39.260576, frame#15 PSNR = 36.907620
+sequence/stefan_cif.yuv iter#3 frame#14 PSNR = 39.479203, frame#15 PSNR = 36.899398
+sequence/stefan_cif.yuv iter#1 frame#15 PSNR = 38.085714, frame#16 PSNR = 31.116660
+sequence/stefan_cif.yuv iter#2 frame#15 PSNR = 39.655479, frame#16 PSNR = 36.243211
+sequence/stefan_cif.yuv iter#3 frame#15 PSNR = 39.733570, frame#16 PSNR = 36.693294
+sequence/stefan_cif.yuv iter#1 frame#16 PSNR = 37.932592, frame#17 PSNR = 31.241150
+sequence/stefan_cif.yuv iter#2 frame#16 PSNR = 40.100629, frame#17 PSNR = 37.147999
+sequence/stefan_cif.yuv iter#3 frame#16 PSNR = 40.021567, frame#17 PSNR = 37.084211
+sequence/stefan_cif.yuv iter#1 frame#17 PSNR = 38.458493, frame#18 PSNR = 31.240273
+sequence/stefan_cif.yuv iter#2 frame#17 PSNR = 41.087669, frame#18 PSNR = 37.329413
+sequence/stefan_cif.yuv iter#3 frame#17 PSNR = 41.095412, frame#18 PSNR = 37.229548
+sequence/stefan_cif.yuv iter#1 frame#18 PSNR = 38.302034, frame#19 PSNR = 31.140028
+sequence/stefan_cif.yuv iter#2 frame#18 PSNR = 39.932948, frame#19 PSNR = 37.815922
+sequence/stefan_cif.yuv iter#3 frame#18 PSNR = 40.583413, frame#19 PSNR = 37.765459
+sequence/stefan_cif.yuv iter#1 frame#19 PSNR = 39.014060, frame#20 PSNR = 31.940194
+sequence/stefan_cif.yuv iter#2 frame#19 PSNR = 41.089261, frame#20 PSNR = 37.064889
+sequence/stefan_cif.yuv iter#3 frame#19 PSNR = 41.570827, frame#20 PSNR = 37.016335
+sequence/stefan_cif.yuv iter#1 frame#20 PSNR = 38.118880, frame#21 PSNR = 31.401972
+sequence/stefan_cif.yuv iter#2 frame#20 PSNR = 40.089302, frame#21 PSNR = 37.043628
+sequence/stefan_cif.yuv iter#3 frame#20 PSNR = 40.433337, frame#21 PSNR = 37.222150
+sequence/stefan_cif.yuv iter#1 frame#21 PSNR = 38.250140, frame#22 PSNR = 30.975840
+sequence/stefan_cif.yuv iter#2 frame#21 PSNR = 39.372008, frame#22 PSNR = 36.157084
+sequence/stefan_cif.yuv iter#3 frame#21 PSNR = 39.815458, frame#22 PSNR = 35.877417
+sequence/stefan_cif.yuv iter#1 frame#22 PSNR = 36.687354, frame#23 PSNR = 31.125166
+sequence/stefan_cif.yuv iter#2 frame#22 PSNR = 38.769281, frame#23 PSNR = 36.042686
+sequence/stefan_cif.yuv iter#3 frame#22 PSNR = 38.785374, frame#23 PSNR = 36.219757
+sequence/stefan_cif.yuv iter#1 frame#23 PSNR = 38.215776, frame#24 PSNR = 31.802496
+sequence/stefan_cif.yuv iter#2 frame#23 PSNR = 41.103032, frame#24 PSNR = 38.166274
+sequence/stefan_cif.yuv iter#3 frame#23 PSNR = 41.267283, frame#24 PSNR = 38.158515
+sequence/stefan_cif.yuv iter#1 frame#24 PSNR = 40.152076, frame#25 PSNR = 32.780828
+sequence/stefan_cif.yuv iter#2 frame#24 PSNR = 45.091576, frame#25 PSNR = 41.002482
+sequence/stefan_cif.yuv iter#3 frame#24 PSNR = 45.043248, frame#25 PSNR = 41.209585
+sequence/stefan_cif.yuv iter#1 frame#25 PSNR = 42.808491, frame#26 PSNR = 33.279644
+sequence/stefan_cif.yuv iter#2 frame#25 PSNR = 44.302946, frame#26 PSNR = 43.667367
+sequence/stefan_cif.yuv iter#3 frame#25 PSNR = 46.391020, frame#26 PSNR = 43.359234
+sequence/stefan_cif.yuv iter#1 frame#26 PSNR = 45.270653, frame#27 PSNR = 33.691912
+sequence/stefan_cif.yuv iter#2 frame#26 PSNR = 48.578223, frame#27 PSNR = 41.024354
+sequence/stefan_cif.yuv iter#3 frame#26 PSNR = 48.730794, frame#27 PSNR = 41.175278
+sequence/stefan_cif.yuv iter#1 frame#27 PSNR = 41.898629, frame#28 PSNR = 33.445044
+sequence/stefan_cif.yuv iter#2 frame#27 PSNR = 44.395867, frame#28 PSNR = 40.958801
+sequence/stefan_cif.yuv iter#3 frame#27 PSNR = 44.487171, frame#28 PSNR = 41.762177
+sequence/stefan_cif.yuv iter#1 frame#28 PSNR = 44.726665, frame#29 PSNR = 34.136862
+sequence/stefan_cif.yuv iter#2 frame#28 PSNR = 49.527991, frame#29 PSNR = 42.187845
+sequence/stefan_cif.yuv iter#3 frame#28 PSNR = 49.904652, frame#29 PSNR = 42.476083
+sequence/stefan_cif.yuv iter#1 frame#29 PSNR = 43.766533, frame#30 PSNR = 34.479088
+sequence/stefan_cif.yuv iter#2 frame#29 PSNR = 47.111105, frame#30 PSNR = 44.660886
+sequence/stefan_cif.yuv iter#3 frame#29 PSNR = 45.639047, frame#30 PSNR = 44.779333
+sequence/stefan_cif.yuv iter#1 frame#30 PSNR = 46.559944, frame#31 PSNR = 32.992939
+sequence/stefan_cif.yuv iter#2 frame#30 PSNR = 48.140754, frame#31 PSNR = 41.037645
+sequence/stefan_cif.yuv iter#3 frame#30 PSNR = 48.296948, frame#31 PSNR = 41.052965
+sequence/stefan_cif.yuv iter#1 frame#31 PSNR = 42.847330, frame#32 PSNR = 32.259059
+sequence/stefan_cif.yuv iter#2 frame#31 PSNR = 44.540370, frame#32 PSNR = 39.061268
+sequence/stefan_cif.yuv iter#3 frame#31 PSNR = 45.234440, frame#32 PSNR = 39.166400
+sequence/stefan_cif.yuv iter#1 frame#32 PSNR = 40.898831, frame#33 PSNR = 31.562117
+sequence/stefan_cif.yuv iter#2 frame#32 PSNR = 43.443521, frame#33 PSNR = 37.674401
+sequence/stefan_cif.yuv iter#3 frame#32 PSNR = 43.951260, frame#33 PSNR = 38.221695
+sequence/stefan_cif.yuv iter#1 frame#33 PSNR = 39.594941, frame#34 PSNR = 31.333650
+sequence/stefan_cif.yuv iter#2 frame#33 PSNR = 42.062846, frame#34 PSNR = 37.516284
+sequence/stefan_cif.yuv iter#3 frame#33 PSNR = 41.894479, frame#34 PSNR = 37.499553
+sequence/stefan_cif.yuv iter#1 frame#34 PSNR = 39.077828, frame#35 PSNR = 31.534898
+sequence/stefan_cif.yuv iter#2 frame#34 PSNR = 41.518756, frame#35 PSNR = 37.644067
+sequence/stefan_cif.yuv iter#3 frame#34 PSNR = 41.446256, frame#35 PSNR = 38.053909
+sequence/stefan_cif.yuv iter#1 frame#35 PSNR = 38.967869, frame#36 PSNR = 31.199924
+sequence/stefan_cif.yuv iter#2 frame#35 PSNR = 40.742345, frame#36 PSNR = 35.971357
+sequence/stefan_cif.yuv iter#3 frame#35 PSNR = 40.885005, frame#36 PSNR = 35.923432
+sequence/stefan_cif.yuv iter#1 frame#36 PSNR = 36.281521, frame#37 PSNR = 30.798945
+sequence/stefan_cif.yuv iter#2 frame#36 PSNR = 37.531077, frame#37 PSNR = 35.790067
+sequence/stefan_cif.yuv iter#3 frame#36 PSNR = 37.781380, frame#37 PSNR = 35.835537
+sequence/stefan_cif.yuv iter#1 frame#37 PSNR = 36.735335, frame#38 PSNR = 30.797602
+sequence/stefan_cif.yuv iter#2 frame#37 PSNR = 37.864862, frame#38 PSNR = 35.550269
+sequence/stefan_cif.yuv iter#3 frame#37 PSNR = 38.275772, frame#38 PSNR = 35.495138
+sequence/stefan_cif.yuv iter#1 frame#38 PSNR = 36.193508, frame#39 PSNR = 31.093883
+sequence/stefan_cif.yuv iter#2 frame#38 PSNR = 37.400746, frame#39 PSNR = 36.136471
+sequence/stefan_cif.yuv iter#3 frame#38 PSNR = 37.702782, frame#39 PSNR = 36.129569
+sequence/stefan_cif.yuv iter#1 frame#39 PSNR = 37.409776, frame#40 PSNR = 30.928244
+sequence/stefan_cif.yuv iter#2 frame#39 PSNR = 38.751245, frame#40 PSNR = 35.537796
+sequence/stefan_cif.yuv iter#3 frame#39 PSNR = 38.857399, frame#40 PSNR = 35.767184
+sequence/stefan_cif.yuv iter#1 frame#40 PSNR = 36.621718, frame#41 PSNR = 30.634187
+sequence/stefan_cif.yuv iter#2 frame#40 PSNR = 38.040093, frame#41 PSNR = 35.882869
+sequence/stefan_cif.yuv iter#3 frame#40 PSNR = 38.089951, frame#41 PSNR = 36.277216
+sequence/stefan_cif.yuv iter#1 frame#41 PSNR = 37.073659, frame#42 PSNR = 31.287115
+sequence/stefan_cif.yuv iter#2 frame#41 PSNR = 39.217701, frame#42 PSNR = 35.731006
+sequence/stefan_cif.yuv iter#3 frame#41 PSNR = 40.069355, frame#42 PSNR = 35.689968
+sequence/stefan_cif.yuv iter#1 frame#42 PSNR = 37.002014, frame#43 PSNR = 31.471568
+sequence/stefan_cif.yuv iter#2 frame#42 PSNR = 38.449056, frame#43 PSNR = 36.423337
+sequence/stefan_cif.yuv iter#3 frame#42 PSNR = 38.812229, frame#43 PSNR = 36.546534
+sequence/stefan_cif.yuv iter#1 frame#43 PSNR = 37.771355, frame#44 PSNR = 30.683978
+sequence/stefan_cif.yuv iter#2 frame#43 PSNR = 39.587740, frame#44 PSNR = 36.393948
+sequence/stefan_cif.yuv iter#3 frame#43 PSNR = 39.614828, frame#44 PSNR = 36.770305
+sequence/stefan_cif.yuv iter#1 frame#44 PSNR = 38.563829, frame#45 PSNR = 32.253132
+sequence/stefan_cif.yuv iter#2 frame#44 PSNR = 42.703240, frame#45 PSNR = 38.782531
+sequence/stefan_cif.yuv iter#3 frame#44 PSNR = 43.194191, frame#45 PSNR = 38.946075
+sequence/stefan_cif.yuv iter#1 frame#45 PSNR = 39.735001, frame#46 PSNR = 31.690828
+sequence/stefan_cif.yuv iter#2 frame#45 PSNR = 41.413319, frame#46 PSNR = 36.790707
+sequence/stefan_cif.yuv iter#3 frame#45 PSNR = 41.490927, frame#46 PSNR = 36.779679
+sequence/stefan_cif.yuv iter#1 frame#46 PSNR = 38.966202, frame#47 PSNR = 32.320338
+sequence/stefan_cif.yuv iter#2 frame#46 PSNR = 41.917941, frame#47 PSNR = 39.095600
+sequence/stefan_cif.yuv iter#3 frame#46 PSNR = 42.239516, frame#47 PSNR = 39.310439
+sequence/stefan_cif.yuv iter#1 frame#47 PSNR = 40.024812, frame#48 PSNR = 32.253824
+sequence/stefan_cif.yuv iter#2 frame#47 PSNR = 42.484842, frame#48 PSNR = 37.431158
+sequence/stefan_cif.yuv iter#3 frame#47 PSNR = 43.029233, frame#48 PSNR = 37.327116
+sequence/stefan_cif.yuv iter#1 frame#48 PSNR = 39.373604, frame#49 PSNR = 30.867735
+sequence/stefan_cif.yuv iter#2 frame#48 PSNR = 40.877435, frame#49 PSNR = 37.039631
+sequence/stefan_cif.yuv iter#3 frame#48 PSNR = 40.762660, frame#49 PSNR = 37.188925
+sequence/stefan_cif.yuv iter#1 frame#49 PSNR = 38.830007, frame#50 PSNR = 32.835894
+sequence/stefan_cif.yuv iter#2 frame#49 PSNR = 42.791857, frame#50 PSNR = 38.750765
+sequence/stefan_cif.yuv iter#3 frame#49 PSNR = 43.050991, frame#50 PSNR = 39.038294
+sequence/stefan_cif.yuv iter#1 frame#50 PSNR = 39.921454, frame#51 PSNR = 31.561520
+sequence/stefan_cif.yuv iter#2 frame#50 PSNR = 40.528511, frame#51 PSNR = 37.725746
+sequence/stefan_cif.yuv iter#3 frame#50 PSNR = 41.036842, frame#51 PSNR = 37.947134
+sequence/stefan_cif.yuv iter#1 frame#51 PSNR = 38.893060, frame#52 PSNR = 31.897870
+sequence/stefan_cif.yuv iter#2 frame#51 PSNR = 39.723247, frame#52 PSNR = 39.101612
+sequence/stefan_cif.yuv iter#3 frame#51 PSNR = 39.788391, frame#52 PSNR = 39.085854
+sequence/stefan_cif.yuv iter#1 frame#52 PSNR = 40.504973, frame#53 PSNR = 33.057673
+sequence/stefan_cif.yuv iter#2 frame#52 PSNR = 43.371703, frame#53 PSNR = 40.438006
+sequence/stefan_cif.yuv iter#3 frame#52 PSNR = 43.534721, frame#53 PSNR = 40.478912
+sequence/stefan_cif.yuv iter#1 frame#53 PSNR = 41.079637, frame#54 PSNR = 32.074850
+sequence/stefan_cif.yuv iter#2 frame#53 PSNR = 42.699509, frame#54 PSNR = 38.384382
+sequence/stefan_cif.yuv iter#3 frame#53 PSNR = 42.770334, frame#54 PSNR = 38.177886
+sequence/stefan_cif.yuv iter#1 frame#54 PSNR = 38.714514, frame#55 PSNR = 31.597229
+sequence/stefan_cif.yuv iter#2 frame#54 PSNR = 40.277755, frame#55 PSNR = 38.203417
+sequence/stefan_cif.yuv iter#3 frame#54 PSNR = 40.408701, frame#55 PSNR = 37.939949
+sequence/stefan_cif.yuv iter#1 frame#55 PSNR = 39.809898, frame#56 PSNR = 31.368669
+sequence/stefan_cif.yuv iter#2 frame#55 PSNR = 42.416237, frame#56 PSNR = 37.558075
+sequence/stefan_cif.yuv iter#3 frame#55 PSNR = 42.815075, frame#56 PSNR = 37.786236
+sequence/stefan_cif.yuv iter#1 frame#56 PSNR = 40.286572, frame#57 PSNR = 32.302756
+sequence/stefan_cif.yuv iter#2 frame#56 PSNR = 43.685278, frame#57 PSNR = 39.619310
+sequence/stefan_cif.yuv iter#3 frame#56 PSNR = 44.154180, frame#57 PSNR = 39.983990
+sequence/stefan_cif.yuv iter#1 frame#57 PSNR = 42.364443, frame#58 PSNR = 32.682491
+sequence/stefan_cif.yuv iter#2 frame#57 PSNR = 44.545902, frame#58 PSNR = 39.546397
+sequence/stefan_cif.yuv iter#3 frame#57 PSNR = 45.434163, frame#58 PSNR = 39.622625
+sequence/stefan_cif.yuv iter#1 frame#58 PSNR = 41.466341, frame#59 PSNR = 31.828321
+sequence/stefan_cif.yuv iter#2 frame#58 PSNR = 44.641314, frame#59 PSNR = 39.649798
+sequence/stefan_cif.yuv iter#3 frame#58 PSNR = 44.812349, frame#59 PSNR = 39.765142
+sequence/stefan_cif.yuv iter#1 frame#59 PSNR = 41.389784, frame#60 PSNR = 31.789778
+sequence/stefan_cif.yuv iter#2 frame#59 PSNR = 44.464183, frame#60 PSNR = 38.107991
+sequence/stefan_cif.yuv iter#3 frame#59 PSNR = 44.387066, frame#60 PSNR = 38.261131
+sequence/stefan_cif.yuv iter#1 frame#60 PSNR = 40.065955, frame#61 PSNR = 30.613015
+sequence/stefan_cif.yuv iter#2 frame#60 PSNR = 41.970192, frame#61 PSNR = 35.546832
+sequence/stefan_cif.yuv iter#3 frame#60 PSNR = 42.621500, frame#61 PSNR = 35.685628
+sequence/stefan_cif.yuv iter#1 frame#61 PSNR = 37.033963, frame#62 PSNR = 31.265374
+sequence/stefan_cif.yuv iter#2 frame#61 PSNR = 40.353177, frame#62 PSNR = 36.203859
+sequence/stefan_cif.yuv iter#3 frame#61 PSNR = 40.823760, frame#62 PSNR = 36.716336
+sequence/stefan_cif.yuv iter#1 frame#62 PSNR = 37.865507, frame#63 PSNR = 31.074285
+sequence/stefan_cif.yuv iter#2 frame#62 PSNR = 40.594527, frame#63 PSNR = 37.090599
+sequence/stefan_cif.yuv iter#3 frame#62 PSNR = 40.617607, frame#63 PSNR = 37.222608
+sequence/stefan_cif.yuv iter#1 frame#63 PSNR = 39.522911, frame#64 PSNR = 31.283953
+sequence/stefan_cif.yuv iter#2 frame#63 PSNR = 40.732913, frame#64 PSNR = 36.644455
+sequence/stefan_cif.yuv iter#3 frame#63 PSNR = 40.609541, frame#64 PSNR = 36.458989
+sequence/stefan_cif.yuv iter#1 frame#64 PSNR = 37.425790, frame#65 PSNR = 31.207543
+sequence/stefan_cif.yuv iter#2 frame#64 PSNR = 40.005758, frame#65 PSNR = 35.623002
+sequence/stefan_cif.yuv iter#3 frame#64 PSNR = 40.274687, frame#65 PSNR = 35.891627
+sequence/stefan_cif.yuv iter#1 frame#65 PSNR = 37.729502, frame#66 PSNR = 31.433239
+sequence/stefan_cif.yuv iter#2 frame#65 PSNR = 39.364312, frame#66 PSNR = 37.325464
+sequence/stefan_cif.yuv iter#3 frame#65 PSNR = 39.674673, frame#66 PSNR = 37.532148
+sequence/stefan_cif.yuv iter#1 frame#66 PSNR = 38.379606, frame#67 PSNR = 31.749023
+sequence/stefan_cif.yuv iter#2 frame#66 PSNR = 42.555356, frame#67 PSNR = 38.382860
+sequence/stefan_cif.yuv iter#3 frame#66 PSNR = 42.649979, frame#67 PSNR = 38.383737
+sequence/stefan_cif.yuv iter#1 frame#67 PSNR = 39.339320, frame#68 PSNR = 30.789323
+sequence/stefan_cif.yuv iter#2 frame#67 PSNR = 41.134913, frame#68 PSNR = 36.149048
+sequence/stefan_cif.yuv iter#3 frame#67 PSNR = 41.043614, frame#68 PSNR = 36.377792
+sequence/stefan_cif.yuv iter#1 frame#68 PSNR = 38.273425, frame#69 PSNR = 31.036598
+sequence/stefan_cif.yuv iter#2 frame#68 PSNR = 40.556826, frame#69 PSNR = 36.452333
+sequence/stefan_cif.yuv iter#3 frame#68 PSNR = 40.552073, frame#69 PSNR = 36.547016
+sequence/stefan_cif.yuv iter#1 frame#69 PSNR = 37.871023, frame#70 PSNR = 30.515477
+sequence/stefan_cif.yuv iter#2 frame#69 PSNR = 38.971356, frame#70 PSNR = 35.680776
+sequence/stefan_cif.yuv iter#3 frame#69 PSNR = 39.068929, frame#70 PSNR = 35.616543
+sequence/stefan_cif.yuv iter#1 frame#70 PSNR = 36.980818, frame#71 PSNR = 31.415014
+sequence/stefan_cif.yuv iter#2 frame#70 PSNR = 38.970114, frame#71 PSNR = 36.234302
+sequence/stefan_cif.yuv iter#3 frame#70 PSNR = 39.182891, frame#71 PSNR = 36.123917
+sequence/stefan_cif.yuv iter#1 frame#71 PSNR = 37.932698, frame#72 PSNR = 31.183999
+sequence/stefan_cif.yuv iter#2 frame#71 PSNR = 40.626137, frame#72 PSNR = 37.560468
+sequence/stefan_cif.yuv iter#3 frame#71 PSNR = 41.013741, frame#72 PSNR = 37.572122
+sequence/stefan_cif.yuv iter#1 frame#72 PSNR = 38.877128, frame#73 PSNR = 31.338752
+sequence/stefan_cif.yuv iter#2 frame#72 PSNR = 39.885507, frame#73 PSNR = 37.593858
+sequence/stefan_cif.yuv iter#3 frame#72 PSNR = 40.116767, frame#73 PSNR = 37.466435
+sequence/stefan_cif.yuv iter#1 frame#73 PSNR = 38.857713, frame#74 PSNR = 31.966034
+sequence/stefan_cif.yuv iter#2 frame#73 PSNR = 40.688135, frame#74 PSNR = 37.152361
+sequence/stefan_cif.yuv iter#3 frame#73 PSNR = 40.546847, frame#74 PSNR = 37.280348
+sequence/stefan_cif.yuv iter#1 frame#74 PSNR = 38.580612, frame#75 PSNR = 30.651697
+sequence/stefan_cif.yuv iter#2 frame#74 PSNR = 39.858282, frame#75 PSNR = 37.177570
+sequence/stefan_cif.yuv iter#3 frame#74 PSNR = 40.417823, frame#75 PSNR = 36.944070
+sequence/stefan_cif.yuv iter#1 frame#75 PSNR = 38.377479, frame#76 PSNR = 31.585433
+sequence/stefan_cif.yuv iter#2 frame#75 PSNR = 39.823465, frame#76 PSNR = 37.758128
+sequence/stefan_cif.yuv iter#3 frame#75 PSNR = 39.647672, frame#76 PSNR = 37.883680
+sequence/stefan_cif.yuv iter#1 frame#76 PSNR = 38.856340, frame#77 PSNR = 30.770977
+sequence/stefan_cif.yuv iter#2 frame#76 PSNR = 40.237592, frame#77 PSNR = 35.411071
+sequence/stefan_cif.yuv iter#3 frame#76 PSNR = 40.824350, frame#77 PSNR = 35.395863
+sequence/stefan_cif.yuv iter#1 frame#77 PSNR = 36.639225, frame#78 PSNR = 31.034934
+sequence/stefan_cif.yuv iter#2 frame#77 PSNR = 39.609989, frame#78 PSNR = 36.345330
+sequence/stefan_cif.yuv iter#3 frame#77 PSNR = 40.047393, frame#78 PSNR = 36.268206
+sequence/stefan_cif.yuv iter#1 frame#78 PSNR = 37.779653, frame#79 PSNR = 31.259220
+sequence/stefan_cif.yuv iter#2 frame#78 PSNR = 38.871251, frame#79 PSNR = 35.752564
+sequence/stefan_cif.yuv iter#3 frame#78 PSNR = 39.151830, frame#79 PSNR = 35.737726
+sequence/stefan_cif.yuv iter#1 frame#79 PSNR = 37.778305, frame#80 PSNR = 30.972445
+sequence/stefan_cif.yuv iter#2 frame#79 PSNR = 38.565510, frame#80 PSNR = 36.629142
+sequence/stefan_cif.yuv iter#3 frame#79 PSNR = 38.918007, frame#80 PSNR = 36.734515
+sequence/stefan_cif.yuv iter#1 frame#80 PSNR = 38.345431, frame#81 PSNR = 31.752221
+sequence/stefan_cif.yuv iter#2 frame#80 PSNR = 40.283195, frame#81 PSNR = 36.861311
+sequence/stefan_cif.yuv iter#3 frame#80 PSNR = 40.524948, frame#81 PSNR = 37.104762
+sequence/stefan_cif.yuv iter#1 frame#81 PSNR = 38.513613, frame#82 PSNR = 31.279695
+sequence/stefan_cif.yuv iter#2 frame#81 PSNR = 40.087810, frame#82 PSNR = 35.513469
+sequence/stefan_cif.yuv iter#3 frame#81 PSNR = 39.889564, frame#82 PSNR = 35.505897
+sequence/stefan_cif.yuv iter#1 frame#82 PSNR = 37.246789, frame#83 PSNR = 30.976952
+sequence/stefan_cif.yuv iter#2 frame#82 PSNR = 39.731513, frame#83 PSNR = 37.518680
+sequence/stefan_cif.yuv iter#3 frame#82 PSNR = 39.813128, frame#83 PSNR = 37.815691
+sequence/stefan_cif.yuv iter#1 frame#83 PSNR = 38.776795, frame#84 PSNR = 31.589910
+sequence/stefan_cif.yuv iter#2 frame#83 PSNR = 40.254381, frame#84 PSNR = 37.125669
+sequence/stefan_cif.yuv iter#3 frame#83 PSNR = 40.406190, frame#84 PSNR = 37.126580
+sequence/stefan_cif.yuv iter#1 frame#84 PSNR = 38.116839, frame#85 PSNR = 31.244484
+sequence/stefan_cif.yuv iter#2 frame#84 PSNR = 39.040882, frame#85 PSNR = 34.653677
+sequence/stefan_cif.yuv iter#3 frame#84 PSNR = 39.311485, frame#85 PSNR = 34.604491
+sequence/stefan_cif.yuv iter#1 frame#85 PSNR = 35.952320, frame#86 PSNR = 31.287635
+sequence/stefan_cif.yuv iter#2 frame#85 PSNR = 36.999276, frame#86 PSNR = 36.280636
+sequence/stefan_cif.yuv iter#3 frame#85 PSNR = 37.288312, frame#86 PSNR = 36.541986
+sequence/stefan_cif.yuv iter#1 frame#86 PSNR = 37.080657, frame#87 PSNR = 30.611638
+sequence/stefan_cif.yuv iter#2 frame#86 PSNR = 38.346484, frame#87 PSNR = 35.928504
+sequence/stefan_cif.yuv iter#3 frame#86 PSNR = 38.477499, frame#87 PSNR = 36.158539
+sequence/stefan_cif.yuv iter#1 frame#87 PSNR = 36.171969, frame#88 PSNR = 29.482152
+sequence/stefan_cif.yuv iter#2 frame#87 PSNR = 36.750401, frame#88 PSNR = 32.126381
+sequence/stefan_cif.yuv iter#3 frame#87 PSNR = 36.752521, frame#88 PSNR = 32.069917
+sequence/stefan_cif.yuv iter#1 frame#88 PSNR = 32.349707, frame#89 PSNR = 29.447108
+sequence/stefan_cif.yuv iter#2 frame#88 PSNR = 32.886971, frame#89 PSNR = 31.556675
+sequence/stefan_cif.yuv iter#3 frame#88 PSNR = 32.918999, frame#89 PSNR = 31.667735
+sequence/stefan_cif.yuv iter#1 frame#89 PSNR = 32.288455, frame#90 PSNR = 29.163767
+sequence/stefan_cif.yuv iter#2 frame#89 PSNR = 33.326808, frame#90 PSNR = 31.384765
+sequence/stefan_cif.yuv iter#3 frame#89 PSNR = 33.599855, frame#90 PSNR = 31.288872
+frame#  1 PSNR = 36.352829
+frame#  2 PSNR = 39.982992
+frame#  3 PSNR = 36.850795
+frame#  4 PSNR = 34.468922
+frame#  5 PSNR = 34.102620
+frame#  6 PSNR = 33.694574
+frame#  7 PSNR = 33.953277
+frame#  8 PSNR = 34.090663
+frame#  9 PSNR = 35.129679
+frame# 10 PSNR = 35.329567
+frame# 11 PSNR = 36.098542
+frame# 12 PSNR = 37.365914
+frame# 13 PSNR = 37.998826
+frame# 14 PSNR = 39.479203
+frame# 15 PSNR = 39.733570
+frame# 16 PSNR = 40.021567
+frame# 17 PSNR = 41.095412
+frame# 18 PSNR = 40.583413
+frame# 19 PSNR = 41.570827
+frame# 20 PSNR = 40.433337
+frame# 21 PSNR = 39.815458
+frame# 22 PSNR = 38.785374
+frame# 23 PSNR = 41.267283
+frame# 24 PSNR = 45.043248
+frame# 25 PSNR = 46.391020
+frame# 26 PSNR = 48.730794
+frame# 27 PSNR = 44.487171
+frame# 28 PSNR = 49.904652
+frame# 29 PSNR = 45.639047
+frame# 30 PSNR = 48.296948
+frame# 31 PSNR = 45.234440
+frame# 32 PSNR = 43.951260
+frame# 33 PSNR = 41.894479
+frame# 34 PSNR = 41.446256
+frame# 35 PSNR = 40.885005
+frame# 36 PSNR = 37.781380
+frame# 37 PSNR = 38.275772
+frame# 38 PSNR = 37.702782
+frame# 39 PSNR = 38.857399
+frame# 40 PSNR = 38.089951
+frame# 41 PSNR = 40.069355
+frame# 42 PSNR = 38.812229
+frame# 43 PSNR = 39.614828
+frame# 44 PSNR = 43.194191
+frame# 45 PSNR = 41.490927
+frame# 46 PSNR = 42.239516
+frame# 47 PSNR = 43.029233
+frame# 48 PSNR = 40.762660
+frame# 49 PSNR = 43.050991
+frame# 50 PSNR = 41.036842
+frame# 51 PSNR = 39.788391
+frame# 52 PSNR = 43.534721
+frame# 53 PSNR = 42.770334
+frame# 54 PSNR = 40.408701
+frame# 55 PSNR = 42.815075
+frame# 56 PSNR = 44.154180
+frame# 57 PSNR = 45.434163
+frame# 58 PSNR = 44.812349
+frame# 59 PSNR = 44.387066
+frame# 60 PSNR = 42.621500
+frame# 61 PSNR = 40.823760
+frame# 62 PSNR = 40.617607
+frame# 63 PSNR = 40.609541
+frame# 64 PSNR = 40.274687
+frame# 65 PSNR = 39.674673
+frame# 66 PSNR = 42.649979
+frame# 67 PSNR = 41.043614
+frame# 68 PSNR = 40.552073
+frame# 69 PSNR = 39.068929
+frame# 70 PSNR = 39.182891
+frame# 71 PSNR = 41.013741
+frame# 72 PSNR = 40.116767
+frame# 73 PSNR = 40.546847
+frame# 74 PSNR = 40.417823
+frame# 75 PSNR = 39.647672
+frame# 76 PSNR = 40.824350
+frame# 77 PSNR = 40.047393
+frame# 78 PSNR = 39.151830
+frame# 79 PSNR = 38.918007
+frame# 80 PSNR = 40.524948
+frame# 81 PSNR = 39.889564
+frame# 82 PSNR = 39.813128
+frame# 83 PSNR = 40.406190
+frame# 84 PSNR = 39.311485
+frame# 85 PSNR = 37.288312
+frame# 86 PSNR = 38.477499
+frame# 87 PSNR = 36.752521
+frame# 88 PSNR = 32.918999
+frame# 89 PSNR = 33.599855
+frame# 90 PSNR = 31.288872
+AVERAGE PSNR = 40.225523
+sequence/stefan_cif.yuv iter#1 frame#1 PSNR = 37.981216, frame#2 PSNR = 37.858146
+sequence/stefan_cif.yuv iter#2 frame#1 PSNR = 44.705724, frame#2 PSNR = 46.538365
+sequence/stefan_cif.yuv iter#3 frame#1 PSNR = 44.794389, frame#2 PSNR = 46.637372
+sequence/stefan_cif.yuv iter#1 frame#2 PSNR = 47.030590, frame#3 PSNR = 36.848403
+sequence/stefan_cif.yuv iter#2 frame#2 PSNR = 49.422321, frame#3 PSNR = 41.216964
+sequence/stefan_cif.yuv iter#3 frame#2 PSNR = 49.473842, frame#3 PSNR = 41.256940
+sequence/stefan_cif.yuv iter#1 frame#3 PSNR = 41.648033, frame#4 PSNR = 36.911937
+sequence/stefan_cif.yuv iter#2 frame#3 PSNR = 43.314614, frame#4 PSNR = 41.386338
+sequence/stefan_cif.yuv iter#3 frame#3 PSNR = 43.451754, frame#4 PSNR = 41.507125
+sequence/stefan_cif.yuv iter#1 frame#4 PSNR = 42.199363, frame#5 PSNR = 36.122177
+sequence/stefan_cif.yuv iter#2 frame#4 PSNR = 44.868054, frame#5 PSNR = 39.460363
+sequence/stefan_cif.yuv iter#3 frame#4 PSNR = 44.522901, frame#5 PSNR = 39.446468
+sequence/stefan_cif.yuv iter#1 frame#5 PSNR = 39.863616, frame#6 PSNR = 36.545517
+sequence/stefan_cif.yuv iter#2 frame#5 PSNR = 41.603822, frame#6 PSNR = 38.797874
+sequence/stefan_cif.yuv iter#3 frame#5 PSNR = 42.885750, frame#6 PSNR = 39.193630
+sequence/stefan_cif.yuv iter#1 frame#6 PSNR = 39.593963, frame#7 PSNR = 36.059363
+sequence/stefan_cif.yuv iter#2 frame#6 PSNR = 41.969705, frame#7 PSNR = 37.890939
+sequence/stefan_cif.yuv iter#3 frame#6 PSNR = 41.939161, frame#7 PSNR = 37.909724
+sequence/stefan_cif.yuv iter#1 frame#7 PSNR = 39.165079, frame#8 PSNR = 35.215008
+sequence/stefan_cif.yuv iter#2 frame#7 PSNR = 39.576556, frame#8 PSNR = 39.526336
+sequence/stefan_cif.yuv iter#3 frame#7 PSNR = 39.572189, frame#8 PSNR = 39.724063
+sequence/stefan_cif.yuv iter#1 frame#8 PSNR = 41.005703, frame#9 PSNR = 34.987165
+sequence/stefan_cif.yuv iter#2 frame#8 PSNR = 41.931970, frame#9 PSNR = 38.307643
+sequence/stefan_cif.yuv iter#3 frame#8 PSNR = 41.937360, frame#9 PSNR = 38.240837
+sequence/stefan_cif.yuv iter#1 frame#9 PSNR = 39.082129, frame#10 PSNR = 36.234028
+sequence/stefan_cif.yuv iter#2 frame#9 PSNR = 40.598041, frame#10 PSNR = 39.865385
+sequence/stefan_cif.yuv iter#3 frame#9 PSNR = 40.357953, frame#10 PSNR = 39.862327
+sequence/stefan_cif.yuv iter#1 frame#10 PSNR = 41.106643, frame#11 PSNR = 37.288990
+sequence/stefan_cif.yuv iter#2 frame#10 PSNR = 42.876145, frame#11 PSNR = 41.772242
+sequence/stefan_cif.yuv iter#3 frame#10 PSNR = 42.657601, frame#11 PSNR = 41.960031
+sequence/stefan_cif.yuv iter#1 frame#11 PSNR = 41.949078, frame#12 PSNR = 35.898051
+sequence/stefan_cif.yuv iter#2 frame#11 PSNR = 43.233089, frame#12 PSNR = 40.631452
+sequence/stefan_cif.yuv iter#3 frame#11 PSNR = 43.957811, frame#12 PSNR = 40.863564
+sequence/stefan_cif.yuv iter#1 frame#12 PSNR = 41.862253, frame#13 PSNR = 37.240580
+sequence/stefan_cif.yuv iter#2 frame#12 PSNR = 42.033989, frame#13 PSNR = 42.387225
+sequence/stefan_cif.yuv iter#3 frame#12 PSNR = 42.033947, frame#13 PSNR = 42.453515
+sequence/stefan_cif.yuv iter#1 frame#13 PSNR = 43.607782, frame#14 PSNR = 37.337306
+sequence/stefan_cif.yuv iter#2 frame#13 PSNR = 46.682775, frame#14 PSNR = 42.558668
+sequence/stefan_cif.yuv iter#3 frame#13 PSNR = 46.681210, frame#14 PSNR = 42.570655
+sequence/stefan_cif.yuv iter#1 frame#14 PSNR = 44.627793, frame#15 PSNR = 37.968388
+sequence/stefan_cif.yuv iter#2 frame#14 PSNR = 45.367946, frame#15 PSNR = 41.534158
+sequence/stefan_cif.yuv iter#3 frame#14 PSNR = 45.456114, frame#15 PSNR = 41.610910
+sequence/stefan_cif.yuv iter#1 frame#15 PSNR = 42.035547, frame#16 PSNR = 38.380260
+sequence/stefan_cif.yuv iter#2 frame#15 PSNR = 42.631294, frame#16 PSNR = 43.109938
+sequence/stefan_cif.yuv iter#3 frame#15 PSNR = 42.648887, frame#16 PSNR = 43.215565
+sequence/stefan_cif.yuv iter#1 frame#16 PSNR = 44.286828, frame#17 PSNR = 38.706901
+sequence/stefan_cif.yuv iter#2 frame#16 PSNR = 46.820953, frame#17 PSNR = 46.294578
+sequence/stefan_cif.yuv iter#3 frame#16 PSNR = 46.813766, frame#17 PSNR = 46.352447
+sequence/stefan_cif.yuv iter#1 frame#17 PSNR = 46.820763, frame#18 PSNR = 36.948084
+sequence/stefan_cif.yuv iter#2 frame#17 PSNR = 46.545586, frame#18 PSNR = 45.025084
+sequence/stefan_cif.yuv iter#3 frame#17 PSNR = 46.659235, frame#18 PSNR = 45.062629
+sequence/stefan_cif.yuv iter#1 frame#18 PSNR = 47.665871, frame#19 PSNR = 37.962495
+sequence/stefan_cif.yuv iter#2 frame#18 PSNR = 50.259029, frame#19 PSNR = 45.062903
+sequence/stefan_cif.yuv iter#3 frame#18 PSNR = 50.237822, frame#19 PSNR = 45.234682
+sequence/stefan_cif.yuv iter#1 frame#19 PSNR = 46.190767, frame#20 PSNR = 37.941122
+sequence/stefan_cif.yuv iter#2 frame#19 PSNR = 47.673769, frame#20 PSNR = 42.606334
+sequence/stefan_cif.yuv iter#3 frame#19 PSNR = 48.411731, frame#20 PSNR = 42.655889
+sequence/stefan_cif.yuv iter#1 frame#20 PSNR = 45.552966, frame#21 PSNR = 37.469635
+sequence/stefan_cif.yuv iter#2 frame#20 PSNR = 47.499434, frame#21 PSNR = 42.107142
+sequence/stefan_cif.yuv iter#3 frame#20 PSNR = 47.457005, frame#21 PSNR = 41.955037
+sequence/stefan_cif.yuv iter#1 frame#21 PSNR = 43.041093, frame#22 PSNR = 37.904971
+sequence/stefan_cif.yuv iter#2 frame#21 PSNR = 45.186657, frame#22 PSNR = 43.232132
+sequence/stefan_cif.yuv iter#3 frame#21 PSNR = 45.203043, frame#22 PSNR = 43.362762
+sequence/stefan_cif.yuv iter#1 frame#22 PSNR = 43.875520, frame#23 PSNR = 37.500890
+sequence/stefan_cif.yuv iter#2 frame#22 PSNR = 46.050677, frame#23 PSNR = 45.798087
+sequence/stefan_cif.yuv iter#3 frame#22 PSNR = 46.063326, frame#23 PSNR = 46.703419
+sequence/stefan_cif.yuv iter#1 frame#23 PSNR = 48.980578, frame#24 PSNR = 37.996167
+sequence/stefan_cif.yuv iter#2 frame#23 PSNR = 49.560795, frame#24 PSNR = 45.806281
+sequence/stefan_cif.yuv iter#3 frame#23 PSNR = 49.561748, frame#24 PSNR = 45.806181
+sequence/stefan_cif.yuv iter#1 frame#24 PSNR = 48.001986, frame#25 PSNR = 40.534349
+sequence/stefan_cif.yuv iter#2 frame#24 PSNR = 52.599232, frame#25 PSNR = 52.494426
+sequence/stefan_cif.yuv iter#3 frame#24 PSNR = 52.614602, frame#25 PSNR = 52.405482
+sequence/stefan_cif.yuv iter#1 frame#25 PSNR = 51.160166, frame#26 PSNR = 40.912181
+sequence/stefan_cif.yuv iter#2 frame#25 PSNR = 55.733055, frame#26 PSNR = 48.971990
+sequence/stefan_cif.yuv iter#3 frame#25 PSNR = 55.959871, frame#26 PSNR = 49.000316
+sequence/stefan_cif.yuv iter#1 frame#26 PSNR = 49.402984, frame#27 PSNR = 39.732002
+sequence/stefan_cif.yuv iter#2 frame#26 PSNR = 50.669824, frame#27 PSNR = 52.107463
+sequence/stefan_cif.yuv iter#3 frame#26 PSNR = 50.998666, frame#27 PSNR = 51.998804
+sequence/stefan_cif.yuv iter#1 frame#27 PSNR = 50.078428, frame#28 PSNR = 39.883345
+sequence/stefan_cif.yuv iter#2 frame#27 PSNR = 54.021089, frame#28 PSNR = 45.255668
+sequence/stefan_cif.yuv iter#3 frame#27 PSNR = 53.984492, frame#28 PSNR = 45.257082
+sequence/stefan_cif.yuv iter#1 frame#28 PSNR = 47.704222, frame#29 PSNR = 41.180281
+sequence/stefan_cif.yuv iter#2 frame#28 PSNR = 51.204105, frame#29 PSNR = 47.506070
+sequence/stefan_cif.yuv iter#3 frame#28 PSNR = 51.249107, frame#29 PSNR = 47.501917
+sequence/stefan_cif.yuv iter#1 frame#29 PSNR = 49.539649, frame#30 PSNR = 38.354073
+sequence/stefan_cif.yuv iter#2 frame#29 PSNR = 49.449514, frame#30 PSNR = 49.486760
+sequence/stefan_cif.yuv iter#3 frame#29 PSNR = 49.449514, frame#30 PSNR = 49.427226
+sequence/stefan_cif.yuv iter#1 frame#30 PSNR = 54.448173, frame#31 PSNR = 40.511231
+sequence/stefan_cif.yuv iter#2 frame#30 PSNR = 55.798412, frame#31 PSNR = 46.021980
+sequence/stefan_cif.yuv iter#3 frame#30 PSNR = 56.316922, frame#31 PSNR = 46.021769
+sequence/stefan_cif.yuv iter#1 frame#31 PSNR = 50.347050, frame#32 PSNR = 37.812843
+sequence/stefan_cif.yuv iter#2 frame#31 PSNR = 53.273037, frame#32 PSNR = 45.976587
+sequence/stefan_cif.yuv iter#3 frame#31 PSNR = 53.273037, frame#32 PSNR = 45.762009
+sequence/stefan_cif.yuv iter#1 frame#32 PSNR = 47.334146, frame#33 PSNR = 39.302313
+sequence/stefan_cif.yuv iter#2 frame#32 PSNR = 51.118031, frame#33 PSNR = 45.822919
+sequence/stefan_cif.yuv iter#3 frame#32 PSNR = 52.204220, frame#33 PSNR = 45.822314
+sequence/stefan_cif.yuv iter#1 frame#33 PSNR = 48.970899, frame#34 PSNR = 38.096462
+sequence/stefan_cif.yuv iter#2 frame#33 PSNR = 51.011620, frame#34 PSNR = 45.435061
+sequence/stefan_cif.yuv iter#3 frame#33 PSNR = 52.650597, frame#34 PSNR = 45.435061
+sequence/stefan_cif.yuv iter#1 frame#34 PSNR = 46.654232, frame#35 PSNR = 37.106525
+sequence/stefan_cif.yuv iter#2 frame#34 PSNR = 48.850122, frame#35 PSNR = 43.154686
+sequence/stefan_cif.yuv iter#3 frame#34 PSNR = 48.813271, frame#35 PSNR = 43.051523
+sequence/stefan_cif.yuv iter#1 frame#35 PSNR = 45.125069, frame#36 PSNR = 36.623528
+sequence/stefan_cif.yuv iter#2 frame#35 PSNR = 47.975492, frame#36 PSNR = 41.961479
+sequence/stefan_cif.yuv iter#3 frame#35 PSNR = 47.927479, frame#36 PSNR = 42.629845
+sequence/stefan_cif.yuv iter#1 frame#36 PSNR = 45.937295, frame#37 PSNR = 38.091229
+sequence/stefan_cif.yuv iter#2 frame#36 PSNR = 49.094862, frame#37 PSNR = 42.712162
+sequence/stefan_cif.yuv iter#3 frame#36 PSNR = 49.133329, frame#37 PSNR = 42.746994
+sequence/stefan_cif.yuv iter#1 frame#37 PSNR = 44.689556, frame#38 PSNR = 36.613327
+sequence/stefan_cif.yuv iter#2 frame#37 PSNR = 44.963332, frame#38 PSNR = 43.759513
+sequence/stefan_cif.yuv iter#3 frame#37 PSNR = 45.174929, frame#38 PSNR = 43.574585
+sequence/stefan_cif.yuv iter#1 frame#38 PSNR = 44.730187, frame#39 PSNR = 37.690544
+sequence/stefan_cif.yuv iter#2 frame#38 PSNR = 47.047449, frame#39 PSNR = 42.658974
+sequence/stefan_cif.yuv iter#3 frame#38 PSNR = 47.074304, frame#39 PSNR = 42.849564
+sequence/stefan_cif.yuv iter#1 frame#39 PSNR = 43.905875, frame#40 PSNR = 37.568549
+sequence/stefan_cif.yuv iter#2 frame#39 PSNR = 44.221434, frame#40 PSNR = 44.277680
+sequence/stefan_cif.yuv iter#3 frame#39 PSNR = 44.270753, frame#40 PSNR = 43.732977
+sequence/stefan_cif.yuv iter#1 frame#40 PSNR = 44.668948, frame#41 PSNR = 36.963868
+sequence/stefan_cif.yuv iter#2 frame#40 PSNR = 44.768653, frame#41 PSNR = 42.179534
+sequence/stefan_cif.yuv iter#3 frame#40 PSNR = 44.709717, frame#41 PSNR = 42.206781
+sequence/stefan_cif.yuv iter#1 frame#41 PSNR = 43.773439, frame#42 PSNR = 38.174358
+sequence/stefan_cif.yuv iter#2 frame#41 PSNR = 45.105087, frame#42 PSNR = 43.629153
+sequence/stefan_cif.yuv iter#3 frame#41 PSNR = 45.120397, frame#42 PSNR = 43.871357
+sequence/stefan_cif.yuv iter#1 frame#42 PSNR = 44.583805, frame#43 PSNR = 38.869874
+sequence/stefan_cif.yuv iter#2 frame#42 PSNR = 47.413788, frame#43 PSNR = 45.398347
+sequence/stefan_cif.yuv iter#3 frame#42 PSNR = 47.524473, frame#43 PSNR = 45.392140
+sequence/stefan_cif.yuv iter#1 frame#43 PSNR = 44.968396, frame#44 PSNR = 37.963237
+sequence/stefan_cif.yuv iter#2 frame#43 PSNR = 45.277533, frame#44 PSNR = 43.683769
+sequence/stefan_cif.yuv iter#3 frame#43 PSNR = 45.396589, frame#44 PSNR = 43.695603
+sequence/stefan_cif.yuv iter#1 frame#44 PSNR = 45.963250, frame#45 PSNR = 39.952721
+sequence/stefan_cif.yuv iter#2 frame#44 PSNR = 48.394125, frame#45 PSNR = 46.479417
+sequence/stefan_cif.yuv iter#3 frame#44 PSNR = 48.346502, frame#45 PSNR = 46.471926
+sequence/stefan_cif.yuv iter#1 frame#45 PSNR = 47.511564, frame#46 PSNR = 38.998982
+sequence/stefan_cif.yuv iter#2 frame#45 PSNR = 51.269004, frame#46 PSNR = 45.103785
+sequence/stefan_cif.yuv iter#3 frame#45 PSNR = 51.266269, frame#46 PSNR = 45.103764
+sequence/stefan_cif.yuv iter#1 frame#46 PSNR = 47.019697, frame#47 PSNR = 38.564364
+sequence/stefan_cif.yuv iter#2 frame#46 PSNR = 49.828687, frame#47 PSNR = 48.937447
+sequence/stefan_cif.yuv iter#3 frame#46 PSNR = 49.823117, frame#47 PSNR = 48.956057
+sequence/stefan_cif.yuv iter#1 frame#47 PSNR = 49.194357, frame#48 PSNR = 37.752604
+sequence/stefan_cif.yuv iter#2 frame#47 PSNR = 48.104068, frame#48 PSNR = 42.695757
+sequence/stefan_cif.yuv iter#3 frame#47 PSNR = 48.109564, frame#48 PSNR = 42.711473
+sequence/stefan_cif.yuv iter#1 frame#48 PSNR = 45.016982, frame#49 PSNR = 38.894071
+sequence/stefan_cif.yuv iter#2 frame#48 PSNR = 48.440251, frame#49 PSNR = 43.948185
+sequence/stefan_cif.yuv iter#3 frame#48 PSNR = 48.527189, frame#49 PSNR = 43.896169
+sequence/stefan_cif.yuv iter#1 frame#49 PSNR = 45.884338, frame#50 PSNR = 38.243839
+sequence/stefan_cif.yuv iter#2 frame#49 PSNR = 51.129210, frame#50 PSNR = 49.052281
+sequence/stefan_cif.yuv iter#3 frame#49 PSNR = 51.708996, frame#50 PSNR = 49.052281
+sequence/stefan_cif.yuv iter#1 frame#50 PSNR = 49.985842, frame#51 PSNR = 38.768913
+sequence/stefan_cif.yuv iter#2 frame#50 PSNR = 49.550625, frame#51 PSNR = 45.405157
+sequence/stefan_cif.yuv iter#3 frame#50 PSNR = 49.551278, frame#51 PSNR = 45.499301
+sequence/stefan_cif.yuv iter#1 frame#51 PSNR = 46.690271, frame#52 PSNR = 38.577378
+sequence/stefan_cif.yuv iter#2 frame#51 PSNR = 48.534564, frame#52 PSNR = 48.030232
+sequence/stefan_cif.yuv iter#3 frame#51 PSNR = 48.463268, frame#52 PSNR = 48.030232
+sequence/stefan_cif.yuv iter#1 frame#52 PSNR = 49.041120, frame#53 PSNR = 39.068822
+sequence/stefan_cif.yuv iter#2 frame#52 PSNR = 54.336595, frame#53 PSNR = 47.293647
+sequence/stefan_cif.yuv iter#3 frame#52 PSNR = 53.990433, frame#53 PSNR = 47.388654
+sequence/stefan_cif.yuv iter#1 frame#53 PSNR = 49.679101, frame#54 PSNR = 37.174080
+sequence/stefan_cif.yuv iter#2 frame#53 PSNR = 52.784483, frame#54 PSNR = 44.964758
+sequence/stefan_cif.yuv iter#3 frame#53 PSNR = 52.826086, frame#54 PSNR = 44.979331
+sequence/stefan_cif.yuv iter#1 frame#54 PSNR = 45.635838, frame#55 PSNR = 38.834700
+sequence/stefan_cif.yuv iter#2 frame#54 PSNR = 47.169216, frame#55 PSNR = 43.696976
+sequence/stefan_cif.yuv iter#3 frame#54 PSNR = 47.150306, frame#55 PSNR = 42.786910
+sequence/stefan_cif.yuv iter#1 frame#55 PSNR = 44.593849, frame#56 PSNR = 39.562725
+sequence/stefan_cif.yuv iter#2 frame#55 PSNR = 47.724111, frame#56 PSNR = 44.949595
+sequence/stefan_cif.yuv iter#3 frame#55 PSNR = 47.637595, frame#56 PSNR = 45.658084
+sequence/stefan_cif.yuv iter#1 frame#56 PSNR = 47.310567, frame#57 PSNR = 37.582508
+sequence/stefan_cif.yuv iter#2 frame#56 PSNR = 52.014491, frame#57 PSNR = 44.155570
+sequence/stefan_cif.yuv iter#3 frame#56 PSNR = 52.234972, frame#57 PSNR = 44.217205
+sequence/stefan_cif.yuv iter#1 frame#57 PSNR = 46.694885, frame#58 PSNR = 38.768075
+sequence/stefan_cif.yuv iter#2 frame#57 PSNR = 51.593655, frame#58 PSNR = 44.125622
+sequence/stefan_cif.yuv iter#3 frame#57 PSNR = 51.547968, frame#58 PSNR = 44.125622
+sequence/stefan_cif.yuv iter#1 frame#58 PSNR = 46.002018, frame#59 PSNR = 38.870763
+sequence/stefan_cif.yuv iter#2 frame#58 PSNR = 54.039587, frame#59 PSNR = 49.402468
+sequence/stefan_cif.yuv iter#3 frame#58 PSNR = 54.042259, frame#59 PSNR = 49.374083
+sequence/stefan_cif.yuv iter#1 frame#59 PSNR = 48.328128, frame#60 PSNR = 38.745388
+sequence/stefan_cif.yuv iter#2 frame#59 PSNR = 49.182934, frame#60 PSNR = 44.996283
+sequence/stefan_cif.yuv iter#3 frame#59 PSNR = 49.277625, frame#60 PSNR = 44.990937
+sequence/stefan_cif.yuv iter#1 frame#60 PSNR = 46.120143, frame#61 PSNR = 37.309670
+sequence/stefan_cif.yuv iter#2 frame#60 PSNR = 47.834337, frame#61 PSNR = 44.165822
+sequence/stefan_cif.yuv iter#3 frame#60 PSNR = 47.897698, frame#61 PSNR = 44.144965
+sequence/stefan_cif.yuv iter#1 frame#61 PSNR = 47.200259, frame#62 PSNR = 38.111227
+sequence/stefan_cif.yuv iter#2 frame#61 PSNR = 49.805883, frame#62 PSNR = 44.468476
+sequence/stefan_cif.yuv iter#3 frame#61 PSNR = 49.806639, frame#62 PSNR = 44.460078
+sequence/stefan_cif.yuv iter#1 frame#62 PSNR = 47.715732, frame#63 PSNR = 38.085510
+sequence/stefan_cif.yuv iter#2 frame#62 PSNR = 50.574259, frame#63 PSNR = 42.172814
+sequence/stefan_cif.yuv iter#3 frame#62 PSNR = 50.550712, frame#63 PSNR = 42.178380
+sequence/stefan_cif.yuv iter#1 frame#63 PSNR = 45.598614, frame#64 PSNR = 37.999886
+sequence/stefan_cif.yuv iter#2 frame#63 PSNR = 48.090889, frame#64 PSNR = 44.175564
+sequence/stefan_cif.yuv iter#3 frame#63 PSNR = 48.058495, frame#64 PSNR = 44.173359
+sequence/stefan_cif.yuv iter#1 frame#64 PSNR = 47.600470, frame#65 PSNR = 36.844655
+sequence/stefan_cif.yuv iter#2 frame#64 PSNR = 49.816102, frame#65 PSNR = 42.050057
+sequence/stefan_cif.yuv iter#3 frame#64 PSNR = 50.363494, frame#65 PSNR = 42.092003
+sequence/stefan_cif.yuv iter#1 frame#65 PSNR = 43.166458, frame#66 PSNR = 38.081463
+sequence/stefan_cif.yuv iter#2 frame#65 PSNR = 44.999719, frame#66 PSNR = 41.248984
+sequence/stefan_cif.yuv iter#3 frame#65 PSNR = 44.987404, frame#66 PSNR = 41.288549
+sequence/stefan_cif.yuv iter#1 frame#66 PSNR = 43.565876, frame#67 PSNR = 37.265465
+sequence/stefan_cif.yuv iter#2 frame#66 PSNR = 46.645733, frame#67 PSNR = 42.770521
+sequence/stefan_cif.yuv iter#3 frame#66 PSNR = 46.622907, frame#67 PSNR = 42.745258
+sequence/stefan_cif.yuv iter#1 frame#67 PSNR = 46.153300, frame#68 PSNR = 37.260406
+sequence/stefan_cif.yuv iter#2 frame#67 PSNR = 48.859030, frame#68 PSNR = 44.179736
+sequence/stefan_cif.yuv iter#3 frame#67 PSNR = 48.819241, frame#68 PSNR = 44.126525
+sequence/stefan_cif.yuv iter#1 frame#68 PSNR = 44.361110, frame#69 PSNR = 37.220176
+sequence/stefan_cif.yuv iter#2 frame#68 PSNR = 46.067107, frame#69 PSNR = 42.146966
+sequence/stefan_cif.yuv iter#3 frame#68 PSNR = 46.076386, frame#69 PSNR = 42.147138
+sequence/stefan_cif.yuv iter#1 frame#69 PSNR = 43.574675, frame#70 PSNR = 38.574075
+sequence/stefan_cif.yuv iter#2 frame#69 PSNR = 44.161216, frame#70 PSNR = 43.036478
+sequence/stefan_cif.yuv iter#3 frame#69 PSNR = 44.153306, frame#70 PSNR = 43.046670
+sequence/stefan_cif.yuv iter#1 frame#70 PSNR = 46.997002, frame#71 PSNR = 37.175730
+sequence/stefan_cif.yuv iter#2 frame#70 PSNR = 50.143991, frame#71 PSNR = 44.881109
+sequence/stefan_cif.yuv iter#3 frame#70 PSNR = 50.141812, frame#71 PSNR = 44.887601
+sequence/stefan_cif.yuv iter#1 frame#71 PSNR = 46.590545, frame#72 PSNR = 37.137431
+sequence/stefan_cif.yuv iter#2 frame#71 PSNR = 47.976773, frame#72 PSNR = 46.887075
+sequence/stefan_cif.yuv iter#3 frame#71 PSNR = 48.011311, frame#72 PSNR = 46.887075
+sequence/stefan_cif.yuv iter#1 frame#72 PSNR = 48.663683, frame#73 PSNR = 38.386589
+sequence/stefan_cif.yuv iter#2 frame#72 PSNR = 48.836493, frame#73 PSNR = 45.653432
+sequence/stefan_cif.yuv iter#3 frame#72 PSNR = 48.845726, frame#73 PSNR = 45.698612
+sequence/stefan_cif.yuv iter#1 frame#73 PSNR = 46.869096, frame#74 PSNR = 38.216558
+sequence/stefan_cif.yuv iter#2 frame#73 PSNR = 49.433178, frame#74 PSNR = 44.661791
+sequence/stefan_cif.yuv iter#3 frame#73 PSNR = 49.230739, frame#74 PSNR = 44.656706
+sequence/stefan_cif.yuv iter#1 frame#74 PSNR = 47.095753, frame#75 PSNR = 38.611655
+sequence/stefan_cif.yuv iter#2 frame#74 PSNR = 48.066846, frame#75 PSNR = 46.196087
+sequence/stefan_cif.yuv iter#3 frame#74 PSNR = 48.059591, frame#75 PSNR = 46.112600
+sequence/stefan_cif.yuv iter#1 frame#75 PSNR = 46.456515, frame#76 PSNR = 37.341970
+sequence/stefan_cif.yuv iter#2 frame#75 PSNR = 49.158061, frame#76 PSNR = 42.126965
+sequence/stefan_cif.yuv iter#3 frame#75 PSNR = 48.864910, frame#76 PSNR = 42.174183
+sequence/stefan_cif.yuv iter#1 frame#76 PSNR = 43.687695, frame#77 PSNR = 37.693363
+sequence/stefan_cif.yuv iter#2 frame#76 PSNR = 44.792581, frame#77 PSNR = 43.958516
+sequence/stefan_cif.yuv iter#3 frame#76 PSNR = 44.969907, frame#77 PSNR = 43.934128
+sequence/stefan_cif.yuv iter#1 frame#77 PSNR = 43.694600, frame#78 PSNR = 37.876361
+sequence/stefan_cif.yuv iter#2 frame#77 PSNR = 47.149725, frame#78 PSNR = 46.253122
+sequence/stefan_cif.yuv iter#3 frame#77 PSNR = 46.888169, frame#78 PSNR = 46.094576
+sequence/stefan_cif.yuv iter#1 frame#78 PSNR = 45.730589, frame#79 PSNR = 38.545155
+sequence/stefan_cif.yuv iter#2 frame#78 PSNR = 47.478260, frame#79 PSNR = 42.993896
+sequence/stefan_cif.yuv iter#3 frame#78 PSNR = 47.466627, frame#79 PSNR = 43.003831
+sequence/stefan_cif.yuv iter#1 frame#79 PSNR = 43.049328, frame#80 PSNR = 37.593605
+sequence/stefan_cif.yuv iter#2 frame#79 PSNR = 45.862252, frame#80 PSNR = 40.998119
+sequence/stefan_cif.yuv iter#3 frame#79 PSNR = 45.947545, frame#80 PSNR = 41.287689
+sequence/stefan_cif.yuv iter#1 frame#80 PSNR = 42.736626, frame#81 PSNR = 39.317775
+sequence/stefan_cif.yuv iter#2 frame#80 PSNR = 44.753903, frame#81 PSNR = 46.097311
+sequence/stefan_cif.yuv iter#3 frame#80 PSNR = 44.754238, frame#81 PSNR = 46.097311
+sequence/stefan_cif.yuv iter#1 frame#81 PSNR = 46.125189, frame#82 PSNR = 37.934377
+sequence/stefan_cif.yuv iter#2 frame#81 PSNR = 50.946823, frame#82 PSNR = 44.421102
+sequence/stefan_cif.yuv iter#3 frame#81 PSNR = 51.065426, frame#82 PSNR = 44.422269
+sequence/stefan_cif.yuv iter#1 frame#82 PSNR = 45.126076, frame#83 PSNR = 37.585046
+sequence/stefan_cif.yuv iter#2 frame#82 PSNR = 47.491625, frame#83 PSNR = 44.383087
+sequence/stefan_cif.yuv iter#3 frame#82 PSNR = 47.517437, frame#83 PSNR = 44.380774
+sequence/stefan_cif.yuv iter#1 frame#83 PSNR = 45.128780, frame#84 PSNR = 37.733968
+sequence/stefan_cif.yuv iter#2 frame#83 PSNR = 45.383871, frame#84 PSNR = 42.809259
+sequence/stefan_cif.yuv iter#3 frame#83 PSNR = 45.430089, frame#84 PSNR = 42.777971
+sequence/stefan_cif.yuv iter#1 frame#84 PSNR = 43.752395, frame#85 PSNR = 38.195052
+sequence/stefan_cif.yuv iter#2 frame#84 PSNR = 45.639071, frame#85 PSNR = 43.749207
+sequence/stefan_cif.yuv iter#3 frame#84 PSNR = 45.650019, frame#85 PSNR = 43.752207
+sequence/stefan_cif.yuv iter#1 frame#85 PSNR = 44.911010, frame#86 PSNR = 37.382159
+sequence/stefan_cif.yuv iter#2 frame#85 PSNR = 47.837699, frame#86 PSNR = 43.917875
+sequence/stefan_cif.yuv iter#3 frame#85 PSNR = 47.911361, frame#86 PSNR = 44.764014
+sequence/stefan_cif.yuv iter#1 frame#86 PSNR = 45.733474, frame#87 PSNR = 37.284453
+sequence/stefan_cif.yuv iter#2 frame#86 PSNR = 49.681611, frame#87 PSNR = 43.638553
+sequence/stefan_cif.yuv iter#3 frame#86 PSNR = 49.686511, frame#87 PSNR = 43.638553
+sequence/stefan_cif.yuv iter#1 frame#87 PSNR = 43.554032, frame#88 PSNR = 36.933303
+sequence/stefan_cif.yuv iter#2 frame#87 PSNR = 43.669223, frame#88 PSNR = 39.001536
+sequence/stefan_cif.yuv iter#3 frame#87 PSNR = 43.678003, frame#88 PSNR = 38.980896
+sequence/stefan_cif.yuv iter#1 frame#88 PSNR = 40.372637, frame#89 PSNR = 36.245195
+sequence/stefan_cif.yuv iter#2 frame#88 PSNR = 41.270363, frame#89 PSNR = 38.853450
+sequence/stefan_cif.yuv iter#3 frame#88 PSNR = 41.339656, frame#89 PSNR = 38.862354
+sequence/stefan_cif.yuv iter#1 frame#89 PSNR = 39.508532, frame#90 PSNR = 35.459038
+sequence/stefan_cif.yuv iter#2 frame#89 PSNR = 40.185975, frame#90 PSNR = 37.344153
+sequence/stefan_cif.yuv iter#3 frame#89 PSNR = 40.081079, frame#90 PSNR = 37.559153
+frame#  1 PSNR = 44.794389
+frame#  2 PSNR = 49.473842
+frame#  3 PSNR = 43.451754
+frame#  4 PSNR = 44.522901
+frame#  5 PSNR = 42.885750
+frame#  6 PSNR = 41.939161
+frame#  7 PSNR = 39.572189
+frame#  8 PSNR = 41.937360
+frame#  9 PSNR = 40.357953
+frame# 10 PSNR = 42.657601
+frame# 11 PSNR = 43.957811
+frame# 12 PSNR = 42.033947
+frame# 13 PSNR = 46.681210
+frame# 14 PSNR = 45.456114
+frame# 15 PSNR = 42.648887
+frame# 16 PSNR = 46.813766
+frame# 17 PSNR = 46.659235
+frame# 18 PSNR = 50.237822
+frame# 19 PSNR = 48.411731
+frame# 20 PSNR = 47.457005
+frame# 21 PSNR = 45.203043
+frame# 22 PSNR = 46.063326
+frame# 23 PSNR = 49.561748
+frame# 24 PSNR = 52.614602
+frame# 25 PSNR = 55.959871
+frame# 26 PSNR = 50.998666
+frame# 27 PSNR = 53.984492
+frame# 28 PSNR = 51.249107
+frame# 29 PSNR = 49.449514
+frame# 30 PSNR = 56.316922
+frame# 31 PSNR = 53.273037
+frame# 32 PSNR = 52.204220
+frame# 33 PSNR = 52.650597
+frame# 34 PSNR = 48.813271
+frame# 35 PSNR = 47.927479
+frame# 36 PSNR = 49.133329
+frame# 37 PSNR = 45.174929
+frame# 38 PSNR = 47.074304
+frame# 39 PSNR = 44.270753
+frame# 40 PSNR = 44.709717
+frame# 41 PSNR = 45.120397
+frame# 42 PSNR = 47.524473
+frame# 43 PSNR = 45.396589
+frame# 44 PSNR = 48.346502
+frame# 45 PSNR = 51.266269
+frame# 46 PSNR = 49.823117
+frame# 47 PSNR = 48.109564
+frame# 48 PSNR = 48.527189
+frame# 49 PSNR = 51.708996
+frame# 50 PSNR = 49.551278
+frame# 51 PSNR = 48.463268
+frame# 52 PSNR = 53.990433
+frame# 53 PSNR = 52.826086
+frame# 54 PSNR = 47.150306
+frame# 55 PSNR = 47.637595
+frame# 56 PSNR = 52.234972
+frame# 57 PSNR = 51.547968
+frame# 58 PSNR = 54.042259
+frame# 59 PSNR = 49.277625
+frame# 60 PSNR = 47.897698
+frame# 61 PSNR = 49.806639
+frame# 62 PSNR = 50.550712
+frame# 63 PSNR = 48.058495
+frame# 64 PSNR = 50.363494
+frame# 65 PSNR = 44.987404
+frame# 66 PSNR = 46.622907
+frame# 67 PSNR = 48.819241
+frame# 68 PSNR = 46.076386
+frame# 69 PSNR = 44.153306
+frame# 70 PSNR = 50.141812
+frame# 71 PSNR = 48.011311
+frame# 72 PSNR = 48.845726
+frame# 73 PSNR = 49.230739
+frame# 74 PSNR = 48.059591
+frame# 75 PSNR = 48.864910
+frame# 76 PSNR = 44.969907
+frame# 77 PSNR = 46.888169
+frame# 78 PSNR = 47.466627
+frame# 79 PSNR = 45.947545
+frame# 80 PSNR = 44.754238
+frame# 81 PSNR = 51.065426
+frame# 82 PSNR = 47.517437
+frame# 83 PSNR = 45.430089
+frame# 84 PSNR = 45.650019
+frame# 85 PSNR = 47.911361
+frame# 86 PSNR = 49.686511
+frame# 87 PSNR = 43.678003
+frame# 88 PSNR = 41.339656
+frame# 89 PSNR = 40.081079
+frame# 90 PSNR = 37.559153
+AVERAGE PSNR = 47.572932

@@ -161,14 +161,14 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     int N = 0;
     double value = 0.0;
     int i,j,k,hash_key;
-    double* beta =MALLOC(double,PXL);
+    double beta = 0.0;
 
     for(i = 0 ; i < PXL ; ++i){
         value = weights[i]*gamma;
         cut1(value);
         interp2(value,fr[i]);
 
-        intra_beta_estimation(img_bp[i],beta[i],imgh,imgw);
+        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
         value=0;
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
@@ -176,7 +176,7 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
                 value+=(2*img_bp[i][j][k]-1)*(2*N-4);
             }
         }
-        value=value*beta[i]*(1-2*fr[i])/(imgh*imgw);
+        value=value*beta*(1-2*fr[i])/(imgh*imgw);
 
         frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(value)); // N effecitve than n
         mse+=(frr[i]*ORDER2[i]);
@@ -191,49 +191,54 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     for(i = 0 ; i < PXL ; ++i)
         printf("%lf,",frr[i]);
     printf("%lf\n",psnr);
-    free(beta);
     return psnr;
 }
 
 
-double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** motionVect, const int &imgh, const int &imgw, double* weights, const double &gamma, int*** img_bp_ref2 = NULL){
+double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma, int*** img_bp_ref2 = NULL, int** mv2 = NULL){
 
     double fr[PXL];
     double frr[PXL]={0,0,0,0,0,0,0,0};
-    double n = 0, mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
-    int N = 0;
-    double value = 0.0, En = 0.0, En1 = 0.0;
-    int i,j,k,hash_key;
-    double* beta =MALLOC(double,PXL);
-    double* beta_prev =MALLOC(double,PXL);
-    int ** img_ref = new2d<int>(imgh,imgw);
+    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
+    double value = 0.0, En = 0.0, En1 = 0.0, beta = 0.0, beta_prev = 0.0 ;
+    double suppress = 1.0;
+    int i,j,k;
+    int** img_ref = new2d<int>(imgh,imgw);
+    int** img_ref2;
+
+    if(img_bp_ref2!=NULL)
+        img_ref2 = new2d<int>(imgh,imgw);
+
 
     for(i = 0 ; i < PXL ; ++i){
+
         value = weights[i]*gamma;
         cut1(value);
         interp2(value,fr[i]);
+        suppress = 1-2*fr[i];
 
-        motionComp(img_bp_ref[i],motionVect,imgh,imgw,8,img_ref);
-//        intra_beta_estimation(img_bp[i],beta[i],imgh,imgw);
+        motionComp(img_bp_ref[i],mv1,imgh,imgw,8,img_ref);
+//        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
         En = En1 = 0.0;
         if(img_bp_ref2==NULL){
-            inter_beta_estimation(img_bp[i],beta[i],img_ref,imgh,imgw);
+            inter_beta_estimation(img_bp[i],beta,img_ref,imgh,imgw);
             for(j= 0 ; j < imgh ; ++j)
                 for(k=0 ; k < imgw ; ++k)
                     En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
 
-            En = En*beta[i]*(1-2*fr[i])/(imgh*imgw);
+            En = En*beta*suppress/(imgh*imgw);
             frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En));
         } else {
-            inter2_beta_estimation(img_bp[i],img_bp_ref[i],img_bp_ref2[i],beta[i],beta_prev[i],imgh,imgw);
+            motionComp(img_bp_ref2[i],mv2,imgh,imgw,8,img_ref2);
+            inter2_beta_estimation(img_bp[i], img_ref2, img_ref, beta, beta_prev, imgh, imgw);
             for(j= 0 ; j < imgh ; ++j)
                 for(k=0 ; k < imgw ; ++k){
                     En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
-                    En1+= (2*img_bp[i][j][k]-1)*(2*img_bp_ref2[i][j][k]-1);
+                    En1+= (2*img_bp[i][j][k]-1)*(2*img_ref2[j][k]-1);
                 }
 
-            En = En*beta[i]*(1-2*fr[i])/(imgh*imgw);
-            En1 = En1*beta_prev[i]*(1-2*fr[i])/(imgh*imgw);
+            En = En*beta_prev*suppress/(imgh*imgw);
+            En1 = En1*beta*suppress/(imgh*imgw);
             frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En+En1));
         }
 
@@ -250,9 +255,11 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** motionVect, const 
         printf("%lf,",frr[i]);
     printf("%lf\n",psnr);
     //printf("%lf,%lf\n",psnr_ori,psnr);
-    free(beta);
-    free(beta_prev);
+
     delete2d<int>(img_ref);
+    if(img_bp_ref2!=NULL){
+        delete2d<int>(img_ref2);
+    }
     return psnr;
 }
 

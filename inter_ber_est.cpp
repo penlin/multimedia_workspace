@@ -1,29 +1,15 @@
 #include "frame.h"
 #include "uep_predict_utils.h"
 
-
-const double DERIVE_SNR[5][PXL]={{2.597844, 2.244942, 1.760056, 1.214787, 0.130591, 0.017250, 0.017250, 0.017250},
-                                {2.382862, 1.963794, 1.582247, 1.234872, 0.765783, 0.043096, 0.013702, 0.013702},
-                                {2.092984, 1.818853, 1.521252, 1.218653, 0.921529, 0.402081, 0.013660, 0.010884},
-                                {1.933909, 1.607395, 1.418209, 1.193889, 0.953517, 0.706520, 0.176923, 0.009999},
-                                {1.720262, 1.532340, 1.260163, 1.118219, 0.943704, 0.752738, 0.552381, 0.121300}};
-
-const double MINPOW_PSNR25[PXL] = {2.357380, 1.877585, 1.364773, 0.268487, 0.019715, 0.013750, 0.013750, 0.013750};
-
-const double DERIVE_INTRA_SNR[5][PXL] = {{1.542550, 1.738844, 1.455300, 1.401314, 1.168949, 0.641986, 0.041631, 0.010000},
-                                        {1.468446, 1.559849, 1.369071, 1.310368, 1.211347, 0.925365, 0.143461, 0.011934},
-                                        {1.316359, 1.459535, 1.241203, 1.226068, 1.163622, 0.972940, 0.578915, 0.041608},
-                                        {1.225215, 1.260888, 1.192017, 1.174171, 1.100385, 0.963340, 0.748424, 0.335652},
-                                        {1.178798, 1.228975, 1.131290, 1.106988, 1.014853, 0.959307, 0.779196, 0.600574}};
-
 const char* FILENAME[4] = {__FOREMAN, __HALL, __STEFAN, __AKIYO};
 
 int main(int argc,char* argv[]){
 
     startRandom();
 
-    const int h = __HEIGHT, w = __WIDTH;
+    const int h = __HEIGHT, w = __WIDTH, mbSize = 8;
     int f = __FRAME ;
+    const int mv_len = h*w/mbSize/mbSize;
     const int len = __SNR_E-__SNR_S+1;
     double snr[len];
     double EbN0 ;
@@ -35,13 +21,15 @@ int main(int argc,char* argv[]){
         fptr = fopen(__SEQ__,"r+b");
     assert(fptr!=NULL);
     rewind(fptr);
+
     Frame* frame = new Frame(h,w,TYPE_Y,0);
     Frame* frame_prev = new Frame(h,w,TYPE_Y,1);
+    Frame* frame_next = new Frame(h,w,TYPE_Y,2);
 
     double PSNR[f] ;//= MALLOC(double,f);
-    double PSNR_prev[f] ;
     double* weights = MALLOC(double,PXL);
-    int** mv = new2d<int>(h,w,0);
+    int** mv = new2d<int>(2,mv_len,0);
+    int** mv_prev = new2d<int>(2,mv_len,0);
 
     for(int i = 0 ; i < len ; ++i)
         snr[i] = __SNR_S+i;
@@ -60,21 +48,24 @@ int main(int argc,char* argv[]){
         for(int j = 0 ; j < PXL ; ++j)
             weights[j] = 1;//(weight_type?DERIVE_INTRA_SNR[i][j]:1);
         frame->read(fptr);
-        for(int j = 1 ; j < f ; ++ j){
-            frame_prev->copy(frame);
-            frame->read(fptr);
-//            if(weight_type)
-//                weight_predict_Inter_minMSE(frame->img_bp,h,w,weights,EbN0);
-//            printf("frame #%d: weights:[ ",j);
-//            for(int k = 0 ; k < PXL ; ++k)
-//                printf("%.4f, ",weights[k]);
-//            printf("]\n");
-            motionEstES(frame->Y,frame_prev->Y,h,w,8,5,mv);
-            PSNR[j] = inter_psnr_est(frame->img_bp,frame_prev->img_bp,mv,h,w,weights,EbN0);
+        frame_next->read(fptr);
+        motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
+        PSNR[0] = inter_psnr_est(frame->img_bp,frame_next->img_bp,mv,h,w,weights,EbN0);
 
-            motionEstES(frame_prev->Y,frame->Y,h,w,8,5,mv);
-            PSNR_prev[j] = inter_psnr_est(frame_prev->img_bp,frame->img_bp,mv,h,w,weights,EbN0);
+        for(int j = 1 ; j < f - 1; ++ j){
+            frame_prev->copy(frame);
+            frame->copy(frame_next);
+            frame_next->read(fptr);
+
+            motionEstES(frame->Y,frame_prev->Y,h,w,8,5,mv_prev);
+            motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
+            PSNR[j] = inter_psnr_est(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,weights,EbN0,frame_next->img_bp,mv);
+//            PSNR[j] = inter_psnr_est(frame_prev->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0);
+
         }
+
+        motionEstES(frame_next->Y,frame->Y,h,w,8,5,mv_prev);
+        PSNR[f-1] = inter_psnr_est(frame_next->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0);
 
         // print result PSNR
 #if __PROGRESS__
@@ -92,7 +83,10 @@ int main(int argc,char* argv[]){
     // free memory
     free(weights);
     delete2d<int>(mv);
+    delete2d<int>(mv_prev);
+
     fclose(fptr);
     delete frame;
     delete frame_prev;
+    delete frame_next;
 }

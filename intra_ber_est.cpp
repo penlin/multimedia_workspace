@@ -60,10 +60,10 @@ int main(int argc,char* argv[]){
             frame->read(fptr);
             if(weight_type)
                 weight_predict_Intra_minMSE(frame->img_bp,h,w,weights,EbN0);
-            printf("frame #%d: weights:[ ",j);
-            for(int k = 0 ; k < PXL ; ++k)
-                printf("%.4f, ",weights[k]);
-            printf("]\n");
+//            printf("frame #%d: weights:[ ",j);
+//            for(int k = 0 ; k < PXL ; ++k)
+//                printf("%.4f, ",weights[k]);
+//            printf("]\n");
             PSNR[j] = intra_psnr_est(frame->img_bp,h,w,weights,EbN0);
         }
 

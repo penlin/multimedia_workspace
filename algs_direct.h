@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "frame.h"
-
+#include "uep_predict_utils.h"
 
 /**
 *   @Penlin: algorithm for direct decode
@@ -17,7 +17,7 @@
 *
 **/
 
-void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* weights,double* PSNR , int*** img_out = NULL){
+void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
 
     Frame* frame = new Frame(imgh,imgw,0,0);
@@ -28,7 +28,13 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     const int lm = imgh*imgw;
     const int lu = lm + 2;
 
+    double* weights = MALLOC(double,PXL);
 
+    if(weights)
+        weight_predict_minMSE(weights,pow(10,snr/10));
+    else
+        for(int j = 0 ; j < PXL ; ++j)
+            weights[j] = 1;
 
     double* Lu = MALLOC(double,lu);
     double* Le1 = MALLOC(double,lu);
@@ -89,6 +95,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     free(Lu);
     free(Le1);
     free(Le2);
+    free(weights);
 
     delete frame;
 }

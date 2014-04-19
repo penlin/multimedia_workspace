@@ -21,7 +21,7 @@
 *
 **/
 
-void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* weights,double* PSNR , int*** img_out = NULL){
+void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
     Frame* frame = new Frame(imgh,imgw,0,0);
     Frame* frame_prev = new Frame(imgh,imgw,0,1);
@@ -32,6 +32,10 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     const int Ns = pow(2,G_L-1);
     const int lm = imgh*imgw;
     const int lu = lm + 2;
+
+    double* weights = MALLOC(double,PXL);
+    for(int i = 0 ; i < PXL; ++i)
+        weights[i] = 1;
 
     // frame buffer
     int** imgr = new2d<int>(imgh,imgw);
@@ -309,6 +313,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     free(Lu);
     free(Le1);
     free(Le2);
+    free(weights);
 
     delete2d<double>(Lu_c);
     delete2d<double>(Lu_s);

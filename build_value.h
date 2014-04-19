@@ -66,14 +66,14 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTRA__
-#define __SEQ__     __FOREMAN
+#define __ALGO__    __INTER__
+#define __SEQ__     __AKIYO
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       0              // debug msg
+#define __DEBUG__       0             // debug msg
 #define __OPT__         0&&__DEBUG__
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
 #define __PROGRESS__    0&&__DEBUG__    // msg for the progress

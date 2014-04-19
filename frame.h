@@ -124,6 +124,9 @@ public:
     void copy(Frame* frame){
         for(int i = 0 ; i < lm ; ++i)
             Y[0][i] = frame->Y[0][i];
+        for(int i = 0 ; i < PXL*lm ; ++i)
+            img_bp[0][0][i] = frame->img_bp[0][0][i];
+
         if(type==TYPE_YUV_420){
             for(int i = 0 ; i < lm/4 ; ++i){
                 U[0][i] = frame->U[0][i];

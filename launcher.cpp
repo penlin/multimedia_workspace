@@ -2,7 +2,7 @@
 #include "algs_intra.h"
 #include "algs_inter.h"
 #include "io_utils.h"
-#include "uep_predict_utils.h"
+
 
 #define DECODE __ALGO__
 
@@ -49,7 +49,6 @@ int main(int argc,char* argv[]){
     rewind(fptr);
 
     double* PSNR = (double*) malloc(sizeof(double)*f);
-    double* weights = (double*)malloc(sizeof(double)*PXL);
 
     trellis(G,G_N,G_L,Ns,pout,pstate);
 
@@ -67,20 +66,20 @@ int main(int argc,char* argv[]){
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
-        for(int j = 0 ; j < PXL ; ++j)
-            weights[j] = 1;//DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
+//        for(int j = 0 ; j < PXL ; ++j)
+//            weights[j] = 1;//DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
 
         // decode
 //        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
 //        intra_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
 //        inter_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
         if(argc > 2)
-            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,weight_type,NULL);
+            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
         else
-            DECODE(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,weight_type,NULL);
+            DECODE(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
 
         // print result PSNR
-#if __PROGRESS__
+#if __PSNR__
         double avg_psnr = 0.0;
         for(int j = 0 ; j < f ; ++j){
             printf("frame#%3d PSNR = %lf\n",j+1,PSNR[j]);
@@ -95,7 +94,7 @@ int main(int argc,char* argv[]){
         //yuv_write(__TAG__,_Y,U,V,f,h,w);
 #endif
 
-        //write_psnr_info(PSNR,snr[i]);
+        write_psnr_info(PSNR,snr[i]);
     }
 
     // free memory
@@ -103,6 +102,5 @@ int main(int argc,char* argv[]){
     delete2d<int>(pstate);
     delete2d<int>(pout);
     free(PSNR);
-    free(weights);
     fclose(fptr);
 }
