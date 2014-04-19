@@ -45,7 +45,7 @@
 #define __FRAME     20
 #define __SNR       4
 #define __SNR_S     0
-#define __SNR_E     0
+#define __SNR_E     4
 
 
 #define __SEQ_DIR   "sequence/"

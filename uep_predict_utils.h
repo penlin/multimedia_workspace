@@ -251,9 +251,9 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
 //    for(i = 0 ; i < PXL ; ++i)
 //        printf("%lf,",fr[i]);
 //    printf("%lf\n",psnr_ori);
-    for(i = 0 ; i < PXL ; ++i)
-        printf("%lf,",frr[i]);
-    printf("%lf\n",psnr);
+//    for(i = 0 ; i < PXL ; ++i)
+//        printf("%lf,",frr[i]);
+//    printf("%lf\n",psnr);
     //printf("%lf,%lf\n",psnr_ori,psnr);
 
     delete2d<int>(img_ref);
