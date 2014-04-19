@@ -81,31 +81,31 @@ void inter_beta_estimation(int** imgr_bp , double &beta, int** img_bp_ref, const
 void inter2_beta_estimation(int** imgr_bp , int** img_bp_ref, int** img_bp_ref2, double &beta_t, double &beta_t2, const int &imgh, const int &imgw){
 
     int i, j ;
-    int** hash_key = new2d<int>(imgh-2,imgw-2);
-    int** his_idx = new2d<int>(imgh-2,imgw-2);
+    int** hash_key = new2d<int>(imgh,imgw);
+    int** his_idx = new2d<int>(imgh,imgw);
     int his[8] = {1,1,1,1,1,1,1,1};
 
-    for(i=0 ; i < imgh-2 ; ++i){
-        for(j=0 ; j<imgw-2 ; ++j){
-            hash_key[i][j] = ( 2*img_bp_ref[i+1][j+1] + img_bp_ref2[i+1][j+1] );
-            his_idx[i][j] = ( 4*imgr_bp[i+1][j+1] + hash_key[i][j]);
+    for(i=0 ; i < imgh ; ++i){
+        for(j=0 ; j<imgw  ; ++j){
+            hash_key[i][j] = ( 2*img_bp_ref[i][j] + img_bp_ref2[i][j] );
+            his_idx[i][j] = ( 4*imgr_bp[i][j] + hash_key[i][j]);
             his[his_idx[i][j]]++;
         }
     }
 
     //[beta_s beta_t] = sum((b.')*a)/sum(a.^2);
     double aa = 0, aa2 = 0 , a_a = 0, ab = 0 , ab2 = 0 , b = 0;
-    for(i = 0 ; i < imgh-2 ; ++i ){
-        for(j=0 ; j <imgw-2 ; ++j){
+    for(i = 0 ; i < imgh ; ++i ){
+        for(j=0 ; j <imgw ; ++j){
             b = (log(his[hash_key[i][j]+4])-log(his[hash_key[i][j]]));
 
-            ab+=((2*img_bp_ref[i+1][j+1]-1)*b);
-            ab2+=((2*img_bp_ref2[i+1][j+1]-1)*b);
+            ab+=((2*img_bp_ref[i][j]-1)*b);
+            ab2+=((2*img_bp_ref2[i][j]-1)*b);
 
-            aa+=((2*img_bp_ref[i+1][j+1]-1)*(2*img_bp_ref[i+1][j+1]-1));
-            aa2+=((2*img_bp_ref2[i+1][j+1]-1)*(2*img_bp_ref2[i+1][j+1]-1));
+            aa+=((2*img_bp_ref[i][j]-1)*(2*img_bp_ref[i][j]-1));
+            aa2+=((2*img_bp_ref2[i][j]-1)*(2*img_bp_ref2[i][j]-1));
 
-            a_a+=((2*img_bp_ref2[i+1][j+1]-1)*(2*img_bp_ref[i+1][j+1]-1));
+            a_a+=((2*img_bp_ref2[i][j]-1)*(2*img_bp_ref[i][j]-1));
         }
     }
 

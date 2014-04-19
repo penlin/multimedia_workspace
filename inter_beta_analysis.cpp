@@ -1,49 +1,7 @@
-/*
-* 72% timeslape usage than original version , but only record the PSNR information,  BER information would not print
-*/
 #include "frame.h"
 #include "uep_predict_utils.h"
 
 const char* FILENAME[4] = {__FOREMAN, __HALL, __STEFAN, __AKIYO};
-
-void calInterEn(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* eEn, int*** img_bp_ref2= NULL, int** mv2 = NULL ){
-
-    int** img_ref = new2d<int>(imgh,imgw);
-    int** img_ref2;
-    double En = 0.0, En1 = 0.0, beta, beta_prev;
-    if(img_bp_ref2!=NULL)
-        img_ref2 = new2d<int>(imgh,imgw);
-
-    for(int i = 0 , j = 0, k = 0; i < PXL ; ++i){
-
-        motionComp(img_bp_ref[i],mv1,imgh,imgw,8,img_ref);
-        En = En1 = 0.0;
-        if(img_bp_ref2==NULL){
-            inter_beta_estimation(img_bp[i],beta,img_ref,imgh,imgw);
-            for(j= 0 ; j < imgh ; ++j)
-                for(k=0 ; k < imgw ; ++k)
-                    En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
-
-            eEn[i] = En*beta/(imgh*imgw);
-        } else {
-            motionComp(img_bp_ref2[i],mv2,imgh,imgw,8,img_ref2);
-            inter2_beta_estimation(img_bp[i], img_ref2, img_ref, beta, beta_prev, imgh, imgw);
-            for(j= 0 ; j < imgh ; ++j)
-                for(k=0 ; k < imgw ; ++k){
-                    En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
-                    En1+= (2*img_bp[i][j][k]-1)*(2*img_ref2[j][k]-1);
-                }
-
-            eEn[i] = (En*beta_prev+En1*beta)/(imgh*imgw);
-        }
-    }
-
-    delete2d<int>(img_ref);
-    if(img_bp_ref2!=NULL){
-        delete2d<int>(img_ref2);
-    }
-
-}
 
 int main(int argc,char* argv[]){
 
@@ -52,9 +10,6 @@ int main(int argc,char* argv[]){
     const int h = __HEIGHT, w = __WIDTH, mbSize = 8;
     int f = __FRAME ;
     const int mv_len = h*w/mbSize/mbSize;
-    const int len = __SNR_E-__SNR_S+1;
-    double snr[len];
-    double EbN0[len] ;
 
     FILE* fptr;
     if(argc > 2)
@@ -70,7 +25,6 @@ int main(int argc,char* argv[]){
 
     double PSNR[len][f] ;//= MALLOC(double,f);
     double* weights = MALLOC(double,PXL);
-    double* eEn = MALLOC(double,PXL);
     int** mv = new2d<int>(2,mv_len,0);
     int** mv_prev = new2d<int>(2,mv_len,0);
 
@@ -93,9 +47,9 @@ int main(int argc,char* argv[]){
     frame->read(fptr);
     frame_next->read(fptr);
     motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
-    calInterEn(frame->img_bp,frame_next->img_bp,mv,h,w,eEn);
+
     for(int i = 0 ; i < len ; ++i)
-        PSNR[i][0] = inter_psnr_est(weights,EbN0[i],eEn);
+        PSNR[i][0] = inter_psnr_est(frame->img_bp,frame_next->img_bp,mv,h,w,weights,EbN0[i]);
 
     for(int j = 1 ; j < f - 1; ++ j){
         frame_prev->copy(frame);
@@ -105,15 +59,16 @@ int main(int argc,char* argv[]){
         motionEstES(frame->Y,frame_prev->Y,h,w,8,5,mv_prev);
         motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
 
-        calInterEn(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,eEn,frame_next->img_bp,mv);
         for(int i = 0 ; i < len ; ++i)
-            PSNR[i][j] = inter_psnr_est(weights,EbN0[i],eEn);
+            PSNR[i][j] = inter_psnr_est(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,weights,EbN0[i],frame_next->img_bp,mv);
+//              PSNR[j] = inter_psnr_est(frame_prev->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0);
+
     }
 
     motionEstES(frame_next->Y,frame->Y,h,w,8,5,mv_prev);
-    calInterEn(frame_next->img_bp,frame->img_bp,mv_prev,h,w,eEn);
+
     for(int i = 0 ; i < len ; ++i)
-        PSNR[i][f-1] = inter_psnr_est(weights,EbN0[i],eEn);
+        PSNR[i][f-1] = inter_psnr_est(frame_next->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0[i]);
 
     // print result PSNR
     double avg_psnr[len] ;
@@ -134,7 +89,6 @@ int main(int argc,char* argv[]){
 
     // free memory
     free(weights);
-    free(eEn);
     delete2d<int>(mv);
     delete2d<int>(mv_prev);
 

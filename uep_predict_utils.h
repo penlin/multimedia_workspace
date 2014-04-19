@@ -251,15 +251,53 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
 //    for(i = 0 ; i < PXL ; ++i)
 //        printf("%lf,",fr[i]);
 //    printf("%lf\n",psnr_ori);
+
 //    for(i = 0 ; i < PXL ; ++i)
 //        printf("%lf,",frr[i]);
 //    printf("%lf\n",psnr);
+
     //printf("%lf,%lf\n",psnr_ori,psnr);
 
     delete2d<int>(img_ref);
     if(img_bp_ref2!=NULL){
         delete2d<int>(img_ref2);
     }
+    return psnr;
+}
+
+double inter_psnr_est(double* weights, const double &gamma, double* eEn){
+
+    double fr[PXL];
+    double frr[PXL]={0,0,0,0,0,0,0,0};
+    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
+    double value = 0.0 ;
+    double suppress = 1.0;
+
+    for(int i = 0 ; i < PXL ; ++i){
+
+        value = weights[i]*gamma;
+        cut1(value);
+        interp2(value,fr[i]);
+        suppress = 1-2*fr[i];
+
+        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(eEn[i]*suppress));
+
+        mse+=(frr[i]*ORDER2[i]);
+        mse_ori+=(fr[i]*ORDER2[i]);
+
+    }
+
+    psnr = 10*log10(65025/mse);
+    psnr_ori = 10*log10(65025/mse_ori);
+
+//    for(i = 0 ; i < PXL ; ++i)
+//        printf("%lf,",fr[i]);
+//    printf("%lf\n",psnr_ori);
+
+//    for(i = 0 ; i < PXL ; ++i)
+//        printf("%lf,",frr[i]);
+//    printf("%lf\n",psnr);
+
     return psnr;
 }
 
