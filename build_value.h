@@ -42,10 +42,10 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
-#define __FRAME     300
+#define __FRAME     20
 #define __SNR       4
 #define __SNR_S     0
-#define __SNR_E     4
+#define __SNR_E     0
 
 
 #define __SEQ_DIR   "sequence/"
@@ -73,9 +73,9 @@
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       0             // debug msg
+#define __DEBUG__       1             // debug msg
 #define __OPT__         0&&__DEBUG__
-#define __STATUS__      0&&__DEBUG__    // msg for status right now
+#define __STATUS__      1&&__DEBUG__    // msg for status right now
 #define __PROGRESS__    0&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
 #define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure

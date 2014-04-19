@@ -23,10 +23,13 @@
 
 void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
-    Frame* frame = new Frame(imgh,imgw,0,0);
-    Frame* frame_prev = new Frame(imgh,imgw,0,1);
-    frame->encode_info(snr,G);
-    frame_prev->encode_info(snr,G);
+    Frame frameMgr[2] = {Frame(imgh,imgw,0,0), Frame(imgh,imgw,0,1)};
+    Frame* frame ;// = new Frame(imgh,imgw,0,0);
+    Frame* frame_prev;// = new Frame(imgh,imgw,0,1);
+    frameMgr[0].encode_info(snr,G);
+    frameMgr[1].encode_info(snr,G);
+//    frame->encode_info(snr,G);
+//    frame_prev->encode_info(snr,G);
 
     // param initial
     const int Ns = pow(2,G_L-1);
@@ -40,8 +43,12 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     // frame buffer
     int** imgr = new2d<int>(imgh,imgw);
     int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
-    double** Ly = new2d<double>(PXL,2*lu);    //channel value
-    int** map = new2d<int>(PXL,lm);      //interleaver map
+
+    double** LyMgr[2] = {new2d<double>(PXL,2*lu), new2d<double>(PXL,2*lu)};
+    int** MapMgr[2] = {new2d<int>(PXL,lm), new2d<int>(PXL,lm)};
+
+    double** Ly ;//= new2d<double>(PXL,2*lu);    //channel value
+    int** map ;//= new2d<int>(PXL,lm);      //interleaver map
 
     double* beta = (double*)malloc(sizeof(double)*PXL);
 
@@ -61,8 +68,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     int** imgr_prev = new2d<int>(imgh,imgw);
     int*** imgr_bp_prev = new3d<int>(PXL,imgh,imgw);
 
-    double** Ly_prev = new2d<double>(PXL,2*lu);    //channel value
-    int** map_prev = new2d<int>(PXL,lm);      //interleaver map
+    double** Ly_prev;// = new2d<double>(PXL,2*lu);    //channel value
+    int** map_prev ;//= new2d<int>(PXL,lm);      //interleaver map
 
     double* beta_prev = MALLOC(double,PXL);
 
@@ -84,7 +91,9 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 //    Ly = Ly_in[0];
 //    map = map_in[0];
 //    imgO = Y[0];
-    frame->next(fptr,Ly,map,weights);
+
+//    frame->next(fptr,Ly,map,weights);
+    frameMgr[0].next(fptr,LyMgr[0],MapMgr[0],weights);
     for(int i = 0 ; i < PXL ; ++i)
         beta[i] = beta_prev[i] = beta_prev2[i] = 0;
 
@@ -108,11 +117,19 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 #if __PROGRESS__
         printf("Encoding frame#%d\n",f+1);
 #endif
-        frame_prev->copy(frame);
-        copyMatrix<double>(Ly_prev, Ly, PXL*2*lu);
-        copyMatrix<int>(map_prev, map, PXL*lm);
 
-        frame->next(fptr,Ly,map,weights);
+        Ly_prev = LyMgr[(f+1)%2];
+        Ly = LyMgr[f%2];
+        map_prev = MapMgr[(f+1)%2];
+        map = MapMgr[f%2];
+        frameMgr[f%2].next(fptr,Ly,map,weights);
+        frame_prev = &frameMgr[(f+1)%2];
+        frame = &frameMgr[f%2];
+//        frame_prev->copy(frame);
+//        copyMatrix<double>(Ly_prev, Ly, PXL*2*lu);
+//        copyMatrix<int>(map_prev, map, PXL*lm);
+//
+//        frame->next(fptr,Ly,map,weights);
 #if __PROGRESS__
         printf("Decoding frame#%d\n",f+1);
 #endif
@@ -183,7 +200,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
 //                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
 //                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
-                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
+//                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
 
                         ii = map_prev[t_lvl][j+i*imgw]/imgw;
                         jj = map_prev[t_lvl][j+i*imgw]%imgw;
@@ -191,7 +208,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
 //                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
 //                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
-                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
+//                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
                     }
 
             bin2dec_img(imgr_bp,imgh,imgw,imgr);
@@ -300,10 +317,12 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     delete3d<int>(imgr_bp_prev2);
     delete2d<int>(imgr);
     delete2d<int>(imgr_prev);
-    delete2d<double>(Ly);
-    delete2d<int>(map);
-    delete2d<double>(Ly_prev);
-    delete2d<int>(map_prev);
+
+    delete2d<double>(LyMgr[0]);
+    delete2d<double>(LyMgr[1]);
+    delete2d<int>(MapMgr[0]);
+    delete2d<int>(MapMgr[1]);
+
     free(beta);
     free(beta_prev);
     free(beta_prev2);
@@ -328,8 +347,6 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     delete2d<int>(MV);
     delete2d<int>(MV_prev);
 
-    delete frame;
-    delete frame_prev;
 }
 
 

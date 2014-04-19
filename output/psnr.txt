@@ -15655,3 +15655,57 @@ frame#300 PSNR = 63.579674
 
 Total Time Comsume:10569.297000
 
+=============================
+Sat Apr 19 15:05:30 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 25.842482
+frame#  2 PSNR = 32.419608
+frame#  3 PSNR = 36.191170
+frame#  4 PSNR = 38.696406
+frame#  5 PSNR = 39.768345
+frame#  6 PSNR = 41.372634
+frame#  7 PSNR = 40.911718
+frame#  8 PSNR = 41.566383
+frame#  9 PSNR = 40.910629
+frame# 10 PSNR = 42.334871
+frame# 11 PSNR = 42.558929
+frame# 12 PSNR = 42.687223
+frame# 13 PSNR = 42.285895
+frame# 14 PSNR = 41.428708
+frame# 15 PSNR = 40.392214
+frame# 16 PSNR = 38.774539
+frame# 17 PSNR = 39.976527
+frame# 18 PSNR = 40.161864
+frame# 19 PSNR = 38.405460
+frame# 20 PSNR = 33.653924
+
+Total Time Comsume:136.489000
+
+=============================
+Sat Apr 19 15:09:26 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.572239
+frame#  2 PSNR = 36.231391
+frame#  3 PSNR = 36.487908
+frame#  4 PSNR = 36.678146
+frame#  5 PSNR = 36.222004
+frame#  6 PSNR = 36.364120
+frame#  7 PSNR = 36.103001
+frame#  8 PSNR = 36.057010
+frame#  9 PSNR = 36.116674
+frame# 10 PSNR = 36.253737
+frame# 11 PSNR = 35.776623
+frame# 12 PSNR = 35.542562
+frame# 13 PSNR = 36.502850
+frame# 14 PSNR = 35.974711
+frame# 15 PSNR = 35.479368
+frame# 16 PSNR = 36.342974
+frame# 17 PSNR = 35.962746
+frame# 18 PSNR = 36.469999
+frame# 19 PSNR = 35.619564
+frame# 20 PSNR = 36.172168
+
+Total Time Comsume:70.532000
+
