@@ -24,12 +24,12 @@
 void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
     Frame frameMgr[2] = {Frame(imgh,imgw,0,0), Frame(imgh,imgw,0,1)};
-    Frame* frame ;// = new Frame(imgh,imgw,0,0);
-    Frame* frame_prev;// = new Frame(imgh,imgw,0,1);
+    Frame* frame ;
+    Frame* frame_prev;
     frameMgr[0].encode_info(snr,G);
     frameMgr[1].encode_info(snr,G);
-//    frame->encode_info(snr,G);
-//    frame_prev->encode_info(snr,G);
+
+    double* ber = MALLOC(double, PXL);
 
     // param initial
     const int Ns = pow(2,G_L-1);
@@ -47,8 +47,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double** LyMgr[2] = {new2d<double>(PXL,2*lu), new2d<double>(PXL,2*lu)};
     int** MapMgr[2] = {new2d<int>(PXL,lm), new2d<int>(PXL,lm)};
 
-    double** Ly ;//= new2d<double>(PXL,2*lu);    //channel value
-    int** map ;//= new2d<int>(PXL,lm);      //interleaver map
+    double** Ly ;       //channel value
+    int** map ;         //interleaver map
 
     double* beta = (double*)malloc(sizeof(double)*PXL);
 
@@ -68,8 +68,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     int** imgr_prev = new2d<int>(imgh,imgw);
     int*** imgr_bp_prev = new3d<int>(PXL,imgh,imgw);
 
-    double** Ly_prev;// = new2d<double>(PXL,2*lu);    //channel value
-    int** map_prev ;//= new2d<int>(PXL,lm);      //interleaver map
+    double** Ly_prev;       //channel value
+    int** map_prev ;        //interleaver map
 
     double* beta_prev = MALLOC(double,PXL);
 
@@ -88,11 +88,6 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double** Le_ref = new2d<double>(PXL,lm);
 
     // assigning first frame
-//    Ly = Ly_in[0];
-//    map = map_in[0];
-//    imgO = Y[0];
-
-//    frame->next(fptr,Ly,map,weights);
     frameMgr[0].next(fptr,LyMgr[0],MapMgr[0],weights);
     for(int i = 0 ; i < PXL ; ++i)
         beta[i] = beta_prev[i] = beta_prev2[i] = 0;
@@ -221,6 +216,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
             motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
+//            motionEstES(frame_prev->Y,frame->Y,imgh,imgw,mbSize,me_range,MV);
+//            motionEstES(frame->Y,frame_prev->Y,imgh,imgw,mbSize,me_range,MV_prev);
 //            motionEstES<double>(imgr_soft_bp_prev,imgr_soft_bp,imgh,imgw,mbSize,me_range,MV);
 //            motionEstES<double>(imgr_soft_bp,imgr_soft_bp_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
@@ -296,6 +293,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
         }
 
+        computeBER(imgr_prev,frame_prev->Y,lm,ber);
+        printf("%lf\n",PSNR[f-1]);
         // imgr output
         if(img_out!=NULL)
             for(int i = 0, j = 0; i <imgh ; ++i)
@@ -333,6 +332,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     free(Le1);
     free(Le2);
     free(weights);
+    free(ber);
 
     delete2d<double>(Lu_c);
     delete2d<double>(Lu_s);

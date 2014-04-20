@@ -163,5 +163,23 @@ double computePSNR(int** imgr, int** imgO, const int &imgh, const int &imgw){
     return psnr;
 }
 
+void computeBER(int** imgr, int** imgO, const int &lm, double* ber){
+
+    int mask = 1, value;
+    for(int i = 0 ; i < PXL ; ++i)
+        ber[i] = 0.0;
+
+    for(int i = 0 ; i < lm ; ++i){
+        value = imgr[0][i] ^ imgO[0][i];
+        for(int t_lvl = 0; t_lvl < PXL ; ++t_lvl){
+            ber[PXL-1-t_lvl] += ((value & (1<<t_lvl))>0);
+        }
+    }
+
+    for(int i = 0 ; i < PXL ; ++i){
+        ber[i] /= lm;
+        printf("%lf, ",ber[i]);
+    }
+}
 
 #endif // __IMAGE_PROCESS_UTILS_H

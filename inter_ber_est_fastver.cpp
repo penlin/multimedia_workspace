@@ -24,7 +24,7 @@ void calInterEn(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, co
                 for(k=0 ; k < imgw ; ++k)
                     En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
 
-            eEn[i] = En*beta/(imgh*imgw);
+            eEn[i] = En*beta;///(imgh*imgw);
         } else {
             motionComp(img_bp_ref2[i],mv2,imgh,imgw,8,img_ref2);
             inter2_beta_estimation(img_bp[i], img_ref2, img_ref, beta, beta_prev, imgh, imgw);
@@ -34,10 +34,11 @@ void calInterEn(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, co
                     En1+= (2*img_bp[i][j][k]-1)*(2*img_ref2[j][k]-1);
                 }
 
-            eEn[i] = (En*beta_prev+En1*beta)/(imgh*imgw);
+            eEn[i] = (En*beta_prev+En1*beta);
         }
-    }
 
+        eEn[i] /= (imgh*imgw);
+    }
     delete2d<int>(img_ref);
     if(img_bp_ref2!=NULL){
         delete2d<int>(img_ref2);

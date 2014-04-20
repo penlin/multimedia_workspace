@@ -252,9 +252,9 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
 //        printf("%lf,",fr[i]);
 //    printf("%lf\n",psnr_ori);
 
-//    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",frr[i]);
-//    printf("%lf\n",psnr);
+    for(i = 0 ; i < PXL ; ++i)
+        printf("%lf,",frr[i]);
+    printf("%lf\n",psnr);
 
     //printf("%lf,%lf\n",psnr_ori,psnr);
 
@@ -268,7 +268,7 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
 double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
 
     double fr[PXL];
-    double frr[PXL]={0,0,0,0,0,0,0,0};
+    double frr[PXL];
     double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
     double value = 0.0 ;
     double suppress = 1.0;
@@ -278,6 +278,7 @@ double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
         value = weights[i]*gamma;
         cut1(value);
         interp2(value,fr[i]);
+        printf("%lf\n",fr[i]);
         suppress = 1-2*fr[i];
 
         frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(eEn[i]*suppress));
@@ -294,9 +295,9 @@ double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
 //        printf("%lf,",fr[i]);
 //    printf("%lf\n",psnr_ori);
 
-//    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",frr[i]);
-//    printf("%lf\n",psnr);
+    for(int i = 0 ; i < PXL ; ++i)
+        printf("%lf,",frr[i]);
+    printf("%lf\n",psnr);
 
     return psnr;
 }
