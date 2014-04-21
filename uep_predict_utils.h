@@ -278,7 +278,7 @@ double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
         value = weights[i]*gamma;
         cut1(value);
         interp2(value,fr[i]);
-        printf("%lf\n",fr[i]);
+//        printf("%lf\n",fr[i]);
         suppress = 1-2*fr[i];
 
         frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(eEn[i]*suppress));

@@ -186,35 +186,35 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                     imgr[i][j] = imgr_prev[i][j] = 0;
 
 
-            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
-                for(j = 0 ; j < imgw ; ++j)
-                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
-                        ii = map[t_lvl][j+i*imgw]/imgw;
-                        jj = map[t_lvl][j+i*imgw]%imgw;
-                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
-
-//                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
-//                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
-//                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
-
-                        ii = map_prev[t_lvl][j+i*imgw]/imgw;
-                        jj = map_prev[t_lvl][j+i*imgw]%imgw;
-                        imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
-
-//                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
-//                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
-//                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
-                    }
-
-            bin2dec_img(imgr_bp,imgh,imgw,imgr);
-            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
-
-            // motion estimation
-#if __STATUS__
-        printf("Motion Estimation ...%lf\n",getCurrentTime());
-#endif
-            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
-            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
+//            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
+//                for(j = 0 ; j < imgw ; ++j)
+//                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
+//                        ii = map[t_lvl][j+i*imgw]/imgw;
+//                        jj = map[t_lvl][j+i*imgw]%imgw;
+//                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+//
+////                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
+////                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+////                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
+//
+//                        ii = map_prev[t_lvl][j+i*imgw]/imgw;
+//                        jj = map_prev[t_lvl][j+i*imgw]%imgw;
+//                        imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
+//
+////                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
+////                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+////                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
+//                    }
+//
+//            bin2dec_img(imgr_bp,imgh,imgw,imgr);
+//            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
+//
+//            // motion estimation
+//#if __STATUS__
+//        printf("Motion Estimation ...%lf\n",getCurrentTime());
+//#endif
+//            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
+//            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
 //            motionEstES(frame_prev->Y,frame->Y,imgh,imgw,mbSize,me_range,MV);
 //            motionEstES(frame->Y,frame_prev->Y,imgh,imgw,mbSize,me_range,MV_prev);
@@ -295,6 +295,12 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
         computeBER(imgr_prev,frame_prev->Y,lm,ber);
         printf("%lf\n",PSNR[f-1]);
+
+        if(f==(n_frame-1)){
+            computeBER(imgr,frame->Y,lm,ber);
+            printf("%lf\n",PSNR[f]);
+        }
+
         // imgr output
         if(img_out!=NULL)
             for(int i = 0, j = 0; i <imgh ; ++i)
