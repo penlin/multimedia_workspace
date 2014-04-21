@@ -30,6 +30,7 @@ int main(int argc,char* argv[]){
     double* weights = MALLOC(double,PXL);
     int** mv = new2d<int>(2,mv_len,0);
     int** mv_prev = new2d<int>(2,mv_len,0);
+    double* frr_prev = MALLOC(double,PXL);
 
     for(int i = 0 ; i < len ; ++i)
         snr[i] = __SNR_S+i;
@@ -45,12 +46,14 @@ int main(int argc,char* argv[]){
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
         EbN0 = pow(10,snr[i]/10);
-        for(int j = 0 ; j < PXL ; ++j)
+        for(int j = 0 ; j < PXL ; ++j){
             weights[j] = 1;//(weight_type?DERIVE_INTRA_SNR[i][j]:1);
+            frr_prev[j] = -1;
+        }
         frame->read(fptr);
         frame_next->read(fptr);
         motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
-        PSNR[0] = inter_psnr_est(frame->img_bp,frame_next->img_bp,mv,h,w,weights,EbN0);
+        PSNR[0] = inter_psnr_est(frame->img_bp,frame_next->img_bp,mv,h,w,weights,EbN0,frr_prev);
 
         for(int j = 1 ; j < f - 1; ++ j){
             frame_prev->copy(frame);
@@ -59,13 +62,13 @@ int main(int argc,char* argv[]){
 
             motionEstES(frame->Y,frame_prev->Y,h,w,8,5,mv_prev);
             motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
-            PSNR[j] = inter_psnr_est(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,weights,EbN0,frame_next->img_bp,mv);
+            PSNR[j] = inter_psnr_est(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,weights,EbN0,frr_prev, frame_next->img_bp,mv);
 //            PSNR[j] = inter_psnr_est(frame_prev->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0);
 
         }
 
         motionEstES(frame_next->Y,frame->Y,h,w,8,5,mv_prev);
-        PSNR[f-1] = inter_psnr_est(frame_next->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0);
+        PSNR[f-1] = inter_psnr_est(frame_next->img_bp,frame->img_bp,mv_prev,h,w,weights,EbN0,frr_prev);
 
         // print result PSNR
 #if __PROGRESS__
@@ -82,6 +85,7 @@ int main(int argc,char* argv[]){
 
     // free memory
     free(weights);
+    free(frr_prev);
     delete2d<int>(mv);
     delete2d<int>(mv_prev);
 
