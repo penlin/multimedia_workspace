@@ -24,11 +24,11 @@ void freeMemMgr(){
 
 template<class T>
 T** new2d(const int &r, const int &c){
-//    T **ret = MALLOC(T*,r);//(T**)malloc(sizeof(T*)*r);
-//    ret[0] = MALLOC(T,r*c);//(T*)malloc(sizeof(T)*r*c);
-//    for(int i = 1 ; i < r ; ++i)
-//        ret[i] = ret[i-1] + c;
-    T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
+    T **ret = MALLOC(T*,r);//(T**)malloc(sizeof(T*)*r);
+    ret[0] = MALLOC(T,r*c);//(T*)malloc(sizeof(T)*r*c);
+    for(int i = 1 ; i < r ; ++i)
+        ret[i] = ret[i-1] + c;
+//    T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
     return ret;
 }
 

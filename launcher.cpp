@@ -1,3 +1,4 @@
+#include "build_value.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
 #include "algs_inter.h"
@@ -29,6 +30,9 @@ int main(int argc,char* argv[]){
 
     const int h = __HEIGHT, w = __WIDTH;
     int f = __FRAME ;
+#ifdef MEM_MGR_H
+    initMemMgr(h*w*PXL*sizeof(double)*5);
+#endif
 
     const int len = __SNR_E-__SNR_S+1;
     double snr[len];
@@ -48,7 +52,7 @@ int main(int argc,char* argv[]){
     assert(fptr!=NULL);
     rewind(fptr);
 
-    double* PSNR = (double*) malloc(sizeof(double)*f);
+    double* PSNR = MALLOC(double,f) ;//(double*) malloc(sizeof(double)*f);
 
     trellis(G,G_N,G_L,Ns,pout,pstate);
 
@@ -95,12 +99,19 @@ int main(int argc,char* argv[]){
 #endif
 
         write_psnr_info(PSNR,snr[i]);
+#ifdef MEM_MGR_H
+        printMem();
+#endif
     }
 
     // free memory
-    delete2d<int>(G);
-    delete2d<int>(pstate);
-    delete2d<int>(pout);
-    free(PSNR);
+//    delete2d<int>(G);
+//    delete2d<int>(pstate);
+//    delete2d<int>(pout);
+//    DELETE(PSNR);//free(PSNR);
     fclose(fptr);
+#ifdef MEM_MGR_H
+    freeMemMgr();
+#endif
+
 }

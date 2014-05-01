@@ -9,7 +9,6 @@
 #include "data_alloc.h"
 #include "channel_code_utils.h"
 #include "image_process_utils.h"
-#include "build_value.h"
 #include "io_utils.h"
 #include "video_encode.h"
 
@@ -31,7 +30,7 @@ public:
 
         Y = new2d<int>(h,w,0);
         img_bp = new3d<int>(PXL,height,width,0);
-        x = (int*) malloc(sizeof(int)*2*lu);
+        x = MALLOC(int,2*lu);//(int*) malloc(sizeof(int)*2*lu);
         if(type == TYPE_YUV_420){
             U = new2d<int>(h/2,w/2,0);
             V = new2d<int>(h/2,w/2,0);
@@ -53,7 +52,7 @@ public:
         if(V!=NULL)
             delete2d<int>(V);
         if(x!=NULL)
-            free(x);
+            DELETE(x);
     }
 
     void read(FILE* fptr, const int skip = 0 ){
@@ -62,7 +61,7 @@ public:
             return;
         }
 
-        unsigned char*  buffer = (unsigned char*)malloc(sizeof(unsigned char)*lm*3/2);
+        unsigned char*  buffer = MALLOC(unsigned char,lm*3/2);//(unsigned char*)malloc(sizeof(unsigned char)*lm*3/2);
         const int offset_u = lm, offset_v = lm*5/4;
         fseek(fptr,lm*3/2*skip,SEEK_CUR);
         fread(buffer,1,lm*3/2,fptr);
@@ -77,7 +76,7 @@ public:
             }
         }
 
-        free(buffer);
+        DELETE(buffer);
         img2bp_frame(Y,height,width,img_bp);
     }
 

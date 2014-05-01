@@ -15,7 +15,7 @@ void intra_beta_estimation(int** imgr_bp, double &beta, const int &imgh, const i
     int i, j;
     int** hash_key = new2d<int>(imgh-2,imgw-2);
     int** his_idx = new2d<int>(imgh-2,imgw-2);
-    int* his = (int*) malloc(sizeof(int)*32);
+    int his[32];// = MALLOC(int,32);//(int*) malloc(sizeof(int)*32);
 
     for(i=0 ; i < 32; ++i)
         his[i] = 1;
@@ -43,7 +43,7 @@ void intra_beta_estimation(int** imgr_bp, double &beta, const int &imgh, const i
 
     delete2d<int>(hash_key);
     delete2d<int>(his_idx);
-    free(his);
+//    DELETE(his);
 
 }
 
@@ -131,7 +131,7 @@ void intra_inter_beta_estimation(int** imgr_bp , int** img_bp_ref, double &beta_
     int i, j ,range = 64;
     int** hash_key = new2d<int>(imgh-2,imgw-2);
     int** his_idx = new2d<int>(imgh-2,imgw-2);
-    int* his = (int*) malloc(sizeof(int)*range);
+    int his[64];// = (int*) malloc(sizeof(int)*range);
 
     for(i=0 ; i< range; ++i)
         his[i] = 1;
@@ -173,7 +173,7 @@ void intra_inter_beta_estimation(int** imgr_bp , int** img_bp_ref, double &beta_
     delete2d<int>(hash_key);
     delete2d<int>(his_idx);
 
-    free(his);
+//    free(his);
 
 }
 
@@ -183,7 +183,7 @@ void intra_inter2_beta_estimation(int** imgr_bp , int** img_bp_ref, int** img_bp
     int i, j ,range = 128;
     int** hash_key = new2d<int>(imgh-2,imgw-2);
     int** his_idx = new2d<int>(imgh-2,imgw-2);
-    int* his = (int*) malloc(sizeof(int)*range);
+    int his[128];// = (int*) malloc(sizeof(int)*range);
 
     for(i=0 ; i< range; ++i)
         his[i] = 1;
@@ -243,7 +243,7 @@ void intra_inter2_beta_estimation(int** imgr_bp , int** img_bp_ref, int** img_bp
     delete2d<int>(his_idx);
     delete2d<double>(X);
     delete2d<double>(invX);
-    free(his);
+//    free(his);
 
 }
 

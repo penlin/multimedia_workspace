@@ -13,7 +13,6 @@ int ORDER[PXL] = {1 , 2, 4, 8 ,16 ,32, 64, 128};
 
 void img2bp_frame(int ** img, const int &imgh, const int &imgw, int *** img_bp){
     int mask = 1, pixel;
-
     for(int y = 0; y < imgh ; ++y){
         for(int x = 0 ; x < imgw ; ++x){
             pixel = (int) img[y][x];
@@ -49,7 +48,7 @@ void img2bp_frame_dpcm(int ** img, const int &imgh, const int &imgw, int *** img
 */
 
 int* deci2binl(int x, const int &l){
-    int* y = (int*)malloc(sizeof(int)*l);
+    int* y = MALLOC(int,l);//(int*)malloc(sizeof(int)*l);
     int bit = 0;
 
     while(x>=1){
@@ -74,7 +73,7 @@ int* deci2binl(int x, const int &l){
 */
 
 int* bin2deci(int** x, const int &A, const int &B){
-    int* z = (int*)malloc(sizeof(int)*A);
+    int* z = MALLOC(int,A);//(int*)malloc(sizeof(int)*A);
     for(int i = 0 ; i < A; ++i){
         z[i] = 0;
         for(int j = 0 ; j < B ; ++j)

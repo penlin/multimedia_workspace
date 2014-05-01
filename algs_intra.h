@@ -158,8 +158,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
 #endif
         }
-        printf("\n");
-
+//        printf("\n");
         // imgr output
         if(img_out!=NULL)
             for(int i = 0, j = 0; i <imgh ; ++i)
@@ -175,11 +174,11 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     delete3d<int>(imgr_bp);
     delete2d<int>(imgr);
 
-    free(beta);
-    free(Lu);
-    free(Le1);
-    free(Le2);
-    free(weights);
+    DELETE(beta);
+    DELETE(Lu);
+    DELETE(Le1);
+    DELETE(Le2);
+    DELETE(weights);
 
     delete2d<double>(Lu_c);
     delete2d<double>(Lu_s);

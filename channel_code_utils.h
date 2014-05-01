@@ -123,7 +123,7 @@ void trellis(int** G, const int &N, const int &L, const int &Ns, int ** pout, in
             nstate[state_i][i] =  bin2deci(state[i],M);
         }
 
-        free(state_b);
+        DELETE(state_b);
     }
 
     // Possible previous states having reached the present state
@@ -151,7 +151,7 @@ void trellis(int** G, const int &N, const int &L, const int &Ns, int ** pout, in
 
 void deinterleave(double** Lu, int** map, const int &lm){
 #if __INTERLEAVE__
-    double* tmp = (double*) malloc(sizeof(double)*lm);
+    double* tmp = MALLOC(double,lm);//(double*) malloc(sizeof(double)*lm);
 
     for(int t_lvl = 0 ; t_lvl < PXL; ++t_lvl){
         for(int i = 0 ; i < lm ; ++i)
@@ -161,7 +161,7 @@ void deinterleave(double** Lu, int** map, const int &lm){
             Lu[t_lvl][map[t_lvl][i]] = tmp[i];
     }
 
-    free(tmp);
+    DELETE(tmp);//free(tmp);
 #endif
 }
 
@@ -171,7 +171,7 @@ void deinterleave(double** Lu, int** map, const int &lm){
 
 void deinterleave(int* Lu, int* map, const int &lm){
 #if __INTERLEAVE__
-    int* tmp = (int*) malloc(sizeof(double)*lm);
+    int* tmp = MALLOC(int,lm);//(int*) malloc(sizeof(double)*lm);
 
     for(int i = 0 ; i < lm ; ++i)
         tmp[i] = Lu[i];
@@ -179,7 +179,7 @@ void deinterleave(int* Lu, int* map, const int &lm){
     for(int i = 0 ; i < lm ; ++i)
         Lu[map[i]] = tmp[i];
 
-    free(tmp);
+    DELETE(tmp);//free(tmp);
 #endif
 }
 
@@ -191,7 +191,7 @@ void deinterleave(int* Lu, int* map, const int &lm){
 
 void interleave(double** Lu, int** map, const int &lm ){
 #if __INTERLEAVE__
-    double* tmp = (double*) malloc(sizeof(double)*lm);
+    double* tmp = MALLOC(double,lm);//(double*) malloc(sizeof(double)*lm);
 
     for(int t_lvl = 0 ; t_lvl < PXL; ++t_lvl){
         for(int i = 0 ; i < lm ; ++i)
@@ -201,29 +201,8 @@ void interleave(double** Lu, int** map, const int &lm ){
             Lu[t_lvl][i] = tmp[i];
     }
 
-    free(tmp);
+    DELETE(tmp);//free(tmp);
 #endif
-}
-
-
-void dpcm(int*** Y, int*** dpcm_Y, const int &height, const int & width, const int &frame){
-
-    int i,j,k;
-
-    for(i=0;i<height;++i)
-        for(j=0;j<width;++j)
-            dpcm_Y[0][i][j] = Y[0][i][j];
-
-    for(k=1;k<frame;++k){
-        for(i=0;i<height;++i){
-            for(j=0;j<width;++j){
-                dpcm_Y[k][i][j] = (Y[k][i][j]-Y[k-1][i][j]);
-                if(dpcm_Y[k][i][j]>0)
-                    dpcm_Y[k][i][j]+=256;
-            }
-        }
-    }
-
 }
 
 #endif // __CHANNEL_CODE_H
