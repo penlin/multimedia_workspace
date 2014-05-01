@@ -116,7 +116,7 @@ class MemRecycleList
    void reset() {
         _numElm = 0;
         _first = 0;
-        if(_nextList != 0) delete _nextList;
+        if(_nextList != 0) _nextList->reset();
    }
 
    // Helper functions
@@ -130,12 +130,13 @@ class MemRecycleList
    }
 
    MemRecycleList* getList(size_t n) {
-       if((n - _arrSize) % R_SIZE != 0){
-            printf("n=%d, _arrSize=%d, R_SIZE=%d\n",n,_arrSize,R_SIZE);
-        }
-        assert((n - _arrSize) % R_SIZE == 0);
+        assert((n - _arrSize%R_SIZE) % R_SIZE == 0);
         if(_arrSize==n) return this;
         else if(_nextList!=0) return _nextList->getList(n);
+        else if(_first==0){
+            _arrSize = n;
+            return this;
+        }
         else {
             _nextList=new MemRecycleList(n);
             return _nextList;
@@ -221,27 +222,27 @@ public:
    void* alloc2DMat(const size_t & t, const size_t & r, const size_t & c ){
         size_t* ret = (size_t *)alloc(r*c*t+r*SIZE_T);
         ret[0] = (size_t)(ret+r);
-        for(int i = 1, step = c*t ; i < r ; ++i)
-            ret[i] = (size_t)(((char*)ret[i-1])+step);
+//        for(int i = 1, step = c*t ; i < r ; ++i)
+//            ret[i] = (size_t)(((char*)ret[i-1])+step);
         return (void*) ret;
    }
 
    void* alloc3DMat(const size_t & t, const size_t & r, const size_t & c, const size_t &d ){
         size_t sec_len = r*(c+1);
         size_t* ret = (size_t *)alloc(r*c*d*t+sec_len*SIZE_T);
-        int i = 1, step = c*SIZE_T;
-        ret[0] = (size_t)(ret+r);
-        for(; i <= r ; ++i)
-            ret[i] = (size_t)(ret[i-1]+step);
-        for( i = r+1, step = d*t ; i < sec_len ; ++ i)
-            ret[i] = (size_t)(ret[i-1]+step);
+//        int i = 1, step = c*SIZE_T;
+//        ret[0] = (size_t)(ret+r);
+//        for(; i <= r ; ++i)
+//            ret[i] = (size_t)(ret[i-1]+step);
+//        for( i = r+1, step = d*t ; i < sec_len ; ++ i)
+//            ret[i] = (size_t)(ret[i-1]+step);
         return (void*) ret;
    }
    // Called by delete
    void  free(void* p) {
         void* ret = (void *)(((size_t *)p)-1);
         #ifdef MEM_DEBUG
-        cout << "Calling free...(" << n << ")" << endl;
+        cout << "Calling free...(" << *(size_t*)ret << ")" << endl;
         #endif // MEM_DEBUG
         getMemRecycleList(getRecycleIdx(*(size_t*)ret))->pushFront(ret);
    }

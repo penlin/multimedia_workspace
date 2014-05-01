@@ -131,6 +131,10 @@ class MemRecycleList
         assert((n - _arrSize%R_SIZE) % R_SIZE == 0);
         if(_arrSize==n) return this;
         else if(_nextList!=0) return _nextList->getList(n);
+        else if(_first==0){
+            _arrSize = n;
+            return this;
+        }
         else {
             _nextList=new MemRecycleList(n);
             return _nextList;
@@ -158,12 +162,16 @@ class MemMgr
 {
 
 public:
-   MemMgr(size_t b = 65536) : _blockSize(b),_max_alloc(0),_min_alloc(b) {
+   MemMgr(size_t b = 65536) : _blockSize(b) {
       assert(b % SIZE_T == 0);
       _activeBlock = new MemBlock(0, _blockSize);
 	  int i=0;
       for (i = 0; i < R_SIZE; ++i)
          _recycleList[i]._arrSize = i;
+#if !__MEM_MGR_BOOST__
+      _max_alloc = 0;
+      _min_alloc = b;
+#endif
    }
    ~MemMgr() { reset(); delete _activeBlock; }
 
@@ -218,21 +226,21 @@ public:
    void* alloc2DMat(const size_t & t, const size_t & r, const size_t & c ){
         size_t* ret = (size_t *)alloc(r*c*t+r*SIZE_T);
         ret[0] = (size_t)(ret+r);
-        for(int i = 1, step = c*t ; i < r ; ++i)
-            ret[i] = (size_t)(((char*)ret[i-1])+step);
+//        for(int i = 1, step = c*t ; i < r ; ++i)
+//            ret[i] = (size_t)(((char*)ret[i-1])+step);
         return (void*) ret;
    }
 
    void* alloc3DMat(const size_t & t, const size_t & r, const size_t & c, const size_t &d ){
         size_t sec_len = r*(c+1);
         size_t* ret = (size_t *)alloc(r*c*d*t+sec_len*SIZE_T);
-        int i = 1, step = c*SIZE_T;
-        ret[0] = (size_t)(ret+r);
-        for(; i < r ; ++i)
-            ret[i] = (size_t)(((char*)ret[i-1])+step);
-        ret[r] = (size_t)(ret+sec_len);
-        for( i = r+1, step = d*t ; i < sec_len ; ++ i)
-            ret[i] = (size_t)(((char*)ret[i-1])+step);
+//        int i = 1, step = c*SIZE_T;
+//        ret[0] = (size_t)(ret+r);
+//        for(; i < r ; ++i)
+//            ret[i] = (size_t)(((char*)ret[i-1])+step);
+//        ret[r] = (size_t)(ret+sec_len);
+//        for( i = r+1, step = d*t ; i < sec_len ; ++ i)
+//            ret[i] = (size_t)(((char*)ret[i-1])+step);
         return (void*) ret;
    }
    // Called by delete
@@ -287,7 +295,7 @@ public:
          ++i;
       }
       cout << "* Recycled Memory       : " << recycle << " Bytes" << endl
-           << "* Inused Memory         : " << total-recycle << " Bytes" << endl
+           << "* Inused Memory         : " << total-recycle << " Bytes" << endl;
    }
 
 private:

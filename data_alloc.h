@@ -29,6 +29,8 @@ T** new2d(const int &r, const int &c){
 //    for(int i = 1 ; i < r ; ++i)
 //        ret[i] = ret[i-1] + c;
     T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
+    for(int i = 1 ; i < r ; ++i)
+        ret[i] = ret[i-1] + c;
     return ret;
 }
 
@@ -41,6 +43,8 @@ T** new2d(const int &r, const int &c , const T &value){
 //        ret[i] = ret[i-1] + c;
 
     T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
+    for(int i = 1 ; i < r ; ++i)
+        ret[i] = ret[i-1] + c;
     for(int i = 0 ; i < r*c ; ++i)
         ret[0][i] = value;
 //    memset(ret[0],value,r*c);
@@ -75,6 +79,16 @@ T*** new3d(const int &r, const int &c, const int &d) {
 //        }
 //    }
     T*** ret = (T***)_memMgr->alloc3DMat(sizeof(T),r,c,d);
+    ret[0] = (T**)&ret[r];
+    ret[0][0] = (T*)&ret[r*(c+1)];
+    for(int i = 1 ; i < c ;++i)
+        ret[0][i] = ret[0][i-1] + d;
+    for(int i = 1,j=0 ,k=c*d; i < r ; ++i){
+        ret[i] = ret[i-1]+c;
+        for(j=0;j<c;++j){
+            ret[i][j] = ret[i-1][j] + k;
+        }
+    }
     return ret;
 }
 
@@ -98,6 +112,16 @@ T*** new3d(const int &r, const int &c, const int &d, const T &value) {
 //        }
 //    }
     T*** ret = (T***)_memMgr->alloc3DMat(sizeof(T),r,c,d);
+    ret[0] = (T**)&ret[r];
+    ret[0][0] = (T*)&ret[r*(c+1)];
+    for(int i = 1 ; i < c ;++i)
+        ret[0][i] = ret[0][i-1] + d;
+    for(int i = 1,j=0 ,k=c*d; i < r ; ++i){
+        ret[i] = ret[i-1]+c;
+        for(j=0;j<c;++j){
+            ret[i][j] = ret[i-1][j] + k;
+        }
+    }
     for(int i=0; i < r*c*d ; ++i)
         ret[0][0][i] = value;
 //    memset(ret[0][0],value,r*c*d);
