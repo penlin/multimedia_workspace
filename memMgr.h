@@ -44,7 +44,10 @@ class MemBlock
 
    // Constructor/Destructor
    MemBlock(MemBlock* n, size_t b) : _nextBlock(n) {
-      _begin = _ptr = (char*)malloc(sizeof(char)*b); _end = _begin + b; }
+      _begin = _ptr = (char*)malloc(sizeof(char)*b);
+      _end = _begin + b;
+      memset(_begin,0,b);
+  }
    ~MemBlock() {
         free(_begin);
    }

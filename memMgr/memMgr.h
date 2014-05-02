@@ -43,7 +43,10 @@ class MemBlock
 
    // Constructor/Destructor
    MemBlock(MemBlock* n, size_t b) : _nextBlock(n) {
-      _begin = _ptr = (char*)malloc(sizeof(char)*b); _end = _begin + b; }
+      _begin = _ptr = (char*)malloc(sizeof(char)*b);
+      _end = _begin + b;
+      memset(_begin,0,sizeof(char)*b);
+  }
    ~MemBlock() {
         free(_begin);
    }
@@ -221,7 +224,7 @@ public:
 
    void* alloc2DMat(const size_t & t, const size_t & r, const size_t & c ){
         size_t* ret = (size_t *)alloc(r*c*t+r*SIZE_T);
-        ret[0] = (size_t)(ret+r);
+//        ret[0] = (size_t)(ret+r);
 //        for(int i = 1, step = c*t ; i < r ; ++i)
 //            ret[i] = (size_t)(((char*)ret[i-1])+step);
         return (void*) ret;
@@ -346,8 +349,9 @@ private:
 
         /////**** allocate a new memory block *****//////
             _activeBlock= new MemBlock(_activeBlock,_blockSize);
-            if(_activeBlock->getMem(nt,ret))
+            if(_activeBlock->getMem(nt,ret)){
                 return ret;
+            }
         }
 
         return ret;

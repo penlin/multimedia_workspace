@@ -17,7 +17,7 @@ void test2(){
     size_t lu = lm+2;
     initMemMgr(w*h*PXL*sizeof(double)*5);
     for(int i = 0 ; i < 1000; ++i){
-        double*** a = new3d<double>(PXL,lm,i%4+1);
+        int*** a = new3d<int>(PXL,h,w);
 //        DELETE(a[0][0]);
 //        DELETE(a[0]);
         DELETE(a);
