@@ -297,7 +297,8 @@ public:
          }
          ++i;
       }
-      cout << "* Recycled Memory       : " << recycle << " Bytes" << endl
+      cout << endl
+           << "* Recycled Memory       : " << recycle << " Bytes" << endl
            << "* Inused Memory         : " << total-recycle << " Bytes" << endl;
    }
 
