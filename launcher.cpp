@@ -105,10 +105,10 @@ int main(int argc,char* argv[]){
     }
 
     // free memory
-//    delete2d<int>(G);
-//    delete2d<int>(pstate);
-//    delete2d<int>(pout);
-//    DELETE(PSNR);//free(PSNR);
+    delete2d<int>(G);
+    delete2d<int>(pstate);
+    delete2d<int>(pout);
+    DELETE(PSNR);//free(PSNR);
     fclose(fptr);
 #ifdef MEM_MGR_H
     freeMemMgr();

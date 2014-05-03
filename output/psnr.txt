@@ -21009,3 +21009,165 @@ frame# 20 PSNR = 39.251484
 
 Total Time Comsume:122.640000
 
+=============================
+Sat May 03 16:54:53 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.201227
+frame#  2 PSNR = 36.658414
+frame#  3 PSNR = 36.158425
+frame#  4 PSNR = 36.256471
+frame#  5 PSNR = 35.877369
+frame#  6 PSNR = 36.570268
+frame#  7 PSNR = 36.843578
+frame#  8 PSNR = 36.426884
+frame#  9 PSNR = 36.218842
+frame# 10 PSNR = 36.774485
+frame# 11 PSNR = 35.976018
+frame# 12 PSNR = 35.742358
+frame# 13 PSNR = 35.995222
+frame# 14 PSNR = 36.140950
+frame# 15 PSNR = 35.659209
+frame# 16 PSNR = 36.337023
+frame# 17 PSNR = 36.679805
+frame# 18 PSNR = 36.648098
+frame# 19 PSNR = 36.040493
+frame# 20 PSNR = 35.839332
+
+Total Time Comsume:52.554000
+
+=============================
+Sat May 03 17:05:29 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.358938
+frame#  2 PSNR = 36.150516
+frame#  3 PSNR = 35.534909
+frame#  4 PSNR = 36.653210
+frame#  5 PSNR = 35.954116
+frame#  6 PSNR = 36.737684
+frame#  7 PSNR = 36.555011
+frame#  8 PSNR = 36.433272
+frame#  9 PSNR = 36.015824
+frame# 10 PSNR = 36.521141
+frame# 11 PSNR = 36.267010
+frame# 12 PSNR = 36.343916
+frame# 13 PSNR = 36.589364
+frame# 14 PSNR = 36.611334
+frame# 15 PSNR = 36.258659
+frame# 16 PSNR = 36.102722
+frame# 17 PSNR = 36.172040
+frame# 18 PSNR = 36.238010
+frame# 19 PSNR = 36.194284
+frame# 20 PSNR = 36.191257
+
+Total Time Comsume:55.124000
+
+=============================
+Sat May 03 17:08:25 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.569227
+frame#  2 PSNR = 35.609542
+frame#  3 PSNR = 36.336181
+frame#  4 PSNR = 36.322603
+frame#  5 PSNR = 36.374466
+frame#  6 PSNR = 36.517785
+frame#  7 PSNR = 36.306848
+frame#  8 PSNR = 36.042058
+frame#  9 PSNR = 36.540580
+frame# 10 PSNR = 36.351571
+frame# 11 PSNR = 36.508558
+frame# 12 PSNR = 36.114380
+frame# 13 PSNR = 36.582185
+frame# 14 PSNR = 35.993925
+frame# 15 PSNR = 36.722864
+frame# 16 PSNR = 36.751551
+frame# 17 PSNR = 36.557635
+frame# 18 PSNR = 36.322755
+frame# 19 PSNR = 36.088257
+frame# 20 PSNR = 36.311481
+
+Total Time Comsume:55.920000
+
+=============================
+Sat May 03 17:18:29 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.324281
+frame#  2 PSNR = 35.777764
+frame#  3 PSNR = 35.932115
+frame#  4 PSNR = 36.301947
+frame#  5 PSNR = 35.729128
+frame#  6 PSNR = 36.463411
+frame#  7 PSNR = 36.387133
+frame#  8 PSNR = 36.883213
+frame#  9 PSNR = 36.631856
+frame# 10 PSNR = 36.309173
+frame# 11 PSNR = 36.267609
+frame# 12 PSNR = 36.337916
+frame# 13 PSNR = 36.590584
+frame# 14 PSNR = 35.853264
+frame# 15 PSNR = 36.426206
+frame# 16 PSNR = 36.271801
+frame# 17 PSNR = 36.278603
+frame# 18 PSNR = 36.299718
+frame# 19 PSNR = 35.282283
+frame# 20 PSNR = 35.703903
+
+Total Time Comsume:53.494000
+
+=============================
+Sat May 03 17:41:54 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.333113
+frame#  2 PSNR = 36.206815
+frame#  3 PSNR = 35.945332
+frame#  4 PSNR = 35.669775
+frame#  5 PSNR = 36.299608
+frame#  6 PSNR = 36.306048
+frame#  7 PSNR = 35.903455
+frame#  8 PSNR = 36.358798
+frame#  9 PSNR = 36.071664
+frame# 10 PSNR = 35.907345
+frame# 11 PSNR = 35.979708
+frame# 12 PSNR = 36.336910
+frame# 13 PSNR = 36.019042
+frame# 14 PSNR = 36.171360
+frame# 15 PSNR = 35.996595
+frame# 16 PSNR = 36.658692
+frame# 17 PSNR = 36.188435
+frame# 18 PSNR = 36.135253
+frame# 19 PSNR = 36.234751
+frame# 20 PSNR = 36.467922
+
+Total Time Comsume:54.652000
+
+=============================
+Sat May 03 17:43:01 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 36.532084
+frame#  2 PSNR = 36.203070
+frame#  3 PSNR = 36.076648
+frame#  4 PSNR = 36.006216
+frame#  5 PSNR = 36.658018
+frame#  6 PSNR = 36.676230
+frame#  7 PSNR = 35.884731
+frame#  8 PSNR = 36.568653
+frame#  9 PSNR = 36.089938
+frame# 10 PSNR = 35.845625
+frame# 11 PSNR = 36.563373
+frame# 12 PSNR = 36.486473
+frame# 13 PSNR = 36.726639
+frame# 14 PSNR = 36.073616
+frame# 15 PSNR = 35.847440
+frame# 16 PSNR = 36.051916
+frame# 17 PSNR = 36.320767
+frame# 18 PSNR = 36.407982
+frame# 19 PSNR = 35.910039
+frame# 20 PSNR = 36.770784
+
+Total Time Comsume:53.497000
+

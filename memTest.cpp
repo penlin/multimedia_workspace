@@ -6,7 +6,9 @@ void test2();
 int test1();
 
 int main(){
+    initMemMgr(352*288*PXL*sizeof(double)*5);
     test2();
+    freeMemMgr();
     return 0;
 }
 
@@ -15,16 +17,16 @@ void test2(){
     size_t w = 352;
     size_t h = 288;
     size_t lm = w*h;
-    initMemMgr(w*h*PXL*sizeof(double)*5);
+
     for(int i = 0 ; i < 1000; ++i){
-        int*** a = new3d<int>(PXL,h,w);
+        int*** a = new3d<int>(PXL,lm,4);
 //        DELETE(a[0][0]);
 //        DELETE(a[0]);
         delete3d(a);
     }
 
     printMem();
-    freeMemMgr();
+
 }
 
 int test1(){
@@ -32,7 +34,7 @@ int test1(){
     size_t w = 352 , h = 288,  f = 20, mbSize = 8, Ns = 4;
     size_t lm = w*h;
     size_t lu = lm+2;
-    initMemMgr(w*h*PXL*sizeof(double)*5);
+
 
     double** p0 = new2d<double>(h,w,0.5);
 //    int** G =new2d<int>(2,3,2);
@@ -59,7 +61,7 @@ int test1(){
 //    double** x3 = new2d<double>(3,3);
 
 
-    printMem();
+//    printMem();
 
     DELETE(p0);
 //    DELETE(y);
@@ -85,7 +87,7 @@ int test1(){
 //    delete3d<int>(img_bp);
 //    delete3d<double>(gam);
 
-    printMem();
-    freeMemMgr();
+//    printMem();
+
     return 0;
 }
