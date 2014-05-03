@@ -66,7 +66,7 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTRA__
+#define __ALGO__    __INTER__
 #define __SEQ__     __AKIYO
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
