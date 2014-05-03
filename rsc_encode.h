@@ -32,42 +32,6 @@ end
 #include "utils.h"
 
 
-// depriciated: @Penlin: 2013/08/04  use block by copy is too slow
-void rsc_encode(int ** G, const int &L, const int *block,const int &lm, const int &termination, int* output){
-
-    int M, lu, i, j;
-    int *state;
-    int d_k = 0, a_k = 0, xp=0;
-
-    M = L-1;
-    lu = (lm + ((termination>0)?M:0));
-
-    state = (int*)malloc(sizeof(int)*M);
-    for(i=0;i<M;++i)
-        state[i] = 0;
-
-    for(i=0;i<lu;++i){
-        if(termination <= 0 || ( termination > 0 && i < lm ))
-            d_k = block[i];
-        else if(termination > 0 && i >= lm)
-            d_k = ((int)InnerProduct(G[0], state, 1 ,L-1,0, M-1))%2;
-
-        a_k = ((int)(G[0][0]*d_k+InnerProduct(G[0],state,1,L-1,0,M-1)))%2;
-        xp = ((int) (G[1][0]*a_k+InnerProduct(G[1],state,1,L-1,0,M-1)))%2;
-
-        for(j=M-1;j>0;--j)
-           state[j] = state[j-1];
-
-        state[0] = a_k;
-
-        output[2*i] = d_k;
-        output[1+2*i] = xp;
-
-    }
-
-    free(state);
-}
-
 
 // updated version, direct use imgr_bp and the random map instead block
 void rsc_encode(int ** G, const int &L, int** imgr_bp, const int* map,const int &imgw, const int &lm, const int &termination, int* output){
@@ -79,7 +43,7 @@ void rsc_encode(int ** G, const int &L, int** imgr_bp, const int* map,const int 
     M = L-1;
     lu = (lm + ((termination>0)?M:0));
 
-    state = (int*)malloc(sizeof(int)*M);
+    state = MALLOC(int,M);//(int*)malloc(sizeof(int)*M);
     for(i=0;i<M;++i)
         state[i] = 0;
 
@@ -102,7 +66,7 @@ void rsc_encode(int ** G, const int &L, int** imgr_bp, const int* map,const int 
 
     }
 
-    free(state);
+    DELETE(state);
 }
 
 

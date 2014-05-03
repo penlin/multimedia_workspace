@@ -92,10 +92,10 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     delete2d<int>(map);
     delete2d<double>(Lu_c);
     delete2d<int>(imgr);
-    free(Lu);
-    free(Le1);
-    free(Le2);
-    free(weights);
+    DELETE(Lu);
+    DELETE(Le1);
+    DELETE(Le2);
+    DELETE(weights);
 
     delete frame;
 }

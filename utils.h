@@ -8,8 +8,6 @@
 #include "data_alloc.h"
 #include "build_value.h"
 
-#define MALLOC(T,x)  (T*)malloc(sizeof(T)*(x))
-
 static time_t tBuffer;
 static char* LOCALTIME;
 
