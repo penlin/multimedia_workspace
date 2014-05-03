@@ -79,7 +79,7 @@ T*** new3d(const int &r, const int &c, const int &d) {
 //        }
 //    }
     T*** ret = (T***)_memMgr->alloc3DMat(sizeof(T),r,c,d);
-    if(*(size_t *)ret[0]!=(size_t)&ret[r]){
+    if(*(size_t *)ret!=(size_t)&ret[r]){
         printf("rearange\n");
         ret[0] = (T**)&ret[r];
         ret[0][0] = (T*)&ret[r*(c+1)];

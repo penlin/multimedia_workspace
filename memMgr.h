@@ -228,9 +228,9 @@ public:
 
    void* alloc2DMat(const size_t & t, const size_t & r, const size_t & c ){
         size_t* ret = (size_t *)alloc(r*c*t+r*SIZE_T);
-        ret[0] = (size_t)(ret+r);
-//        for(int i = 1, step = c*t ; i < r ; ++i)
-//            ret[i] = (size_t)(((char*)ret[i-1])+step);
+//        ret[0] = (size_t)(ret+r);
+//        for(int i = 0, step = c*t ; i < r ; ++i)
+//            printf("ret[%d]=%p  , &ret[%d]=%p\n",i,ret[i],i+r,&ret[i+r]);
         return (void*) ret;
    }
 

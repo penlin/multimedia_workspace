@@ -153,7 +153,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 //            for(int i = 0 ; i < PXL ; ++i)
 //               printf("%lf,",beta[i]);
 //            printf("%lf,%lf\n",channel_psnr,PSNR[f]-channel_psnr);
-            printf("%lf,%lf,",channel_psnr,PSNR[f]);
+//            printf("%lf,%lf,",channel_psnr,PSNR[f]);
 #if __PSNR__
             printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
 #endif

@@ -29,17 +29,20 @@ T** new2d(const int &r, const int &c){
 //    for(int i = 1 ; i < r ; ++i)
 //        ret[i] = ret[i-1] + c;
     T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
-    if(*(size_t *)ret[0]!=(size_t)&ret[r]){
+    if(*(size_t *)ret!=(size_t)&ret[r] ){
         ret[0] = (T*)&ret[r];
         for(int i = 1 ; i < r ; ++i)
             ret[i] = ret[i-1] + c;
-    }else{
-        for(int i = 0 , j = 0 ; i < r ; ++i){
-            for(j=0 ; j < c ; ++j)
-                printf("%d ",(int)ret[i][j]);
-            printf("\n");
-        }
     }
+//    else{
+//        printf("&ret=%p, &ret[0]=%p, ret[0]=%p , &ret[r]=%p\n",&ret,&ret[0],ret[0],&ret[r]);
+//        printf("ret[0]=%p, ret[1]=%p\n",ret[0],ret[1]);
+//        for(int i = 0 , j = 0 ; i < r ; ++i){
+//            for(j=0 ; j < c ; ++j)
+//                printf("%p ",&ret[0][i*r+j]);
+//            printf("\n");
+//        }
+//    }
 
     return ret;
 }
@@ -53,7 +56,7 @@ T** new2d(const int &r, const int &c , const T &value){
 //        ret[i] = ret[i-1] + c;
 
     T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
-    if(*(size_t *)ret[0]!=(size_t)&ret[r]){
+    if(*(size_t *)ret!=(size_t)&ret[r]){
         ret[0] = (T*)&ret[r];
         for(int i = 1 ; i < r ; ++i)
             ret[i] = ret[i-1] + c;
@@ -92,7 +95,7 @@ T*** new3d(const int &r, const int &c, const int &d) {
 //        }
 //    }
     T*** ret = (T***)_memMgr->alloc3DMat(sizeof(T),r,c,d);
-    if(*(size_t *)ret[0]!=(size_t)&ret[r]){
+    if(*(size_t *)ret!=(size_t)&ret[r]){
         ret[0] = (T**)&ret[r];
         ret[0][0] = (T*)&ret[r*(c+1)];
         for(int i = 1 ; i < c ;++i)
@@ -127,7 +130,7 @@ T*** new3d(const int &r, const int &c, const int &d, const T &value) {
 //        }
 //    }
     T*** ret = (T***)_memMgr->alloc3DMat(sizeof(T),r,c,d);
-    if(*(size_t *)ret[0]!=(size_t)&ret[r]){
+    if(*(size_t *)ret!=(size_t)&ret[r]){
         ret[0] = (T**)&ret[r];
         ret[0][0] = (T*)&ret[r*(c+1)];
         for(int i = 1 ; i < c ;++i)
