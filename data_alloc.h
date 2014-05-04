@@ -35,17 +35,17 @@ void printRepeat(){
 
 void printMem(){
     _memMgr->print();
-    printRepeat();
+//    printRepeat();
 }
 #endif
 
 template<class T>
 T** new2d(const int &r, const int &c){
-    num2D++;
+//    num2D++;
 #if __MEM_MGR__ && !SPLIT
     T** ret = (T**)_memMgr->alloc2DMat(sizeof(T),r,c);
     if(*(size_t *)ret!=(size_t)&ret[r] ){
-        repeatUsage2++;
+//        repeatUsage2++;
         ret[0] = (T*)&ret[r];
         for(int i = 1 ; i < r ; ++i)
             ret[i] = ret[i-1] + c;
@@ -78,11 +78,11 @@ void delete2d(T** a) {
 
 template<class T>
 T*** new3d(const int &r, const int &c, const int &d) {
-    num3D++;
+//    num3D++;
 #if __MEM_MGR__ && !SPLIT
     T*** ret = (T***)_memMgr->alloc3DMat(sizeof(T),r,c,d);
     if(*(size_t *)ret!=(size_t)&ret[r]){
-        repeatUsage3++;
+//        repeatUsage3++;
         ret[0] = (T**)&ret[r];
         ret[0][0] = (T*)&ret[r*(c+1)];
         for(int i = 1 ; i < c ;++i)

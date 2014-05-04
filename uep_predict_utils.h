@@ -209,7 +209,6 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
     if(img_bp_ref2!=NULL)
         img_ref2 = new2d<int>(imgh,imgw);
 
-
     for(i = 0 ; i < PXL ; ++i){
 
         value = weights[i]*gamma;

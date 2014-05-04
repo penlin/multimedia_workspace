@@ -13,7 +13,9 @@ int main(int argc,char* argv[]){
     const int len = __SNR_E-__SNR_S+1;
     double snr[len];
     double EbN0 ;
-
+#ifdef MEM_MGR_H
+    initMemMgr(h*w*PXL*sizeof(double)*5);
+#endif
     FILE* fptr;
     if(argc > 2)
         fptr = fopen(FILENAME[atoi(argv[2])],"r+b");
@@ -84,13 +86,17 @@ int main(int argc,char* argv[]){
     }
 
     // free memory
-    free(weights);
-    free(frr_prev);
-    delete2d<int>(mv);
-    delete2d<int>(mv_prev);
 
     fclose(fptr);
     delete frame;
     delete frame_prev;
     delete frame_next;
+#ifdef MEM_MGR_H
+    freeMemMgr();
+#else
+    DELETE(weights);
+    DELETE(frr_prev);
+    delete2d<int>(mv);
+    delete2d<int>(mv_prev);
+#endif
 }
