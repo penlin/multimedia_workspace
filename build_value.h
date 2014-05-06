@@ -16,6 +16,8 @@
 #define __DIRECT__      direct_system
 #define __INTRA__       intra_system
 #define __INTER__       inter_system
+#define __INTER_PAIR__  inter_pair_system
+#define __INTER_THREE__ inter_three_system
 #define __INTER_INTRA__ inter_intra
 
 // output sequence type
@@ -42,10 +44,10 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
-#define __FRAME     20
+#define __FRAME     300
 #define __SNR       4
 #define __SNR_S     0
-#define __SNR_E     1
+#define __SNR_E     4
 
 
 #define __SEQ_DIR   "sequence/"
@@ -53,7 +55,7 @@
 #define __STEFAN    __SEQ_DIR  "stefan_cif.yuv"
 #define __HALL      __SEQ_DIR  "hall_cif.yuv"
 #define __AKIYO     __SEQ_DIR  "akiyo_cif.yuv"
-#define __TAG__     "foreman"
+#define __TAG__     "akiyo"
 
 /**#______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _
 #  (  __  \ (  ____ \(  ____ \(  ___  )(  __  \ (  ____ \      (  ____ \(  ___  )( (    /|\__   __/(  ____ )(  ___  )( \
@@ -66,14 +68,14 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTER__
+#define __ALGO__    __INTER_PAIR__
 #define __SEQ__     __AKIYO
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       1             // debug msg
+#define __DEBUG__       0             // debug msg
 #define MEM_DEBUG       0&&__DEBUG__
 #define __OPT__         0&&__DEBUG__
 #define __STATUS__      0&&__DEBUG__    // msg for status right now

@@ -95,7 +95,7 @@ int main(int argc,char* argv[]){
         weights[j] = 1;//(weight_type?DERIVE_INTRA_SNR[i][j]:1);
     frame->read(fptr);
     frame_next->read(fptr);
-//    motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
+    motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
     calInterEn(frame->img_bp,frame_next->img_bp,mv,h,w,eEn);
     for(int i = 0 ; i < len ; ++i)
         PSNR[i][0] = mrf_psnr_est(weights,EbN0[i],eEn);
@@ -105,8 +105,8 @@ int main(int argc,char* argv[]){
         frame->copy(frame_next);
         frame_next->read(fptr);
 
-//        motionEstES(frame->Y,frame_prev->Y,h,w,8,5,mv_prev);
-//        motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
+        motionEstES(frame->Y,frame_prev->Y,h,w,8,5,mv_prev);
+        motionEstES(frame->Y,frame_next->Y,h,w,8,5,mv);
 
         calInterEn(frame->img_bp,frame_prev->img_bp,mv_prev,h,w,eEn,frame_next->img_bp,mv);
         for(int i = 0 ; i < len ; ++i)
