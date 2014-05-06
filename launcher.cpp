@@ -1,7 +1,7 @@
 #include "build_value.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
-#include "algs_inter_pair.h"
+#include "algs_inter.h"
 #include "io_utils.h"
 
 
