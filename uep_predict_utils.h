@@ -194,6 +194,54 @@ double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* we
     return psnr;
 }
 
+double inter_basic_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma){
+
+    double fr[PXL];
+    double frr[PXL]={0,0,0,0,0,0,0,0};
+    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
+    double value = 0.0, En = 0.0, beta = 0.0 ;
+    double suppress = 1.0;
+    int i,j,k;
+    int** img_ref = new2d<int>(imgh,imgw);
+
+    for(i = 0 ; i < PXL ; ++i){
+
+        value = weights[i]*gamma;
+        cut1(value);
+        interp2(value,fr[i]);
+        suppress = 1-2*fr[i];
+        motionComp(img_bp_ref[i],mv1,imgh,imgw,8,img_ref);
+
+        En = 0.0;
+        inter_beta_estimation(img_bp[i],beta,img_ref,imgh,imgw);
+        for(j= 0 ; j < imgh ; ++j)
+            for(k=0 ; k < imgw ; ++k)
+                En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
+
+        En = En*beta*suppress*suppress/(imgh*imgw);
+        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En));
+//        frr[i] = 1/(1+exp(En));
+
+        mse+=(frr[i]*ORDER2[i]);
+        mse_ori+=(fr[i]*ORDER2[i]);
+//        printf("%lf,",frr[i]);
+    }
+    psnr = 10*log10(65025/mse);
+    psnr_ori = 10*log10(65025/mse_ori);
+//    for(i = 0 ; i < PXL ; ++i)
+//        printf("%lf,",fr[i]);
+//    printf("%lf\n",psnr_ori);
+
+    for(i = 0 ; i < PXL ; ++i)
+        printf("%lf,",frr[i]);
+    printf("%lf\n",psnr);
+
+    //printf("%lf,%lf\n",psnr_ori,psnr);
+
+    delete2d<int>(img_ref);
+    return psnr;
+}
+
 
 double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma,double* frr_prev, int*** img_bp_ref2 = NULL, int** mv2 = NULL){
 

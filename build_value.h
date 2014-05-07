@@ -40,7 +40,7 @@
 # **/
 
 // basic decoding information
-#define Niter       3                  // #iteration
+#define Niter       8                  // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
@@ -68,7 +68,7 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTER__
+#define __ALGO__    __INTER_PAIR__
 #define __SEQ__     __AKIYO
 
 #define __RANDOM__      1               // total control for the interleave and AWGN

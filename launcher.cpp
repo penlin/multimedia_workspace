@@ -2,6 +2,7 @@
 #include "algs_direct.h"
 #include "algs_intra.h"
 #include "algs_inter.h"
+#include "algs_inter_pair.h"
 #include "io_utils.h"
 
 

@@ -1,5 +1,5 @@
-#ifndef __ALGS_INTER_H
-#define __ALGS_INTER_H
+#ifndef __ALGS_INTER_PAIR_H
+#define __ALGS_INTER_PAIR_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -323,4 +323,4 @@ void inter_pair_system(const char* str, FILE* fptr, const int &imgh, const int &
 }
 
 
-#endif // __ALGS_INTER_H
+#endif // __ALGS_INTER_PAIR_H
