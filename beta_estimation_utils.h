@@ -9,29 +9,34 @@
 /**  ======================================================================  **/
 
 // for intra_beta_estimation
-void intra_beta_estimation(int** imgr_bp, double &beta, const int &imgh, const int &imgw){
+void intra_beta_estimation(PIXEL** imgr, const int &mask, double &beta, const int &imgh, const int &imgw){
 
     const int N = 4;
     int i, j;
-    int** hash_key = new2d<int>(imgh-2,imgw-2);
-    int** his_idx = new2d<int>(imgh-2,imgw-2);
-    int his[32];// = MALLOC(int,32);//(int*) malloc(sizeof(int)*32);
+    uint8** hash_key = new2d<uint8>(imgh-2,imgw-2);
+    uint8** his_idx = new2d<uint8>(imgh-2,imgw-2);
+    int his[32];
 
     for(i=0 ; i < 32; ++i)
         his[i] = 1;
 
     for(i=0 ; i<imgh-2 ; ++i){
         for(j=0; j<imgw-2 ; ++j){
-            hash_key[i][j] = (8*imgr_bp[i][j+1]+4*imgr_bp[i+2][j+1]+2*imgr_bp[i+1][j]+imgr_bp[i][j+2]);
-            his_idx[i][j] = (16*imgr_bp[i+1][j+1] + hash_key[i][j]);
+            hash_key[i][j] = (((imgr[i][j+1]&mask)>0)*8
+                              + ((imgr[i+2][j+1]&mask)>0)*4
+                              + ((imgr[i+1][j]&mask)>0)*2
+                              + ((imgr[i+1][j+2]&mask)>0));
+            his_idx[i][j] = (((imgr[i+1][j+1]&mask)>0)*16 + hash_key[i][j]);
             his[his_idx[i][j]]++;
         }
     }
-
     double aa = 0, ab = 0 , a = 0, b = 0;
     for(i=0; i < imgh-2 ; ++i){
         for(j=0; j<imgw-2 ; ++j){
-            a = 2*(imgr_bp[i][j+1]+imgr_bp[i+2][j+1]+imgr_bp[i+1][j]+imgr_bp[i][j+2])-N;
+            a = 2*(((imgr[i][j+1]&mask)>0)
+                   +((imgr[i+2][j+1]&mask)>0)
+                   +((imgr[i+1][j]&mask)>0)
+                   +((imgr[i+1][j+2]&mask)>0))-N;
             b = (log(his[hash_key[i][j]+16]) - log(his[hash_key[i][j]]));
 
             aa+= (a*a);
@@ -41,9 +46,8 @@ void intra_beta_estimation(int** imgr_bp, double &beta, const int &imgh, const i
 
     beta = ab/aa;
 
-    delete2d<int>(hash_key);
-    delete2d<int>(his_idx);
-//    DELETE(his);
+    delete2d<uint8>(hash_key);
+    delete2d<uint8>(his_idx);
 
 }
 

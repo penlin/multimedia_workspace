@@ -72,7 +72,8 @@ void Lu2dec_img(double** Lu, const size_t &lm, PIXEL** imgr){
 
     for(size_t i=0,k=1 ;k <PXL ; ++k){
         for( i=0 ; i < lm; ++i){
-            imgr[0][i] = (PIXEL)(imgr[i][i]+(Lu[k][i]>=0)*ORDER[PXL-k-1]);
+//            printf("#(i,k)=(%d,%d)\n",i,k);
+            imgr[0][i] = (PIXEL)(imgr[0][i]+(Lu[k][i]>=0)*ORDER[PXL-k-1]);
         }
     }
 }
@@ -80,7 +81,7 @@ void Lu2dec_img(double** Lu, const size_t &lm, PIXEL** imgr){
 void Lu2dec_img(double** Lu, const size_t &lm, PIXEL** imgr, int** map_out){
     size_t  i = 0;
     for(i = 0 ; i < lm ; ++i)
-        imgr[0][map_out[0][i]] = (PIXEL)(Lu[0][i]>=0)*ORDER[PXL-1];
+        imgr[0][map_out[0][i]] = (PIXEL)((Lu[0][i]>=0)*ORDER[PXL-1]);
 
     for(int t_lvl =PXL-1; t_lvl > 0 ; --t_lvl)
         for(i = 0 ; i < lm ; ++i)

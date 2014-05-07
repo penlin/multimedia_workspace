@@ -60,7 +60,7 @@ void direct_system(const char* str, FILE* fptr, const size_t &imgh, const size_t
         printf("BCJR decoding ...%lf\n",getCurrentTime());
 #endif
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
-            BCJR_decoding( lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
+                BCJR_decoding(lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
 
         // deinterleave
 #if __STATUS__

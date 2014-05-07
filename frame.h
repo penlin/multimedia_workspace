@@ -119,10 +119,6 @@ public:
                 Ly[t_lvl][i] = 0.5*L_c[t_lvl]*(2*x[i] - 1) + sigma[t_lvl]*gaussian_noise();  // add noise   + sigma*gaussian_noise()
         }
 
-//        printf("Y[%d][%d]=%d (",20,20,Y[0][20+20*width]);
-//        for(int i = 0 ; i < PXL ; ++i)
-//            printf("%d,",(Y[0][20+20*width]&(1<<(PXL-i-1))) >0);
-//        printf(")\n");
     }
 
     void next(FILE* fptr, double** Ly, int** map_out, double* weights ){

@@ -14,11 +14,10 @@
 */
 
 // main function
-void intra_beta_estimation(int*** imgr_bp , double* beta, const int &imgh, const int &imgw){
+void intra_beta_estimation(PIXEL** imgr , double* beta, const size_t &imgh, const size_t &imgw){
 
-    for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
-        intra_beta_estimation(imgr_bp[t_lvl],beta[t_lvl],imgh,imgw);
-
+    for(int t_lvl = 0, mask = (1<<(PXL-1)) ; t_lvl < PXL ; ++t_lvl, mask>>=1 ){
+        intra_beta_estimation(imgr,mask,beta[t_lvl],imgh,imgw);
     }
 
 }
@@ -123,7 +122,7 @@ void intra_inter2_beta_estimation(int*** imgr_bp, int*** img_bp_ref,int*** img_b
 *   @output Lu_s        [PXL*lm]
 */
 
-void mrf_siso_intra(double** Le_c, double* beta, const int &imgh, const int &imgw, double** Lu_s, const int &comp){
+void mrf_siso_intra(double** Le_c, double* beta, const size_t &imgh, const size_t &imgw, double** Lu_s, const int &comp){
 
 //    const int lm = imgh*imgw;
     double** p0 = new2d<double>(imgh,imgw);

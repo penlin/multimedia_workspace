@@ -153,46 +153,46 @@ void weight_predict_minPOWER(double* gammas, const double &mse){
 
 }
 
-double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
-
-    double fr[PXL];
-    double frr[PXL]={0,0,0,0,0,0,0,0};
-    double n = 0, mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
-    int N = 0;
-    double value = 0.0;
-    int i,j,k,hash_key;
-    double beta = 0.0;
-
-    for(i = 0 ; i < PXL ; ++i){
-        value = weights[i]*gamma;
-        cut1(value);
-        interp2(value,fr[i]);
-
-        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
-        value=0;
-        for(j=1;j<imgh-1;++j){
-            for(k=1;k<imgw-1;++k){
-                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
-            }
-        }
-        value=value*beta*(1-2*fr[i])/(imgh*imgw);
-
-        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(value)); // N effecitve than n
-        mse+=(frr[i]*ORDER2[i]);
-        mse_ori+=(fr[i]*ORDER2[i]);
-        //printf("%lf,",frr[i]);
-    }
-    psnr = 10*log10(65025/mse);
-    psnr_ori = 10*log10(65025/mse_ori);
+//double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
+//
+//    double fr[PXL];
+//    double frr[PXL]={0,0,0,0,0,0,0,0};
+//    double n = 0, mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
+//    int N = 0;
+//    double value = 0.0;
+//    int i,j,k,hash_key;
+//    double beta = 0.0;
+//
+//    for(i = 0 ; i < PXL ; ++i){
+//        value = weights[i]*gamma;
+//        cut1(value);
+//        interp2(value,fr[i]);
+//
+//        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
+//        value=0;
+//        for(j=1;j<imgh-1;++j){
+//            for(k=1;k<imgw-1;++k){
+//                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
+//                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
+//            }
+//        }
+//        value=value*beta*(1-2*fr[i])/(imgh*imgw);
+//
+//        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(value)); // N effecitve than n
+//        mse+=(frr[i]*ORDER2[i]);
+//        mse_ori+=(fr[i]*ORDER2[i]);
+//        //printf("%lf,",frr[i]);
+//    }
+//    psnr = 10*log10(65025/mse);
+//    psnr_ori = 10*log10(65025/mse_ori);
+////    for(i = 0 ; i < PXL ; ++i)
+////        printf("%lf,",fr[i]);
+////    printf("%lf\n",psnr_ori);
 //    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",fr[i]);
-//    printf("%lf\n",psnr_ori);
-    for(i = 0 ; i < PXL ; ++i)
-        printf("%lf,",frr[i]);
-    printf("%lf\n",psnr);
-    return psnr;
-}
+//        printf("%lf,",frr[i]);
+//    printf("%lf\n",psnr);
+//    return psnr;
+//}
 
 
 double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma,double* frr_prev, int*** img_bp_ref2 = NULL, int** mv2 = NULL){
@@ -330,21 +330,22 @@ void solvIntraFn(const double &lambda, const double &eEn, const double &gamma, c
 }
 
 
-void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
+void weight_predict_Intra_minMSE(PIXEL** imgr,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double lambda = 10, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     double value = 0.0,beta;
     double eEn[PXL];
-    int i,j,k,N=0;
+    int i,j,k,N=0,mask=(1<<PXL);
 
     for(i = 0; i < PXL ; ++i){
 
-        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
+        mask >>= 1;
+        intra_beta_estimation(imgr,mask,beta,imgh,imgw);
         value= 0;
         for(j=1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
-                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
+                N = (((imgr[i][j+1]&mask)>0)+((imgr[i][j-1]&mask)>0)+((imgr[i+1][j]&mask)>0)+((imgr[i-1][j]&mask)>0));//img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
+                value+=(2*((imgr[i][j]&mask)>0)-1)*(2*N-4);
             }
         }
         eEn[i] = exp(value*beta/(imgh*imgw));

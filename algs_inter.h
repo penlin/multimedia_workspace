@@ -21,7 +21,7 @@
 *
 **/
 
-void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
+void inter_system(const char* str, FILE* fptr, const size_t &imgh, const size_t &imgw, const size_t &n_frame,int** G,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
     Frame frameMgr[2] = {Frame(imgh,imgw,0,0), Frame(imgh,imgw,0,1)};
     Frame* frame ;
@@ -32,7 +32,6 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double* ber = MALLOC(double, PXL);
 
     // param initial
-    const int Ns = pow(2,G_L-1);
     const int lm = imgh*imgw;
     const int lu = lm + 2;
 
@@ -41,8 +40,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         weights[i] = 1;
 
     // frame buffer
-    int** imgr = new2d<int>(imgh,imgw);
-    int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
+    PIXEL** imgr = new2d<int>(imgh,imgw);
+//    int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
 
     double** LyMgr[2] = {new2d<double>(PXL,2*lu), new2d<double>(PXL,2*lu)};
     int** MapMgr[2] = {new2d<int>(PXL,lm), new2d<int>(PXL,lm)};
@@ -57,14 +56,16 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double* Le1 = MALLOC(double,lu);
     double* Le2 = MALLOC(double,lu);
 
-    for(int i = 0 ; i < lu ; ++i)
+    for(int i = 0 ; i < lu ; ++i){
         Lu[i]  = 0;
+        Le1[i] = Le2[i] = 0.5;
+    }
 
-    computeLe(Lu,Le1,Le2,lu);
+//    computeLe(Lu,Le1,Le2,lu);
 
 
     // frame buffer for previous frame
-    int** imgO_prev;
+    PIXEL** imgO_prev;
     int** imgr_prev = new2d<int>(imgh,imgw);
     int*** imgr_bp_prev = new3d<int>(PXL,imgh,imgw);
 

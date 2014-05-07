@@ -21171,3 +21171,42 @@ frame# 20 PSNR = 36.770784
 
 Total Time Comsume:53.497000
 
+=============================
+Thu May 08 06:35:20 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 34.620314
+frame#  2 PSNR = 32.188026
+frame#  3 PSNR = 31.419565
+frame#  4 PSNR = 34.616517
+frame#  5 PSNR = 31.757873
+
+Total Time Comsume:14.789000
+
+=============================
+Thu May 08 06:39:34 2014
+
+Seq=foreman, SNR=0.0
+frame#  1 PSNR = 34.562813
+frame#  2 PSNR = 31.559605
+frame#  3 PSNR = 31.235035
+frame#  4 PSNR = 34.933601
+frame#  5 PSNR = 31.881944
+frame#  6 PSNR = 31.353326
+frame#  7 PSNR = 35.412548
+frame#  8 PSNR = 31.526364
+frame#  9 PSNR = 31.298121
+frame# 10 PSNR = 34.782174
+frame# 11 PSNR = 31.815951
+frame# 12 PSNR = 31.426806
+frame# 13 PSNR = 34.555485
+frame# 14 PSNR = 31.777890
+frame# 15 PSNR = 31.304361
+frame# 16 PSNR = 34.590829
+frame# 17 PSNR = 31.939048
+frame# 18 PSNR = 31.005822
+frame# 19 PSNR = 34.915834
+frame# 20 PSNR = 31.961933
+
+Total Time Comsume:58.520000
+

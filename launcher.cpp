@@ -1,5 +1,6 @@
 #include "build_value.h"
 #include "algs_direct.h"
+#include "algs_intra.h"
 #include "io_utils.h"
 
 
@@ -37,9 +38,6 @@ int main(int argc,char* argv[]){
 
     // pstate, pout
     int ** G = getGeneratorPrepare();
-//    int ** pout = getpOut();
-//    int ** pstate = getpState();
-//    trellis(pout,pstate);
 
     FILE* fptr;
     if(argc > 2)

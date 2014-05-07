@@ -11,7 +11,7 @@
 * Le1= P0; Le2=P1;
 */
 
-void computeLe(const double* Lu, double* Le1, double* Le2, const int &lu){
+void computeLe(const double* Lu, double* Le1, double* Le2, const size_t &lu){
 
     for(int i = 0 ; i < lu ; ++i){
         Le1[i] = 1/(1+exp(Lu[i]));      // P0
