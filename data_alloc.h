@@ -2,6 +2,7 @@
 #define __DATA_ALLOC_H
 #include <string.h>
 #include "build_value.h"
+#include "data_types.h"
 
 #if __MEM_MGR__
 #include "memMgr.h"

@@ -17,34 +17,31 @@
 *
 **/
 
-void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
+void direct_system(const char* str, FILE* fptr, const size_t &imgh, const size_t &imgw, const size_t &n_frame,int** G,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
 
     Frame* frame = new Frame(imgh,imgw,0,0);
     frame->encode_info(snr,G);
 
     // param initial
-    const int Ns = pow(2,G_L-1);
-    const int lm = imgh*imgw;
-    const int lu = lm + 2;
+    const size_t lm = imgh*imgw;
+    const size_t lu = lm + 2;
 
     double* weights = MALLOC(double,PXL);
 
-    if(weights)
+    if(weight_type)
         weight_predict_minMSE(weights,pow(10,snr/10));
     else
         for(int j = 0 ; j < PXL ; ++j)
             weights[j] = 1;
 
-    double* Lu = MALLOC(double,lu);
     double* Le1 = MALLOC(double,lu);
     double* Le2 = MALLOC(double,lu);
-    for(int i=0; i<lu ;++i)
-        Lu[i] = 0;
-    computeLe(Lu,Le1,Le2,lu);
+    for(int i = 0 ; i < lu ; ++i)
+        Le1[i] = Le2[i] = 0.5;
 
     // frame buffer
-    int** imgr = new2d<int>(imgh,imgw);
+    PIXEL** imgr = new2d<PIXEL>(imgh,imgw);
     double** Ly = new2d<double>(PXL,2*lu,0);    //channel value
     int** map = new2d<int>(PXL,lm);      //interleaver map
 
@@ -63,17 +60,16 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
         printf("BCJR decoding ...%lf\n",getCurrentTime());
 #endif
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
-            BCJR_decoding(Ns, lu, 1, Ly[t_lvl], Le1, Le2, pstate, pout, Lu_c[t_lvl]);
+            BCJR_decoding( lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
 
         // deinterleave
 #if __STATUS__
         printf("deinterleave ...%lf\n",getCurrentTime());
 #endif
-        deinterleave(Lu_c,map,lm);
+//        deinterleave(Lu_c,map,lm);
 
         // recover to image
-        Lu2dec_img(Lu_c,imgh,imgw,imgr);
-
+        Lu2dec_img(Lu_c,lm,imgr,map);
         // compute PSNR
         PSNR[f] = frame->psnr(imgr);
 #if __PSNR__
@@ -91,8 +87,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     delete2d<double>(Ly);
     delete2d<int>(map);
     delete2d<double>(Lu_c);
-    delete2d<int>(imgr);
-    DELETE(Lu);
+    delete2d<PIXEL>(imgr);
     DELETE(Le1);
     DELETE(Le2);
     DELETE(weights);

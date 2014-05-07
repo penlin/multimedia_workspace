@@ -1,7 +1,5 @@
 #include "build_value.h"
 #include "algs_direct.h"
-#include "algs_intra.h"
-#include "algs_inter.h"
 #include "io_utils.h"
 
 
@@ -28,20 +26,20 @@ int main(int argc,char* argv[]){
 
     startRandom();
 
-    const int h = __HEIGHT, w = __WIDTH;
-    int f = __FRAME ;
+    const size_t h = __HEIGHT, w = __WIDTH;
+    size_t f = __FRAME ;
 #ifdef MEM_MGR_H
     initMemMgr(h*w*PXL*sizeof(double)*5);
 #endif
 
-    const int len = __SNR_E-__SNR_S+1;
+    const size_t len = __SNR_E-__SNR_S+1;
     double snr[len];
 
     // pstate, pout
-    int ** G = getGenerator();
-    const int Ns = pow(2,G_L-1);
-    int ** pout = new2d<int>(Ns,4);
-    int ** pstate = new2d<int>(Ns,2) ;
+    int ** G = getGeneratorPrepare();
+//    int ** pout = getpOut();
+//    int ** pstate = getpState();
+//    trellis(pout,pstate);
 
     FILE* fptr;
     if(argc > 2)
@@ -52,9 +50,7 @@ int main(int argc,char* argv[]){
     assert(fptr!=NULL);
     rewind(fptr);
 
-    double* PSNR = MALLOC(double,f) ;//(double*) malloc(sizeof(double)*f);
-
-    trellis(G,G_N,G_L,Ns,pout,pstate);
+    double* PSNR = MALLOC(double,f) ;
 
     for(int i = 0 ; i < len ; ++i)
         snr[i] = __SNR_S+i;
@@ -70,17 +66,11 @@ int main(int argc,char* argv[]){
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
-//        for(int j = 0 ; j < PXL ; ++j)
-//            weights[j] = 1;//DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
-
         // decode
-//        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
-//        intra_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
-//        inter_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
         if(argc > 2)
-            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
+            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,snr[i],PSNR,weight_type,NULL);
         else
-            DECODE(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
+            DECODE(__TAG__,fptr,h,w,f,G,snr[i],PSNR,weight_type,NULL);
 
         // print result PSNR
 #if __PSNR__
@@ -105,13 +95,15 @@ int main(int argc,char* argv[]){
     }
 
     // free memory
+
+    fclose(fptr);
+#ifdef MEM_MGR_H
+    freeMemMgr();
+#else
     delete2d<int>(G);
     delete2d<int>(pstate);
     delete2d<int>(pout);
     DELETE(PSNR);//free(PSNR);
-    fclose(fptr);
-#ifdef MEM_MGR_H
-    freeMemMgr();
 #endif
 
 }

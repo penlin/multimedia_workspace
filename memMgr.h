@@ -13,13 +13,13 @@ using namespace std;
 // #define MEM_DEBUG
 
 #define SIZE_T      sizeof(size_t)
-#define SIZE_T_1    (sizeof(size_t) - 1)
-
-#define toSizeT(t)      (((t)%SIZE_T)?(t)-(t)%SIZE_T+SIZE_T:(t)-(t)%SIZE_T)
+//#define SIZE_T_1    (sizeof(size_t) - 1)
 //
-// To demote 't' to the nearest multiple of SIZE_T
-// e.g. Let SIZE_T = 8;  downtoSizeT(9) = 8, downtoSizeT(100) = 96
-#define downtoSizeT(t)  (t)-(t)%SIZE_T
+//#define toSizeT(t)      (((t)%SIZE_T)?(t)-(t)%SIZE_T+SIZE_T:(t)-(t)%SIZE_T)
+////
+//// To demote 't' to the nearest multiple of SIZE_T
+//// e.g. Let SIZE_T = 8;  downtoSizeT(9) = 8, downtoSizeT(100) = 96
+//#define downtoSizeT(t)  (t)-(t)%SIZE_T
 
 // R_SIZE is the size of the recycle list
 #define R_SIZE 64
@@ -56,10 +56,10 @@ class MemBlock
    void reset() { _ptr = _begin; }
 
    bool getMem(size_t t, void*& ret) {
-        size_t nt = toSizeT(t);
-        if(nt<=getRemainSize()){
+//        size_t nt = toSizeT(t);
+        if(t<=getRemainSize()){
             ret= (void*) _ptr;
-            _ptr= _ptr+nt;
+            _ptr= _ptr+t;
             return true;
         } else {
             ret= (void*) _ptr;
@@ -166,7 +166,7 @@ class MemMgr
 
 public:
    MemMgr(size_t b = 65536) : _blockSize(b) {
-      assert(b % SIZE_T == 0);
+//      assert(b % SIZE_T == 0);
       _activeBlock = new MemBlock(0, _blockSize);
 	  int i=0;
       for (i = 0; i < R_SIZE; ++i)
@@ -318,7 +318,7 @@ private:
    // [NOTE] Use this function in (at least) getMem() for retrieving/storing
    //        memory from recycle list
    size_t getRecycleIdx(size_t t) const {
-        assert(t % SIZE_T == 0);
+//        assert(t % SIZE_T == 0);
         return (t/SIZE_T-1);
    }
    // Once the index for recycle list is known, use this function to get the
@@ -334,7 +334,8 @@ private:
         #if MEM_DEBUG
         cout << "Calling MemMgr::getMem...(" << t << ")" << endl;
         #endif // MEM_DEBUG
-        size_t nt = toSizeT(t);
+//        size_t nt = toSizeT(t);
+        size_t nt = t;
 #if !__MEM_MGR_BOOST__
         if(nt>_max_alloc)
             _max_alloc = nt;
@@ -362,11 +363,11 @@ private:
         }else {
         ///// *** recycle the remained memory *** ///////
             size_t remain = _activeBlock->getRemainSize();
-            size_t recycle = downtoSizeT(remain);
+//            size_t recycle = downtoSizeT(remain);
             if(remain < 1+SIZE_T && remain >= 1) getMemRecycleList(0)->pushFront(ret);
             else if(remain >= 1+SIZE_T)
                 //*(ret+recycle)
-                getMemRecycleList(getRecycleIdx(recycle))->pushFront(ret);
+                getMemRecycleList(getRecycleIdx(remain))->pushFront(ret);
 
         /////**** allocate a new memory block *****//////
             _activeBlock= new MemBlock(_activeBlock,_blockSize);

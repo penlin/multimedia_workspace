@@ -120,7 +120,7 @@ void ComputeSoftOutput(double *La, double **alpha, double **beta, double ***gamm
 *   @output LA
 */
 
-void BCJR_map(const int &Ns, const int &lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, int** ps, int** pout, double* LA){
+void BCJR_map(const int &Ns, const size_t &lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, int** ps, int** pout, double* LA){
 
         int i, j;
         double** Alpha = new2d<double>(lu,Ns,0);

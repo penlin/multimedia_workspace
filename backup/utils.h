@@ -112,15 +112,6 @@ int InnerProduct(const int *a,const int *b,const int start_a ,const int end_a ,c
     return res;
 }
 
-uint8 InnerProductUint8(const int *a,const uint8 *b,const int &start_a ,const int &end_a ,const int &start_b ,const int &end_b) {
-    uint8 res = 0;
-    int  i , j;
-
-    for(i=start_a, j=start_b;i<=end_a && j<=end_b ;++i,++j)
-        res += a[i]*b[j];
-
-    return res;
-}
 /**
 *   @Penlin: print the 2D matrix from i: [i_s,i_e) and j: [j_s,j_e)
 */
@@ -130,13 +121,13 @@ void print2DMatrix(T** mat, const int &i_s, const int &i_e, const int &j_s, cons
     for(int i = i_s, j = j_s; i < i_e ; ++i){
         for(j=j_s ; j < j_e ; ++j){
             switch(sizeof(T)){
-            case sizeof(char): // char
+            case 1: // char
                 printf("%c ",mat[i][j]);
                 break;
-            case sizeof(int):
+            case 4:
                 printf("%d ",mat[i][j]);
                 break;
-            case sizeof(double):
+            case 8:
                 printf("%lf ",mat[i][j]);
                 break;
             }

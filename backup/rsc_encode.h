@@ -34,25 +34,27 @@ end
 
 
 // updated version, direct use imgr_bp and the random map instead block
-void rsc_encode(int ** G, const int &L, PIXEL** imgr, const int &mask, const int* map, const size_t &lm, const int &termination, uint8* output){
+void rsc_encode(int ** G, const int &L, int** imgr_bp, const int* map,const int &imgw, const int &lm, const int &termination, int* output){
 
-    int M = L-1, lu, i, j;
-    uint8 *state = MALLOC(uint8,M);
-    uint8 d_k = 0, a_k = 0, xp=0;
+    int M, lu, i, j;
+    int *state;
+    int d_k = 0, a_k = 0, xp=0;
 
+    M = L-1;
+    lu = (lm + ((termination>0)?M:0));
+
+    state = MALLOC(int,M);//(int*)malloc(sizeof(int)*M);
     for(i=0;i<M;++i)
         state[i] = 0;
 
-    lu = (lm + ((termination>0)?M:0));
-
     for(i=0;i<lu;++i){
         if(termination <= 0 || ( termination > 0 && i < lm ))
-            d_k = ((imgr[0][map[i]]&mask) > 0);
+            d_k = imgr_bp[map[i]/imgw][map[i]%imgw];
         else if(termination > 0 && i >= lm)
-            d_k = InnerProductUint8(G[0], state, 1 ,L-1,0, M-1)%2;
+            d_k = ((int)InnerProduct(G[0], state, 1 ,L-1,0, M-1))%2;
 
-        a_k = (G[0][0]*d_k+InnerProductUint8(G[0],state,1,L-1,0,M-1))%2;
-        xp =  (G[1][0]*a_k+InnerProductUint8(G[1],state,1,L-1,0,M-1))%2;
+        a_k = ((int)(G[0][0]*d_k+InnerProduct(G[0],state,1,L-1,0,M-1)))%2;
+        xp = ((int) (G[1][0]*a_k+InnerProduct(G[1],state,1,L-1,0,M-1)))%2;
 
         for(j=M-1;j>0;--j)
            state[j] = state[j-1];
