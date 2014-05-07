@@ -78,7 +78,8 @@ public:
 //                U[0][i] =  buffer[offset_u + i];
 //                V[0][i] =  buffer[offset_v + i];
 //            }
-        }
+        }else
+            fseek(fptr,lm/2,SEEK_CUR);
 
 //        DELETE(buffer);
 //        img2bp_frame(Y,height,width,img_bp);
