@@ -36,6 +36,7 @@ void inter_pair_system(const char* str, FILE* fptr, const int &imgh, const int &
     const int lm = imgh*imgw;
     const int lu = lm + 2;
 
+    const double EbN0 = pow(10,snr/10);
     double* weights = MALLOC(double,PXL);
     for(int i = 0 ; i < PXL; ++i)
         weights[i] = 1;
@@ -50,7 +51,7 @@ void inter_pair_system(const char* str, FILE* fptr, const int &imgh, const int &
     double** Ly ;       //channel value
     int** map ;         //interleaver map
 
-    double* beta = MALLOC(double,PXL);//(double*)malloc(sizeof(double)*PXL);
+    double* beta = MALLOC(double,PXL);
 
     // pstate, pout
     double* Lu = MALLOC(double,lu);
@@ -97,8 +98,6 @@ void inter_pair_system(const char* str, FILE* fptr, const int &imgh, const int &
     double** Lu_s_prev = new2d<double>(PXL,lm); //source decoder output
     double** Le_s_prev = new2d<double>(PXL,lm); // source extrinsic information
 
-//    double*** imgr_soft_bp = new3d<double>(imgh,imgw,PXL);
-//    double*** imgr_soft_bp_prev = new3d<double>(imgh,imgw,PXL);
 
     // decoding [ start from the second frame ]
     for(int f = 0 ; f < n_frame-1 ; f+=2){
@@ -106,19 +105,27 @@ void inter_pair_system(const char* str, FILE* fptr, const int &imgh, const int &
 #if __PROGRESS__
         printf("Encoding frame#%d\n",f+1);
 #endif
-        frameMgr[0].next(fptr,LyMgr[0],MapMgr[0],weights);
-        frameMgr[1].next(fptr,LyMgr[1],MapMgr[1],weights);
+        if(weight_type){
+            frameMgr[0].read(fptr);
+            frameMgr[1].read(fptr);
+            weight_predict_Inter_minMSE(frameMgr[0].Y,frameMgr[1].Y,imgh,imgw,weights,EbN0);
+            frameMgr[0].encode(LyMgr[0],MapMgr[0],weights);
+            weight_predict_Inter_minMSE(frameMgr[1].Y,frameMgr[0].Y,imgh,imgw,weights,EbN0);
+            frameMgr[1].encode(LyMgr[1],MapMgr[1],weights);
+
+        }else{
+            frameMgr[0].next(fptr,LyMgr[0],MapMgr[0],weights);
+            frameMgr[1].next(fptr,LyMgr[1],MapMgr[1],weights);
+        }
+
         Ly_prev = LyMgr[0];
         Ly = LyMgr[1];
         map_prev = MapMgr[0];
         map = MapMgr[1];
         frame_prev = &frameMgr[0];
         frame = &frameMgr[1];
-//        frame_prev->copy(frame);
-//        copyMatrix<double>(Ly_prev, Ly, PXL*2*lu);
-//        copyMatrix<int>(map_prev, map, PXL*lm);
-//
-//        frame->next(fptr,Ly,map,weights);
+
+
 #if __PROGRESS__
         printf("Decoding frame#%d\n",f+1);
 #endif
@@ -178,41 +185,28 @@ void inter_pair_system(const char* str, FILE* fptr, const int &imgh, const int &
                     imgr[i][j] = imgr_prev[i][j] = 0;
 
 
-//            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
-//                for(j = 0 ; j < imgw ; ++j)
-//                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
-//                        ii = map[t_lvl][j+i*imgw]/imgw;
-//                        jj = map[t_lvl][j+i*imgw]%imgw;
-//                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
-//
-////                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
-////                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
-////                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
-//
-//                        ii = map_prev[t_lvl][j+i*imgw]/imgw;
-//                        jj = map_prev[t_lvl][j+i*imgw]%imgw;
-//                        imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
-//
-////                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
-////                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
-////                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
-//                    }
-//
-//            bin2dec_img(imgr_bp,imgh,imgw,imgr);
-//            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
-//
-//            // motion estimation
-//#if __STATUS__
-//        printf("Motion Estimation ...%lf\n",getCurrentTime());
-//#endif
-//            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
-//            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
+            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
+                for(j = 0 ; j < imgw ; ++j)
+                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
+                        ii = map[t_lvl][j+i*imgw]/imgw;
+                        jj = map[t_lvl][j+i*imgw]%imgw;
+                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
 
-//            motionEstES(frame_prev->Y,frame->Y,imgh,imgw,mbSize,me_range,MV);
-//            motionEstES(frame->Y,frame_prev->Y,imgh,imgw,mbSize,me_range,MV_prev);
-//            motionEstES<double>(imgr_soft_bp_prev,imgr_soft_bp,imgh,imgw,mbSize,me_range,MV);
-//            motionEstES<double>(imgr_soft_bp,imgr_soft_bp_prev,imgh,imgw,mbSize,me_range,MV_prev);
+                        ii = map_prev[t_lvl][j+i*imgw]/imgw;
+                        jj = map_prev[t_lvl][j+i*imgw]%imgw;
+                        imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
 
+                    }
+
+            bin2dec_img(imgr_bp,imgh,imgw,imgr);
+            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
+
+            // motion estimation
+#if __STATUS__
+        printf("Motion Estimation ...%lf\n",getCurrentTime());
+#endif
+            motionEstES(imgr_prev,imgr,imgh,imgw,mbSize,me_range,MV);
+            motionEstES(imgr,imgr_prev,imgh,imgw,mbSize,me_range,MV_prev);
 
 #if __STATUS__
         printf("deinterleave ...%lf\n",getCurrentTime());

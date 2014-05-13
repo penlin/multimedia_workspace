@@ -40,11 +40,11 @@
 # **/
 
 // basic decoding information
-#define Niter       8                  // #iteration
+#define Niter       3                  // #iteration
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
-#define __FRAME     300
+#define __FRAME     20
 #define __SNR       4
 #define __SNR_S     0
 #define __SNR_E     4
@@ -75,11 +75,11 @@
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       0             // debug msg
-#define MEM_DEBUG       0&&__DEBUG__
-#define __OPT__         0&&__DEBUG__
+#define __DEBUG__       0               // debug msg
+#define MEM_DEBUG       0&&__DEBUG__    // msg for memory manager
+#define __OPT__         1&&__DEBUG__    // msg for uep prediction
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
-#define __PROGRESS__    0&&__DEBUG__    // msg for the progress
+#define __PROGRESS__    1&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
 #define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure
 

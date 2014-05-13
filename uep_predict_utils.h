@@ -465,4 +465,113 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
 #endif
 }
 
+
+void weight_predict_Inter_minMSE(int** img, int** img_ref,const int &imgh, const int &imgw, double* weights, const double &gamma){
+
+    double lambda = 10, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double value = 0.0,beta;
+    double eEn[PXL];
+    int i,j,k,bit=1,mbSize=8,n_block=0;
+    int** img_bp = new2d<int>(imgh,imgw,0);
+    int** img_bp_ref = new2d<int>(imgh,imgw,0);
+    int** mv = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
+
+    motionEstES(img,img_ref,imgh,imgw,mbSize,5,mv);
+
+//    printf("mv predict ok\n");
+    for(i = 0, bit = (1<<(PXL-1)); i < PXL ; ++i, bit>>=1){
+//        printf("prepare bp#%d\n",i+1);
+        for(j=0;j<imgh;++j){
+            for(k=0;k<imgw;++k){
+                n_block = ((j/mbSize)*imgw/mbSize+k/mbSize);
+//                printf("(%d,%d):n_block=%d\n",j,k,n_block);
+                img_bp[j][k] = ((img[j][k] & bit)>0);
+                img_bp_ref[j][k] = ((img_ref[j+mv[0][n_block]][k+mv[1][n_block]] & bit)>0);
+            }
+        }
+//        printf("estimate beta = ");
+        inter_beta_estimation(img_bp,beta,img_bp_ref,imgh,imgw);
+//        printf("%lf\n",beta);
+        value= 0;
+        for(j=0;j<imgh;++j)
+            for(k=0;k<imgw;++k)
+                value+=(2*img_bp[j][k]-1)*(2*img_bp_ref[j][k]-1);
+
+        eEn[i] = exp(value*beta/(imgh*imgw));
+//        printf("eEn=%lf\n",eEn[i]);
+    }
+
+    delete2d<int>(img_bp);
+    delete2d<int>(img_bp_ref);
+    delete2d<int>(mv);
+
+#if __OPT
+    printf("eEn = ");
+    for(i = 0 ; i < PXL ; ++i)
+        printf("%lf,",eEn[i]);
+    printf("\n");
+#endif
+    for(i = 0 ; i < PXL ; ++i){
+
+        solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
+        tmpSum+=weights[i];
+    }
+
+    double delta = 0.01/gamma;
+    int iter = 1, flag = 1, limit = 100, cutter = 0;
+
+    while(divergent(tmpSum,targetSum,tollerance)){
+#if __OPT__
+         printf("Iter:#%d,lambda=%lf (%lf) weights:[",iter,lambda,tmpSum);
+        for(i=0;i<PXL;++i)
+            printf("%lf, ",weights[i]);
+        printf("]\n");
+#endif
+        // calculate slope
+        slope = 0.0;
+        cutter = 0;
+        if(flag){
+            for(i=0;i<PXL;++i){
+                solvIntraFn(lambda+delta,eEn[i],gamma,ORDER_N2[i],weights[i]);
+                slope+=weights[i];
+            }
+            slope = (slope-tmpSum)/delta;
+        }
+        if(divergent(slope,0,tollerance))
+            lambda += (targetSum-tmpSum)/slope;
+        else if(divergent(tmpSum,targetSum,tollerance))
+            lambda += ((targetSum < tmpSum)*2-1)*delta*(1+(cutter==(PXL-1)));
+        else
+            lambda += ((targetSum < tmpSum)*2-1)*delta;
+
+        tmpSum = 0.0;
+        for(i = 0 ; i < PXL ; ++i){
+            solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
+            tmpSum+=weights[i];
+        }
+        iter+=1;
+
+        if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
+            delta/=3;
+            flag = 0;
+        }
+
+        if(iter>limit && !divergent(tmpSum,targetSum,1)){
+            if(delta > 0.00001)
+                delta/=1.05;
+            limit+=200;
+        }else if(iter>limit && cutter){
+            delta*= 1.05;
+            limit+=100;
+        }
+
+    }
+#if __OPT__
+    printf("found weights solution:[");
+    for(i=0;i<PXL;++i)
+        printf("%lf, ",weights[i]);
+    printf("]\n");
+#endif
+}
+
 #endif // __UEP_PREDICT_UTILS_H
