@@ -44,7 +44,7 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
-#define __FRAME     20
+#define __FRAME     300
 #define __SNR       4
 #define __SNR_S     0
 #define __SNR_E     4
