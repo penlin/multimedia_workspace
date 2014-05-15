@@ -3,6 +3,52 @@
 
 #include "uep_predict_utils.h"
 
+// for consective inter
+void weight_predict_Inter_minMSE(int** img, int** img_prev, int** img_nxt, const int &imgh, const int &imgw, double* weights, const double &gamma){
+
+    double value1 = 0.0, value2 = 0.0, beta1, beta2;
+    double eEn[PXL];
+    int i,j,k,bit=1,mbSize=8,n_block=0;
+    int** img_bp = new2d<int>(imgh,imgw,0);
+    int** img_bp_prev = new2d<int>(imgh,imgw,0);
+    int** img_bp_nxt = new2d<int>(imgh,imgw,0);
+    int** mv_prev = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
+    int** mv_nxt = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
+
+    motionEstES(img,img_prev,imgh,imgw,mbSize,5,mv_prev);
+    motionEstES(img,img_nxt,imgh,imgw,mbSize,5,mv_nxt);
+
+    for(i = 0, bit = (1<<(PXL-1)); i < PXL ; ++i, bit>>=1){
+        for(j=0;j<imgh;++j){
+            for(k=0;k<imgw;++k){
+                n_block = ((j/mbSize)*imgw/mbSize+k/mbSize);
+                img_bp[j][k] = ((img[j][k] & bit)>0);
+                img_bp_prev[j][k] = ((img_prev[j+mv_prev[0][n_block]][k+mv_prev[1][n_block]] & bit)>0);
+                img_bp_nxt[j][k] = ((img_nxt[j+mv_nxt[0][n_block]][k+mv_nxt[1][n_block]] & bit)>0);
+            }
+        }
+        inter2_beta_estimation(img_bp,img_bp_prev,img_bp_nxt,beta1,beta2,imgh,imgw);
+        value1 = value2 = 0;
+        for(j=0;j<imgh;++j)
+            for(k=0;k<imgw;++k){
+                value1+=(2*img_bp[j][k]-1)*(2*img_bp_prev[j][k]-1);
+                value2+=(2*img_bp[j][k]-1)*(2*img_bp_nxt[j][k]-1);
+            }
+
+        eEn[i] = exp((value1*beta1+value2*beta2)/(imgh*imgw));
+    }
+
+    delete2d<int>(img_bp);
+    delete2d<int>(img_bp_prev);
+    delete2d<int>(img_bp_nxt);
+    delete2d<int>(mv_nxt);
+    delete2d<int>(mv_prev);
+
+    weight_predict_basic(weights,eEn,gamma);
+
+}
+
+// for inter pair
 void weight_predict_Inter_minMSE(int** img, int** img_ref,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double value = 0.0,beta;
