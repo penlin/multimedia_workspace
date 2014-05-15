@@ -35,20 +35,21 @@ inline int divergent(const double &x,const double &y,const double &z){
     return ((x-y)>z || (y-x)>z);
 }
 
-inline int cut1(double &v){
+inline int cutGAMMA(double &v){
     if(v>MAX_GAMMA) v = MAX_GAMMA;
     else if(v<MIN_GAMMA) v = MIN_GAMMA;
     else return 0;
     return 1;
 }
 
-inline int cut(double &v){
+inline int cutDF(double &v){
     if(v>MAX_DF) v = MAX_DF;
     else if(v<MIN_DF) v = MIN_DF;
     else return 0;
     return 1;
 }
 
+// interpolate the snr value with the correspond df value
 void interp1(const double &target, double &value){
     int i  = 0;
     for(i=0;i<DATA_LEN;++i){
@@ -59,7 +60,7 @@ void interp1(const double &target, double &value){
     }
 }
 
-// y = interp1(snr,fr, gamma)
+// y = interp1(snr,fr, gamma), interpolate the fr value with the correspond gamma value
 void interp2(const double &gamma, double &value){
     int i  = 0;
     for(i=0;i<FR_DATA_LEN;++i){
@@ -70,14 +71,63 @@ void interp2(const double &gamma, double &value){
     }
 }
 
+
+double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
+
+    double fr[PXL];
+    double frr[PXL];
+    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
+    double value = 0.0 ;
+    double suppress = 1.0;
+
+    for(int i = 0 ; i < PXL ; ++i){
+
+        value = weights[i]*gamma;
+        cutGAMMA(value);
+        interp2(value,fr[i]);
+//        printf("%lf\n",fr[i]);
+        suppress = 1-2*fr[i];
+
+        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(eEn[i]*suppress));
+
+        mse+=(frr[i]*ORDER2[i]);
+        mse_ori+=(fr[i]*ORDER2[i]);
+
+    }
+
+    psnr = 10*log10(65025/mse);
+    psnr_ori = 10*log10(65025/mse_ori);
+
+//    for(i = 0 ; i < PXL ; ++i)
+//        printf("%lf,",fr[i]);
+//    printf("%lf\n",psnr_ori);
+
+    for(int i = 0 ; i < PXL ; ++i)
+        printf("%lf,",frr[i]);
+    printf("%lf\n",psnr);
+
+    return psnr;
+}
+
+/* ===========================================================
+#      ____                      __    _           __
+#     / __ \   _____  ___   ____/ /   (_)  _____  / /_
+#    / /_/ /  / ___/ / _ \ / __  /   / /  / ___/ / __/
+#   / ____/  / /    /  __// /_/ /   / /  / /__  / /_
+#  /_/      /_/     \___/ \__,_/   /_/   \___/  \__/
+# ============================================================
+*/
+
+
+// for direct decoding
 void weight_predict_minMSE(double* weights, const double &gamma){
 
     double lambda = 1, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     double value = 0.0;
-    int i,j;
+    int i;
     for(i = 0 ; i < PXL ; ++i){
         value = -lambda*ORDER_N2[i]/gamma;
-        cut(value);
+        cutDF(value);
         interp1(value,weights[i]);
         weights[i]/=gamma;
         tmpSum+=weights[i];
@@ -98,7 +148,7 @@ void weight_predict_minMSE(double* weights, const double &gamma){
         if(flag){
             for(i=0;i<PXL;++i){
                 value = -(lambda+delta)*ORDER_N2[i]/gamma;
-                cutter+=cut(value);
+                cutter+=cutDF(value);
                 interp1(value,weights[i]);
                 weights[i]/=gamma;
                 slope+=weights[i];
@@ -115,7 +165,7 @@ void weight_predict_minMSE(double* weights, const double &gamma){
         tmpSum = 0.0;
         for(i = 0 ; i < PXL ; ++i){
             value = -lambda*ORDER_N2[i]/gamma;
-            cut(value);
+            cutDF(value);
             interp1(value,weights[i]);
             weights[i]/=gamma;
             tmpSum+=weights[i];
@@ -153,209 +203,11 @@ void weight_predict_minPOWER(double* gammas, const double &mse){
 
 }
 
-double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
-    double fr[PXL];
-    double frr[PXL]={0,0,0,0,0,0,0,0};
-    double n = 0, mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
-    int N = 0;
-    double value = 0.0;
-    int i,j,k,hash_key;
-    double beta = 0.0;
+// E[MSE] =  \sigma{2^{2n}*{fr/(fr+(1-fr)*eEn)}} , where eEn = exp{\beta*En} is constant
+void solvBaiscFn(const double &lambda, const double &eEn, const double &gamma, const double &bp_factor, double &weight){
 
-    for(i = 0 ; i < PXL ; ++i){
-        value = weights[i]*gamma;
-        cut1(value);
-        interp2(value,fr[i]);
-
-        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
-        value=0;
-        for(j=1;j<imgh-1;++j){
-            for(k=1;k<imgw-1;++k){
-                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
-            }
-        }
-        value=value*beta*(1-2*fr[i])/(imgh*imgw);
-
-        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(value)); // N effecitve than n
-        mse+=(frr[i]*ORDER2[i]);
-        mse_ori+=(fr[i]*ORDER2[i]);
-        //printf("%lf,",frr[i]);
-    }
-    psnr = 10*log10(65025/mse);
-    psnr_ori = 10*log10(65025/mse_ori);
-//    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",fr[i]);
-//    printf("%lf\n",psnr_ori);
-    for(i = 0 ; i < PXL ; ++i)
-        printf("%lf,",frr[i]);
-    printf("%lf\n",psnr);
-    return psnr;
-}
-
-double inter_basic_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma){
-
-    double fr[PXL];
-    double frr[PXL]={0,0,0,0,0,0,0,0};
-    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
-    double value = 0.0, En = 0.0, beta = 0.0 ;
-    double suppress = 1.0;
-    int i,j,k;
-    int** img_ref = new2d<int>(imgh,imgw);
-
-    for(i = 0 ; i < PXL ; ++i){
-
-        value = weights[i]*gamma;
-        cut1(value);
-        interp2(value,fr[i]);
-        suppress = 1-2*fr[i];
-        motionComp(img_bp_ref[i],mv1,imgh,imgw,8,img_ref);
-
-        En = 0.0;
-        inter_beta_estimation(img_bp[i],beta,img_ref,imgh,imgw);
-        for(j= 0 ; j < imgh ; ++j)
-            for(k=0 ; k < imgw ; ++k)
-                En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
-
-        En = En*beta*suppress*suppress/(imgh*imgw);
-        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En));
-//        frr[i] = 1/(1+exp(En));
-
-        mse+=(frr[i]*ORDER2[i]);
-        mse_ori+=(fr[i]*ORDER2[i]);
-//        printf("%lf,",frr[i]);
-    }
-    psnr = 10*log10(65025/mse);
-    psnr_ori = 10*log10(65025/mse_ori);
-//    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",fr[i]);
-//    printf("%lf\n",psnr_ori);
-
-    for(i = 0 ; i < PXL ; ++i)
-        printf("%lf,",frr[i]);
-    printf("%lf\n",psnr);
-
-    //printf("%lf,%lf\n",psnr_ori,psnr);
-
-    delete2d<int>(img_ref);
-    return psnr;
-}
-
-
-double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma,double* frr_prev, int*** img_bp_ref2 = NULL, int** mv2 = NULL){
-
-    double fr[PXL];
-    double frr[PXL]={0,0,0,0,0,0,0,0};
-    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
-    double value = 0.0, En = 0.0, En1 = 0.0, beta = 0.0, beta_prev = 0.0 ;
-    double suppress = 1.0;
-    int i,j,k;
-    int** img_ref = new2d<int>(imgh,imgw);
-    int** img_ref2;
-
-    if(img_bp_ref2!=NULL)
-        img_ref2 = new2d<int>(imgh,imgw);
-
-    for(i = 0 ; i < PXL ; ++i){
-
-        value = weights[i]*gamma;
-        cut1(value);
-        interp2(value,fr[i]);
-        suppress = 1-2*fr[i];
-        if(img_bp_ref2==NULL && frr_prev[i]>0){
-            suppress = 1-2*frr_prev[i];
-        }
-        motionComp(img_bp_ref[i],mv1,imgh,imgw,8,img_ref);
-//        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
-        En = En1 = 0.0;
-        if(img_bp_ref2==NULL){
-            inter_beta_estimation(img_bp[i],beta,img_ref,imgh,imgw);
-            for(j= 0 ; j < imgh ; ++j)
-                for(k=0 ; k < imgw ; ++k)
-                    En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
-
-            En = En*beta*suppress/(imgh*imgw);
-            frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En));
-        } else {
-            motionComp(img_bp_ref2[i],mv2,imgh,imgw,8,img_ref2);
-            inter2_beta_estimation(img_bp[i], img_ref2, img_ref, beta, beta_prev, imgh, imgw);
-            for(j= 0 ; j < imgh ; ++j)
-                for(k=0 ; k < imgw ; ++k){
-                    En+= (2*img_bp[i][j][k]-1)*(2*img_ref[j][k]-1);
-                    En1+= (2*img_bp[i][j][k]-1)*(2*img_ref2[j][k]-1);
-                }
-
-            En = En*beta_prev*(1-2*frr_prev[i])/(imgh*imgw);
-            En1 = En1*beta*suppress/(imgh*imgw);
-            frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(En+En1));
-        }
-
-        mse+=(frr[i]*ORDER2[i]);
-        mse_ori+=(fr[i]*ORDER2[i]);
-//        printf("%lf,",frr[i]);
-        frr_prev[i] = frr[i];
-    }
-    psnr = 10*log10(65025/mse);
-    psnr_ori = 10*log10(65025/mse_ori);
-//    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",fr[i]);
-//    printf("%lf\n",psnr_ori);
-
-    for(i = 0 ; i < PXL ; ++i)
-        printf("%lf,",frr[i]);
-    printf("%lf\n",psnr);
-
-    //printf("%lf,%lf\n",psnr_ori,psnr);
-
-    delete2d<int>(img_ref);
-    if(img_bp_ref2!=NULL){
-        delete2d<int>(img_ref2);
-    }
-    return psnr;
-}
-
-double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
-
-    double fr[PXL];
-    double frr[PXL];
-    double mse = 0, mse_ori = 0,psnr = 0, psnr_ori = 0;
-    double value = 0.0 ;
-    double suppress = 1.0;
-
-    for(int i = 0 ; i < PXL ; ++i){
-
-        value = weights[i]*gamma;
-        cut1(value);
-        interp2(value,fr[i]);
-//        printf("%lf\n",fr[i]);
-        suppress = 1-2*fr[i];
-
-        frr[i] = fr[i]/(fr[i]+(1-fr[i])*exp(eEn[i]*suppress));
-
-        mse+=(frr[i]*ORDER2[i]);
-        mse_ori+=(fr[i]*ORDER2[i]);
-
-    }
-
-    psnr = 10*log10(65025/mse);
-    psnr_ori = 10*log10(65025/mse_ori);
-
-//    for(i = 0 ; i < PXL ; ++i)
-//        printf("%lf,",fr[i]);
-//    printf("%lf\n",psnr_ori);
-
-    for(int i = 0 ; i < PXL ; ++i)
-        printf("%lf,",frr[i]);
-    printf("%lf\n",psnr);
-
-    return psnr;
-}
-
-
-void solvIntraFn(const double &lambda, const double &eEn, const double &gamma, const double &bp_factor, double &weight){
-
-    int i, j = 0, offset = 8;
+    int i, offset = 8;
     double fn = 0, fn1 = 0, tmp = 0, cons = bp_factor*lambda/gamma/eEn;
     tmp = (fr[offset]*(1-eEn)+eEn);
     fn1 = df[0] + cons*tmp*tmp;
@@ -376,35 +228,21 @@ void solvIntraFn(const double &lambda, const double &eEn, const double &gamma, c
     weight = MAX_GAMMA;
 }
 
-
-void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
+void weight_predict_basic(double* weights, const double eEn[PXL], const double &gamma ) {
 
     double lambda = 10, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
-    double value = 0.0,beta;
-    double eEn[PXL];
-    int i,j,k,N=0;
+    int i ;
 
-    for(i = 0; i < PXL ; ++i){
-
-        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
-        value= 0;
-        for(j=1;j<imgh-1;++j){
-            for(k=1;k<imgw-1;++k){
-                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
-            }
-        }
-        eEn[i] = exp(value*beta/(imgh*imgw));
-    }
 #if __OPT
     printf("eEn = ");
     for(i = 0 ; i < PXL ; ++i)
         printf("%lf,",eEn[i]);
     printf("\n");
 #endif
+
     for(i = 0 ; i < PXL ; ++i){
 
-        solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
+        solvBaiscFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
         tmpSum+=weights[i];
     }
 
@@ -423,7 +261,7 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
         cutter = 0;
         if(flag){
             for(i=0;i<PXL;++i){
-                solvIntraFn(lambda+delta,eEn[i],gamma,ORDER_N2[i],weights[i]);
+                solvBaiscFn(lambda+delta,eEn[i],gamma,ORDER_N2[i],weights[i]);
                 slope+=weights[i];
             }
             slope = (slope-tmpSum)/delta;
@@ -437,7 +275,7 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
 
         tmpSum = 0.0;
         for(i = 0 ; i < PXL ; ++i){
-            solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
+            solvBaiscFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
             tmpSum+=weights[i];
         }
         iter+=1;
@@ -463,115 +301,9 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
         printf("%lf, ",weights[i]);
     printf("]\n");
 #endif
+
 }
 
 
-void weight_predict_Inter_minMSE(int** img, int** img_ref,const int &imgh, const int &imgw, double* weights, const double &gamma){
-
-    double lambda = 10, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
-    double value = 0.0,beta;
-    double eEn[PXL];
-    int i,j,k,bit=1,mbSize=8,n_block=0;
-    int** img_bp = new2d<int>(imgh,imgw,0);
-    int** img_bp_ref = new2d<int>(imgh,imgw,0);
-    int** mv = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
-
-    motionEstES(img,img_ref,imgh,imgw,mbSize,5,mv);
-
-//    printf("mv predict ok\n");
-    for(i = 0, bit = (1<<(PXL-1)); i < PXL ; ++i, bit>>=1){
-//        printf("prepare bp#%d\n",i+1);
-        for(j=0;j<imgh;++j){
-            for(k=0;k<imgw;++k){
-                n_block = ((j/mbSize)*imgw/mbSize+k/mbSize);
-//                printf("(%d,%d):n_block=%d\n",j,k,n_block);
-                img_bp[j][k] = ((img[j][k] & bit)>0);
-                img_bp_ref[j][k] = ((img_ref[j+mv[0][n_block]][k+mv[1][n_block]] & bit)>0);
-            }
-        }
-//        printf("estimate beta = ");
-        inter_beta_estimation(img_bp,beta,img_bp_ref,imgh,imgw);
-//        printf("%lf\n",beta);
-        value= 0;
-        for(j=0;j<imgh;++j)
-            for(k=0;k<imgw;++k)
-                value+=(2*img_bp[j][k]-1)*(2*img_bp_ref[j][k]-1);
-
-        eEn[i] = exp(value*beta/(imgh*imgw));
-//        printf("eEn=%lf\n",eEn[i]);
-    }
-
-    delete2d<int>(img_bp);
-    delete2d<int>(img_bp_ref);
-    delete2d<int>(mv);
-
-#if __OPT
-    printf("eEn = ");
-    for(i = 0 ; i < PXL ; ++i)
-        printf("%lf,",eEn[i]);
-    printf("\n");
-#endif
-    for(i = 0 ; i < PXL ; ++i){
-
-        solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
-        tmpSum+=weights[i];
-    }
-
-    double delta = 0.01/gamma;
-    int iter = 1, flag = 1, limit = 100, cutter = 0;
-
-    while(divergent(tmpSum,targetSum,tollerance)){
-#if __OPT__
-         printf("Iter:#%d,lambda=%lf (%lf) weights:[",iter,lambda,tmpSum);
-        for(i=0;i<PXL;++i)
-            printf("%lf, ",weights[i]);
-        printf("]\n");
-#endif
-        // calculate slope
-        slope = 0.0;
-        cutter = 0;
-        if(flag){
-            for(i=0;i<PXL;++i){
-                solvIntraFn(lambda+delta,eEn[i],gamma,ORDER_N2[i],weights[i]);
-                slope+=weights[i];
-            }
-            slope = (slope-tmpSum)/delta;
-        }
-        if(divergent(slope,0,tollerance))
-            lambda += (targetSum-tmpSum)/slope;
-        else if(divergent(tmpSum,targetSum,tollerance))
-            lambda += ((targetSum < tmpSum)*2-1)*delta*(1+(cutter==(PXL-1)));
-        else
-            lambda += ((targetSum < tmpSum)*2-1)*delta;
-
-        tmpSum = 0.0;
-        for(i = 0 ; i < PXL ; ++i){
-            solvIntraFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
-            tmpSum+=weights[i];
-        }
-        iter+=1;
-
-        if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
-            delta/=3;
-            flag = 0;
-        }
-
-        if(iter>limit && !divergent(tmpSum,targetSum,1)){
-            if(delta > 0.00001)
-                delta/=1.05;
-            limit+=200;
-        }else if(iter>limit && cutter){
-            delta*= 1.05;
-            limit+=100;
-        }
-
-    }
-#if __OPT__
-    printf("found weights solution:[");
-    for(i=0;i<PXL;++i)
-        printf("%lf, ",weights[i]);
-    printf("]\n");
-#endif
-}
 
 #endif // __UEP_PREDICT_UTILS_H

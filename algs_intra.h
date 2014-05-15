@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "frame.h"
 #include "mrf_decoder_utils.h"
-#include "uep_predict_utils.h"
+#include "uep_predict_intra.h"
 
 /**
 *   @Penlin: algorithm for intra decoding

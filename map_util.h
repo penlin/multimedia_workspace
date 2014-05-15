@@ -27,14 +27,14 @@ void computeLe(const double* Lu, double* Le1, double* Le2, const int &lu){
 void ComputeGamma(double*** gamma,const int &lu ,const int &Ns , int **ps, int **pout, double *Ly, double *Le1, double * Le2)
 {
     int i,j;
-    double Lyk[2],tmp=0;
+    double Lyk[2];
 
     for(i=1;i<(lu+1);++i){
 //        Lyk[0] = 1/(1+exp(-Ly[2*i-2])); // P=1
 //        Lyk[1] = 1/(1+exp(-Ly[2*i-1])); // P=1
         Lyk[0] = Ly[2*i-2];
         Lyk[1] = Ly[2*i-1];
-        tmp = 0;
+//        tmp = 0;
         for(j=0;j<Ns;++j){
 //             gamma[ps[j][0]][j][i] = (1-Lyk[0])*((1-pout[j][1])/2+Lyk[1]*pout[j][1])*Le1[i-1] ;
 //             gamma[ps[j][1]][j][i] =  Lyk[0]*((1-pout[j][3])/2+Lyk[1]*pout[j][3])*Le2[i-1];

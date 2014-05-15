@@ -30,7 +30,7 @@ void video_encode(int*** Y,const int &n_frame,const int &imgh, const int &imgw, 
 //    double rate = 1/(double)(2-puncture);       // code rate
 //    const double a = 1;                         // Fading amplitude. a=1 -> AWGN channel
     const int lm = imgh*imgw;                   // Frame size
-    const int lu = lm + 2;                      // Length of message bit sequence
+//    const int lu = lm + 2;                      // Length of message bit sequence
 //    const double EbN0 = pow(10,EbN0dB/10);      // convert Eb/N0[dB] to normal number
 //    double L_c[PXL];                            // reliability value of the channel
 //    double sigma[PXL];                          // standard deviation of AWGN noise

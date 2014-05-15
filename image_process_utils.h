@@ -164,7 +164,7 @@ double computePSNR(int** imgr, int** imgO, const int &imgh, const int &imgw){
 
 void computeBER(int** imgr, int** imgO, const int &lm, double* ber){
 
-    int mask = 1, value;
+    int value;
     for(int i = 0 ; i < PXL ; ++i)
         ber[i] = 0.0;
 

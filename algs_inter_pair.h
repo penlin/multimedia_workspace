@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "frame.h"
 #include "mrf_decoder_utils.h"
+#include "uep_predict_inter.h"
 
 /**
 *   @Penlin: algorithm for inter  decoding
