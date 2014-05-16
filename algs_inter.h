@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "frame.h"
 #include "mrf_decoder_utils.h"
+#include "uep_predict_inter.h"
+
 
 /**
 *   @Penlin: algorithm for inter  decoding
@@ -26,6 +28,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     Frame frameMgr[2] = {Frame(imgh,imgw,0,0), Frame(imgh,imgw,0,1)};
     Frame* frame ;
     Frame* frame_prev;
+    Frame* frame3;
     frameMgr[0].encode_info(snr,G);
     frameMgr[1].encode_info(snr,G);
 
@@ -36,6 +39,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     const int lm = imgh*imgw;
     const int lu = lm + 2;
 
+    const double EbN0 = pow(10,snr/10);
     double* weights = MALLOC(double,PXL);
     for(int i = 0 ; i < PXL; ++i)
         weights[i] = 1;
@@ -64,7 +68,6 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
 
     // frame buffer for previous frame
-    int** imgO_prev;
     int** imgr_prev = new2d<int>(imgh,imgw);
     int*** imgr_bp_prev = new3d<int>(PXL,imgh,imgw);
 
@@ -88,7 +91,17 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double** Le_ref = new2d<double>(PXL,lm);
 
     // assigning first frame
-    frameMgr[0].next(fptr,LyMgr[0],MapMgr[0],weights);
+    if(weight_type){
+        frame3 = new Frame(imgh,imgw,0,2);
+        frame3->encode_info(snr,G);
+        frameMgr[0].read(fptr);
+        frameMgr[1].read(fptr);
+        weight_predict_Inter_minMSE(frameMgr[0].Y,frameMgr[1].Y,imgh,imgw,weights,EbN0);
+        frameMgr[0].encode(LyMgr[0],MapMgr[0],weights);
+
+    }else
+        frameMgr[0].next(fptr,LyMgr[0],MapMgr[0],weights);
+
     for(int i = 0 ; i < PXL ; ++i)
         beta[i] = beta_prev[i] = beta_prev2[i] = 0;
 
@@ -112,19 +125,69 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 #if __PROGRESS__
         printf("Encoding frame#%d\n",f+1);
 #endif
-
         Ly_prev = LyMgr[(f+1)%2];
         Ly = LyMgr[f%2];
         map_prev = MapMgr[(f+1)%2];
         map = MapMgr[f%2];
-        frameMgr[f%2].next(fptr,Ly,map,weights);
-        frame_prev = &frameMgr[(f+1)%2];
-        frame = &frameMgr[f%2];
-//        frame_prev->copy(frame);
-//        copyMatrix<double>(Ly_prev, Ly, PXL*2*lu);
-//        copyMatrix<int>(map_prev, map, PXL*lm);
-//
-//        frame->next(fptr,Ly,map,weights);
+
+        if(weight_type){
+            if(f==n_frame-1){
+                switch(f%3){
+                case 0:
+                    weight_predict_Inter_minMSE(frameMgr[0].Y,frame3->Y,imgh,imgw,weights,EbN0);
+                    frameMgr[0].encode(LyMgr[f%2],MapMgr[f%2],weights);
+                    frame_prev = frame3;
+                    frame = &frameMgr[0];
+                    break;
+                case 1:
+                    weight_predict_Inter_minMSE(frameMgr[1].Y,frameMgr[0].Y,imgh,imgw,weights,EbN0);
+                    frameMgr[1].encode(LyMgr[f%2],MapMgr[f%2],weights);
+                    frame_prev = &frameMgr[0];
+                    frame = &frameMgr[1];
+                    break;
+                case 2:
+                    weight_predict_Inter_minMSE(frame3->Y,frameMgr[1].Y,imgh,imgw,weights,EbN0);
+                    frame3->encode(LyMgr[f%2],MapMgr[f%2],weights);
+                    frame_prev = &frameMgr[1];
+                    frame = frame3;
+                    break;
+                }
+            }else{
+                switch(f%3){
+                case 0:
+                    frameMgr[1].read(fptr);
+                    weight_predict_Inter_minMSE(frameMgr[0].Y,frame3->Y,frameMgr[1].Y,imgh,imgw,weights,EbN0);
+                    frameMgr[0].encode(LyMgr[f%2],MapMgr[f%2],weights);
+                    frame_prev = frame3;
+                    frame = &frameMgr[0];
+                    break;
+                case 1:
+                    frame3->read(fptr);
+                    weight_predict_Inter_minMSE(frameMgr[1].Y,frameMgr[0].Y,frame3->Y,imgh,imgw,weights,EbN0);
+                    frameMgr[1].encode(LyMgr[f%2],MapMgr[f%2],weights);
+                    frame_prev = &frameMgr[0];
+                    frame = &frameMgr[1];
+                    break;
+                case 2:
+                    frameMgr[0].read(fptr);
+                    weight_predict_Inter_minMSE(frame3->Y,frameMgr[1].Y,frameMgr[0].Y,imgh,imgw,weights,EbN0);
+                    frame3->encode(LyMgr[f%2],MapMgr[f%2],weights);
+                    frame_prev = &frameMgr[1];
+                    frame = frame3;
+                    break;
+                }
+            }
+//            for(int i = 0 ; i < PXL ; ++i){
+//                printf("%.3f, ",weights[i]);
+//            }
+//            printf("\n");
+
+        }else{
+            frameMgr[f%2].next(fptr,Ly,map,weights);
+            frame_prev = &frameMgr[(f+1)%2];
+            frame = &frameMgr[f%2];
+        }
+
 #if __PROGRESS__
         printf("Decoding frame#%d\n",f+1);
 #endif
@@ -353,6 +416,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     delete2d<int>(MV);
     delete2d<int>(MV_prev);
 
+    if(weight_type)
+        delete frame3;
 }
 
 

@@ -47,7 +47,7 @@
 #define __FRAME     300
 #define __SNR       4
 #define __SNR_S     0
-#define __SNR_E     4
+#define __SNR_E     1
 
 
 #define __SEQ_DIR   "sequence/"
@@ -68,16 +68,16 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTRA__
+#define __ALGO__    __INTER__
 #define __SEQ__     __AKIYO
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       1               // debug msg
+#define __DEBUG__       0               // debug msg
 #define MEM_DEBUG       0&&__DEBUG__    // msg for memory manager
-#define __OPT__         1&&__DEBUG__    // msg for uep prediction
+#define __OPT__         0&&__DEBUG__    // msg for uep prediction
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
 #define __PROGRESS__    1&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
