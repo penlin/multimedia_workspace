@@ -286,8 +286,10 @@ void weight_predict_basic(double* weights, const double eEn[PXL], const double &
         }
 
         if(iter>limit && !divergent(tmpSum,targetSum,1)){
-            if(delta > 0.00001)
+            if(delta > 0.0001)
                 delta/=1.05;
+            else
+                tollerance*=2;
             limit+=200;
         }else if(iter>limit && cutter){
             delta*= 1.05;
