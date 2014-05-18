@@ -113,7 +113,7 @@ public:
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
             // interleave
             random_sequence(0,lm-1,map_out[t_lvl]);
-            rsc_encode(G,G_L,img_bp[t_lvl],map_out[t_lvl],lm,1,x);
+            rsc_encode(G,G_L,img_bp[t_lvl],map_out[t_lvl],lm,width,1,x);
 
             for(int i = 0 ; i < 2*lu ; ++i)
                 Ly[t_lvl][i] = 0.5*L_c[t_lvl]*(2*x[i] - 1) + sigma[t_lvl]*gaussian_noise();  // add noise   + sigma*gaussian_noise()

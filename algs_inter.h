@@ -243,12 +243,11 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         printf("sign detecot for ME ...%lf\n",getCurrentTime());
 #endif
 
-            for(int i = 0 ; i < lm ; ++i)
-                imgr[0][i] = imgr_prev[0][i] = 0;
-
             Lu2dec_img(Lu_c,lm,imgr,map);
             Lu2dec_img(Lu_c_prev,lm,imgr_prev,map_prev);
 
+//            for(int i = 0 ; i < lm ; ++i)
+//                imgr[0][i] = imgr_prev[0][i] = 0;
 //            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
 //                for(j = 0 ; j < imgw ; ++j)
 //                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
@@ -271,7 +270,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 //
 //            bin2dec_img(imgr_bp,imgh,imgw,imgr);
 //            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
-//
+
             // motion estimation
 #if __STATUS__
         printf("Motion Estimation ...%lf\n",getCurrentTime());
@@ -328,10 +327,10 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         printf("MRF decoding ... %lf\n",getCurrentTime());
 #endif
             motionComp(Le_c_prev,MV_prev,imgh,imgw,mbSize,Le_ref);
-            mrf_siso_inter(Le_c,Le_ref,beta,imgh,imgw,Lu_s,1);
+            mrf_siso_inter(Le_c,Le_ref,beta,lm,Lu_s,1);
 
             motionComp(Le_c,MV,imgh,imgw,mbSize,Le_ref);
-            mrf_siso_inter(Le_c_prev,Le_ref,beta_prev,imgh,imgw,Lu_s_prev,1);
+            mrf_siso_inter(Le_c_prev,Le_ref,beta_prev,lm,Lu_s_prev,1);
 
             for(int t_lvl = 0, i = 0 ; t_lvl < PXL ; ++t_lvl)
                 for(i=0;i<lm;++i)

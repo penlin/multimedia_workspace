@@ -31,7 +31,7 @@ end
 #include <stdlib.h>
 #include "utils.h"
 
-void rsc_encode(int ** G, const int &L, int8** imgr_bp, const int* map, const size_t &lm, const int &termination, int8* output){
+void rsc_encode(int ** G, const int &L, int8** imgr_bp, const int* map, const int &lm, const int & imgw, const int &termination, int8* output){
 
     int M = L-1, lu, i, j;
     int8 *state = MALLOC(int8,M);
@@ -44,7 +44,7 @@ void rsc_encode(int ** G, const int &L, int8** imgr_bp, const int* map, const si
 
     for(i=0;i<lu;++i){
         if(termination <= 0 || ( termination > 0 && i < lm ))
-            d_k = imgr_bp[0][map[i]];//((imgr[0][map[i]]&mask) > 0);
+            d_k = imgr_bp[0][map[i]];//imgr_bp[map[i]/imgw][map[i]%imgw];
         else if(termination > 0 && i >= lm)
             d_k = InnerProduct(G[0], state, 1 ,L-1,0, M-1)%2;
 

@@ -102,15 +102,15 @@ void copyMatrix(T** a, T**b , const int &lm){
             && n2 > end_b && start_b >= 0 && (end_b-start_b) <= n2
             && (end_b-start_a) == (end_a - start_a));
 */
-int InnerProduct(const int *a,const int *b,const int start_a ,const int end_a ,const int start_b ,const int end_b) {
-    int res = 0;
-    int  i , j;
-
-    for(i=start_a, j=start_b;i<=end_a && j<=end_b ;++i,++j)
-        res += a[i]*b[j];
-
-    return res;
-}
+//int InnerProduct(const int *a,const int *b,const int start_a ,const int end_a ,const int start_b ,const int end_b) {
+//    int res = 0;
+//    int  i , j;
+//
+//    for(i=start_a, j=start_b;i<=end_a && j<=end_b ;++i,++j)
+//        res += a[i]*b[j];
+//
+//    return res;
+//}
 
 int8 InnerProduct(const int *a,const int8 *b,const int &start_a ,const int &end_a ,const int &start_b ,const int &end_b) {
     int8 res = 0;

@@ -62,10 +62,9 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     // decoding
     for(int f = 0 ; f < n_frame ; ++f){
 #if __PROGRESS__
-        printf("Decoding frame#%d\n",f+1);
+        printf("Encoding frame#%d\n",f+1);
 #endif
 
-//        frame->next(fptr,Ly,map,weights);
         frame->read(fptr);
         if(repredict)
             weight_predict_Intra_minMSE(frame->img_bp,imgh,imgw,weights,EbN0);
@@ -93,6 +92,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             for(int i = 0 ; i < PXL ; ++i)
                 for(int j = 0 ; j < lm ; ++j)
                     Le_s[i][j] = (Lu_s[i][map[i][j]]-Le_c[i][map[i][j]]);
+//                    Le_s[i][j] = (Lu_s[i][j]-Le_c[i][j]);
 
 
             // BCJR decoding
@@ -114,6 +114,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             for(int i = 0 ; i < PXL ; ++i)
                 for(int j = 0 ; j < lm ; ++j)
                     Le_c[i][map[i][j]] = (Lu_c[i][j] - Le_s[i][j]);
+//                    Le_c[i][j] = (Lu_c[i][j] - Le_s[i][j]);
 
             // MRF parameter estimation
 #if __STATUS__
@@ -141,6 +142,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
             // recover to image
             Lu2dec_img(Lu_c,lm,imgr,map);
+//            Lu2dec_img(Lu_c,lm,imgr);
             // compute PSNR
             double channel_psnr = frame->psnr(imgr);
 

@@ -65,8 +65,6 @@ void inter_intra_system(const char* str, FILE* fptr, const int &imgh, const int 
 
     computeLe(Lu,Le1,Le2,lu);
 
-    trellis(G,G_N,G_L,Ns,pout,pstate);
-
     // frame buffer for previous frame
     Pixel** imgr_prev = new2d<Pixel>(imgh,imgw);
     int8*** imgr_bp_prev = new3d<int8>(PXL,imgh,imgw);
@@ -310,9 +308,9 @@ void inter_intra_system(const char* str, FILE* fptr, const int &imgh, const int 
 #if __BETA__
             printf("frame#%d iter#%d,\n",f+1,iter+1);
             for(int i = 0 ; i < PXL ; ++i)
-                printf("bp %d beta_s = %lf , beta_s_prev = %lf \n",i,beta_s[f][i],beta_s_prev[f][i]);
+                printf("bp %d beta_s = %lf , beta_s_prev = %lf \n",i,beta_s[i],beta_s_prev[i]);
             for(int i = 0 ; i < PXL ; ++i)
-                printf("bp %d beta_t = %lf , beta_t_prev = %lf , beta_t_prev2 = %lf\n",i,beta_t[f][i],beta_t_prev[f][i],beta_t_prev2[f][i]);
+                printf("bp %d beta_t = %lf , beta_t_prev = %lf , beta_t_prev2 = %lf\n",i,beta_t[i],beta_t_prev[i],beta_t_prev2[i]);
 #endif
 
             if(iter == Niter-1){
@@ -325,11 +323,11 @@ void inter_intra_system(const char* str, FILE* fptr, const int &imgh, const int 
             printf("MRF decoding ... %lf\n",getCurrentTime());
 #endif
             motionComp(Le_c_prev,MV_prev,imgh,imgw,mbSize,Le_ref);
-            mrf_siso_inter(Le_c,Le_ref,beta_t,imgh,imgw,Le_s_inter,0);
+            mrf_siso_inter(Le_c,Le_ref,beta_t,lm,Le_s_inter,0);
             mrf_siso_intra(Le_c,beta_s,imgh,imgw,Le_s_intra,0);
 
             motionComp(Le_c,MV,imgh,imgw,mbSize,Le_ref);
-            mrf_siso_inter(Le_c_prev,Le_ref,beta_t_prev,imgh,imgw,Le_s_prev_inter,0);
+            mrf_siso_inter(Le_c_prev,Le_ref,beta_t_prev,lm,Le_s_prev_inter,0);
             mrf_siso_intra(Le_c_prev,beta_s_prev,imgh,imgw,Le_s_prev_intra,0);
 
             for(int t_lvl = 0, i = 0 ; t_lvl < PXL ; ++t_lvl)

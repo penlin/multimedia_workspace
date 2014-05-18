@@ -157,9 +157,9 @@ void mrf_siso_intra(double** Le_c, double* beta, const int &imgh, const int &img
 *   @output Lu_s        [PXL*lm]
 */
 
-void mrf_siso_inter(double** Le_c, double** Le_c_ref, double* beta, const int &imgh, const int &imgw, double** Lu_s, const int &comp){
+void mrf_siso_inter(double** Le_c, double** Le_c_ref, double* beta, const int &lm, double** Lu_s, const int &comp){
 
-    int i, t_lvl ,lm = imgh*imgw;
+    int i, t_lvl ;
 
     for(t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
         for(i=0 ; i < lm ; ++i)

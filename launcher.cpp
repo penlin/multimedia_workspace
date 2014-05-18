@@ -95,9 +95,7 @@ int main(int argc,char* argv[]){
     }
 
     // free memory
-    delete2d<int>(G);
-//    delete2d<int>(pstate);
-//    delete2d<int>(pout);
+    clearChannel();
     DELETE(PSNR);
     fclose(fptr);
 #ifdef MEM_MGR_H

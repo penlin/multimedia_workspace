@@ -75,12 +75,12 @@
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       1               // debug msg
+#define __DEBUG__       0               // debug msg
 #define MEM_DEBUG       0&&__DEBUG__    // msg for memory manager
 #define __OPT__         0&&__DEBUG__    // msg for uep prediction
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
 #define __PROGRESS__    1&&__DEBUG__    // msg for the progress
-#define __BETA__        0&&__DEBUG__    // msg for beta msg
+#define __BETA__        1&&__DEBUG__    // msg for beta msg
 #define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure
 
 #define __OUTPUT_SEQ__      0           // control if output the decoded sequence
