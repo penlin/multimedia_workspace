@@ -230,7 +230,7 @@ void solvBaiscFn(const double &lambda, const double &eEn, const double &gamma, c
 
 void weight_predict_basic(double* weights, const double eEn[PXL], const double &gamma ) {
 
-    double lambda = 10, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
+    double lambda = 0.1, targetSum = PXL, tmpSum = 0.0, tollerance = 0.001, slope ;
     int i ;
 
 #if __OPT

@@ -6,9 +6,9 @@
 // for consective inter
 void weight_predict_Inter_Intra_minMSE(Pixel** img, Pixel** img_prev, Pixel** img_nxt, const int &imgh, const int &imgw, double* weights, const double &gamma){
 
-    double value1 = 0.0, value2 = 0.0, beta1, beta2;
+    double value1 = 0.0, value2 = 0.0, value3 = 0.0, beta_s, beta_t, beta_t2;
     double eEn[PXL];
-    int i,j,k,bit=1,mbSize=8,n_block=0;
+    int i,j,k,bit=1,mbSize=8,n_block=0,N;
     int8** img_bp = new2d<int8>(imgh,imgw,0);
     int8** img_bp_prev = new2d<int8>(imgh,imgw,0);
     int8** img_bp_nxt = new2d<int8>(imgh,imgw,0);
@@ -27,15 +27,21 @@ void weight_predict_Inter_Intra_minMSE(Pixel** img, Pixel** img_prev, Pixel** im
                 img_bp_nxt[j][k] = ((img_nxt[j+mv_nxt[0][n_block]][k+mv_nxt[1][n_block]] & bit)>0);
             }
         }
-        inter2_beta_estimation(img_bp,img_bp_prev,img_bp_nxt,beta1,beta2,imgh,imgw);
-        value1 = value2 = 0;
+        intra_inter2_beta_estimation(img_bp,img_bp_prev,img_bp_nxt,beta_s,beta_t,beta_t2,imgh,imgw);
+        value1 = value2 = value3 = 0;
         for(j=0;j<imgh;++j)
             for(k=0;k<imgw;++k){
                 value1+=(2*img_bp[j][k]-1)*(2*img_bp_prev[j][k]-1);
                 value2+=(2*img_bp[j][k]-1)*(2*img_bp_nxt[j][k]-1);
             }
 
-        eEn[i] = exp((value1*beta1+value2*beta2)/(imgh*imgw));
+        for(j=1;j<imgh-1;++j)
+            for(k=1;k<imgw-1;++k){
+                N = img_bp[j-1][k]+img_bp[j+1][k]+img_bp[j][k-1]+img_bp[j][k+1];
+                value3+=(2*img_bp[j][k]-1)*(2*N-4);
+            }
+
+        eEn[i] = exp((value1*beta_t+value2*beta_t2)/(imgh*imgw)+value3*beta_s/(imgh-2)/(imgw-2));
     }
 
     delete2d<int8>(img_bp);
@@ -51,9 +57,9 @@ void weight_predict_Inter_Intra_minMSE(Pixel** img, Pixel** img_prev, Pixel** im
 // for inter pair
 void weight_predict_Inter_Intra_minMSE(Pixel** img, Pixel** img_ref,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
-    double value = 0.0,beta;
+    double value1 = 0.0,value2 = 0.0,beta_t,beta_s;
     double eEn[PXL];
-    int i,j,k,bit=1,mbSize=8,n_block=0;
+    int i,j,k,bit=1,mbSize=8,n_block=0,N;
     int8** img_bp = new2d<int8>(imgh,imgw,0);
     int8** img_bp_ref = new2d<int8>(imgh,imgw,0);
     int** mv = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
@@ -68,13 +74,19 @@ void weight_predict_Inter_Intra_minMSE(Pixel** img, Pixel** img_ref,const int &i
                 img_bp_ref[j][k] = ((img_ref[j+mv[0][n_block]][k+mv[1][n_block]] & bit)>0);
             }
         }
-        inter_beta_estimation(img_bp,beta,img_bp_ref,imgh,imgw);
-        value= 0;
+        intra_inter_beta_estimation(img_bp,img_bp_ref,beta_s,beta_t,imgh,imgw);
+        value1= value2=0;
         for(j=0;j<imgh;++j)
             for(k=0;k<imgw;++k)
-                value+=(2*img_bp[j][k]-1)*(2*img_bp_ref[j][k]-1);
+                value1+=(2*img_bp[j][k]-1)*(2*img_bp_ref[j][k]-1);
 
-        eEn[i] = exp(value*beta/(imgh*imgw));
+        for(j=1;j<imgh-1;++j)
+            for(k=1;k<imgw-1;++k){
+                N = img_bp[j-1][k]+img_bp[j+1][k]+img_bp[j][k-1]+img_bp[j][k+1];
+                value2+=(2*img_bp[j][k]-1)*(2*N-4);
+            }
+
+        eEn[i] = exp(value1*beta_t/(imgh*imgw)+value2*beta_s/(imgh-2)/(imgw-2));
     }
 
     delete2d<int8>(img_bp);
