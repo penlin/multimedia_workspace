@@ -9,13 +9,13 @@
 /**  ======================================================================  **/
 
 // for intra_beta_estimation
-void intra_beta_estimation(int** imgr_bp, double &beta, const int &imgh, const int &imgw){
+void intra_beta_estimation(int8** imgr_bp, double &beta, const int &imgh, const int &imgw){
 
     const int N = 4;
     int i, j;
     int** hash_key = new2d<int>(imgh-2,imgw-2);
     int** his_idx = new2d<int>(imgh-2,imgw-2);
-    int his[32];// = MALLOC(int,32);//(int*) malloc(sizeof(int)*32);
+    int his[32];
 
     for(i=0 ; i < 32; ++i)
         his[i] = 1;
@@ -52,7 +52,7 @@ void intra_beta_estimation(int** imgr_bp, double &beta, const int &imgh, const i
 /**  ======================================================================  **/
 
 // for inter_beta_estimation
-void inter_beta_estimation(int** imgr_bp , double &beta, int** img_bp_ref, const int &imgh, const int &imgw){
+void inter_beta_estimation(int8** imgr_bp , double &beta, int8** img_bp_ref, const int &imgh, const int &imgw){
 
     int sum = 0, i, j;
     int** his_idx = new2d<int>(imgh,imgw);
@@ -67,18 +67,13 @@ void inter_beta_estimation(int** imgr_bp , double &beta, int** img_bp_ref, const
             else
                 his[his_idx[i][j]]++;
         }
-/*
-    for(i=0;i<4;++i)
-        printf("his[%d]=%d\n",i,his[i]);
-    printf("sum=%d\n",sum);
-*/
     beta = ( sum*(log(his[3])-log(his[1])) + (imgh*imgw-sum)*(log(his[0]) - log(his[2])) )/(double)(imgh*imgw);
 
     delete2d<int>(his_idx);
 }
 
 // for inter2_beta_estimation
-void inter2_beta_estimation(int** imgr_bp , int** img_bp_ref, int** img_bp_ref2, double &beta_t, double &beta_t2, const int &imgh, const int &imgw){
+void inter2_beta_estimation(int8** imgr_bp , int8** img_bp_ref, int8** img_bp_ref2, double &beta_t, double &beta_t2, const int &imgh, const int &imgw){
 
     int i, j ;
     int** hash_key = new2d<int>(imgh,imgw);
@@ -125,7 +120,7 @@ void inter2_beta_estimation(int** imgr_bp , int** img_bp_ref, int** img_bp_ref2,
 /**  ======================================================================  **/
 
 // for intra_inter_beta_estimation
-void intra_inter_beta_estimation(int** imgr_bp , int** img_bp_ref, double &beta_s, double &beta_t, const int &imgh, const int &imgw){
+void intra_inter_beta_estimation(int8** imgr_bp , int8** img_bp_ref, double &beta_s, double &beta_t, const int &imgh, const int &imgw){
 
     const int N = 5;
     int i, j ,range = 64;
@@ -178,7 +173,7 @@ void intra_inter_beta_estimation(int** imgr_bp , int** img_bp_ref, double &beta_
 }
 
 // for intra_inter2_beta_estimation
-void intra_inter2_beta_estimation(int** imgr_bp , int** img_bp_ref, int** img_bp_ref2, double &beta_s, double &beta_t, double &beta_t2, const int &imgh, const int &imgw){
+void intra_inter2_beta_estimation(int8** imgr_bp , int8** img_bp_ref, int8** img_bp_ref2, double &beta_s, double &beta_t, double &beta_t2, const int &imgh, const int &imgw){
 
     int i, j ,range = 128;
     int** hash_key = new2d<int>(imgh-2,imgw-2);

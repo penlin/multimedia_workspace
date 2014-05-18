@@ -3,7 +3,6 @@
 #include "algs_direct.h"
 #include "algs_intra.h"
 #include "algs_inter.h"
-#include "algs_inter_pair.h"
 #include "algs_inter_intra.h"
 #include "io_utils.h"
 
@@ -41,10 +40,7 @@ int main(int argc,char* argv[]){
     double snr[len];
 
     // pstate, pout
-    int ** G = getGenerator();
-    const int Ns = pow(2,G_L-1);
-    int ** pout = new2d<int>(Ns,4);
-    int ** pstate = new2d<int>(Ns,2) ;
+    int ** G = getGeneratorPrepare();
 
     FILE* fptr;
     if(argc > 2)
@@ -56,8 +52,6 @@ int main(int argc,char* argv[]){
     rewind(fptr);
 
     double* PSNR = MALLOC(double,f) ;//(double*) malloc(sizeof(double)*f);
-
-    trellis(G,G_N,G_L,Ns,pout,pstate);
 
     for(int i = 0 ; i < len ; ++i)
         snr[i] = __SNR_S+i;
@@ -74,9 +68,9 @@ int main(int argc,char* argv[]){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
         if(argc > 2)
-            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
+            DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,snr[i],PSNR,weight_type,NULL);
         else
-            DECODE(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
+            DECODE(__TAG__,fptr,h,w,f,G,snr[i],PSNR,weight_type,NULL);
 
         // print result PSNR
 #if __PSNR__
@@ -102,8 +96,8 @@ int main(int argc,char* argv[]){
 
     // free memory
     delete2d<int>(G);
-    delete2d<int>(pstate);
-    delete2d<int>(pout);
+//    delete2d<int>(pstate);
+//    delete2d<int>(pout);
     DELETE(PSNR);
     fclose(fptr);
 #ifdef MEM_MGR_H

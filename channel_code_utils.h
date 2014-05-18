@@ -15,17 +15,22 @@
 #define G_M (G_L-1)
 
 const static int G[G_N][G_L] = {{1,1,1},{1,0,1}};      // code generator
+static int Ns;
+static int** G_ptr;
+static int** pout;
+static int** pstate;
 
-int ** getGenerator(){
-    int ** G_ptr ;
-    G_ptr = new2d<int>(G_N,G_L);
-    for(int i = 0 ; i < G_N ; ++i){
-        for(int j = 0 ; j < G_L ; ++j){
-            G_ptr[i][j] = G[i][j];
-        }
-    }
-    return G_ptr;
-}
+
+//int ** getGenerator(){
+//    int ** G_ptr ;
+//    G_ptr = new2d<int>(G_N,G_L);
+//    for(int i = 0 ; i < G_N ; ++i){
+//        for(int j = 0 ; j < G_L ; ++j){
+//            G_ptr[i][j] = G[i][j];
+//        }
+//    }
+//    return G_ptr;
+//}
 
 /**
 * Copyright 1998, Yufei Wu, MPRG lab, Virginia Tech. for academic use
@@ -47,39 +52,80 @@ int ** getGenerator(){
 *   @param lu, L
 *
 */
-/** depreciated @Penlin: 2013/07/30  dont malloc/free too frequently
-void logmap(double* Ly, int** G, const double* Lu, const int &ind_dec, const int &lu ,int ** ps, int** pout, double* LA){
 
-    const int Ns = pow(2,G_L-1);
-    double* Le1 = (double*)malloc(sizeof(double)*lu);
-    double* Le2 = (double*)malloc(sizeof(double)*lu);
-
-    printf("computeLe ...\n");
-    computeLe(Lu,Le1,Le2,lu);
-//    printf("done!\n");
-    // L_A = logmap_mex(Ns,Infty,EPS,lu,Ly,logical(ind_dec),Le1,Le2,ps,pout);
-//    LA = logmap(Ns, lu, ind_dec, Ly, Le1, Le2, ps, pout);
-    printf("logmap ...\n");
-    logmap(Ns, lu, ind_dec, Ly, Le1, Le2, ps, pout,LA);
-    printf("done\n");
-
-    free(Le1);
-    free(Le2);
-
-//    return LA;
-}
-**/
-
-void BCJR_decoding(const int &Ns, const int &lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, int** ps, int** pout, double* LA){
+void BCJR_decoding(const int &lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, double* LA){
 
 #if __BCJR__==__MAP__
-    BCJR_map(Ns, lu, ind_dec, Ly,  Le1, Le2,  ps, pout, LA);
+    BCJR_map(Ns, lu, ind_dec, Ly,  Le1, Le2,  pstate, pout, LA);
 #else
-    BCJR_logmap(Ns, lu, ind_dec, Ly,  Le1, Le2,  ps, pout, LA);
+    BCJR_logmap(Ns, lu, ind_dec, Ly,  Le1, Le2,  pstate, pout, LA);
 #endif
 
 }
 
+void trellis(){
+
+    int8* state_b = MALLOC(int8,G_M);
+    int8 d_k, a_k, bN, b1;
+    int8** out = new2d<int8>(2,2);
+    int8** state = new2d<int8>(2,G_M);
+    int8** nstate = new2d<int8>(Ns,2);
+    int8** nout = new2d<int8>(Ns,4);
+
+    // Set up next_out and next_state matrices for RSC code generator G
+    for(int state_i = 0,i = 0, input_bit = 0 ; state_i < Ns ; ++state_i){
+        deci2binl(state_i,G_M,state_b);
+        for(i = 1 ; i < G_M ; ++i )
+            state[0][i] = state[1][i] = state_b[i-1];
+
+
+        for(input_bit = 0 ; input_bit <= 1; ++input_bit){
+            d_k = input_bit;
+            a_k = (G_ptr[0][0]*d_k + InnerProduct(G_ptr[0],state_b,1,G_M,0,G_M-1))%2;
+            out[d_k][0] = d_k;
+            out[d_k][1] = (G_ptr[1][0]*a_k + InnerProduct(G_ptr[1],state_b,1,G_M,0,G_M-1))%2;
+
+            state[d_k][0] = a_k;
+        }
+
+        for(i = 0 ; i < 4; ++i)
+            nout[state_i][i] = 2*out[i/2][i%2] -1;
+
+        bin2deci(state,2,G_M,nstate[state_i]);
+    }
+
+    // Possible previous states having reached the present state
+    // with input_bit=0/1
+    for(int input_bit = 0, state_i = 0, i = 0 ; input_bit < 2; ++input_bit){
+        bN = input_bit*G_N;
+        b1 = input_bit;
+        for(state_i = 0 ; state_i < Ns ; ++state_i){
+            pstate[nstate[state_i][b1]][b1] = (int) state_i;
+            for(i = bN ; i < (G_N+bN) ; ++i)
+                pout[nstate[state_i][b1]][i] = (int) nout[state_i][i];
+        }
+    }
+
+
+    delete2d<int8>(out);
+    delete2d<int8>(state);
+    delete2d<int8>(nstate);
+    delete2d<int8>(nout);
+    DELETE(state_b);
+}
+
+int** getGeneratorPrepare(){
+    G_ptr = new2d<int>(G_N,G_L);
+    for(int i = 0,j = 0 ; i < G_N ; ++i)
+        for(j = 0 ; j < G_L ; ++j)
+            G_ptr[i][j] = G[i][j];
+
+    Ns = (int) pow(2,G_M);
+    pout = new2d<int>(Ns,4);
+    pstate = new2d<int>(Ns,2);
+    trellis();
+    return G_ptr;
+}
 
 /**
 *   @Penlin: modified to C version

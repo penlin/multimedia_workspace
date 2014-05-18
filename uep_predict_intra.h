@@ -4,7 +4,7 @@
 #include "uep_predict_utils.h"
 
 
-void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
+void weight_predict_Intra_minMSE(int8*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double value = 0.0,beta;
     double eEn[PXL];
@@ -28,7 +28,7 @@ void weight_predict_Intra_minMSE(int*** img_bp,const int &imgh, const int &imgw,
 
 
 
-double intra_psnr_est(int*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
+double intra_psnr_est(int8*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double fr[PXL];
     double frr[PXL]={0,0,0,0,0,0,0,0};

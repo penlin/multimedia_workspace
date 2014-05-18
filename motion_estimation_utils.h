@@ -174,7 +174,7 @@ void motionEstES(T*** const imgP, T*** const imgI,const int &h, const int &w , c
 }
 
 // hard version motion estimation
-void costFunc(int** const imgP, int** const imgI, Point const &start, Point const &delta, double &err){
+void costFunc(Pixel** const imgP, Pixel** const imgI, Point const &start, Point const &delta, double &err){
     int i ,j, sX, sY, eY, eX, dx, dy;
     double tmp = 0;
     err = 0;
@@ -189,7 +189,7 @@ void costFunc(int** const imgP, int** const imgI, Point const &start, Point cons
 
     for(i= sY ; i < eY ; ++i){
         for(j = sX ; j < eX ; ++j){
-            tmp = (imgP[i][j] - imgI[i+dy][j+dx]);
+            tmp = ((int16)imgP[i][j] - (int16)imgI[i+dy][j+dx]);
             tmp = (tmp>0?tmp:-tmp);
             err += tmp;
         }
@@ -198,7 +198,7 @@ void costFunc(int** const imgP, int** const imgI, Point const &start, Point cons
 }
 
 // hard version
-void motionEstES(int** const imgP, int** const imgI,const int &h, const int &w , const int &mb_size, const int &me_range, int** mv){
+void motionEstES(Pixel** const imgP, Pixel** const imgI,const int &h, const int &w , const int &mb_size, const int &me_range, int** mv){
     int i , j, m, n, curVer, curHor, cnt=0 ;
     Point point, delta;
     double cost, minCost = -1;
@@ -256,7 +256,7 @@ void motionEstES(int** const imgP, int** const imgI,const int &h, const int &w ,
 *
 *   @param imgComp      output compansented frame
 */
-void motionComp(int** imgI, int** motionVect, const int &imgh, const int &imgw, const int &mbSize, int** imgComp){
+void motionComp(int8** imgI, int** motionVect, const int &imgh, const int &imgw, const int &mbSize, int8** imgComp){
 
     int i, j, mbCount = 0,ii,jj,refBlkVer ,refBlkHor ;
 

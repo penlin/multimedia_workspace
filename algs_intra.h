@@ -20,24 +20,25 @@
 *
 **/
 
-void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR , int repredict = 0, int*** img_out = NULL){
+void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, const double &snr, double* PSNR , int repredict = 0, int*** img_out = NULL){
 
 
     Frame* frame = new Frame(imgh,imgw,0,0);
     frame->encode_info(snr,G);
     const double EbN0 = pow(10,snr/10);
     // param initial
-    const int Ns = pow(2,G_L-1);
     const int lm = imgh*imgw;
     const int lu = lm + 2;
+
+    double* ber = MALLOC(double, PXL);
 
     double* weights = MALLOC(double,PXL);
     for(int i = 0 ; i < PXL ; ++i)
         weights[i] = 1;
 
     // frame buffer
-    int** imgr = new2d<int>(imgh,imgw);
-    int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
+    Pixel** imgr = new2d<Pixel>(imgh,imgw);
+    int8*** imgr_bp = new3d<int8>(PXL,imgh,imgw);
     double** Ly = new2d<double>(PXL,2*lu,0);    //channel value
     int** map = new2d<int>(PXL,lm);      //interleaver map
 
@@ -103,7 +104,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                     Lu[i] = Le_s[t_lvl][i];
 
                 computeLe(Lu,Le1,Le2,lm);
-                BCJR_decoding(Ns, lu, 1, Ly[t_lvl], Le1, Le2, pstate, pout, Lu_c[t_lvl]);
+                BCJR_decoding(lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
             }
 
             // deinterleave
@@ -113,7 +114,6 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             for(int i = 0 ; i < PXL ; ++i)
                 for(int j = 0 ; j < lm ; ++j)
                     Le_c[i][map[i][j]] = (Lu_c[i][j] - Le_s[i][j]);
-            //deinterleave(Le_c,map,lm);
 
             // MRF parameter estimation
 #if __STATUS__
@@ -124,8 +124,8 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                     for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
                         imgr_bp[t_lvl][i][j] = ((Le_c[t_lvl][j+i*imgw]>=0)?1:0);
 
-//            intra_beta_estimation(imgr_bp,beta,imgh,imgw);
-            intra_beta_estimation(frame->img_bp,beta,imgh,imgw);
+            intra_beta_estimation(imgr_bp,beta,imgh,imgw);
+//            intra_beta_estimation(frame->img_bp,beta,imgh,imgw);
 
 
             // MRF decoding
@@ -140,12 +140,12 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 #endif
 
             // recover to image
-            Lu2dec_img(Lu_c,imgh,imgw,imgr,map);
+            Lu2dec_img(Lu_c,lm,imgr,map);
             // compute PSNR
             double channel_psnr = frame->psnr(imgr);
 
             // recover to image
-            Lu2dec_img(Lu_s,imgh,imgw,imgr);
+            Lu2dec_img(Lu_s,lm,imgr);
             // compute PSNR
             PSNR[f] = frame->psnr(imgr);
 
@@ -155,9 +155,11 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 //            printf("%lf,%lf\n",channel_psnr,PSNR[f]-channel_psnr);
 //            printf("%lf,%lf,",channel_psnr,PSNR[f]);
 #if __PSNR__
-            printf("%s frame#%d PSNR_iter%d = %lf\n",str,f+1,iter+1,PSNR[f]);
+            printf("%s frame#%d PSNR_iter%d = %lf (channel:%lf)\n",str,f+1,iter+1,PSNR[f],channel_psnr);
 #endif
         }
+        computeBER(imgr,frame->Y,lm,ber);
+        printf("%lf\n",PSNR[f]);
 //        printf("\n");
         // imgr output
         if(img_out!=NULL)
@@ -171,14 +173,15 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     delete2d<double>(Ly);
     delete2d<int>(map);
 
-    delete3d<int>(imgr_bp);
-    delete2d<int>(imgr);
+    delete3d<int8>(imgr_bp);
+    delete2d<Pixel>(imgr);
 
     DELETE(beta);
     DELETE(Lu);
     DELETE(Le1);
     DELETE(Le2);
     DELETE(weights);
+    DELETE(ber);
 
     delete2d<double>(Lu_c);
     delete2d<double>(Lu_s);

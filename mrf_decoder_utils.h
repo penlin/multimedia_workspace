@@ -14,7 +14,7 @@
 */
 
 // main function
-void intra_beta_estimation(int*** imgr_bp , double* beta, const int &imgh, const int &imgw){
+void intra_beta_estimation(int8*** imgr_bp , double* beta, const int &imgh, const int &imgw){
 
     for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
         intra_beta_estimation(imgr_bp[t_lvl],beta[t_lvl],imgh,imgw);
@@ -30,9 +30,9 @@ void intra_beta_estimation(int*** imgr_bp , double* beta, const int &imgh, const
 *   @param imgr_bp, beta, imgr_bp_ref , motionVect
 */
 // main function
-void inter_beta_estimation(int*** imgr_bp , int*** img_bp_ref, int** motionVect, double* beta, const int &imgh, const int &imgw, const int &mbSize){
+void inter_beta_estimation(int8*** imgr_bp , int8*** img_bp_ref, int** motionVect, double* beta, const int &imgh, const int &imgw, const int &mbSize){
 
-    int ** img_ref = new2d<int>(imgh,imgw);
+    int8 ** img_ref = new2d<int8>(imgh,imgw);
 
     for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
 
@@ -42,7 +42,7 @@ void inter_beta_estimation(int*** imgr_bp , int*** img_bp_ref, int** motionVect,
 
     }
 
-    delete2d<int>(img_ref);
+    delete2d<int8>(img_ref);
 }
 
 /**
@@ -51,9 +51,9 @@ void inter_beta_estimation(int*** imgr_bp , int*** img_bp_ref, int** motionVect,
 *   @param imgr_bp, beta_t, beta_t2, imgr_bp_ref, imgr_bp_ref2
 */
 // main function
-void inter2_beta_estimation(int*** imgr_bp , int*** img_bp_ref, int*** img_bp_ref2, int** motionVect, double* beta_t, double* beta_t2, const int &imgh, const int &imgw, const int &mbSize){
+void inter2_beta_estimation(int8*** imgr_bp , int8*** img_bp_ref, int8*** img_bp_ref2, int** motionVect, double* beta_t, double* beta_t2, const int &imgh, const int &imgw, const int &mbSize){
 
-    int ** img_ref = new2d<int>(imgh,imgw);
+    int8 ** img_ref = new2d<int8>(imgh,imgw);
 
     for(int t_lvl=0; t_lvl < PXL; ++t_lvl){
 
@@ -63,7 +63,7 @@ void inter2_beta_estimation(int*** imgr_bp , int*** img_bp_ref, int*** img_bp_re
 
     }
 
-    delete2d<int>(img_ref);
+    delete2d<int8>(img_ref);
 }
 
 /**
@@ -72,9 +72,9 @@ void inter2_beta_estimation(int*** imgr_bp , int*** img_bp_ref, int*** img_bp_re
 *   @param imgr_bp, beta_t, beta_s, imgr_bp_ref
 */
 
-void intra_inter_beta_estimation(int*** imgr_bp, int*** img_bp_ref, int** motionVect, double* beta_s, double* beta_t, const int &imgh, const int &imgw, const int &mbSize){
+void intra_inter_beta_estimation(int8*** imgr_bp, int8*** img_bp_ref, int** motionVect, double* beta_s, double* beta_t, const int &imgh, const int &imgw, const int &mbSize){
 
-    int ** img_ref = new2d<int>(imgh,imgw);
+    int8 ** img_ref = new2d<int8>(imgh,imgw);
 
     for(int t_lvl=0; t_lvl < PXL; ++t_lvl){
 
@@ -84,7 +84,7 @@ void intra_inter_beta_estimation(int*** imgr_bp, int*** img_bp_ref, int** motion
 
     }
 
-    delete2d<int>(img_ref);
+    delete2d<int8>(img_ref);
 }
 
 /**
@@ -94,9 +94,9 @@ void intra_inter_beta_estimation(int*** imgr_bp, int*** img_bp_ref, int** motion
 *   @param [output]beta_s, beta_t, beta_t2
 */
 
-void intra_inter2_beta_estimation(int*** imgr_bp, int*** img_bp_ref,int*** img_bp_ref2, int** motionVect, double* beta_s, double* beta_t, double* beta_t2, const int &imgh, const int &imgw, const int &mbSize){
+void intra_inter2_beta_estimation(int8*** imgr_bp, int8*** img_bp_ref,int8*** img_bp_ref2, int** motionVect, double* beta_s, double* beta_t, double* beta_t2, const int &imgh, const int &imgw, const int &mbSize){
 
-    int ** img_ref = new2d<int>(imgh,imgw);
+    int8 ** img_ref = new2d<int8>(imgh,imgw);
 
     for(int t_lvl=0; t_lvl < PXL; ++t_lvl){
 
@@ -106,7 +106,7 @@ void intra_inter2_beta_estimation(int*** imgr_bp, int*** img_bp_ref,int*** img_b
 
     }
 
-    delete2d<int>(img_ref);
+    delete2d<int8>(img_ref);
 }
 
 /**  ======================================================================  **/

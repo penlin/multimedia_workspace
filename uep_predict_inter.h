@@ -4,14 +4,14 @@
 #include "uep_predict_utils.h"
 
 // for consective inter
-void weight_predict_Inter_minMSE(int** img, int** img_prev, int** img_nxt, const int &imgh, const int &imgw, double* weights, const double &gamma){
+void weight_predict_Inter_minMSE(Pixel** img, Pixel** img_prev, Pixel** img_nxt, const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double value1 = 0.0, value2 = 0.0, beta1, beta2;
     double eEn[PXL];
     int i,j,k,bit=1,mbSize=8,n_block=0;
-    int** img_bp = new2d<int>(imgh,imgw,0);
-    int** img_bp_prev = new2d<int>(imgh,imgw,0);
-    int** img_bp_nxt = new2d<int>(imgh,imgw,0);
+    int8** img_bp = new2d<int8>(imgh,imgw,0);
+    int8** img_bp_prev = new2d<int8>(imgh,imgw,0);
+    int8** img_bp_nxt = new2d<int8>(imgh,imgw,0);
     int** mv_prev = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
     int** mv_nxt = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
 
@@ -38,9 +38,9 @@ void weight_predict_Inter_minMSE(int** img, int** img_prev, int** img_nxt, const
         eEn[i] = exp((value1*beta1+value2*beta2)/(imgh*imgw));
     }
 
-    delete2d<int>(img_bp);
-    delete2d<int>(img_bp_prev);
-    delete2d<int>(img_bp_nxt);
+    delete2d<int8>(img_bp);
+    delete2d<int8>(img_bp_prev);
+    delete2d<int8>(img_bp_nxt);
     delete2d<int>(mv_nxt);
     delete2d<int>(mv_prev);
 
@@ -49,13 +49,13 @@ void weight_predict_Inter_minMSE(int** img, int** img_prev, int** img_nxt, const
 }
 
 // for inter pair
-void weight_predict_Inter_minMSE(int** img, int** img_ref,const int &imgh, const int &imgw, double* weights, const double &gamma){
+void weight_predict_Inter_minMSE(Pixel** img, Pixel** img_ref,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double value = 0.0,beta;
     double eEn[PXL];
     int i,j,k,bit=1,mbSize=8,n_block=0;
-    int** img_bp = new2d<int>(imgh,imgw,0);
-    int** img_bp_ref = new2d<int>(imgh,imgw,0);
+    int8** img_bp = new2d<int8>(imgh,imgw,0);
+    int8** img_bp_ref = new2d<int8>(imgh,imgw,0);
     int** mv = new2d<int>(2,imgh*imgw/mbSize/mbSize,0);
 
     motionEstES(img,img_ref,imgh,imgw,mbSize,5,mv);
@@ -77,15 +77,15 @@ void weight_predict_Inter_minMSE(int** img, int** img_ref,const int &imgh, const
         eEn[i] = exp(value*beta/(imgh*imgw));
     }
 
-    delete2d<int>(img_bp);
-    delete2d<int>(img_bp_ref);
+    delete2d<int8>(img_bp);
+    delete2d<int8>(img_bp_ref);
     delete2d<int>(mv);
 
     weight_predict_basic(weights,eEn,gamma);
 
 }
 
-double inter_basic_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma){
+double inter_basic_psnr_est(int8*** img_bp, int8*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma){
 
     double fr[PXL];
     double frr[PXL]={0,0,0,0,0,0,0,0};
@@ -93,7 +93,7 @@ double inter_basic_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const i
     double value = 0.0, En = 0.0, beta = 0.0 ;
     double suppress = 1.0;
     int i,j,k;
-    int** img_ref = new2d<int>(imgh,imgw);
+    int8** img_ref = new2d<int8>(imgh,imgw);
 
     for(i = 0 ; i < PXL ; ++i){
 
@@ -128,12 +128,12 @@ double inter_basic_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const i
 
     //printf("%lf,%lf\n",psnr_ori,psnr);
 
-    delete2d<int>(img_ref);
+    delete2d<int8>(img_ref);
     return psnr;
 }
 
 
-double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma,double* frr_prev, int*** img_bp_ref2 = NULL, int** mv2 = NULL){
+double inter_psnr_est(int8*** img_bp, int8*** img_bp_ref, int** mv1, const int &imgh, const int &imgw, double* weights, const double &gamma,double* frr_prev, int8*** img_bp_ref2 = NULL, int** mv2 = NULL){
 
     double fr[PXL];
     double frr[PXL]={0,0,0,0,0,0,0,0};
@@ -141,11 +141,11 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
     double value = 0.0, En = 0.0, En1 = 0.0, beta = 0.0, beta_prev = 0.0 ;
     double suppress = 1.0;
     int i,j,k;
-    int** img_ref = new2d<int>(imgh,imgw);
-    int** img_ref2;
+    int8** img_ref = new2d<int8>(imgh,imgw);
+    int8** img_ref2;
 
     if(img_bp_ref2!=NULL)
-        img_ref2 = new2d<int>(imgh,imgw);
+        img_ref2 = new2d<int8>(imgh,imgw);
 
     for(i = 0 ; i < PXL ; ++i){
 
@@ -197,9 +197,9 @@ double inter_psnr_est(int*** img_bp, int*** img_bp_ref, int** mv1, const int &im
 
     //printf("%lf,%lf\n",psnr_ori,psnr);
 
-    delete2d<int>(img_ref);
+    delete2d<int8>(img_ref);
     if(img_bp_ref2!=NULL){
-        delete2d<int>(img_ref2);
+        delete2d<int8>(img_ref2);
     }
     return psnr;
 }

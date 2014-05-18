@@ -23,7 +23,7 @@
 *
 **/
 
-void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, int** pout, int** pstate,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
+void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G ,const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
     Frame frameMgr[2] = {Frame(imgh,imgw,0,0), Frame(imgh,imgw,0,1)};
     Frame* frame ;
@@ -35,7 +35,6 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double* ber = MALLOC(double, PXL);
 
     // param initial
-    const int Ns = pow(2,G_L-1);
     const int lm = imgh*imgw;
     const int lu = lm + 2;
 
@@ -45,8 +44,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         weights[i] = 1;
 
     // frame buffer
-    int** imgr = new2d<int>(imgh,imgw);
-    int*** imgr_bp = new3d<int>(PXL,imgh,imgw);
+    Pixel** imgr = new2d<Pixel>(imgh,imgw);
+    int8*** imgr_bp = new3d<int8>(PXL,imgh,imgw);
 
     double** LyMgr[2] = {new2d<double>(PXL,2*lu), new2d<double>(PXL,2*lu)};
     int** MapMgr[2] = {new2d<int>(PXL,lm), new2d<int>(PXL,lm)};
@@ -68,8 +67,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
 
     // frame buffer for previous frame
-    int** imgr_prev = new2d<int>(imgh,imgw);
-    int*** imgr_bp_prev = new3d<int>(PXL,imgh,imgw);
+    Pixel** imgr_prev = new2d<Pixel>(imgh,imgw);
+    int8*** imgr_bp_prev = new3d<int8>(PXL,imgh,imgw);
 
     double** Ly_prev;       //channel value
     int** map_prev ;        //interleaver map
@@ -77,7 +76,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     double* beta_prev = MALLOC(double,PXL);
 
     // frame buffer for previous 2 frame
-    int*** imgr_bp_prev2 = new3d<int>(PXL,imgh,imgw);
+    int8*** imgr_bp_prev2 = new3d<int8>(PXL,imgh,imgw);
     double* beta_prev2 = MALLOC(double,PXL);
 
     double** Le_s_prev2 = new2d<double>(PXL,lm,0); // source extrinsic information
@@ -229,13 +228,13 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
                 computeLe(Lu,Le1,Le2,lm);
 
-                BCJR_decoding(Ns, lu, 1, Ly[t_lvl], Le1, Le2, pstate, pout, Lu_c[t_lvl]);
+                BCJR_decoding(lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
 
                 for(i = 0 ; i < lm ; ++i)
                     Lu[i] = Le_s_prev[t_lvl][i];
 
                 computeLe(Lu,Le1,Le2,lm);
-                BCJR_decoding(Ns, lu, 1, Ly_prev[t_lvl], Le1, Le2, pstate, pout, Lu_c_prev[t_lvl]);
+                BCJR_decoding(lu, 1, Ly_prev[t_lvl], Le1, Le2, Lu_c_prev[t_lvl]);
             }
 
 
@@ -247,8 +246,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             for(int i = 0 ; i < lm ; ++i)
                 imgr[0][i] = imgr_prev[0][i] = 0;
 
-            Lu2dec_img(Lu_c,imgh,imgw,imgr,map);
-            Lu2dec_img(Lu_c_prev,imgh,imgw,imgr_prev,map_prev);
+            Lu2dec_img(Lu_c,lm,imgr,map);
+            Lu2dec_img(Lu_c_prev,lm,imgr_prev,map_prev);
 
 //            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
 //                for(j = 0 ; j < imgw ; ++j)
@@ -345,8 +344,8 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             }
 
             // recover to image
-            Lu2dec_img(Lu_s,imgh,imgw,imgr);
-            Lu2dec_img(Lu_s_prev,imgh,imgw,imgr_prev);
+            Lu2dec_img(Lu_s,lm,imgr);
+            Lu2dec_img(Lu_s_prev,lm,imgr_prev);
 
             // compute PSNR
             PSNR[f] = frame->psnr(imgr);
@@ -381,11 +380,11 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                 img_out[n_frame-1][i][j] = imgr[i][j];
 
     // free memory
-    delete3d<int>(imgr_bp);
-    delete3d<int>(imgr_bp_prev);
-    delete3d<int>(imgr_bp_prev2);
-    delete2d<int>(imgr);
-    delete2d<int>(imgr_prev);
+    delete3d<int8>(imgr_bp);
+    delete3d<int8>(imgr_bp_prev);
+    delete3d<int8>(imgr_bp_prev2);
+    delete2d<Pixel>(imgr);
+    delete2d<Pixel>(imgr_prev);
 
     delete2d<double>(LyMgr[0]);
     delete2d<double>(LyMgr[1]);

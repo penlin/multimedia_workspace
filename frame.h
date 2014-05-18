@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "rsc_encode.h"
 #include "utils.h"
 #include "data_alloc.h"
 #include "channel_code_utils.h"
 #include "image_process_utils.h"
 #include "io_utils.h"
-#include "video_encode.h"
 
 const int TYPE_Y = 0;
 const int TYPE_YUV_420 = 1;
@@ -28,15 +28,15 @@ public:
         type = t;
         frame_tag = tag;
 
-        Y = new2d<int>(h,w,0);
-        img_bp = new3d<int>(PXL,height,width,0);
-        x = MALLOC(int,2*lu);//(int*) malloc(sizeof(int)*2*lu);
+        Y = new2d<Pixel>(h,w,0);
+        img_bp = new3d<int8>(PXL,height,width,0);
+        x = MALLOC(int8,2*lu);
         if(type == TYPE_YUV_420){
-            U = new2d<int>(h/2,w/2,0);
-            V = new2d<int>(h/2,w/2,0);
+            U = new2d<Pixel>(h/2,w/2,0);
+            V = new2d<Pixel>(h/2,w/2,0);
         }else if(type == TYPE_YUV_444){
-            U = new2d<int>(h,w,0);
-            V = new2d<int>(h,w,0);
+            U = new2d<Pixel>(h,w,0);
+            V = new2d<Pixel>(h,w,0);
         }else{
             U = V = NULL;
         }
@@ -44,13 +44,13 @@ public:
 
     ~Frame(){
         if(Y!=NULL)
-            delete2d<int>(Y);
+            delete2d<Pixel>(Y);
         if(img_bp!=NULL)
-            delete3d<int>(img_bp);
+            delete3d<int8>(img_bp);
         if(U!=NULL)
-            delete2d<int>(U);
+            delete2d<Pixel>(U);
         if(V!=NULL)
-            delete2d<int>(V);
+            delete2d<Pixel>(V);
         if(x!=NULL)
             DELETE(x);
     }
@@ -61,22 +61,27 @@ public:
             return;
         }
 
-        unsigned char*  buffer = MALLOC(unsigned char,lm*3/2);//(unsigned char*)malloc(sizeof(unsigned char)*lm*3/2);
-        const int offset_u = lm, offset_v = lm*5/4;
+//        unsigned char*  buffer = MALLOC(unsigned char,lm*3/2);//(unsigned char*)malloc(sizeof(unsigned char)*lm*3/2);
+//        const int offset_u = lm, offset_v = lm*5/4;
         fseek(fptr,lm*3/2*skip,SEEK_CUR);
-        fread(buffer,1,lm*3/2,fptr);
+        fread(Y[0],1,lm,fptr);
 
-        for(int i = 0 ; i < lm ; ++i)
-            Y[0][i] = (int) buffer[i];
+//        fread(buffer,1,lm*3/2,fptr);
+//
+//        for(int i = 0 ; i < lm ; ++i)
+//            Y[0][i] = (int) buffer[i];
 
         if(U!=NULL && V!=NULL && type == TYPE_YUV_420){
-            for(int i = 0 ; i < lm/4 ; ++i){
-                U[0][i] = (int) buffer[offset_u + i];
-                V[0][i] = (int) buffer[offset_v + i];
-            }
-        }
+//            for(int i = 0 ; i < lm/4 ; ++i){
+//                U[0][i] = (int) buffer[offset_u + i];
+//                V[0][i] = (int) buffer[offset_v + i];
+//            }
+            fread(U[0],1,lm/4,fptr);
+            fread(V[0],1,lm/4,fptr);
+        }else
+            fseek(fptr,lm/2,SEEK_CUR);
 
-        DELETE(buffer);
+//        DELETE(buffer);
         img2bp_frame(Y,height,width,img_bp);
     }
 
@@ -108,7 +113,7 @@ public:
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
             // interleave
             random_sequence(0,lm-1,map_out[t_lvl]);
-            rsc_encode(G,G_L,img_bp[t_lvl],map_out[t_lvl],width,lm,1,x);
+            rsc_encode(G,G_L,img_bp[t_lvl],map_out[t_lvl],lm,1,x);
 
             for(int i = 0 ; i < 2*lu ; ++i)
                 Ly[t_lvl][i] = 0.5*L_c[t_lvl]*(2*x[i] - 1) + sigma[t_lvl]*gaussian_noise();  // add noise   + sigma*gaussian_noise()
@@ -134,8 +139,8 @@ public:
         }
     }
 
-    double psnr(int** img){
-        return computePSNR(img,Y,height,width);
+    double psnr(Pixel** img){
+        return computePSNR(img,Y,lm);
     }
 
     int getWidth(){return width;}
@@ -143,10 +148,10 @@ public:
     int getLm(){return lm;}
     int getTag(){return frame_tag;}
 
-    int** Y ;
-    int** U ;
-    int** V ;
-    int*** img_bp ;
+    Pixel** Y ;
+    Pixel** U ;
+    Pixel** V ;
+    int8*** img_bp ;
 /*
     void getImgBp(int*** bp){
         if(img_bp!=NULL){
@@ -171,7 +176,7 @@ private:
 
     // for encode
 
-    int* x ;
+    int8* x ;
     int** G ;
     double EbN0 ;
     double a;

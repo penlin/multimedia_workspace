@@ -112,6 +112,16 @@ int InnerProduct(const int *a,const int *b,const int start_a ,const int end_a ,c
     return res;
 }
 
+int8 InnerProduct(const int *a,const int8 *b,const int &start_a ,const int &end_a ,const int &start_b ,const int &end_b) {
+    int8 res = 0;
+    int  i , j;
+
+    for(i=start_a, j=start_b;i<=end_a && j<=end_b ;++i,++j)
+        res += a[i]*b[j];
+
+    return res;
+}
+
 /**
 *   @Penlin: print the 2D matrix from i: [i_s,i_e) and j: [j_s,j_e)
 */
