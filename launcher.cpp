@@ -1,8 +1,10 @@
 #include "build_value.h"
+#include "data_types.h"
 #include "algs_direct.h"
 #include "algs_intra.h"
 #include "algs_inter.h"
 #include "algs_inter_pair.h"
+#include "algs_inter_intra.h"
 #include "io_utils.h"
 
 
@@ -71,13 +73,6 @@ int main(int argc,char* argv[]){
     for(int i = 0 ; i < len; ++i){
         fseek(fptr,h*w*3/2*__SKIP,SEEK_SET);
 
-//        for(int j = 0 ; j < PXL ; ++j)
-//            weights[j] = 1;//DERIVE_INTRA_SNR[i][j];//(weight_type?DERIVE_SNR[i][j]:1);
-
-        // decode
-//        direct_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
-//        intra_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
-//        inter_system(__TAG__,fptr,h,w,f,G,pout,pstate,snr[i],weights,PSNR,NULL);
         if(argc > 2)
             DECODE(FILENAME[atoi(argv[2])],fptr,h,w,f,G,pout,pstate,snr[i],PSNR,weight_type,NULL);
         else
@@ -100,7 +95,7 @@ int main(int argc,char* argv[]){
 #endif
 
         write_psnr_info(PSNR,snr[i]);
-#ifdef MEM_MGR_H
+#ifdef MEM_DEBUG
         printMem();
 #endif
     }
@@ -109,7 +104,7 @@ int main(int argc,char* argv[]){
     delete2d<int>(G);
     delete2d<int>(pstate);
     delete2d<int>(pout);
-    DELETE(PSNR);//free(PSNR);
+    DELETE(PSNR);
     fclose(fptr);
 #ifdef MEM_MGR_H
     freeMemMgr();

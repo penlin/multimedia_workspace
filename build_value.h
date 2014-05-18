@@ -18,7 +18,7 @@
 #define __INTER__       inter_system
 #define __INTER_PAIR__  inter_pair_system
 #define __INTER_THREE__ inter_three_system
-#define __INTER_INTRA__ inter_intra
+#define __INTER_INTRA__ inter_intra_system
 
 // output sequence type
 #define __YUV420__    1

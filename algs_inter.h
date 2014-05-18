@@ -244,34 +244,35 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         printf("sign detecot for ME ...%lf\n",getCurrentTime());
 #endif
 
-            for(int i = 0 , j = 0 ; i < imgh ; ++i)
-                for(j=0 ; j<imgw ; ++j)
-                    imgr[i][j] = imgr_prev[i][j] = 0;
+            for(int i = 0 ; i < lm ; ++i)
+                imgr[0][i] = imgr_prev[0][i] = 0;
 
+            Lu2dec_img(Lu_c,imgh,imgw,imgr,map);
+            Lu2dec_img(Lu_c_prev,imgh,imgw,imgr_prev,map_prev);
 
-            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
-                for(j = 0 ; j < imgw ; ++j)
-                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
-                        ii = map[t_lvl][j+i*imgw]/imgw;
-                        jj = map[t_lvl][j+i*imgw]%imgw;
-                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
-
-//                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
-//                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
-//                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
-
-                        ii = map_prev[t_lvl][j+i*imgw]/imgw;
-                        jj = map_prev[t_lvl][j+i*imgw]%imgw;
-                        imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
-
-//                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
-//                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
-//                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
-                    }
-
-            bin2dec_img(imgr_bp,imgh,imgw,imgr);
-            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
-
+//            for(int i = 0, j=0, t_lvl=0,ii=0,jj=0 ; i <imgh ; ++i)
+//                for(j = 0 ; j < imgw ; ++j)
+//                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
+//                        ii = map[t_lvl][j+i*imgw]/imgw;
+//                        jj = map[t_lvl][j+i*imgw]%imgw;
+//                        imgr_bp[t_lvl][ii][jj] = ((Lu_c[t_lvl][j+i*imgw]>=0)?1:0);
+//
+////                        imgr[ii][jj]+=llr_bp_to_img(Lu_c[t_lvl][j+i*imgw],t_lvl);
+////                        imgr_soft_bp[ii][jj][t_lvl] = Lu_c[t_lvl][j+i*imgw];
+////                        imgr_soft_bp[ii][jj][t_lvl] = exp(Lu_c[t_lvl][j+i*imgw]);
+//
+//                        ii = map_prev[t_lvl][j+i*imgw]/imgw;
+//                        jj = map_prev[t_lvl][j+i*imgw]%imgw;
+//                        imgr_bp_prev[t_lvl][ii][jj] = ((Lu_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
+//
+////                        imgr_prev[ii][jj]+=llr_bp_to_img(Lu_c_prev[t_lvl][j+i*imgw],t_lvl);
+////                        imgr_soft_bp_prev[ii][jj][t_lvl] = Lu_c_prev[t_lvl][j+i*imgw];
+////                        imgr_soft_bp_prev[ii][jj][t_lvl] = exp(Lu_c_prev[t_lvl][j+i*imgw]);
+//                    }
+//
+//            bin2dec_img(imgr_bp,imgh,imgw,imgr);
+//            bin2dec_img(imgr_bp_prev,imgh,imgw,imgr_prev);
+//
             // motion estimation
 #if __STATUS__
         printf("Motion Estimation ...%lf\n",getCurrentTime());
@@ -299,12 +300,13 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 #if __STATUS__
         printf("MRF parameter estimation ...%lf\n",getCurrentTime());
 #endif
-            for(int i = 0, j = 0 , t_lvl=0 ; i <imgh ; ++i)
-                for(j = 0 ; j < imgw ; ++j)
-                    for(t_lvl=0 ; t_lvl < PXL ; ++t_lvl){
-                        imgr_bp[t_lvl][i][j] = ((Le_c[t_lvl][j+i*imgw]>=0)?1:0);
-                        imgr_bp_prev[t_lvl][i][j] = ((Le_c_prev[t_lvl][j+i*imgw]>=0)?1:0);
-                    }
+
+            for(int t_lvl=0, i=0 ; t_lvl < PXL ; ++t_lvl){
+                for(i=0 ; i < lm ; ++i){
+                    imgr_bp[t_lvl][0][i] = ((Le_c[t_lvl][i]>=0)?1:0);
+                    imgr_bp_prev[t_lvl][0][i] = ((Le_c_prev[t_lvl][i]>=0)?1:0);
+                }
+            }
             // joint estimation
             inter_beta_estimation(imgr_bp,imgr_bp_prev,MV_prev,beta,imgh,imgw,mbSize);
             if(f==1)
@@ -341,7 +343,6 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                     for(i=0;i<lm;++i)
                         Le_s_prev2[t_lvl][i] = ((Lu_s[t_lvl][i] - Le_c[t_lvl][i])/beta[t_lvl]);
             }
-
 
             // recover to image
             Lu2dec_img(Lu_s,imgh,imgw,imgr);
