@@ -16,6 +16,7 @@
 // main function
 void intra_beta_estimation(int8*** imgr_bp , double* beta, const int &imgh, const int &imgw){
 
+    #pragma omp parallel for
     for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
         intra_beta_estimation(imgr_bp[t_lvl],beta[t_lvl],imgh,imgw);
 

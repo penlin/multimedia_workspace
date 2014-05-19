@@ -89,7 +89,7 @@ int main(int argc,char* argv[]){
 #endif
 
         write_psnr_info(PSNR,snr[i]);
-#ifdef MEM_DEBUG
+#ifdef MEM_MGR_H
         printMem();
 #endif
     }

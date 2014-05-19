@@ -35,7 +35,7 @@ void printRepeat(){
 
 void printMem(){
     _memMgr->print();
-//    printRepeat();
+    printRepeat();
 }
 #endif
 

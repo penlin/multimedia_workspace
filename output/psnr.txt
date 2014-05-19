@@ -1,0 +1,189 @@
+=============================
+Tue May 20 00:50:19 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 15.623038
+frame#  2 PSNR = 15.572576
+frame#  3 PSNR = 15.548054
+frame#  4 PSNR = 15.654094
+frame#  5 PSNR = 15.544261
+frame#  6 PSNR = 15.551637
+frame#  7 PSNR = 15.660966
+frame#  8 PSNR = 15.567234
+frame#  9 PSNR = 15.530226
+frame# 10 PSNR = 15.622898
+frame# 11 PSNR = 15.518993
+frame# 12 PSNR = 15.570178
+frame# 13 PSNR = 15.563605
+frame# 14 PSNR = 15.517768
+frame# 15 PSNR = 15.589251
+frame# 16 PSNR = 15.449873
+frame# 17 PSNR = 15.624117
+frame# 18 PSNR = 15.539563
+frame# 19 PSNR = 15.514805
+frame# 20 PSNR = 15.659713
+
+Total Time Comsume:11.998000
+
+=============================
+Tue May 20 00:51:23 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 15.440496
+frame#  2 PSNR = 15.605198
+frame#  3 PSNR = 15.727504
+frame#  4 PSNR = 15.573271
+frame#  5 PSNR = 15.628714
+frame#  6 PSNR = 15.553292
+frame#  7 PSNR = 15.658751
+frame#  8 PSNR = 15.660710
+frame#  9 PSNR = 15.693053
+frame# 10 PSNR = 15.454009
+frame# 11 PSNR = 15.594526
+frame# 12 PSNR = 15.590710
+frame# 13 PSNR = 15.608234
+frame# 14 PSNR = 15.496255
+frame# 15 PSNR = 15.630920
+frame# 16 PSNR = 15.747410
+frame# 17 PSNR = 15.703730
+frame# 18 PSNR = 15.602811
+frame# 19 PSNR = 15.502706
+frame# 20 PSNR = 15.478729
+
+Total Time Comsume:26.290000
+
+=============================
+Tue May 20 00:52:34 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 15.633383
+frame#  2 PSNR = 15.699887
+frame#  3 PSNR = 15.580398
+frame#  4 PSNR = 15.646975
+frame#  5 PSNR = 15.620202
+frame#  6 PSNR = 15.558207
+frame#  7 PSNR = 15.516391
+frame#  8 PSNR = 15.548823
+frame#  9 PSNR = 15.596229
+frame# 10 PSNR = 15.501856
+frame# 11 PSNR = 15.627494
+frame# 12 PSNR = 15.513166
+frame# 13 PSNR = 15.602999
+frame# 14 PSNR = 15.575692
+frame# 15 PSNR = 15.469075
+frame# 16 PSNR = 15.713914
+frame# 17 PSNR = 15.554479
+frame# 18 PSNR = 15.605591
+frame# 19 PSNR = 15.651314
+frame# 20 PSNR = 15.680187
+
+Total Time Comsume:7.642000
+
+=============================
+Tue May 20 01:38:11 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 34.603198
+frame#  2 PSNR = 34.123829
+frame#  3 PSNR = 34.493235
+frame#  4 PSNR = 34.295067
+frame#  5 PSNR = 34.631240
+frame#  6 PSNR = 34.736414
+frame#  7 PSNR = 35.128099
+frame#  8 PSNR = 34.495764
+frame#  9 PSNR = 34.642880
+frame# 10 PSNR = 34.669276
+frame# 11 PSNR = 34.177825
+frame# 12 PSNR = 34.829707
+frame# 13 PSNR = 34.401260
+frame# 14 PSNR = 34.686923
+frame# 15 PSNR = 34.491963
+frame# 16 PSNR = 35.015401
+frame# 17 PSNR = 34.603759
+frame# 18 PSNR = 34.503663
+frame# 19 PSNR = 34.555199
+frame# 20 PSNR = 34.075071
+
+Total Time Comsume:53.611000
+
+=============================
+Tue May 20 01:39:45 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 34.772962
+frame#  2 PSNR = 34.711629
+frame#  3 PSNR = 34.258402
+frame#  4 PSNR = 34.586654
+frame#  5 PSNR = 34.868361
+frame#  6 PSNR = 34.760884
+frame#  7 PSNR = 34.894588
+frame#  8 PSNR = 33.933656
+frame#  9 PSNR = 34.445097
+frame# 10 PSNR = 34.913930
+frame# 11 PSNR = 34.727230
+frame# 12 PSNR = 34.560099
+frame# 13 PSNR = 34.285261
+frame# 14 PSNR = 34.646155
+frame# 15 PSNR = 34.517478
+frame# 16 PSNR = 34.702845
+frame# 17 PSNR = 34.961498
+frame# 18 PSNR = 34.964289
+frame# 19 PSNR = 34.570119
+frame# 20 PSNR = 33.913156
+
+Total Time Comsume:25.047000
+
+=============================
+Tue May 20 01:40:45 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 34.619994
+frame#  2 PSNR = 34.492251
+frame#  3 PSNR = 34.470777
+frame#  4 PSNR = 34.592825
+frame#  5 PSNR = 34.660053
+frame#  6 PSNR = 35.013986
+frame#  7 PSNR = 35.020213
+frame#  8 PSNR = 34.670006
+frame#  9 PSNR = 34.580552
+frame# 10 PSNR = 34.266716
+frame# 11 PSNR = 34.443804
+frame# 12 PSNR = 34.652483
+frame# 13 PSNR = 34.209489
+frame# 14 PSNR = 34.432833
+frame# 15 PSNR = 34.526066
+frame# 16 PSNR = 34.641537
+frame# 17 PSNR = 34.626884
+frame# 18 PSNR = 33.955496
+frame# 19 PSNR = 34.369480
+frame# 20 PSNR = 34.382182
+
+Total Time Comsume:19.985000
+
+=============================
+Tue May 20 01:45:13 2014
+
+Seq=akiyo, SNR=0.0
+frame#  1 PSNR = 34.300975
+frame#  2 PSNR = 34.719204
+frame#  3 PSNR = 34.662865
+frame#  4 PSNR = 34.423946
+frame#  5 PSNR = 34.517204
+frame#  6 PSNR = 35.075179
+frame#  7 PSNR = 34.648804
+frame#  8 PSNR = 34.321297
+frame#  9 PSNR = 34.311280
+frame# 10 PSNR = 34.925924
+frame# 11 PSNR = 33.921414
+frame# 12 PSNR = 34.152672
+frame# 13 PSNR = 34.631990
+frame# 14 PSNR = 34.829807
+frame# 15 PSNR = 34.747885
+frame# 16 PSNR = 34.440590
+frame# 17 PSNR = 34.735275
+frame# 18 PSNR = 34.420612
+frame# 19 PSNR = 35.254417
+frame# 20 PSNR = 34.739778
+
+Total Time Comsume:19.705000
+

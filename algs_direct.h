@@ -1,5 +1,6 @@
 #ifndef __ALGS_DIRECT_H
 #define __ALGS_DIRECT_H
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "frame.h"
@@ -61,6 +62,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
 #if __STATUS__
         printf("BCJR decoding ...%lf\n",getCurrentTime());
 #endif
+        #pragma omp parallel for
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
             BCJR_decoding(lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
 
