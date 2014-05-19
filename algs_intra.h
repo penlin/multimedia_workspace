@@ -43,15 +43,8 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     int** map = new2d<int>(PXL,lm);      //interleaver map
 
     // pstate, pout
-//    double* Lu = MALLOC(double,lu);
-//    double* Le1 = MALLOC(double,lu);
-//    double* Le2 = MALLOC(double,lu);
     double** Le1 = new2d<double>(PXL,lu,0.5);//MALLOC(double,lu);
     double** Le2 = new2d<double>(PXL,lu,0.5);// MALLOC(double,lu);
-//    for(int i = 0 ; i < lu ; ++i)
-//        Lu[i] = 0;
-
-//    computeLe(Lu,Le1,Le2,lu);
 
     double* beta = MALLOC(double,PXL);
 
@@ -91,11 +84,6 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             printf("iter #%d\n",iter+1);
 #endif
 
-//            for(int i = 0 ; i < PXL ; ++i)
-//                for(int j = 0 ; j < lm ; ++j)
-//                    Le_s[i][j] = (Lu_s[i][map[i][j]]-Le_c[i][map[i][j]]);
-
-
             // BCJR decoding
 #if __STATUS__
             printf("BCJR decoding ...%lf\n",getCurrentTime());
@@ -103,45 +91,26 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             #pragma omp parallel for
             for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
                 for(int i = 0 ; i < lm ; ++i)
-//                    Lu[i] = Le_s[t_lvl][i];
                     Le_s[t_lvl][i] = (Lu_s[t_lvl][map[t_lvl][i]]-Le_c[t_lvl][map[t_lvl][i]]);
                 computeLe(Le_s[t_lvl],Le1[t_lvl],Le2[t_lvl],lm);
                 BCJR_decoding(lu, 1, Ly[t_lvl], Le1[t_lvl], Le2[t_lvl], Lu_c[t_lvl]);
 
+                // deinterleave
                 for(int i = 0 ; i < lm ; ++i){
                     Le_c[t_lvl][map[t_lvl][i]] = (Lu_c[t_lvl][i] - Le_s[t_lvl][i]);
                     imgr_bp[t_lvl][0][map[t_lvl][i]] =((Le_c[t_lvl][map[t_lvl][i]]>=0)?1:0);
                 }
 
+                // MRF parameter estimation
                 intra_beta_estimation(imgr_bp[t_lvl],beta[t_lvl],imgh,imgw);
             }
-
-            // deinterleave
-#if __STATUS__
-        printf("deinterleave ...%lf\n",getCurrentTime());
-#endif
-//            for(int i = 0 ; i < PXL ; ++i)
-//                for(int j = 0 ; j < lm ; ++j)
-//                    Le_c[i][map[i][j]] = (Lu_c[i][j] - Le_s[i][j]);
-
-            // MRF parameter estimation
-#if __STATUS__
-        printf("MRF parameter estimation ...%lf\n",getCurrentTime());
-#endif
-//            for(int i = 0 ; i <imgh ; ++i)
-//                for(int j = 0 ; j < imgw ; ++j)
-//                    for(int t_lvl=0 ; t_lvl < PXL ; ++t_lvl)
-//                        imgr_bp[t_lvl][i][j] = ((Le_c[t_lvl][j+i*imgw]>=0)?1:0);
-
-//            intra_beta_estimation(imgr_bp,beta,imgh,imgw);
-//            intra_beta_estimation(frame->img_bp,beta,imgh,imgw);
-
 
             // MRF decoding
 #if __STATUS__
         printf("MRF decoding ... %lf\n",getCurrentTime());
 #endif
             mrf_siso_intra(Le_c,beta,imgh,imgw,Lu_s,1);
+
 #if __BETA__
         printf("frame#%d iter#%d,\n",f+1,iter+1);
         for(int i = 0 ; i < PXL ; ++i)
@@ -150,7 +119,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
             // recover to image
             Lu2dec_img(Lu_c,lm,imgr,map);
-//            Lu2dec_img(Lu_c,lm,imgr);
+
             // compute PSNR
             double channel_psnr = frame->psnr(imgr);
 
@@ -159,18 +128,16 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             // compute PSNR
             PSNR[f] = frame->psnr(imgr);
 
-            //printf("frame#%d iter#%d,avg beta=\n",f+1,iter+1);
-//            for(int i = 0 ; i < PXL ; ++i)
-//               printf("%lf,",beta[i]);
-//            printf("%lf,%lf\n",channel_psnr,PSNR[f]-channel_psnr);
-//            printf("%lf,%lf,",channel_psnr,PSNR[f]);
 #if __PSNR__
             printf("%s frame#%d PSNR_iter%d = %lf (channel:%lf)\n",str,f+1,iter+1,PSNR[f],channel_psnr);
 #endif
         }
-//        computeBER(imgr,frame->Y,lm,ber);
-//        printf("%lf\n",PSNR[f]);
-//        printf("\n");
+
+#if !__PSNR__
+        computeBER(imgr,frame->Y,lm,ber);
+        printf("%lf\n",PSNR[f]);
+#endif
+
         // imgr output
         if(img_out!=NULL)
             for(int i = 0, j = 0; i <imgh ; ++i)
@@ -187,14 +154,11 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     delete2d<Pixel>(imgr);
 
     DELETE(beta);
-//    DELETE(Lu);
-//    DELETE(Le1);
-//    DELETE(Le2);
-    delete2d<double>(Le1);
-    delete2d<double>(Le2);
     DELETE(weights);
     DELETE(ber);
 
+    delete2d<double>(Le1);
+    delete2d<double>(Le2);
     delete2d<double>(Lu_c);
     delete2d<double>(Lu_s);
     delete2d<double>(Le_c);

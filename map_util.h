@@ -11,11 +11,11 @@
 * Le1= P0; Le2=P1;
 */
 
-void computeLe(const double* Lu, double* Le1, double* Le2, const int &lu){
+void computeLe(const double* Lu, double* Le1, const int &lu){
 
     for(int i = 0 ; i < lu ; ++i){
         Le1[i] = 1/(1+exp(Lu[i]));      // P0
-        Le2[i] = 1-Le1[i];              // P1
+//        Le2[i] = 1-Le1[i];              // P1
     }
 }
 
@@ -24,7 +24,7 @@ void computeLe(const double* Lu, double* Le1, double* Le2, const int &lu){
 *   @Penlin: BCJR MAP algorithm
 */
 
-void ComputeGamma(double*** gamma,const int &lu ,const int &Ns , int **ps, int **pout, double *Ly, double *Le1, double * Le2)
+void ComputeGamma(double*** gamma,const int &lu ,const int &Ns , int **ps, int **pout, double *Ly, double *Le1)
 {
     int i,j;
     double Lyk[2];
@@ -34,15 +34,9 @@ void ComputeGamma(double*** gamma,const int &lu ,const int &Ns , int **ps, int *
 //        Lyk[1] = 1/(1+exp(-Ly[2*i-1])); // P=1
         Lyk[0] = Ly[2*i-2];
         Lyk[1] = Ly[2*i-1];
-//        tmp = 0;
         for(j=0;j<Ns;++j){
-//             gamma[ps[j][0]][j][i] = (1-Lyk[0])*((1-pout[j][1])/2+Lyk[1]*pout[j][1])*Le1[i-1] ;
-//             gamma[ps[j][1]][j][i] =  Lyk[0]*((1-pout[j][3])/2+Lyk[1]*pout[j][3])*Le2[i-1];
             gamma[ps[j][0]][j][i] = exp(-Lyk[0]+pout[j][1]*Lyk[1])*Le1[i-1];
-            gamma[ps[j][1]][j][i] = exp(Lyk[0]+pout[j][3]*Lyk[1])*Le2[i-1];
-//            tmp = gamma[ps[j][0]][j][i] + gamma[ps[j][1]][j][i];
-//            gamma[ps[j][0]][j][i]/=tmp;
-//            gamma[ps[j][1]][j][i]/=tmp;
+            gamma[ps[j][1]][j][i] = exp(Lyk[0]+pout[j][3]*Lyk[1])*(1-Le1[i-1]);
         }
     }
 }
@@ -96,10 +90,8 @@ void ComputeSoftOutput(double *La, double **alpha, double **beta, double ***gamm
         tmp1 = 0;
         tmp2 = 0;
         for(j=0;j<Ns;++j){
-//            for(k=0;k<Ns;++k){
                 tmp1 += (gamma[ps[j][0]][j][i+1]*alpha[i][ps[j][0]]*beta[i+1][j]);
                 tmp2 += (gamma[ps[j][1]][j][i+1]*alpha[i][ps[j][1]]*beta[i+1][j]);
-//            }
         }
         La[i] = log(tmp2/tmp1);// - log(tmp1+EPS);
     }
@@ -120,7 +112,7 @@ void ComputeSoftOutput(double *La, double **alpha, double **beta, double ***gamm
 *   @output LA
 */
 
-void BCJR_map(const int &Ns, const int &lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, int** ps, int** pout, double* LA){
+void BCJR_map(const int &Ns, const int &lu, const int &ind_dec, double* Ly, double* Le1, int** ps, int** pout, double* LA){
 
         int i, j;
         double** Alpha = new2d<double>(lu,Ns,0);
@@ -148,7 +140,7 @@ void BCJR_map(const int &Ns, const int &lu, const int &ind_dec, double* Ly, doub
                 gam[i][j][0]= 0.5;
 
         // compute gamma at every depth level (stage)
-        ComputeGamma(gam,lu,Ns,ps,pout,Ly,Le1,Le2);
+        ComputeGamma(gam,lu,Ns,ps,pout,Ly,Le1);
 
         // compute alpha in forward recursive
         ComputeAlpha(gam,Alpha,lu,Ns);

@@ -36,12 +36,9 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
         for(int j = 0 ; j < PXL ; ++j)
             weights[j] = 1;
 
-    double* Lu = MALLOC(double,lu);
     double* Le1 = MALLOC(double,lu);
-    double* Le2 = MALLOC(double,lu);
     for(int i=0; i<lu ;++i)
-        Lu[i] = 0;
-    computeLe(Lu,Le1,Le2,lu);
+        Le1[i] = 0.5;
 
     // frame buffer
     Pixel** imgr = new2d<Pixel>(imgh,imgw);
@@ -64,7 +61,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
 #endif
         #pragma omp parallel for
         for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
-            BCJR_decoding(lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
+            BCJR_decoding(lu, 1, Ly[t_lvl], Le1, NULL , Lu_c[t_lvl]);
 
         // deinterleave
 #if __STATUS__
@@ -92,9 +89,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     delete2d<int>(map);
     delete2d<double>(Lu_c);
     delete2d<Pixel>(imgr);
-    DELETE(Lu);
     DELETE(Le1);
-    DELETE(Le2);
     DELETE(weights);
 
     delete frame;

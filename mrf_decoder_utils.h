@@ -137,8 +137,7 @@ void mrf_siso_intra(double** Le_c, double* beta, const int &imgh, const int &img
                 Lu_s[t_lvl][i*imgw+j] = Le_c[t_lvl][i*imgw+j]*comp;
                 p0[i][j] = 1/(exp(Le_c[t_lvl][i*imgw+j])+1);
             }
-//        if(beta[t_lvl]<0.5)
-//            continue;
+
         for(i = 1 ; i < imgh-1 ; ++i )
             for(j = 1 ; j < imgw-1 ; ++j)
                 Lu_s[t_lvl][i*imgw+j] += (2*beta[t_lvl]*(2 - p0[i-1][j] - p0[i+1][j] - p0[i][j-1] - p0[i][j+1]));
@@ -160,10 +159,9 @@ void mrf_siso_intra(double** Le_c, double* beta, const int &imgh, const int &img
 
 void mrf_siso_inter(double** Le_c, double** Le_c_ref, double* beta, const int &lm, double** Lu_s, const int &comp){
 
-    int i, t_lvl ;
-
-    for(t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
-        for(i=0 ; i < lm ; ++i)
+    #pragma omp parallel for
+    for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl)
+        for(int i=0 ; i < lm ; ++i)
             Lu_s[t_lvl][i] = (Le_c[t_lvl][i]*comp + beta[t_lvl]*(1-2/(1+exp(Le_c_ref[t_lvl][i]))));
 
 }

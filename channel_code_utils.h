@@ -43,10 +43,10 @@ static int** pstate;
 *
 */
 
-void BCJR_decoding(const int lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, double* LA){
+void BCJR_decoding(const int &lu, const int &ind_dec, double* Ly, double* Le1, double* Le2, double* LA){
 
 #if __BCJR__==__MAP__
-    BCJR_map(Ns, lu, ind_dec, Ly,  Le1, Le2,  pstate, pout, LA);
+    BCJR_map(Ns, lu, ind_dec, Ly,  Le1, pstate, pout, LA);
 #else
     BCJR_logmap(Ns, lu, ind_dec, Ly,  Le1, Le2,  pstate, pout, LA);
 #endif
