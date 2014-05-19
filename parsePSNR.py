@@ -6,7 +6,7 @@ SNR = 5
 
 filename = str(sys.argv[-1])
 
-fw = open('output\\'+filename,'w')
+fw = open('backup\\'+filename,'w')
 fr = open(filename,'r')
 data = [line.replace('\n','') for line in fr if line[0]=='0']
 print 'Len:',len(data)
