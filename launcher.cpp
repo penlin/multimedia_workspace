@@ -1,9 +1,6 @@
 #include "build_value.h"
 #include "data_types.h"
-#include "algs_direct.h"
-#include "algs_intra.h"
-#include "algs_inter.h"
-#include "algs_inter_intra.h"
+#include "algs_direct_minE.h"
 #include "io_utils.h"
 
 
@@ -23,6 +20,8 @@ const double DERIVE_INTRA_SNR[5][PXL] = {{1.542550, 1.738844, 1.455300, 1.401314
                                         {1.316359, 1.459535, 1.241203, 1.226068, 1.163622, 0.972940, 0.578915, 0.041608},
                                         {1.225215, 1.260888, 1.192017, 1.174171, 1.100385, 0.963340, 0.748424, 0.335652},
                                         {1.178798, 1.228975, 1.131290, 1.106988, 1.014853, 0.959307, 0.779196, 0.600574}};
+
+const double Distortion[6] = {2072.430287, 655.36, 65.536, 6.5536, 0.65536, 0.065536};
 
 const char* FILENAME[4] = {__FOREMAN, __HALL, __STEFAN, __AKIYO};
 
@@ -54,7 +53,7 @@ int main(int argc,char* argv[]){
     double* PSNR = MALLOC(double,f) ;//(double*) malloc(sizeof(double)*f);
 
     for(int i = 0 ; i < len ; ++i)
-        snr[i] = __SNR_S+i;
+        snr[i] = Distortion[i];//__SNR_S+i;
 
     int weight_type = 0;
     // 0: EEP

@@ -13,7 +13,7 @@
 #define PXL 8
 
 // decode algorithm function name
-#define __DIRECT__      direct_system
+#define __DIRECT__      direct_minE_system
 #define __INTRA__       intra_system
 #define __INTER__       inter_system
 #define __INTER_PAIR__  inter_pair_system
@@ -44,10 +44,10 @@
 #define __HEIGHT    288
 #define __WIDTH     352
 #define __SKIP      0
-#define __FRAME     20
+#define __FRAME     300
 #define __SNR       4
 #define __SNR_S     0
-#define __SNR_E     0
+#define __SNR_E     5
 
 
 #define __SEQ_DIR   "sequence/"
@@ -68,14 +68,14 @@
 # **/
 
 // control the decode algorithm
-#define __ALGO__    __INTRA__
+#define __ALGO__    __DIRECT__
 #define __SEQ__     __AKIYO
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
 #define __NOISE__       1&&__RANDOM__   // generate gaussian noise
 
-#define __DEBUG__       1               // debug msg
+#define __DEBUG__       0               // debug msg
 #define MEM_DEBUG       0&&__DEBUG__    // msg for memory manager
 #define __OPT__         0&&__DEBUG__    // msg for uep prediction
 #define __STATUS__      0&&__DEBUG__    // msg for status right now

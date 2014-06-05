@@ -71,6 +71,28 @@ void interp2(const double &gamma, double &value){
     }
 }
 
+double interp2(const double &gamma){
+    int i  = 0;
+    double value = fr[0];
+    for(i=0;i<FR_DATA_LEN;++i){
+        if(r[i]<=gamma && r[i+1]>gamma){
+            value = fr[i] + (fr[i+1]-fr[i])/(r[i+1]-r[i])*(gamma-r[i]);
+            return value;
+        }
+    }
+    return value;
+}
+
+
+void interpf(const double &target, double &value){
+    int i  = 0;
+    for(i=0;i<FR_DATA_LEN;++i){
+        if(fr[i]>=target && fr[i+1]<target){
+            value = r[i] + (r[i+1]-r[i])/(fr[i]-fr[i+1])*(fr[i]-target);
+            return;
+        }
+    }
+}
 
 double mrf_psnr_est(double* weights, const double &gamma, double* eEn){
 
@@ -200,6 +222,89 @@ void weight_predict_minMSE(double* weights, const double &gamma){
 
 // pendding ...
 void weight_predict_minPOWER(double* gammas, const double &mse){
+
+    double lambda = 0.01, targetSum = mse, tmpSum = 0.0, value = 0.0 ,tollerance = 0.1, slope ;
+    int i;
+    if(tollerance > targetSum * 0.1){
+        tollerance = targetSum* 0.001;
+    }
+    for(i = 0 ; i < PXL ; ++i){
+        value = -ORDER_N2[i]*lambda;
+        cutDF(value);
+        interp1(value,gammas[i]);
+//        printf("lambda=%lf, n=%d,value=%lf, gamma:%lf ",lambda,i,value,gammas[i]);
+        cutGAMMA(gammas[i]);
+        tmpSum+=interp2(gammas[i])*ORDER2[i];
+//        printf("=> %lf  and tmpSum = %lf\n",gammas[i],tmpSum);
+
+//        system("pause");
+
+    }
+
+    double delta = 0.01;
+    int iter = 1, flag = 1, limit = 100, cutter = 0;
+
+    while(divergent(tmpSum,targetSum,tollerance)){
+//        printf("Iter:#%d,lambda=%lf (%lf) gammas:[",iter,lambda,tmpSum);
+//        for(i=0;i<PXL;++i)
+//            printf("%lf, ",gammas[i]);
+//        printf("]\n");
+
+        // calculate slope
+        slope = 0.0;
+        cutter = 0;
+        if(flag){
+            for(i=0;i<PXL;++i){
+                value = -ORDER_N2[i]*(lambda+delta);
+                cutter+=cutDF(value);
+                interp1(value,gammas[i]);
+                cutGAMMA(gammas[i]);
+                slope+=interp2(gammas[i])*ORDER2[i];
+            }
+            slope = (slope-tmpSum)/delta;
+        }
+
+        if(divergent(slope,0,tollerance/10)){
+//            printf("diverge:%lf\n",slope);
+            lambda += (targetSum - tmpSum)/slope;
+        }
+        else{
+//            printf("slope too small:%lf\n",slope);
+            lambda += ((targetSum > tmpSum)*2-1)*delta*((cutter==(PXL-1))+1);
+        }
+
+        tmpSum = 0.0;
+        for(i = 0 ; i < PXL ; ++i){
+            value = -ORDER_N2[i]*lambda;
+            cutDF(value);
+            interp1(value,gammas[i]);
+            cutGAMMA(gammas[i]);
+            tmpSum+=interp2(gammas[i])*ORDER2[i];
+        }
+        iter+=1;
+
+        if(flag && !divergent(tmpSum,targetSum,10*tollerance)){
+            delta/=3;
+            flag = 0;
+        }
+
+        if(iter>limit && !divergent(tmpSum,targetSum,5)){
+//            if(cutter==0)
+            if(delta > 0.00001)
+                delta/=1.05;
+//            else
+//                delta*=1.05;
+            limit+=200;
+        }else if(iter>limit && cutter){
+            delta*= 1.05;
+            limit+=100;
+        }
+    }
+
+    printf("found gammas solution:((%lf)[",tmpSum);
+    for(i=0;i<PXL;++i)
+        printf("%lf, ",gammas[i]);
+    printf("]\n");
 
 }
 
