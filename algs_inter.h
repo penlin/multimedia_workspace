@@ -58,12 +58,12 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     // pstate, pout
     double* Lu = MALLOC(double,lu);
     double* Le1 = MALLOC(double,lu);
-    double* Le2 = MALLOC(double,lu);
+    //double* Le2 = MALLOC(double,lu);
 
     for(int i = 0 ; i < lu ; ++i)
         Lu[i]  = 0;
 
-    computeLe(Lu,Le1,Le2,lu);
+    computeLe(Lu,Le1,lu);
 
 
     // frame buffer for previous frame
@@ -226,15 +226,15 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
                 for(i = 0 ; i < lm ; ++i)
                     Lu[i] = Le_s[t_lvl][i];
 
-                computeLe(Lu,Le1,Le2,lm);
+                computeLe(Lu,Le1,lm);
 
-                BCJR_decoding(lu, 1, Ly[t_lvl], Le1, Le2, Lu_c[t_lvl]);
+                BCJR_decoding(lu, 1, Ly[t_lvl], Le1, NULL, Lu_c[t_lvl]);
 
                 for(i = 0 ; i < lm ; ++i)
                     Lu[i] = Le_s_prev[t_lvl][i];
 
-                computeLe(Lu,Le1,Le2,lm);
-                BCJR_decoding(lu, 1, Ly_prev[t_lvl], Le1, Le2, Lu_c_prev[t_lvl]);
+                computeLe(Lu,Le1,lm);
+                BCJR_decoding(lu, 1, Ly_prev[t_lvl], Le1, NULL, Lu_c_prev[t_lvl]);
             }
 
 
@@ -398,7 +398,7 @@ void inter_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
     DELETE(Lu);
     DELETE(Le1);
-    DELETE(Le2);
+    //DELETE(Le2);
     DELETE(weights);
     DELETE(ber);
 

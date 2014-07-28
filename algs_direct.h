@@ -18,8 +18,29 @@
 *
 **/
 
+void yuv_write(FILE* fptr, Pixel** Y, const int& height, const int& width){
+    if(fptr==NULL){
+        printf("FILE can't be read");
+        return;
+    }
+    int lm = height*width;
+    unsigned char* buffer = (unsigned char*)malloc(sizeof(unsigned char)*lm);
+
+    for(int i = 0, j = 0 ; i < height ; ++i){
+        for(j = 0 ; j < width ; ++j)
+            buffer[j+i*width] = Y[i][j];
+    }
+    fwrite(buffer,1,lm,fptr);
+
+    DELETE(buffer);
+}
+
 void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, const double &snr, double* PSNR ,int weight_type = 0, int*** img_out = NULL){
 
+    FILE* fout = NULL;
+    char buf[50];
+    sprintf(buf,"%s%s_snr%d.yuv",__SEQ_DIR,str,(int)snr);
+    fout = fopen(buf,"w+b");
 
     Frame* frame = new Frame(imgh,imgw,0,0);
     frame->encode_info(snr,G);
@@ -78,10 +99,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
 #endif
 
         // imgr output
-        if(img_out!=NULL)
-            for(int i = 0, j = 0; i <imgh ; ++i)
-                for(j=0 ; j < imgw ; ++j)
-                    img_out[f][i][j] = imgr[i][j];
+        yuv_write(fout,imgr,imgh,imgw);
 
     }
 
@@ -93,6 +111,7 @@ void direct_system(const char* str, FILE* fptr, const int &imgh, const int &imgw
     DELETE(weights);
 
     delete frame;
+    fclose(fout);
 }
 
 
