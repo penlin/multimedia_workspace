@@ -1,6 +1,6 @@
 #ifndef __UEP_PREDICT_UTILS_H
 #define __UEP_PREDICT_UTILS_H
-
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "mrf_decoder_utils.h"
@@ -345,10 +345,11 @@ void weight_predict_basic(double* weights, const double eEn[PXL], const double &
     printf("\n");
 #endif
 
+    #pragma omp parallel for reduction(+:tmpSum)
     for(i = 0 ; i < PXL ; ++i){
 
         solvBaiscFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
-        tmpSum+=weights[i];
+        tmpSum = tmpSum + weights[i];
     }
 
     double delta = 0.01/gamma;
@@ -365,9 +366,10 @@ void weight_predict_basic(double* weights, const double eEn[PXL], const double &
         slope = 0.0;
         cutter = 0;
         if(flag){
+            #pragma omp parallel for reduction(+:slope)
             for(i=0;i<PXL;++i){
                 solvBaiscFn(lambda+delta,eEn[i],gamma,ORDER_N2[i],weights[i]);
-                slope+=weights[i];
+                slope = slope + weights[i];
             }
             slope = (slope-tmpSum)/delta;
         }
@@ -379,9 +381,10 @@ void weight_predict_basic(double* weights, const double eEn[PXL], const double &
             lambda += ((targetSum < tmpSum)*2-1)*delta;
 
         tmpSum = 0.0;
+        #pragma omp parallel for reduction(+:tmpSum)
         for(i = 0 ; i < PXL ; ++i){
             solvBaiscFn(lambda,eEn[i],gamma,ORDER_N2[i],weights[i]);
-            tmpSum+=weights[i];
+            tmpSum=tmpSum+weights[i];
         }
         iter+=1;
 

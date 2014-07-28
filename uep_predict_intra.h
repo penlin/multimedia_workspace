@@ -1,26 +1,32 @@
 #ifndef __UEP_PREDICT_INTRA_H
 #define __UEP_PREDICT_INTRA_H
-
+#include <omp.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "uep_predict_utils.h"
 
 
 void weight_predict_Intra_minMSE(int8*** img_bp,const int &imgh, const int &imgw, double* weights, const double &gamma){
 
-    double value = 0.0,beta;
+    //double value = 0.0,beta;
     double eEn[PXL];
-    int i,j,k,N=0;
+    int i;
+    double tmp[PXL];
+    double beta[PXL];
+    double N[PXL];
 
+    #pragma omp parallel for
     for(i = 0; i < PXL ; ++i){
 
-        intra_beta_estimation(img_bp[i],beta,imgh,imgw);
-        value= 0;
-        for(j=1;j<imgh-1;++j){
+        intra_beta_estimation(img_bp[i],beta[i],imgh,imgw);
+        N[i]=tmp[i]= 0;
+        for(int j=1, k = 1;j<imgh-1;++j){
             for(k=1;k<imgw-1;++k){
-                N = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
-                value+=(2*img_bp[i][j][k]-1)*(2*N-4);
+                N[i] = img_bp[i][j-1][k]+img_bp[i][j+1][k]+img_bp[i][j][k-1]+img_bp[i][j][k+1];
+                tmp[i]+=(2*img_bp[i][j][k]-1)*(2*N[i]-4);
             }
         }
-        eEn[i] = exp(value*beta/((imgh-1)*(imgw-1)));
+        eEn[i] = exp(tmp[i]*beta[i]/((imgh-1)*(imgw-1)));
     }
 
     weight_predict_basic(weights,eEn,gamma);

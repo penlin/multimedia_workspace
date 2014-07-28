@@ -20,9 +20,34 @@
 *
 **/
 
+int flag_output = 1;
+
+void yuv_write(FILE* fptr, Pixel** Y, const int& height, const int& width){
+    if(fptr==NULL){
+        printf("FILE can't be read");
+        return;
+    }
+    int lm = height*width;
+    unsigned char* buffer = (unsigned char*)malloc(sizeof(unsigned char)*lm);
+
+    for(int i = 0, j = 0 ; i < height ; ++i){
+        for(j = 0 ; j < width ; ++j)
+            buffer[j+i*width] = Y[i][j];
+    }
+    fwrite(buffer,1,lm,fptr);
+
+    DELETE(buffer);
+}
+
 void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw, const int &n_frame,int** G, const double &snr, double* PSNR , int repredict = 0, int*** img_out = NULL){
 
 
+    FILE* fout = NULL;
+    if(flag_output){
+        char buf[50];
+        sprintf(buf,"%s%s_snr%d.yuv",__SEQ_DIR,str,(int)snr);
+        fout = fopen(buf,"w+b");
+    }
     Frame* frame = new Frame(imgh,imgw,0,0);
     frame->encode_info(snr,G);
     const double EbN0 = pow(10,snr/10);
@@ -44,7 +69,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
 
     // pstate, pout
     double** Le1 = new2d<double>(PXL,lu,0.5);//MALLOC(double,lu);
-    double** Le2 = new2d<double>(PXL,lu,0.5);// MALLOC(double,lu);
+    //double** Le2 = new2d<double>(PXL,lu,0.5);// MALLOC(double,lu);
 
     double* beta = MALLOC(double,PXL);
 
@@ -92,8 +117,8 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
             for(int t_lvl = 0 ; t_lvl < PXL ; ++t_lvl){
                 for(int i = 0 ; i < lm ; ++i)
                     Le_s[t_lvl][i] = (Lu_s[t_lvl][map[t_lvl][i]]-Le_c[t_lvl][map[t_lvl][i]]);
-                computeLe(Le_s[t_lvl],Le1[t_lvl],Le2[t_lvl],lm);
-                BCJR_decoding(lu, 1, Ly[t_lvl], Le1[t_lvl], Le2[t_lvl], Lu_c[t_lvl]);
+                computeLe(Le_s[t_lvl],Le1[t_lvl],lm);
+                BCJR_decoding(lu, 1, Ly[t_lvl], Le1[t_lvl],NULL, Lu_c[t_lvl]);
 
                 // deinterleave
                 for(int i = 0 ; i < lm ; ++i){
@@ -138,6 +163,7 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
         printf("%lf\n",PSNR[f]);
 #endif
 
+        yuv_write(fout,imgr,imgh,imgw);
         // imgr output
         if(img_out!=NULL)
             for(int i = 0, j = 0; i <imgh ; ++i)
@@ -158,13 +184,15 @@ void intra_system(const char* str, FILE* fptr, const int &imgh, const int &imgw,
     DELETE(ber);
 
     delete2d<double>(Le1);
-    delete2d<double>(Le2);
+    //delete2d<double>(Le2);
     delete2d<double>(Lu_c);
     delete2d<double>(Lu_s);
     delete2d<double>(Le_c);
     delete2d<double>(Le_s);
 
     delete frame;
+    if(flag_output)
+        fclose(fout);
 }
 
 

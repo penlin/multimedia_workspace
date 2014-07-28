@@ -13,7 +13,7 @@
 #define PXL 8
 
 // decode algorithm function name
-#define __DIRECT__      direct_minE_system
+#define __DIRECT__      direct_system
 #define __INTRA__       intra_system
 #define __INTER__       inter_system
 #define __INTER_PAIR__  inter_pair_system
@@ -41,13 +41,13 @@
 
 // basic decoding information
 #define Niter       3                  // #iteration
-#define __HEIGHT    288
-#define __WIDTH     352
+#define __HEIGHT    720
+#define __WIDTH     1280
 #define __SKIP      0
 #define __FRAME     300
 #define __SNR       4
 #define __SNR_S     0
-#define __SNR_E     5
+#define __SNR_E     0
 
 
 #define __SEQ_DIR   "sequence/"
@@ -55,7 +55,11 @@
 #define __STEFAN    __SEQ_DIR  "stefan_cif.yuv"
 #define __HALL      __SEQ_DIR  "hall_cif.yuv"
 #define __AKIYO     __SEQ_DIR  "akiyo_cif.yuv"
-#define __TAG__     "akiyo"
+#define __FLOWER    __SEQ_DIR  "Flowervase_832x480_30.yuv"
+#define __FOURPEOPLE    __SEQ_DIR  "FourPeople_1280x720_60.yuv"
+#define __BASKETBALL __SEQ_DIR "BasketballDrive_1920x1080_50.yuv"
+
+#define __TAG__     "fourpeople"
 
 /**#______   _______  _______  _______  ______   _______        _______  _______  _       _________ _______  _______  _
 #  (  __  \ (  ____ \(  ____ \(  ___  )(  __  \ (  ____ \      (  ____ \(  ___  )( (    /|\__   __/(  ____ )(  ___  )( \
@@ -69,7 +73,7 @@
 
 // control the decode algorithm
 #define __ALGO__    __DIRECT__
-#define __SEQ__     __AKIYO
+#define __SEQ__     __FOURPEOPLE
 
 #define __RANDOM__      1               // total control for the interleave and AWGN
 #define __INTERLEAVE__  1&&__RANDOM__   // generate random order map
@@ -77,11 +81,11 @@
 
 #define __DEBUG__       0               // debug msg
 #define MEM_DEBUG       0&&__DEBUG__    // msg for memory manager
-#define __OPT__         0&&__DEBUG__    // msg for uep prediction
+#define __OPT__         1&&__DEBUG__    // msg for uep prediction
 #define __STATUS__      0&&__DEBUG__    // msg for status right now
-#define __PROGRESS__    1&&__DEBUG__    // msg for the progress
+#define __PROGRESS__    0&&__DEBUG__    // msg for the progress
 #define __BETA__        0&&__DEBUG__    // msg for beta msg
-#define __PSNR__        1&&__DEBUG__    // msg for cPSNR in procedure
+#define __PSNR__        0&&__DEBUG__    // msg for cPSNR in procedure
 
 #define __OUTPUT_SEQ__      0           // control if output the decoded sequence
 #define __OUTPUT_TYPE__     __Y__*__OUTPUT_SEQ__

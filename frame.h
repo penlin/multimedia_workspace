@@ -86,9 +86,20 @@ public:
     }
 
     void write(FILE* fptr){
-        if(fptr==NULL)
+        if(fptr==NULL){
             printf("FILE can't be read");
+            return;
+        }
         // TODO:
+        unsigned char* buffer = (unsigned char*)malloc(sizeof(unsigned char)*lm);
+
+        for(int i = 0, j = 0 ; i < height ; ++i){
+            for(j = 0 ; j < width ; ++j)
+                buffer[j+i*width] = Y[i][j];
+        }
+        fwrite(buffer,1,lm,fptr);
+
+        DELETE(buffer);
     }
 
 

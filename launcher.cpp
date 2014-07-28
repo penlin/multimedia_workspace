@@ -1,6 +1,6 @@
 #include "build_value.h"
 #include "data_types.h"
-#include "algs_direct_minE.h"
+#include "algs_direct.h"
 #include "io_utils.h"
 
 
@@ -53,7 +53,7 @@ int main(int argc,char* argv[]){
     double* PSNR = MALLOC(double,f) ;//(double*) malloc(sizeof(double)*f);
 
     for(int i = 0 ; i < len ; ++i)
-        snr[i] = Distortion[i];//__SNR_S+i;
+        snr[i] = __SNR_S+i;
 
     int weight_type = 0;
     // 0: EEP
